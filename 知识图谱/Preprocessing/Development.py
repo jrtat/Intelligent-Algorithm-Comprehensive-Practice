@@ -29,11 +29,11 @@ def tool_development_coding(company_type, size):
         return 'Unknown' # ct为空
 
 def preprocess_development(loc_df):
-    if '公司类型' in loc_df.columns:
-        loc_df['公司类型'] = loc_df.apply(
-            lambda row: tool_development_coding(row['公司类型'], row['公司规模']),
-            axis=1
-        )
-    else:
-        print("Error")
+    if '公司类型' not in loc_df.columns:
+        print("错误：未找到‘公司类型’列")
+        return loc_df
+    loc_df['公司类型'] = loc_df.apply(
+        lambda row: tool_development_coding(row['公司类型'], row['公司规模']),
+        axis=1
+    )
     return loc_df

@@ -22,8 +22,9 @@ def tool_size_coding(size):
     # 防止前后空格导致识别不出来
 
 def preprocess_size(loc_df): # 将公司规模列替换为字母代码
-    if '公司规模' in loc_df.columns:
-        loc_df['公司规模'] = loc_df['公司规模'].apply(tool_size_coding)
-    else:
-        print("Error")
+    if '公司规模' not in loc_df.columns:
+        print("错误：未找到‘公司规模’列")
+        return loc_df
+        
+    loc_df['公司规模'] = loc_df['公司规模'].apply(tool_size_coding)
     return loc_df

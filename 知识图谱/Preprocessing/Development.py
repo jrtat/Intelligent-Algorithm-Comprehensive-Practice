@@ -32,7 +32,8 @@ def preprocess_development(loc_df):
     if '公司类型' not in loc_df.columns:
         print("错误：未找到‘公司类型’列")
         return loc_df
-    loc_df['公司类型'] = loc_df.apply(
+    loc_df["公司发展情况"] = loc_df["公司类型"].copy() # 新建一个列来存城市类型
+    loc_df['公司发展情况'] = loc_df.apply(
         lambda row: tool_development_coding(row['公司类型'], row['公司规模']),
         axis=1
     )

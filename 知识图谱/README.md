@@ -74,11 +74,11 @@
 
 ## 什么是GraphRAG
 
-[GraphRAG的图结构](https://www.bilibili.com/video/BV1tsYPztEiE) B站自带AI字幕效果不错
+[RAG中的Embedding模型](https://www.bilibili.com/video/BV19RJhzyEWN/?vd_source=e2b79f6eccec7953cc61b1c113da15ca)
+
+[GraphRAG的图结构（知识图谱）](https://www.bilibili.com/video/BV1tsYPztEiE) B站自带AI字幕效果不错
 
 [GraphRAG中，文本如何被转换成图上的节点和边](https://www.bilibili.com/video/BV1zoKuzoENM)
-
-[RAG中的Embedding模型](https://www.bilibili.com/video/BV19RJhzyEWN/?vd_source=e2b79f6eccec7953cc61b1c113da15ca)
 
 ## 如何部署本地大模型
 

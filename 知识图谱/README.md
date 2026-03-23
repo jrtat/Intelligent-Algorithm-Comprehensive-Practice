@@ -34,7 +34,7 @@
 
 ## 知识图谱构建
 
-#GraphRAG #Neo4j #KnowledgeGraph
+`GraphRAG`  `Neo4j`  `Knowledge Graph`
 
 ### 实体
 

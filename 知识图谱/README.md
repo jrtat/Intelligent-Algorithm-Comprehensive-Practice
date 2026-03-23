@@ -34,6 +34,8 @@
 
 ## 知识图谱构建
 
+#GraphRAG #Neo4j #KnowledgeGraph
+
 ### 实体
 
 - 岗位名称（约100种）

@@ -78,10 +78,11 @@ def tool_city_type_coding(addr):
         return addr  # 出错时保留原值
 
 def preprocess_city_type(loc_df):
-    if "地址" in loc_df.columns: # 确保所查列存在
-        loc_df["城市类型"] = loc_df["地址"].copy() # 新建一个列来存城市类型
-        tqdm.pandas(desc="清洗地址") # 使用 tqdm 显示进度
-        loc_df["城市类型"] = loc_df["城市类型"].progress_apply(tool_addr_coding)
-    else:
-        print("Error")
+    if '地址' not in loc_df.columns: # 确保所查列存在
+        print("错误：未找到‘地址’列")
+        return loc_df
+
+    loc_df["城市类型"] = loc_df["地址"].copy() # 新建一个列来存城市类型
+    tqdm.pandas(desc="清洗地址") # 使用 tqdm 显示进度
+    loc_df["城市类型"] = loc_df["城市类型"].progress_apply(tool_addr_coding)
     return loc_df

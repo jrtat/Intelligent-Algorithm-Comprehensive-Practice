@@ -25,6 +25,6 @@ def preprocess_size(loc_df): # 将公司规模列替换为字母代码
     if '公司规模' not in loc_df.columns:
         print("错误：未找到‘公司规模’列")
         return loc_df
-        
-    loc_df['公司规模'] = loc_df['公司规模'].apply(tool_size_coding)
+    loc_df["公司规模（离散）"] = loc_df["公司规模"].copy() # 新建一个列来存城市类型
+    loc_df['公司规模（离散）'] = loc_df['公司规模（离散）'].apply(tool_size_coding)
     return loc_df

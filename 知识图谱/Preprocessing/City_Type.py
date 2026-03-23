@@ -84,5 +84,5 @@ def preprocess_city_type(loc_df):
 
     loc_df["城市类型"] = loc_df["地址"].copy() # 新建一个列来存城市类型
     tqdm.pandas(desc="清洗地址") # 使用 tqdm 显示进度
-    loc_df["城市类型"] = loc_df["城市类型"].progress_apply(tool_addr_coding)
+    loc_df["城市类型"] = loc_df["城市类型"].progress_apply(tool_city_type_coding)
     return loc_df

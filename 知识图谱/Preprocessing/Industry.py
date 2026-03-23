@@ -167,9 +167,10 @@ def tool_industry_coding(industry):
     return cleaned
 
 def preprocess_industry(loc_df):
-    if "所属行业" in loc_df.columns: # 确保所查列存在
-        tqdm.pandas(desc="清洗所属行业") # 使用 tqdm 显示进度
-        loc_df["所属行业"] = loc_df["所属行业"].progress_apply(tool_industry_coding)
-    else:
-        print("Error")
+    if '所属行业' not in loc_df.columns:
+        print("错误：未找到‘所属行业’列")
+        return loc_df
+
+    tqdm.pandas(desc="清洗所属行业") # 使用 tqdm 显示进度
+    loc_df["所属行业"] = loc_df["所属行业"].progress_apply(tool_industry_coding)
     return loc_df

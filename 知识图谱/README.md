@@ -74,7 +74,7 @@
 
 ## 什么是GraphRAG
 
-[【B站最新】吴恩达详细讲解RAG的知识图谱（GraphRAG）](https://www.bilibili.com/video/BV1tsYPztEiE)
+[【B站最新】吴恩达详细讲解RAG的知识图谱（GraphRAG）](https://www.bilibili.com/video/BV1tsYPztEiE) B站自带AI字幕效果不错
 
 
 

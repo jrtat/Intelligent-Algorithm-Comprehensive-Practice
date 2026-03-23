@@ -57,7 +57,7 @@ def tool_degree_coding(text):
 def preprocess_degree(loc_df):
     if '岗位详情' not in loc_df.columns:
         print("错误：未找到‘岗位详情’列")
-        return
+        return loc_df
 
     tqdm.pandas(desc="岗位详情")
     loc_df['学历要求'] = loc_df['岗位详情'].progress_apply(tool_degree_coding)

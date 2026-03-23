@@ -8,6 +8,9 @@ from Preprocessing.Degree import preprocess_degree
 from Preprocessing.Create import preprocess_create
 from Preprocessing.Stress import preprocess_stress
 from Preprocessing.Communicate import preprocess_communicate
+from Preprocessing.Ability import preprocess_ability
+from Preprocessing.Certification import preprocess_certification
+from Preprocessing.Study import preprocess_study
 
 if __name__ == '__main__':
 
@@ -25,6 +28,10 @@ if __name__ == '__main__':
     df_after = preprocess_create(df_after)
     df_after = preprocess_stress(df_after)
     df_after = preprocess_communicate(df_after)
+    df_after = preprocess_degree(df_after)
+    df_after = preprocess_ability(df_after)
+    df_after = preprocess_certification(df_after)
+    df_after = preprocess_study(df_after)
 
     # 写入excal
     output_file = 'partial_processed.xlsx' # 改成正确的名字

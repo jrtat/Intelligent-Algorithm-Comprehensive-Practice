@@ -38,9 +38,8 @@ def tool_stress_coding(text):
 def preprocess_stress(loc_df):
     if '岗位详情' not in loc_df.columns:
         print("错误：未找到‘岗位详情’列")
-        return
+        return loc_df
 
     tqdm.pandas(desc="岗位详情")
     loc_df['创新要求'] = loc_df['岗位详情'].progress_apply(tool_stress_coding)
-
     return loc_df

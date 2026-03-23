@@ -72,6 +72,12 @@
 
 # 附录
 
+## 什么是GraphRAG
+
+[【B站最新】吴恩达详细讲解RAG的知识图谱（GraphRAG）](https://www.bilibili.com/video/BV1tsYPztEiE)
+
+
+
 ## 如何部署本地大模型
 
 

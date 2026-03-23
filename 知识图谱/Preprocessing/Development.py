@@ -34,7 +34,7 @@ def preprocess_development(loc_df):
         return loc_df
     loc_df["公司发展情况"] = loc_df["公司类型"].copy() # 新建一个列来存城市类型
     loc_df['公司发展情况'] = loc_df.apply(
-        lambda row: tool_development_coding(row['公司类型'], row['公司规模']),
+        lambda row: tool_development_coding(row['公司类型'], row['公司规模（离散）']),
         axis=1
     )
     return loc_df

@@ -1,0 +1,204 @@
+{
+  "job_relations": [
+    {
+      "job_name": "Java开发工程师",
+      "description": "负责使用Java语言开发和维护后端系统，参与软件设计、编码和调试，优化性能，确保系统稳定性和可扩展性。",
+      "promotes_to": [
+        {
+          "target_job": "项目经理/主管",
+          "reason_for_promotion": "积累项目经验和领导技能后，可晋升为项目经理，负责团队管理和项目交付。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "软件测试",
+          "reason_for_transition": "开发背景提供代码理解，转向测试岗位可进行更有效的缺陷检测和质量保证。"
+        },
+        {
+          "target_job": "技术支持工程师",
+          "reason_for_transition": "技术专长适用于解决客户问题，转型为技术支持角色提供直接用户服务。"
+        }
+      ]
+    },
+    {
+      "job_name": "前端开发",
+      "description": "负责网站和应用的用户界面开发，使用HTML、CSS、JavaScript等技术实现响应式设计，优化用户体验和性能。",
+      "promotes_to": [
+        {
+          "target_job": "项目经理/主管",
+          "reason_for_promotion": "项目经验积累后晋升管理角色，协调团队和资源，推动产品交付。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "产品专员/助理",
+          "reason_for_transition": "界面设计知识用于产品需求定义，转向产品管理岗位优化功能规划。"
+        },
+        {
+          "target_job": "运营助理/专员",
+          "reason_for_transition": "用户体验技能适用于运营活动，转型提升用户参与度和流程效率。"
+        }
+      ]
+    },
+    {
+      "job_name": "测试工程师",
+      "description": "负责软件测试工作，设计测试用例、执行功能和安全测试，识别缺陷并报告，确保产品质量和可靠性。",
+      "promotes_to": [
+        {
+          "target_job": "质量管理/测试",
+          "reason_for_promotion": "经验积累后晋升为质量管理角色，制定测试策略并监督整体质量保证。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "Java开发工程师",
+          "reason_for_transition": "测试视角提供开发洞察，转向编码岗位参与系统构建和优化。"
+        },
+        {
+          "target_job": "技术支持工程师",
+          "reason_for_transition": "问题解决能力适用于技术支持，转型提供客户故障排除和解决方案。"
+        }
+      ]
+    },
+    {
+      "job_name": "技术支持工程师",
+      "description": "提供技术支持和故障排除服务，帮助客户解决软件或硬件问题，维护客户关系并确保系统正常运行。",
+      "promotes_to": [
+        {
+          "target_job": "项目经理/主管",
+          "reason_for_promotion": "管理支持团队经验后晋升，负责项目协调和资源分配。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "实施工程师",
+          "reason_for_transition": "技术支持技能适用于系统部署，转型参与安装、配置和用户培训。"
+        },
+        {
+          "target_job": "销售工程师",
+          "reason_for_transition": "技术背景用于销售角色，转型推销技术产品并提供解决方案。"
+        }
+      ]
+    },
+    {
+      "job_name": "项目经理/主管",
+      "description": "负责项目规划、执行和监控，管理资源、预算和时间表，协调团队确保项目成功交付和客户满意度。",
+      "promotes_to": [
+        {
+          "target_job": "总助/CEO助理/董事长助理",
+          "reason_for_promotion": "管理经验积累后晋升高层助理角色，支持战略决策和公司运营。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "产品专员/助理",
+          "reason_for_transition": "项目管理技能用于产品生命周期，转型参与需求分析和迭代规划。"
+        },
+        {
+          "target_job": "运营助理/专员",
+          "reason_for_transition": "协调能力适用于运营管理，转型优化流程和提升绩效指标。"
+        }
+      ]
+    },
+    {
+      "job_name": "产品专员/助理",
+      "description": "协助产品经理进行市场调研、需求定义和用户反馈分析，推动产品迭代和功能优化，支持产品生命周期管理。",
+      "promotes_to": [
+        {
+          "target_job": "产品经理",
+          "reason_for_promotion": "经验积累后晋升为产品经理，独立负责产品策略和roadmap制定。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "运营助理/专员",
+          "reason_for_transition": "产品知识用于运营活动，转型提升用户参与和流程效率。"
+        },
+        {
+          "target_job": "项目经理/助理",
+          "reason_for_transition": "熟悉项目流程，转型管理项目执行和团队协调。"
+        }
+      ]
+    },
+    {
+      "job_name": "运营助理/专员",
+      "description": "负责日常运营活动，监控数据指标、优化流程和提升用户满意度，支持市场推广和用户增长。",
+      "promotes_to": [
+        {
+          "target_job": "运营经理",
+          "reason_for_promotion": "经验积累后晋升管理角色，领导团队并制定运营策略。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "产品专员/助理",
+          "reason_for_transition": "运营视角用于产品改进，转型参与需求定义和功能规划。"
+        },
+        {
+          "target_job": "销售运营",
+          "reason_for_transition": "协调技能适用于销售支持，转型优化销售流程和业绩分析。"
+        }
+      ]
+    },
+    {
+      "job_name": "销售工程师",
+      "description": "结合技术知识和销售技能，向客户推销技术产品或服务，提供解决方案，建立客户关系并达成销售目标。",
+      "promotes_to": [
+        {
+          "target_job": "销售经理",
+          "reason_for_promotion": "业绩积累后晋升管理角色，领导销售团队并制定策略。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "技术支持工程师",
+          "reason_for_transition": "技术背景适用于支持角色，转型解决客户问题和维护系统。"
+        },
+        {
+          "target_job": "大客户代表",
+          "reason_for_transition": "销售经验用于大客户管理，转型维护关键客户关系和增长业务。"
+        }
+      ]
+    },
+    {
+      "job_name": "软件测试",
+      "description": "专注于软件测试工作，执行功能、性能和兼容性测试，识别缺陷并报告，确保代码质量和产品可靠性。",
+      "promotes_to": [
+        {
+          "target_job": "测试主管",
+          "reason_for_promotion": "经验积累后晋升管理角色，监督测试团队并优化策略。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "Java开发工程师",
+          "reason_for_transition": "测试背景提供开发视角，转向编码岗位参与系统构建和维护。"
+        },
+        {
+          "target_job": "质量管理/测试",
+          "reason_for_transition": "技能适用于质量保证，转型负责整体测试框架和标准。"
+        }
+      ]
+    },
+    {
+      "job_name": "实施工程师",
+      "description": "负责软件系统的安装、配置和部署，培训用户，确保系统正常运行，并提供后期支持和维护服务。",
+      "promotes_to": [
+        {
+          "target_job": "项目经理/主管",
+          "reason_for_promotion": "项目经验积累后晋升管理角色，协调实施团队和资源分配。"
+        }
+      ],
+      "transitions_to": [
+        {
+          "target_job": "技术支持工程师",
+          "reason_for_transition": "部署技能适用于支持角色，转型解决客户技术问题和故障排除。"
+        },
+        {
+          "target_job": "销售工程师",
+          "reason_for_transition": "技术知识用于销售，转型推销产品并提供定制化解决方案。"
+        }
+      ]
+    }
+  ]
+}

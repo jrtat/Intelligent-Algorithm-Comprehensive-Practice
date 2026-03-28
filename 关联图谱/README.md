@@ -48,6 +48,9 @@ text_embeddings = st_model.encode(
 
 ```
 
+- 最终选择：Qwen3-Embedding-8B
+
+
 ### 分类算法选择与参数配置
 
 # 附录

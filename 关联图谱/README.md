@@ -22,7 +22,9 @@ relationship_graph
 ```
 
 vectorlization：把Excel中的列（清洗后）合并，作为训练的输入，返回X_fused（特征）
+
 train.py：分类算法的实现，返回model（训练好的模型）
+
 main.py：通过调用以上两个文件中的函数，实现整个流程
 
 

@@ -53,4 +53,10 @@ text_embeddings = st_model.encode(
 
 ### 分类算法选择与参数配置
 
+- 选择1：MPL分类器
+
+- 选择2：RandomForest分类器
+
+- 选择3：XGboost分类器
+
 # 附录

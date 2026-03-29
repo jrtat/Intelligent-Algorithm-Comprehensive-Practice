@@ -34,10 +34,6 @@
 
 - 证书要求：非结构化文本
 
-## 岗位画像设置
-
-
-
 ## 知识图谱构建
 
 ### 实体
@@ -82,6 +78,10 @@
 [GraphRAG的图结构（知识图谱）](https://www.bilibili.com/video/BV1tsYPztEiE) B站自带AI字幕效果不错
 
 [GraphRAG中，文本如何被转换成图上的节点和边](https://www.bilibili.com/video/BV1zoKuzoENM)
+
+## 采用哪个模型将文本转为图谱
+
+[LLMGraphTransformer](https://cloud.tencent.com/developer/article/2638663)
 
 ## 如何部署本地大模型
 

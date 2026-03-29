@@ -81,7 +81,7 @@
 
 ## 采用哪个模型将文本转为图谱
 
-[LLMGraphTransformer](https://cloud.tencent.com/developer/article/2638663)
+[LLMGraphTransformer](https://cloud.tencent.com/developer/article/2638663) （[原文](https://medium.com/data-science/building-knowledge-graphs-with-llm-graph-transformer-a91045c49b59)）
 
 ## 如何部署本地大模型
 

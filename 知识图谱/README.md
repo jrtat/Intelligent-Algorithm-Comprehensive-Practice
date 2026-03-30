@@ -51,9 +51,11 @@ graphRAG
 └── main.py
 ```
 
-build_graphRAG.py：最核心的部分，负责把文本转成图，存入Neo4j，并将
-use_graphRAG.py：
-main.py：
+build_graphRAG.py：最核心的部分，包含init函数（负责把文本转成图，存入Neo4j，并初始化hybrid_retriever）以及graph_retriever函数
+
+use_graphRAG.py：包含use_llm函数
+
+main.py：只是一个简单的使用示例
 
 ## 算法选择与参数配置
 

@@ -1,9 +1,14 @@
 # 知识图谱构建
 
+## 思路
 
-## 知识图谱构建
+用之前处理好的文本来构建graphRAG，结果存储在Neo4j中，并设置graph_retriever函数，use_llm函数。
+在后续使用大模型时把问题打包发给use_llm，该函数会调用graph_retriever在Neo4j上查询与话题相关的内容，将其打包给LLM，以提高LLM的回答能力。
+其中graph_retriever采用混合查询的方式，既使用向量的方式检索，也使用图的方式检索。
 
-### 实体
+## 节点&边类型的设置
+
+#### 节点
 
 - 岗位名称（约100种）
   - 工资情况（月薪最小、月薪最大、平均月薪、四分位数）
@@ -26,7 +31,7 @@
 
 - 技能
 
-### 关系
+#### 关系
 
 岗位 --需要--> 技能
 
@@ -35,6 +40,31 @@
 岗位 --涉及--> 企业 
 
 岗位 --涉及--> 行业
+
+## 文件结构
+
+```
+graphRAG
+├── func
+│   ├── build_graphRAG.py
+│   └── use_graphRAG.py
+└── main.py
+```
+
+build_graphRAG.py：最核心的部分，负责把文本转成图，存入Neo4j，并将
+use_graphRAG.py：
+main.py：
+
+## 算法选择与参数配置
+
+### 文本转为图谱的模型选择与配置
+
+
+### Embedding算法的选择与参数配置
+
+
+### Neo4jVector的配置
+
 
 # 附录
 
@@ -46,9 +76,9 @@
 
 [GraphRAG中，文本如何被转换成图上的节点和边](https://www.bilibili.com/video/BV1zoKuzoENM)
 
-## 采用哪个模型将文本转为图谱
+## 什么是LLMGraphTransformer
 
 [LLMGraphTransformer](https://cloud.tencent.com/developer/article/2638663) （[原文](https://medium.com/data-science/building-knowledge-graphs-with-llm-graph-transformer-a91045c49b59)）
 
-
+## 什么是混合检索（hybrid_retriever）
 

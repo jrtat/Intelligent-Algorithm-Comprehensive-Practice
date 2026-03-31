@@ -1,21 +1,34 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler, MultiLabelBinarizer
 from sentence_transformers import SentenceTransformer
+from langchain_openai import OpenAIEmbeddings  # 新增导入
 
-def Sentence_Transformer(df):
-    text_embeddings = st_model.encode(
+def calc_Embedding(df):
+    embeddings_model = OpenAIEmbeddings(
+        model="qwen3-embedding:8b",
+        base_url="http://59.72.63.156:14138/v1",  # 自定义端点
+        api_key="Empty",  # 按你提供的设置
+        dimensions=1536,  # 输出维度
+        tiktoken_enabled=False,
+        check_embedding_ctx_length=False  # 本地/自定义服务通常需要关闭
+    )
+
+    texts = df['combined_text'].tolist() # 获取文本列表
+    embeddings = embeddings_model.embed_documents(texts) # 使用 embed_documents 批量计算嵌入
+    # LangChain 会自动按 chunk_size 分批请求，支持 show_progress_bar 类似效果
+
+    return np.array(embeddings, dtype=np.float32) # 返回时转为 NumPy 数组（与原来 SentenceTransformer 行为一致）
+
+def calc_Embedding_temp(df): # Sentence-Transformer 模型，中文效果优秀的模型
+    st_model = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2")
+    return st_model.encode(
         df['combined_text'].tolist(),  # 将合并后的文本列转换为 Python 列表并作为输入
         convert_to_numpy=True,  # 返回 NumPy 数组而非张量
         show_progress_bar=True,  # 显示进度条
         batch_size=32  # 一次处理 32 条文本，平衡内存与速度
     )  # 调用 Sentence‑Transformer 模型的 encode 方法，将文本转换为嵌入向量
-    return text_embeddings
 
 def init_data(df):
-
-    # Step 0：模型准备
-    model_name = "paraphrase-multilingual-mpnet-base-v2"  # Sentence-Transformer 模型，中文效果优秀的模型
-    st_model = SentenceTransformer(model_name) # 实例化该模型，加载预训练权重到内存，用于后续将文本转换为语义嵌入
 
     # Step 1：把编号（所属行业、公司类型） 转成 multi-hot 矩阵
     all_industry = set()
@@ -41,7 +54,7 @@ def init_data(df):
     df['combined_text'] = df[text_cols].fillna('').agg(' '.join, axis=1) # 把文本合成一句话
 
     # Step 3：计算岗位文本嵌入（二选一）
-    text_embeddings = Sentence_Transformer(df)
+    text_embeddings = calc_Embedding_temp(df)
 
     # Step 4：提取数值列（薪资范围、公司规模）并标准化
     numeric_cols = ['薪资范围', '公司规模']

@@ -9,8 +9,9 @@ from langchain_huggingface import HuggingFaceEmbeddings# 新增：本地 Embeddi
 from typing import List, Any
 
 # --- 全局变量 ---#
-RAG_llm = None # 大语言模型
-graph = None # Neo4j 图数据库
+graph_url = "neo4j+s://1f5dcc17.databases.neo4j.io"
+graph_username = "1f5dcc17"
+graph_password = "J1-Sv2VA6q5Qw3rH5vFQSmYCwMtuCpF8kqt-W0UrEDU"
 
 class HybridGraphRetriever(BaseRetriever):
     vector_index: Any = None  # 对象
@@ -78,15 +79,13 @@ def get_llm_temp():
 def init(raw_texts: list): # 初始化整个 GraphRAG 系统
 
     # Step 0：声明全局变量，以便后续初始化
-    global RAG_llm, graph
+    global graph_url, graph_username, graph_password
 
     # Step 1：把原始文本转成 LangChain Document 对象
     documents = [Document(page_content=text) for text in raw_texts]
 
-    # Step 2：创建 LLM 和  Embedding 模型
+    # Step 2：创建 LLM 模型
     RAG_llm = get_llm_temp()
-
-    embeddings = get_embedding_temp()
 
     # Step 3：设置知识图谱的 schema（允许哪些节点和属性）
     allowed_nodes = ['岗位名称','岗位编码'
@@ -114,9 +113,6 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     print(f"提取出 {len(graph_documents)} 个 GraphDocument")
 
     # Step 6：连接 Neo4j 数据库
-    graph_url = "neo4j+s://1f5dcc17.databases.neo4j.io"
-    graph_username = "1f5dcc17"
-    graph_password = "J1-Sv2VA6q5Qw3rH5vFQSmYCwMtuCpF8kqt-W0UrEDU"
     graph = Neo4jGraph(
         url=graph_url,
         username=graph_username,
@@ -132,9 +128,16 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
         baseEntityLabel=True,  # 给所有实体节点加 __Entity__ 标签
         include_source=True  # 把原始文本也存成 Document 节点，建立 MENTIONS 关系
     )
-    print("知识图谱已成功写入 Neo4j！")
+    print("GraphRAG 初始化完成！")
 
-    # Step 8：创建向量索引
+def get_retriever():
+
+    # Step 0：声明全局变量
+    global graph_url, graph_username, graph_password
+
+    # Step 2：创建向量索引
+    embeddings = get_embedding_temp()
+
     vector_index = Neo4jVector.from_existing_graph(
         embedding=embeddings,
         url=graph_url,
@@ -149,9 +152,9 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
         keyword_index_name="keyword_index"
     )
 
-    # Step 9：创建并返回混合检索器
+    # Step 3：创建并返回混合检索器
     hybrid_retriever = HybridGraphRetriever(vector_index=vector_index)
-    print("GraphRAG 初始化完成！")
+    print("hybrid_retriever 构建完成！")
     return hybrid_retriever
 
 def graph_retriever(query: str, k: int = 10) -> List[Document]:
@@ -160,7 +163,14 @@ def graph_retriever(query: str, k: int = 10) -> List[Document]:
     # 2. 用Cypher在Neo4j图谱里找这些实体以及它们周围1~2跳的关系
 
     # Step 0：声明全局变量
-    global RAG_llm, graph
+    graph = Neo4jGraph(
+        url=graph_url,
+        username=graph_username,
+        password=graph_password,
+        database="1f5dcc17",
+        refresh_schema=True
+    )
+    RAG_llm = get_llm_temp()
 
     # Step 1：让 LLM 提取实体
     entity_prompt = f"""

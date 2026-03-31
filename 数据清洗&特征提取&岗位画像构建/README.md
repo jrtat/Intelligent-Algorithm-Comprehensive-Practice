@@ -92,8 +92,8 @@ pip install vllm # 下载vllm
 
 python -m vllm.entrypoints.openai.api_server \
   --model "/mnt/c/Windows/System32/models/Qwen2.5-3B-Instruct/" \
-  --gpu-memory-utilization 0.83 \
-  --max-model-len 4096 \
+  --gpu-memory-utilization 0.82 \
+  --max-model-len 8192 \
   --port 8000 \
   --served-model-name Qwen2.5-3B # 启动模型
 # 这一步每次使用时都要执行

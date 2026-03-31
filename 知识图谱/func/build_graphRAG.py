@@ -1,17 +1,16 @@
 import os
 from langchain_core.documents import Document
 from langchain_experimental.graph_transformers import LLMGraphTransformer
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.graphs import Neo4jGraph
 from langchain_community.vectorstores import Neo4jVector
 from langchain_core.retrievers import BaseRetriever
-from langchain_huggingface import HuggingFaceEmbeddings # 新增：本地 Embedding 模型（推荐）
+from langchain_huggingface import HuggingFaceEmbeddings# 新增：本地 Embedding 模型（推荐）
 from typing import List, Any
 
 # --- 全局变量 ---#
 RAG_llm = None # 大语言模型
 graph = None # Neo4j 图数据库
-os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com' # 临时
 
 class HybridGraphRetriever(BaseRetriever):
     vector_index: Any = None  # 对象
@@ -42,6 +41,40 @@ class HybridGraphRetriever(BaseRetriever):
                 unique_docs.append(doc)
         return unique_docs[:14]  # 设定最多给 LLM 多少条上下文，防止超 token
 
+def get_embedding(): # xjx实验室的模型
+    return OpenAIEmbeddings(
+        model="qwen3-embedding:8b",
+        base_url="http://59.72.63.156:14138/v1",  # 自定义端点
+        api_key="Empty",
+        dimensions=1536,
+        tiktoken_enabled=False,
+        check_embedding_ctx_length=False
+    )
+
+def get_embedding_temp():  # 临时的Embedding模型
+    os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+    return HuggingFaceEmbeddings(
+        model_name="BAAI/bge-m3",  # 中文效果很好的开源模型
+        model_kwargs={'device': 'cpu'},  # 没有 GPU 就用 cpu
+        encode_kwargs={'normalize_embeddings': True}
+    )
+
+def get_llm():
+    return ChatOpenAI(
+        model="qwen3:8b",  # 模型名字（xjx实验室）
+        base_url="http://59.72.63.156:14138/v1", # url（xjx实验室）
+        api_key="EMPTY",  # vLLM 不需要真实 key
+        temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
+    )
+
+def get_llm_temp():
+    return ChatOpenAI(
+        model = "Qwen2.5-3B",  # 模型名字（本地）
+        base_url="http://127.0.0.1:8000/v1",  # url本地
+        api_key="EMPTY",  # vLLM 不需要真实 key
+        temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
+    )
+
 def init(raw_texts: list): # 初始化整个 GraphRAG 系统
 
     # Step 0：声明全局变量，以便后续初始化
@@ -50,42 +83,37 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     # Step 1：把原始文本转成 LangChain Document 对象
     documents = [Document(page_content=text) for text in raw_texts]
 
-    # Step 2：创建 LLM
-    RAG_llm = ChatOpenAI(
-        model="Qwen2.5-3B",  # 你在 vLLM 里部署的模型名字
-        base_url="http://127.0.0.1:8000/v1",  # vLLM 的 OpenAI 兼容接口
-        api_key="EMPTY",  # vLLM 不需要真实 key
-        temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
-    )
+    # Step 2：创建 LLM 和  Embedding 模型
+    RAG_llm = get_llm_temp()
 
-    # Step 3：通过 Embedding 模型 得到文本的向量
-    embeddings = HuggingFaceEmbeddings(
-        model_name="BAAI/bge-m3",  # 中文效果很好的开源模型
-        model_kwargs={'device': 'cpu'},  # 没有 GPU 就用 cpu
-        encode_kwargs={'normalize_embeddings': True}
-    )
+    embeddings = get_embedding_temp()
 
-    # Step 4：设置知识图谱的 schema（允许哪些节点和属性）
-    allowed_nodes = []
+    # Step 3：设置知识图谱的 schema（允许哪些节点和属性）
+    allowed_nodes = ['岗位名称','岗位编码'
+                     '公司','城市','行业','毕业专业'
+                     '工作技能','工作内容','承压能力','沟通能力','协作能力','学习能力', '创新能力', '工作经验'
+                     '证书','论文']
+    node_properties = ['公司融资状态', '公司人数规模',
+                       '岗位薪资待遇',
+                       ]
     allowed_relationships = []
-    node_properties = []
     relationship_properties = []
 
-    # Step 5：创建 LLMGraphTransformer（把文本变成图结构）
+    # Step 4：创建 LLMGraphTransformer（把文本变成图结构）
     graph_transformer = LLMGraphTransformer(
         llm=RAG_llm,
         allowed_nodes=allowed_nodes,
         allowed_relationships=allowed_relationships,
         node_properties=node_properties,
         relationship_properties=relationship_properties,
-        strict_mode=True  # 只保留符合 schema 的结果，防止乱提取
+        strict_mode=False  # 只保留符合 schema 的结果，防止乱提取
     )
 
-    # Step 6：把文本转成 GraphDocument
+    # Step 5：把文本转成 GraphDocument
     graph_documents = graph_transformer.convert_to_graph_documents(documents)
     print(f"提取出 {len(graph_documents)} 个 GraphDocument")
 
-    # Step 7：连接 Neo4j 数据库
+    # Step 6：连接 Neo4j 数据库
     graph_url = "neo4j+s://1f5dcc17.databases.neo4j.io"
     graph_username = "1f5dcc17"
     graph_password = "J1-Sv2VA6q5Qw3rH5vFQSmYCwMtuCpF8kqt-W0UrEDU"
@@ -97,7 +125,7 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
         refresh_schema=True
     )
 
-    # Step 8：把图数据写入 Neo4j
+    # Step 7：把图数据写入 Neo4j
     graph.query("MATCH (n) DETACH DELETE n") # 先清空数据库中原有信息
     graph.add_graph_documents(
         graph_documents,
@@ -106,7 +134,7 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     )
     print("知识图谱已成功写入 Neo4j！")
 
-    # Step 9：创建向量索引
+    # Step 8：创建向量索引
     vector_index = Neo4jVector.from_existing_graph(
         embedding=embeddings,
         url=graph_url,
@@ -121,7 +149,7 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
         keyword_index_name="keyword_index"
     )
 
-    # Step 10：创建并返回混合检索器
+    # Step 9：创建并返回混合检索器
     hybrid_retriever = HybridGraphRetriever(vector_index=vector_index)
     print("GraphRAG 初始化完成！")
     return hybrid_retriever
@@ -180,3 +208,4 @@ def graph_retriever(query: str, k: int = 10) -> List[Document]:
         # metadata：给这条记录打上标签，告诉后面的人这是来自“graph”（图检索），类型是结构化的
 
     return docs
+

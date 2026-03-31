@@ -94,3 +94,41 @@ main.py：只是一个简单的使用示例
 
 ## 什么是混合检索（hybrid_retriever）
 
+## 模型调用测试代码
+
+```python
+
+import os
+from langchain_openai import OpenAIEmbeddings
+from numpy.linalg import norm
+import numpy as np
+
+embeddings = OpenAIEmbeddings(
+    model="qwen3-embedding:8b",
+    base_url="http://59.72.63.156:14138/v1",  # 自定义端点
+    api_key="Empty",
+    dimensions=1536,
+    tiktoken_enabled=False,
+    check_embedding_ctx_length=False
+)
+
+documents = [
+    "机器学习是人工智能的一个分支",
+    "深度学习使用多层神经网络",
+    "今天是晴天"
+]
+doc_vecs = embeddings.embed_documents(documents)
+
+print(doc_vecs)
+print(len(doc_vecs))
+
+llm = ChatOpenAI(
+    model="qwen3:8b",  # 模型名字（xjx实验室）
+    base_url="http://59.72.63.156:14138/v1", # url（xjx实验室）
+    api_key="EMPTY",  # vLLM 不需要真实 key
+    temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
+)
+response = llm.invoke("你好，请介绍一下自己")
+print(response.content)
+
+```

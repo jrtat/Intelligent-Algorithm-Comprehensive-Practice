@@ -46,10 +46,13 @@
 ```
 graphRAG
 ├── func
+│   ├── extract_document.py
 │   ├── build_graphRAG.py
 │   └── use_graphRAG.py
 └── main.py
 ```
+
+extract_document.py：把Excel文档转成文本列表
 
 build_graphRAG.py：最核心的部分，包含init函数（负责把文本转成图，存入Neo4j，并初始化hybrid_retriever）以及graph_retriever函数
 

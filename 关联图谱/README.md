@@ -27,26 +27,11 @@ classification.py：分类算法的实现，返回model（训练好的模型）
 
 main.py：通过调用以上两个文件中的函数，实现整个流程
 
-
 ## 算法选择与参数配置
 
 ### Embedding算法的选择与参数配置
 
 - 本地测试时：轻量化模型Sentence‑Transformer，下载库后可以直接使用
-
-```python
-
-model_name = "paraphrase-multilingual-mpnet-base-v2"  # Sentence-Transformer 模型，中文效果优秀的模型
-st_model = SentenceTransformer(model_name) # 实例化该模型，加载预训练权重到内存，用于后续将文本转换为语义嵌入
-
-text_embeddings = st_model.encode(
-    df['combined_text'].tolist(), # 将合并后的文本列转换为 Python 列表并作为输入
-    convert_to_numpy=True, # 返回 NumPy 数组而非张量
-    show_progress_bar=True, # 显示进度条
-    batch_size=32 # 一次处理 32 条文本，平衡内存与速度
-) # 调用 Sentence‑Transformer 模型的 encode 方法，将文本转换为嵌入向量
-
-```
 
 - 最终选择：Qwen3-Embedding-8B
 

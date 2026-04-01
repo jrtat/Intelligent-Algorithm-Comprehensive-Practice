@@ -151,10 +151,10 @@ class LLMInvoker:
             4：需要有1年以上的实习）
         8. 职业技能：列表
         9. 证书要求：列表
-        
+
         岗位详情：
         {job_description}
-        
+
         要求：仅返回JSON，不要额外解释，确保JSON格式可解析。
         """
         # 调用模型
@@ -203,7 +203,7 @@ class LLMInvoker:
     #         print(f"❌ 公司信息解析失败，原始响应：{raw_response}")
     #         return None
 
-    def batch_extract_job_info(self, jobs_dict, save_path="job_key_info.json"):
+    def batch_extract_job_info(self, jobs_dict, save_path="data/job_key_info.json"):
         """
         批量提取岗位关键信息并保存
         :param jobs_dict: 岗位字典（如initialize.py中的jobs）
@@ -212,18 +212,19 @@ class LLMInvoker:
         job_key_info = {}
         total = len(jobs_dict)
         print(f"开始批量提取{total}个岗位的关键信息...")
+        tmp = 0
+        for job_id, job in tqdm(jobs_dict.items()):
 
-        for idx, (job_id, job) in tqdm(enumerate(jobs_dict.items(), 1)):
-            key_info = self.extract_job_key_info(job.description)
-            job_key_info[job_id] = {
-                "basic_info": {
-                    "name": job.name,
-                    "company": job.company,
-                    "city": job.city,
-                    "salary": job.salary
-                },
-                "key_info": key_info or {}
-            }
+            if "key_info" not in jobs_dict[job_id]:
+                key_info = self.extract_job_key_info(job.description)
+                jobs_dict[job_id]["key_info"] = {
+                    key_info or {}
+                }
+                tmp += 1
+            if tmp % 50 == 0:
+                fp = FileProcessor(save_path)
+                fp.save(job_key_info)
+                print(f"已保存{tmp}个岗位的关键信息")
 
         # 保存结果
         fp = FileProcessor(save_path)

@@ -42,6 +42,76 @@ class HybridGraphRetriever(BaseRetriever):
                 unique_docs.append(doc)
         return unique_docs[:14]  # 设定最多给 LLM 多少条上下文，防止超 token
 
+def graph_retriever(query: str, k: int = 10) -> List[Document]:
+    # 这个函数会：
+    # 1. 先让LLM从问题里提取关键实体
+    # 2. 用Cypher在Neo4j图谱里找这些实体以及它们周围1~2跳的关系
+
+    # Step 0：与数据库建立连接 & 初始化 LLM
+    graph = Neo4jGraph(
+        url=graph_url,
+        username=graph_username,
+        password=graph_password,
+        database="1f5dcc17",
+        refresh_schema=True
+    )
+    RAG_llm = get_llm_temp()
+
+    # Step 1：让 LLM 提取实体 （重要实体的规定可以进一步精细化）
+    entity_prompt = f"""
+    从以下查询中提取所有重要实体（人名、组织、地点、技术、职位、技能等），用英文逗号分隔。
+    只返回实体列表，不要解释或其他文字。
+    查询：{query}
+    """
+    entities_text = RAG_llm.invoke(entity_prompt).content.strip() # 调用大模型获取回复
+    entities = [e.strip() for e in entities_text.split(",") if e.strip()] # 将其转成列表
+    if not entities:
+        entities = [query]
+
+    # Step 2： Cypher 查询
+    cypher_query = """
+    MATCH (n:__Entity__)
+    WHERE ANY(entity IN $entities WHERE toLower(n.id) CONTAINS toLower(entity))
+    OPTIONAL MATCH path = (n)-[r*1..2]-(m:__Entity__)
+    WITH n, m, 
+         [rel IN relationships(path) | type(rel)] AS rel_types,
+         path
+    RETURN
+        n.id AS source,
+        rel_types AS relations,
+        m.id AS target,
+        '路径: ' + n.id + ' → ' + 
+        reduce(s = '', rel IN relationships(path) | s + type(rel) + ' → ') + m.id AS path_text
+    LIMIT $limit
+    """
+    results = graph.query(cypher_query, {"entities": entities, "limit": k})
+    # 查找所有标签为__Entity__的节点n，从每个符合条件的节点n出发，沿任意类型的关系向外扩展1到2步，到达另一个标签为__Entity__的节点m
+    # 由于是OPTIONAL MATCH，即使没有找到路径，n仍会保留
+    # 提取路径中所有关系的关系类型，存入rel_types列表，保留完整路径path供后续使用
+    # 最终每行返回四个字段：
+        # source：起始节点n的id属性
+        # relations：路径中所有关系类型的列表（按路径顺序）
+        # target：目标节点m的id属性（若无可达节点则为null）
+        # path_text：格式化后的路径描述，例如'路径: A → 关系类型1 → 关系类型2 → B'，其中A和B为节点ID，关系类型依次列出
+
+    # Step 3：处理查询结果并返回
+    docs = [] # 存放最终要返回的 Document 对象
+    for record in results: # 循环处理每一条 Neo4j 返回的结果：
+        relations_str = ", ".join(record.get('relations', [])) if record.get('relations') else ""
+        text = f"{record.get('source', '')} {relations_str} {record.get('target', '')}。" \
+               f"{record.get('path_text', '')}"
+        docs.append(Document(
+            page_content=text,
+            metadata={"source": "graph", "type": "structured"}
+        ))
+        # 提取 relations 字段（关系类型列表），用逗号拼接成 relations_str
+        # 将 source、relations_str、target 以及 path_text 拼接成一段可读的文本
+        # 创建 （LangChain 的） Document 对象，其中 page_content 为拼接的文本，metadata 记录来源类型（图数据）
+        # 最终所有 Document 对象存储在 docs 列表中，可用于后续的向量化存储、检索或问答等任务
+
+    return docs
+
+
 def get_embedding(): # xjx实验室的模型
     return OpenAIEmbeddings(
         model="qwen3-embedding:8b",
@@ -78,13 +148,13 @@ def get_llm_temp():
 
 def init(raw_texts: list): # 初始化整个 GraphRAG 系统
 
-    # Step 0：声明全局变量，以便后续初始化
+    # Step 0：使用全局变量
     global graph_url, graph_username, graph_password
 
     # Step 1：把原始文本转成 LangChain Document 对象
     documents = [Document(page_content=text) for text in raw_texts]
 
-    # Step 2：创建 LLM 模型
+    # Step 2：初始化 LLM
     RAG_llm = get_llm_temp()
 
     # Step 3：设置知识图谱的 schema（允许哪些节点和属性）
@@ -105,10 +175,10 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
         allowed_relationships=allowed_relationships,
         node_properties=node_properties,
         relationship_properties=relationship_properties,
-        strict_mode=False  # 只保留符合 schema 的结果，防止乱提取
+        strict_mode=False  # 在最终使用时设置为 True 只保留符合 schema 的结果，防止乱提取
     )
 
-    # Step 5：把文本转成 GraphDocument
+    # Step 5：调用算法，把文本转成知识图谱的点和边
     graph_documents = graph_transformer.convert_to_graph_documents(documents)
     print(f"提取出 {len(graph_documents)} 个 GraphDocument")
 
@@ -135,9 +205,10 @@ def get_retriever():
     # Step 0：声明全局变量
     global graph_url, graph_username, graph_password
 
-    # Step 2：创建向量索引
+    # Step 1：初始化Embedding算法
     embeddings = get_embedding_temp()
 
+    # Step 2：创建向量索引（这个索引是在Neo4j数据库上的）
     vector_index = Neo4jVector.from_existing_graph(
         embedding=embeddings,
         url=graph_url,
@@ -157,65 +228,4 @@ def get_retriever():
     print("hybrid_retriever 构建完成！")
     return hybrid_retriever
 
-def graph_retriever(query: str, k: int = 10) -> List[Document]:
-    # 这个函数会：
-    # 1. 先让LLM从问题里提取关键实体
-    # 2. 用Cypher在Neo4j图谱里找这些实体以及它们周围1~2跳的关系
-
-    # Step 0：声明全局变量
-    graph = Neo4jGraph(
-        url=graph_url,
-        username=graph_username,
-        password=graph_password,
-        database="1f5dcc17",
-        refresh_schema=True
-    )
-    RAG_llm = get_llm_temp()
-
-    # Step 1：让 LLM 提取实体
-    entity_prompt = f"""
-    从以下查询中提取所有重要实体（人名、组织、地点、技术、职位、技能等），用英文逗号分隔。
-    只返回实体列表，不要解释或其他文字。
-    查询：{query}
-    """
-    entities_text = RAG_llm.invoke(entity_prompt).content.strip()
-    entities = [e.strip() for e in entities_text.split(",") if e.strip()]
-
-    if not entities:
-        entities = [query]
-
-    # Step 2： Cypher 查询
-    cypher_query = """
-    MATCH (n:__Entity__)
-    WHERE ANY(entity IN $entities WHERE toLower(n.id) CONTAINS toLower(entity))
-    OPTIONAL MATCH path = (n)-[r*1..2]-(m:__Entity__)
-    WITH n, m, 
-         [rel IN relationships(path) | type(rel)] AS rel_types,
-         path
-    RETURN
-        n.id AS source,
-        rel_types AS relations,
-        m.id AS target,
-        '路径: ' + n.id + ' → ' + 
-        reduce(s = '', rel IN relationships(path) | s + type(rel) + ' → ') + m.id AS path_text
-    LIMIT $limit
-    """
-
-    results = graph.query(cypher_query, {"entities": entities, "limit": k})
-
-    # Step 3：返回查询结果
-    docs = [] # 存放最终要返回的 Document 对象
-    for record in results: # 循环处理每一条 Neo4j 返回的结果：
-        relations_str = ", ".join(record.get('relations', [])) if record.get('relations') else ""
-        text = f"{record.get('source', '')} {relations_str} {record.get('target', '')}。" \
-               f"{record.get('path_text', '')}"
-        # 用 f-string 把 source、relations、target、path_text 拼接成一段容易阅读的文本（如果没有 relations，就返回空列表，避免报错）
-        docs.append(Document(
-            page_content=text,
-            metadata={"source": "graph", "type": "structured"}
-        ))
-        # Document(...)：把拼接好的文本包装成 LangChain 的 Document 对象
-        # metadata：给这条记录打上标签，告诉后面的人这是来自“graph”（图检索），类型是结构化的
-
-    return docs
 

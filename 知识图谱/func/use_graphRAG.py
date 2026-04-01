@@ -21,11 +21,11 @@ def get_llm_temp():
 
 def use_llm(hybrid_retriever,question: str):
 
-    # Step 0：判断graphRAG是否已经构建完成了
+    # Step 0：判断graphRAG是否已经构建完成了（通过判断hybrid_retriever是否存在）
     if hybrid_retriever is None:
         raise ValueError("请先调用 init() 初始化！")
 
-    # Step 1：声明大模型
+    # Step 1：创建 LLM
     llm = get_llm_temp()
     
     # Step 2：构建 RAG Chain

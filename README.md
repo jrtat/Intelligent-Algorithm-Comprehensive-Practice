@@ -1,3 +1,5 @@
+小小demo：https://github.com/WZC-66/agentdemo/tree/main/frontend-app
+
 待做：
 1. 岗位画像展示
 2. 整个客户端（在Wev端）

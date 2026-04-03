@@ -15,7 +15,7 @@ Excel中的列（清洗后）可分为以下三类：
 
 ```
 relationship_graph
-├── func/
+├── func
 │   ├── vectorlization.py
 │   └── classification.py
 └── main.py

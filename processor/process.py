@@ -1,6 +1,6 @@
 
-from xjx.utils.LLMInvoker import LLMInvoker
-from xjx.utils.FileProcessor import FileProcessor
+from processor.utils.LLMInvoker import LLMInvoker
+from processor.utils.FileProcessor import FileProcessor
 
 if __name__ == '__main__':
 

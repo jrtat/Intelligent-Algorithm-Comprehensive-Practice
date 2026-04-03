@@ -3,7 +3,7 @@
 # 调取大语言模型
 import requests
 import json
-from xjx.utils.FileProcessor import FileProcessor
+from processor.utils.FileProcessor import FileProcessor
 from tqdm import tqdm
 
 

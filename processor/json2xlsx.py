@@ -1,6 +1,6 @@
 
-from xjx.utils.FileProcessor import FileProcessor
-from xjx.utils.ExcelMaker import ExcelMaker
+from processor.utils.FileProcessor import FileProcessor
+from processor.utils.ExcelMaker import ExcelMaker
 
 if __name__ == '__main__':
     fp = FileProcessor("data/job_key_info.json")

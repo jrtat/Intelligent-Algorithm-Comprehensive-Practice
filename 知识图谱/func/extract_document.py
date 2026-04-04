@@ -12,14 +12,15 @@ def extract_row(row):
     company_size = row['公司规模']
     company_desc = row['公司详情']
     return f'''
-这个招聘信息的岗位ID为 {id}，其提供的岗位名称为 {job_name}，提供的薪资为{salary}，工作地为{location}，岗位详情如下：
-{description}
-提供该岗位的公司为 {company_name}，这个公司所属行业为 {industry}，公司的规模为 {company_size}，公司类型为 {company_type}，公司详情如下：
-{company_size}
+这是一个招聘信息。岗位ID为“{id}”，它属于“{job_name}”这一职业类别。该岗位的工作地点位于“{location}”。
+
+该岗位的详细职责和要求如下：{description}
+
+该岗位的招聘公司是“{company_name}”。这家公司属于“{industry}”行业，公司规模为“{company_size}”，公司类型为“{company_type}”。关于该公司的其他信息：{company_desc}
 '''
 
 def get_extracted_document():
     df = pd.read_excel('raw.xlsx', header=0)
     df['text_for_llmtrans'] = df.apply(extract_row, axis=1)
-    df = df.head(50) # 临时，先截取一部分
+    df = df.head(15) # 临时，先截取一部分
     return df['text_for_llmtrans'].tolist()

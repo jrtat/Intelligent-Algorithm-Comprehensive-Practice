@@ -75,9 +75,8 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     # 1. 定义 NodeSchema
     node_schemas = [
         NodeSchema("职业类别"),  # 为每个节点类型指定属性
-        NodeSchema("岗位ID", ["location","diploma"]),  # 例如，为岗位ID添加薪资范围属性
+        NodeSchema("岗位ID", ["location","diploma","major"]),  # 例如，为岗位ID添加薪资范围属性
         NodeSchema("公司", ["industry"]),
-        NodeSchema("专业", ["major"]),
         NodeSchema("综合素质能力", ["description"]),
         NodeSchema("技术技能", ["description"]),
         NodeSchema("证书")
@@ -87,11 +86,10 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
         RelationshipSchema("职业类别", "需要具有", "综合素质能力"),
         RelationshipSchema("职业类别", "需要持有", "证书"),
         RelationshipSchema("岗位ID", "属于", "职业类别"),
-        RelationshipSchema("岗位ID", "需要掌握", "技术技能"),
         RelationshipSchema("岗位ID", "需要具有", "综合素质能力"),
+        RelationshipSchema("岗位ID", "需要掌握", "技术技能"),
         RelationshipSchema("岗位ID", "需要持有", "证书"),
-        RelationshipSchema("岗位ID", "来自于", "公司"),
-        RelationshipSchema("岗位ID", "需要毕业于", "毕业专业")
+        RelationshipSchema("岗位ID", "来自于", "公司")
     ]
 
     # Step 4：创建 LLMGraphTransformer（把文本变成图结构）

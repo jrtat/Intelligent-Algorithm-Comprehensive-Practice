@@ -144,8 +144,8 @@ def deduplication():
 
     # Step 0：使用全局变量 & 配置局部参数
     global graph_url, graph_username, graph_password, database_name
-    embedding_threshold = 0.8  # embedding阈值
-    fuzzy_threshold = 80  # 字符相似阈值
+    embedding_threshold = 0.75  # embedding阈值
+    fuzzy_threshold = 75  # 字符相似阈值
     NO_MERGE_TYPES = {
         '岗位id'
     }  # 不判重的节点类型

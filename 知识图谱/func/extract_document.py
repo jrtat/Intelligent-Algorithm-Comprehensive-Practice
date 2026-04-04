@@ -16,7 +16,7 @@ def extract_row(row):
 
 该岗位的详细职责和要求（包含了该岗位对职业技能的要求）如下：{description}
 
-该岗位的招聘公司是“{company_name}”。这家公司属于“{industry}”行业，公司规模为“{company_size}”，公司类型为“{company_type}”。关于该公司的其他信息：{company_desc}
+该岗位的招聘公司是“{company_name}”。这家公司属于“{industry}”行业，公司规模为“{company_size}”，公司类型为“{company_type}”。公司的简介如下：{company_desc}
 '''
     # print(text)
     return text

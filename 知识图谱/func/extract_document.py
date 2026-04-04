@@ -21,5 +21,5 @@ def extract_row(row):
 def get_extracted_document():
     df = pd.read_excel('raw.xlsx', header=0)
     df['text_for_llmtrans'] = df.apply(extract_row, axis=1)
-    df = df.head(10) # 临时，先截取一部分
+    df = df.head(100) # 临时，先截取一部分
     return df['text_for_llmtrans'].tolist()

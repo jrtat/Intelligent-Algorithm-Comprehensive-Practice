@@ -14,15 +14,15 @@ def extract_row(row):
     text =  f'''
 这是一个招聘信息。岗位ID为“{id}”，它属于“{job_name}”这一职业类别。该岗位的工作地点位于“{location}”。
 
-该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下：{description}
+该岗位的详细职责和要求（包含了该岗位对职业技能的要求）如下：{description}
 
 该岗位的招聘公司是“{company_name}”。这家公司属于“{industry}”行业，公司规模为“{company_size}”，公司类型为“{company_type}”。关于该公司的其他信息：{company_desc}
 '''
     # print(text)
     return text
 
-def get_extracted_document():
+def get_extracted_document(start_pos=1, length=100):
     df = pd.read_excel('raw.xlsx', header=0)
     df['text_for_llmtrans'] = df.apply(extract_row, axis=1)
-    df = df.head(25) # 临时，先截取一部分
+    df = df.iloc[start_pos-1 : start_pos-1+length] # 从 start_pos 行（行号从1开始）截取 length 行
     return df['text_for_llmtrans'].tolist()

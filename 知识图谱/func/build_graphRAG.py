@@ -146,7 +146,7 @@ def get_llm_temp():
         model = "Qwen2.5-3B",  # 模型名字（本地）
         base_url="http://127.0.0.1:8000/v1",  # url本地
         api_key="EMPTY",  # vLLM 不需要真实 key
-        max_tokens= 10000, # 我必须得控制你了（bushi）
+        max_tokens= 9000, # 我必须得控制你了（bushi）
         temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
     )
 
@@ -213,12 +213,12 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
 
     # Step 8：对存入的数据进行去重（比如：“熟练使用C++” 和 “擅长C++”）
     entities_query = """
-        MATCH (n:__Entity__)
-        RETURN id(n) AS internal_id, n.id AS name
-        """
+            MATCH (n:__Entity__)
+            RETURN elementId(n) AS internal_id, n.id AS name
+            """
     entity_records = graph.query(entities_query)
     entity_list = [{"internal_id": r["internal_id"], "name": r["name"]}
-                   for r in entity_records if r.get("name")]  # 得到 [{internal_id: xxx, name: "C++"}, ...]
+                   for r in entity_records if r.get("name")]
 
     names = [e["name"] for e in entity_list]
     vectors = embeddings.embed_documents(names)  # 使用 Embedding 模型 把所有实体名称一次性转成向量
@@ -248,28 +248,35 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
                 groups[i].append(j)
                 visited.add(j)
 
-    merged_count = 0 # 计数
-    for canonical_idx, dup_indices in groups.items(): # 遍历 group 将Neo4j中的节点进行合并
+    merged_count = 0
+    for canonical_idx, dup_indices in groups.items():
         if len(dup_indices) <= 1:
             continue
 
-        node_ids = [entity_list[idx]["internal_id"] for idx in dup_indices]
-        canonical_name = entity_list[canonical_idx]["name"] # 找到每个group中的代表节点
-        print(f"  合并 → {canonical_name}  (合并 {len(dup_indices) - 1} 个重复实体)") # APOC 合并节点（自动处理关系）
+        # 收集 elementId 字符串列表
+        node_element_ids = [entity_list[idx]["internal_id"] for idx in dup_indices]
+        canonical_name = entity_list[canonical_idx]["name"]
 
+        print(f"  合并 → {canonical_name}  (合并 {len(dup_indices) - 1} 个重复实体)")
+
+        # 新版合并 Cypher：在查询中把 elementId 转成实际 Node
         merge_cypher = """
-        CALL apoc.refactor.mergeNodes($nodeIds, {
-            properties: 'combine',   -- 属性冲突时合并成列表
-            mergeRels: true
-        })
-        YIELD node
-        SET node.id = $canonicalName   -- 统一使用最优名称
-        RETURN node
-        """
+            MATCH (n:__Entity__)
+            WHERE elementId(n) IN $nodeElementIds
+            WITH collect(n) AS nodes
+            CALL apoc.refactor.mergeNodes(nodes, {
+                properties: 'combine',
+                mergeRels: true
+            })
+            YIELD node
+            SET node.id = $canonicalName
+            RETURN node
+            """
+
         graph.query(merge_cypher, {
-            "nodeIds": node_ids,
+            "nodeElementIds": node_element_ids,  # 传字符串列表
             "canonicalName": canonical_name
-        }) # 用apoc对Neo4j中的节点进行合并
+        })
 
         merged_count += len(dup_indices) - 1
 

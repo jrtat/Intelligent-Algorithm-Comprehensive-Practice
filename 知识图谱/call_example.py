@@ -1,4 +1,4 @@
-from func.build_graphrag import get_retriever
+from func.get_retriever import get_retriever
 from func.use_graphrag import use_llm
 
 hybrid_retriever = get_retriever() # 初始化graphRAG后得到 hybrid_retriever

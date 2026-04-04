@@ -1,56 +1,18 @@
+from utils.get_models import get_llm_temp,get_llm,get_embedding_temp,get_embedding
+from utils.conn_neo4j import connect_neo4j
+
 import os, time
 from langchain_core.documents import Document
 from LLMGraphTransformer import LLMGraphTransformer
 from LLMGraphTransformer.schema import NodeSchema, RelationshipSchema
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.graphs import Neo4jGraph
-from langchain_huggingface import HuggingFaceEmbeddings # 本地 Embedding 模型
 from langchain_text_splitters import RecursiveCharacterTextSplitter  # 分块
 from collections import defaultdict
 from rapidfuzz import fuzz
 from tqdm import tqdm
 import numpy as np
 
-#--- 全局变量 ---#
-database_name = "1f5dcc17"
-graph_url = "neo4j+s://1f5dcc17.databases.neo4j.io"
-graph_username = "1f5dcc17"
-graph_password = "J1-Sv2VA6q5Qw3rH5vFQSmYCwMtuCpF8kqt-W0UrEDU"
 
-#--- 初始化大模型的函数 ---#
-def get_embedding(): # xjx实验室的模型
-    return OpenAIEmbeddings(
-        model="qwen3-embedding:8b",
-        base_url="http://59.72.63.156:14138/v1",  # 自定义端点
-        api_key="Empty",
-        dimensions=1536,
-        tiktoken_enabled=False,
-        check_embedding_ctx_length=False
-    )
-
-def get_embedding_temp():  # 临时的Embedding模型
-    os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
-    return HuggingFaceEmbeddings(
-        model_name="BAAI/bge-m3",  # 中文效果很好的开源模型
-        model_kwargs={'device': 'cpu'},  # 没有 GPU 就用 cpu
-        encode_kwargs={'normalize_embeddings': True}
-    )
-
-def get_llm():
-    return ChatOpenAI(
-        model="qwen3:8b",  # 模型名字（xjx实验室）
-        base_url="http://59.72.63.156:14138/v1", # url（xjx实验室）
-        api_key="EMPTY",  # vLLM 不需要真实 key
-        temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
-    )
-
-def get_llm_temp():
-    return ChatOpenAI(
-        model = "Qwen2.5-3B",  # 模型名字（本地）
-        base_url="http://127.0.0.1:8000/v1",  # url本地
-        api_key="EMPTY",  # vLLM 不需要真实 key
-        temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
-    )
 
 #--- 初始化知识图谱 ---#
 def init(raw_texts: list, init_type = 'add'): # 初始化整个 GraphRAG 系统
@@ -119,18 +81,11 @@ def init(raw_texts: list, init_type = 'add'): # 初始化整个 GraphRAG 系统
 
     print(f"成功提取 {len(graph_documents)} 个 GraphDocument（共 {len(split_docs)} 个文档）")
 
-    # Step 6：连接 Neo4j 数据库
-    graph = Neo4jGraph(
-        url=graph_url,
-        username=graph_username,
-        password=graph_password,
-        database=database_name,
-        refresh_schema=True
-    )
+    # Step 6：连接 Neo4j 数据库 & 把图数据写入 Neo4j
+    graph = connect_neo4j()
 
-    # Step 7：把图数据写入 Neo4j
-    if init_type == 'rewrite':
-        graph.query("MATCH (n) DETACH DELETE n") # 先清空数据库中原有信息
+    if init_type == 'rewrite': # 是否要先清空数据库中原有信息
+        graph.query("MATCH (n) DETACH DELETE n")
 
     graph.add_graph_documents(
         graph_documents,
@@ -140,6 +95,7 @@ def init(raw_texts: list, init_type = 'add'): # 初始化整个 GraphRAG 系统
 
     print("GraphRAG 初始化完成！")
 
+#--- 节点去重 ---#
 def deduplication():
 
     # Step 0：使用全局变量 & 配置局部参数
@@ -150,20 +106,11 @@ def deduplication():
         '岗位id'
     }  # 不判重的节点类型
 
-    # Step 1：初始化 llm Embedding 模型
-    llm = get_llm()
+    # Step 1：初始化 llm Embedding 模型 & 连接 Neo4j 数据库
     embeddings = get_embedding_temp()
+    graph = connect_neo4j()
 
-    # Step 2：连接 Neo4j 数据库
-    graph = Neo4jGraph(
-        url=graph_url,
-        username=graph_username,
-        password=graph_password,
-        database=database_name,
-        refresh_schema=True
-    )
-
-    # Step 3：查询并存储所有节点信息
+    # Step 2：查询并存储所有节点信息
     entities_query = """
             MATCH (n:__Entity__)
             RETURN 
@@ -189,7 +136,7 @@ def deduplication():
     names = [e["name"] for e in entity_list]  # 类型 list[str]，只提取所有实体的名称，用于批量向量化
     vectors = embeddings.embed_documents(names)  # 类型 list[list[float]]，每个实体名称对应的 Embedding 向量
 
-    # Step 4：遍历每个节点，尝试找到能被合并的点，组成族群
+    # Step 3：遍历每个节点，尝试找到能被合并的点，组成族群
     groups = defaultdict(list)  # group 存放去重后的分组
     visited = set()  # visit 记录一个节点是否已经被分组
     for i in range(len(entity_list)):  # 遍历每个节点
@@ -223,7 +170,7 @@ def deduplication():
                 groups[i].append(j)  # 添加到族群
                 visited.add(j)  # 记录已访问
 
-    # Step 5：合并找到的族群，并将修改同步到Neo4j
+    # Step 4：合并找到的族群，并将修改同步到Neo4j
     merged_count = 0
     for canonical_idx, dup_indices in groups.items():  # 遍历每个族群，将其写入 Neo4j
         if len(dup_indices) <= 1:

@@ -146,7 +146,6 @@ def get_llm_temp():
         model = "Qwen2.5-3B",  # 模型名字（本地）
         base_url="http://127.0.0.1:8000/v1",  # url本地
         api_key="EMPTY",  # vLLM 不需要真实 key
-        max_tokens= 9000, # 我必须得控制你了（bushi）
         temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
     )
 
@@ -170,7 +169,7 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     embeddings = get_embedding_temp()
 
     # Step 3：设置知识图谱的 schema（允许哪些节点和属性）
-    allowed_nodes = ['岗位名称','岗位编码',
+    allowed_nodes = ['岗位名称','岗位ID',
                      '公司','城市','行业',
                      '毕业专业','学历',
                      '软技能','工作技能','工作内容',
@@ -211,55 +210,76 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     )
     print("GraphRAG 初始化完成！")
 
-    # Step 8：对存入的数据进行去重（比如：“熟练使用C++” 和 “擅长C++”）
+    # Step 8：获取Neo4j图上所有的节点
     entities_query = """
-            MATCH (n:__Entity__)
-            RETURN elementId(n) AS internal_id, n.id AS name
-            """
-    entity_records = graph.query(entities_query)
-    entity_list = [{"internal_id": r["internal_id"], "name": r["name"]}
-                   for r in entity_records if r.get("name")]
+        MATCH (n:__Entity__)
+        RETURN 
+            elementId(n) AS internal_id, 
+            n.id AS name,
+            labels(n) AS labels
+        """ # 一次性把所有实体节点的信息查出来，包括类型
+    entity_records = graph.query(entities_query) # 执行查询
 
-    names = [e["name"] for e in entity_list]
-    vectors = embeddings.embed_documents(names)  # 使用 Embedding 模型 把所有实体名称一次性转成向量
+    entity_list = [] # 存放处理后的实体信息
+    for r in entity_records:
+        if not r.get("name"):
+            continue # labels 通常是列表，如 ['__Entity__', '岗位编码']
+        node_labels = r["labels"]
+        entity_type = node_labels[-1] if len(node_labels) > 1 else "__Entity__"  # 取最后一个具体类型
 
-    embedding_threshold = 0.92  # cosine 相似度（阈值）
-    fuzzy_threshold = 85  # rapidfuzz ratio（阈值）
+        entity_list.append({
+            "internal_id": r["internal_id"],
+            "name": r["name"],
+            "type": entity_type  # 记录实体类型
+        }) # 把当前实体的三个关键信息打包成一个字典，追加到 entity_list 中
 
-    groups = defaultdict(list)  # 贪心聚类分组（简单高效，数据量小时足够）
-    visited = set()
+    names = [e["name"] for e in entity_list] # 类型 list[str]，只提取所有实体的名称，用于批量向量化
+    vectors = embeddings.embed_documents(names) # 类型 list[list[float]]，每个实体名称对应的 Embedding 向量
 
-    for i in range(len(entity_list)): # 遍历每个字符串
-        if i in visited: # 如果i已经被合并（说明已知其与某个节点相似），直接跳过
+    embedding_threshold = 0.92 # embedding阈值
+    fuzzy_threshold = 85 # 字符相似阈值
+    NO_MERGE_TYPES = {
+        '岗位ID'
+    } # 不判重的节点类型
+
+    groups = defaultdict(list) # group 存放去重后的分组
+    visited = set() # visit 记录一个节点是否已经被分组
+    for i in range(len(entity_list)):  # 遍历每个节点
+        if i in visited:
             continue
-        groups[i].append(i)  # 否则就将 i 作为一个组的代表元素
-        visited.add(i)  # 将 i 作为该组的第一个元素加入该组
 
-        for j in range(i + 1, len(entity_list)): # 遍历 i 之后的所有节点，逐个判定其是否与 i 相似
-            if j in visited:
+        current_type = entity_list[i]["type"] # 得到当前的节点的类型
+        groups[i].append(i) # 将节点i当作一个新族群的第一个节点
+        visited.add(i) # 记录该节点（好像用不到）
+
+        for j in range(i + 1, len(entity_list)): # 遍历节点 i 之后的每个节点
+            if j in visited: # 如果节点 j 已经属于某个族群了，就跳过
+                continue
+
+            if current_type in NO_MERGE_TYPES or entity_list[j]["type"] in NO_MERGE_TYPES: # 如果是“不需要合并”的类型，直接跳过，不进行相似度计算
                 continue
 
             vec_i = np.array(vectors[i])
             vec_j = np.array(vectors[j])
-            cos_sim = np.dot(vec_i, vec_j) / (np.linalg.norm(vec_i) * np.linalg.norm(vec_j) + 1e-8) # Embedding 计算余弦相似度
-            fuzzy_score = fuzz.ratio(entity_list[i]["name"], entity_list[j]["name"]) # 字符串模糊匹配
+            cos_sim = np.dot(vec_i, vec_j) / (np.linalg.norm(vec_i) * np.linalg.norm(vec_j) + 1e-8) # 余弦相似度
+            fuzzy_score = fuzz.ratio(entity_list[i]["name"], entity_list[j]["name"]) # 字符模糊相似度
 
-            if cos_sim >= embedding_threshold or fuzzy_score >= fuzzy_threshold: # 二者只要其一满足就认为相似
+            if cos_sim >= embedding_threshold or fuzzy_score >= fuzzy_threshold:
                 groups[i].append(j)
                 visited.add(j)
 
+    # ====================== 执行合并 ======================
     merged_count = 0
     for canonical_idx, dup_indices in groups.items():
         if len(dup_indices) <= 1:
             continue
 
-        # 收集 elementId 字符串列表
         node_element_ids = [entity_list[idx]["internal_id"] for idx in dup_indices]
         canonical_name = entity_list[canonical_idx]["name"]
+        entity_type = entity_list[canonical_idx]["type"]
 
-        print(f"  合并 → {canonical_name}  (合并 {len(dup_indices) - 1} 个重复实体)")
+        print(f"  合并 → {canonical_name}  (类型: {entity_type}, 合并 {len(dup_indices) - 1} 个)")
 
-        # 新版合并 Cypher：在查询中把 elementId 转成实际 Node
         merge_cypher = """
             MATCH (n:__Entity__)
             WHERE elementId(n) IN $nodeElementIds
@@ -271,10 +291,10 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
             YIELD node
             SET node.id = $canonicalName
             RETURN node
-            """
+        """
 
         graph.query(merge_cypher, {
-            "nodeElementIds": node_element_ids,  # 传字符串列表
+            "nodeElementIds": node_element_ids,
             "canonicalName": canonical_name
         })
 

@@ -5,10 +5,15 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.graphs import Neo4jGraph
 from langchain_community.vectorstores import Neo4jVector
 from langchain_core.retrievers import BaseRetriever
-from langchain_huggingface import HuggingFaceEmbeddings# 新增：本地 Embedding 模型（推荐）
+from langchain_huggingface import HuggingFaceEmbeddings# 本地 Embedding 模型
+from langchain_text_splitters import RecursiveCharacterTextSplitter  # 分块
+from collections import defaultdict
+from rapidfuzz import fuzz
+import numpy as np
 from typing import List, Any
 
 # --- 全局变量 ---#
+database_name = "1f5dcc17"
 graph_url = "neo4j+s://1f5dcc17.databases.neo4j.io"
 graph_username = "1f5dcc17"
 graph_password = "J1-Sv2VA6q5Qw3rH5vFQSmYCwMtuCpF8kqt-W0UrEDU"
@@ -25,8 +30,7 @@ class HybridGraphRetriever(BaseRetriever):
         self.k_vector = k_vector # 向量检索里最多返回多少条结果
         self.k_graph = k_graph # 图结构检索（graph_retriever 函数）里最多返回多少条关系路径结果
 
-    def _get_relevant_documents(self, query: str) -> List[Document]: # 当RAG链需要上下文时，LangChain会“自动”调用该方法
-        # query 为用户的问题
+    def _get_relevant_documents(self, query: str) -> List[Document]: # LangChain会“自动”调用该方法 （query 为llm的提示词）
 
         vector_docs = self.vector_index.similarity_search(query, k=self.k_vector)  # 调用 Neo4jVector 提供的向量搜索功能：找意思相近的文本
         graph_docs = graph_retriever(query, k=self.k_graph)  # 调用graph_retriever函数：找实体间的关系路径
@@ -52,7 +56,7 @@ def graph_retriever(query: str, k: int = 10) -> List[Document]:
         url=graph_url,
         username=graph_username,
         password=graph_password,
-        database="1f5dcc17",
+        database=database_name,
         refresh_schema=True
     )
     RAG_llm = get_llm_temp()
@@ -111,7 +115,6 @@ def graph_retriever(query: str, k: int = 10) -> List[Document]:
 
     return docs
 
-
 def get_embedding(): # xjx实验室的模型
     return OpenAIEmbeddings(
         model="qwen3-embedding:8b",
@@ -143,28 +146,36 @@ def get_llm_temp():
         model = "Qwen2.5-3B",  # 模型名字（本地）
         base_url="http://127.0.0.1:8000/v1",  # url本地
         api_key="EMPTY",  # vLLM 不需要真实 key
+        max_tokens= 9000, # 我必须得控制你了（bushi）
         temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
     )
 
 def init(raw_texts: list): # 初始化整个 GraphRAG 系统
 
     # Step 0：使用全局变量
-    global graph_url, graph_username, graph_password
+    global graph_url, graph_username, graph_password, database_name
 
-    # Step 1：把原始文本转成 LangChain Document 对象
+    # Step 1：把原始文本分块，并转成 LangChain Document 对象
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=800,  # 分块大小
+        chunk_overlap=150,  # 重叠部分大小，帮助保留跨块实体关系
+        length_function=len,
+        separators=["\n\n", "\n", "。", "！", "？", " ", ""]  # 中文友好分隔符
+    )
     documents = [Document(page_content=text) for text in raw_texts]
+    split_docs = text_splitter.split_documents(documents)
 
-    # Step 2：初始化 LLM
+    # Step 2：初始化 LLM 和 Embedding 模型
     RAG_llm = get_llm_temp()
+    embeddings = get_embedding_temp()
 
     # Step 3：设置知识图谱的 schema（允许哪些节点和属性）
-    allowed_nodes = ['岗位名称','岗位编码'
-                     '公司','城市','行业','毕业专业'
-                     '工作技能','工作内容','承压能力','沟通能力','协作能力','学习能力', '创新能力', '工作经验'
+    allowed_nodes = ['岗位名称','岗位编码',
+                     '公司','城市','行业',
+                     '毕业专业','学历',
+                     '软技能','工作技能','工作内容',
                      '证书','论文']
-    node_properties = ['公司融资状态', '公司人数规模',
-                       '岗位薪资待遇',
-                       ]
+    node_properties = []
     allowed_relationships = []
     relationship_properties = []
 
@@ -179,7 +190,7 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     )
 
     # Step 5：调用算法，把文本转成知识图谱的点和边
-    graph_documents = graph_transformer.convert_to_graph_documents(documents)
+    graph_documents = graph_transformer.convert_to_graph_documents(split_docs)
     print(f"提取出 {len(graph_documents)} 个 GraphDocument")
 
     # Step 6：连接 Neo4j 数据库
@@ -187,7 +198,7 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
         url=graph_url,
         username=graph_username,
         password=graph_password,
-        database="1f5dcc17",
+        database=database_name,
         refresh_schema=True
     )
 
@@ -200,12 +211,83 @@ def init(raw_texts: list): # 初始化整个 GraphRAG 系统
     )
     print("GraphRAG 初始化完成！")
 
+    # Step 8：对存入的数据进行去重（比如：“熟练使用C++” 和 “擅长C++”）
+    entities_query = """
+            MATCH (n:__Entity__)
+            RETURN elementId(n) AS internal_id, n.id AS name
+            """
+    entity_records = graph.query(entities_query)
+    entity_list = [{"internal_id": r["internal_id"], "name": r["name"]}
+                   for r in entity_records if r.get("name")]
+
+    names = [e["name"] for e in entity_list]
+    vectors = embeddings.embed_documents(names)  # 使用 Embedding 模型 把所有实体名称一次性转成向量
+
+    embedding_threshold = 0.92  # cosine 相似度（阈值）
+    fuzzy_threshold = 85  # rapidfuzz ratio（阈值）
+
+    groups = defaultdict(list)  # 贪心聚类分组（简单高效，数据量小时足够）
+    visited = set()
+
+    for i in range(len(entity_list)): # 遍历每个字符串
+        if i in visited: # 如果i已经被合并（说明已知其与某个节点相似），直接跳过
+            continue
+        groups[i].append(i)  # 否则就将 i 作为一个组的代表元素
+        visited.add(i)  # 将 i 作为该组的第一个元素加入该组
+
+        for j in range(i + 1, len(entity_list)): # 遍历 i 之后的所有节点，逐个判定其是否与 i 相似
+            if j in visited:
+                continue
+
+            vec_i = np.array(vectors[i])
+            vec_j = np.array(vectors[j])
+            cos_sim = np.dot(vec_i, vec_j) / (np.linalg.norm(vec_i) * np.linalg.norm(vec_j) + 1e-8) # Embedding 计算余弦相似度
+            fuzzy_score = fuzz.ratio(entity_list[i]["name"], entity_list[j]["name"]) # 字符串模糊匹配
+
+            if cos_sim >= embedding_threshold or fuzzy_score >= fuzzy_threshold: # 二者只要其一满足就认为相似
+                groups[i].append(j)
+                visited.add(j)
+
+    merged_count = 0
+    for canonical_idx, dup_indices in groups.items():
+        if len(dup_indices) <= 1:
+            continue
+
+        # 收集 elementId 字符串列表
+        node_element_ids = [entity_list[idx]["internal_id"] for idx in dup_indices]
+        canonical_name = entity_list[canonical_idx]["name"]
+
+        print(f"  合并 → {canonical_name}  (合并 {len(dup_indices) - 1} 个重复实体)")
+
+        # 新版合并 Cypher：在查询中把 elementId 转成实际 Node
+        merge_cypher = """
+            MATCH (n:__Entity__)
+            WHERE elementId(n) IN $nodeElementIds
+            WITH collect(n) AS nodes
+            CALL apoc.refactor.mergeNodes(nodes, {
+                properties: 'combine',
+                mergeRels: true
+            })
+            YIELD node
+            SET node.id = $canonicalName
+            RETURN node
+            """
+
+        graph.query(merge_cypher, {
+            "nodeElementIds": node_element_ids,  # 传字符串列表
+            "canonicalName": canonical_name
+        })
+
+        merged_count += len(dup_indices) - 1
+
+    print(f"实体去重完成！共合并 {merged_count} 个重复实体")
+
 def get_retriever():
 
     # Step 0：声明全局变量
-    global graph_url, graph_username, graph_password
+    global graph_url, graph_username, graph_password, database_name
 
-    # Step 1：初始化Embedding算法
+    # Step 1：初始化Embedding模型
     embeddings = get_embedding_temp()
 
     # Step 2：创建向量索引（这个索引是在Neo4j数据库上的）
@@ -214,7 +296,7 @@ def get_retriever():
         url=graph_url,
         username=graph_username,
         password=graph_password,
-        database="1f5dcc17",
+        database=database_name,
         search_type="hybrid",  # 向量相似度 + 关键词 BM25
         node_label="Document",  # 原始文本所在的节点标签
         text_node_properties=["text"],  # 用哪个属性做 embedding（LLMGraphTransformer 默认用 text）

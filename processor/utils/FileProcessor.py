@@ -4,15 +4,19 @@ import json
 class FileProcessor:
     def __init__(self, file_path):
         self.file_path = file_path
+        self.data = None
 
     def read(self):
         with open(self.file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
+            self.data = data
         return data
 
-    def write(self, data):
+    def write(self, data = None):
+        if data:
+            self.data = data
         with open(self.file_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+            json.dump(self.data, f, ensure_ascii=False, indent=2)
 
     def converter(self, obj):
         if isinstance(obj, set): # 去重的
@@ -32,5 +36,11 @@ class FileProcessor:
         # 其他类型尝试直接返回
         return obj
 
-    def save(self, data):
-        self.write(self.converter(data))
+    def save(self, data = None):
+        if data:
+            self.data=self.converter(data)
+        self.write(self.data)
+
+    def copy(self, file_path):
+        self.file_path = file_path
+        self.save()

@@ -8,7 +8,10 @@ from tqdm import tqdm
 
 
 class LLMInvoker:
-    """本地Ollama模型通用调用器，支持提取岗位/公司详情关键信息"""
+    """
+    本地Ollama模型通用调用器，支持提取岗位/公司详情关键信息
+    由于服务器资源有限，建议只调用一个模型
+    """
 
     def __init__(self, model_name="qwen3:8b", base_url="http://192.168.3.200:11434"):
         """
@@ -20,12 +23,13 @@ class LLMInvoker:
         self.base_url = base_url
         self.api_url = f"{self.base_url}/api/generate"
         self.embeddings_url = f"{self.base_url}/api/embeddings"
-        self.headers = {"Content-Type": "application/json"}
+        self.headers = {"Content-Type": "application/json"} # 指定发送格式是json，对输入输出的格式没有要求
 
-    def _call_ollama(self, prompt, stream=False):
+    def call_ollama(self, prompt, format="string", stream=False):
         """
         底层调用Ollama API的方法
         :param prompt: 提示词
+        :param format: 输出格式
         :param stream: 是否流式返回
         :return: 模型响应文本
         """
@@ -33,7 +37,7 @@ class LLMInvoker:
             "model": self.model_name,
             "prompt": prompt,
             "stream": stream,
-            # "format": "json"  # 指定JSON格式输出，便于解析
+            # "format": format  # 指定格式输出，便于解析
         }
 
         try:
@@ -45,27 +49,27 @@ class LLMInvoker:
             )
             response.raise_for_status()  # 抛出HTTP异常
 
-            if stream:
-                # 流式响应处理（可选）
-                result = ""
-                for line in response.iter_lines():
-                    if line:
-                        line_data = json.loads(line)
-                        if "response" in line_data:
-                            result += line_data["response"]
-                        if line_data.get("done"):
-                            break
-                return result
-            else:
-                # 非流式响应
-                response_data = response.json()
-                return response_data.get("response", "")
+            # if stream: # 实时查看信息
+            #     # 流式响应处理（可选）
+            #     result = ""
+            #     for line in response.iter_lines():
+            #         if line:
+            #             line_data = json.loads(line)
+            #             if "response" in line_data:
+            #                 result += line_data["response"]
+            #             if line_data.get("done"):
+            #                 break
+            #     return result
+            # else:
+            #     # 非流式响应
+            response_data = response.json()
+            return json.loads(response_data.get("response", "").strip()) # 尝试解析JSON（转数据结构）json.loads(response_data.get("response", "").strip())
 
         except requests.exceptions.RequestException as e:
             print(f"❌ 调用Ollama模型失败: {e}")
             return None
 
-    def _call_ollama_embedding(self, prompt):
+    def call_ollama_embedding(self, prompt):
         """
         调用 Ollama 模型获取嵌入向量
         :param prompt: 提示词
@@ -158,7 +162,7 @@ class LLMInvoker:
         要求：仅返回JSON，不要额外解释，确保JSON格式可解析。
         """
         # 调用模型
-        raw_response = self._call_ollama(prompt)
+        raw_response = self.call_ollama(prompt)
         if not raw_response:
             print("❌ 岗位信息解析失败")
             return None
@@ -203,34 +207,32 @@ class LLMInvoker:
     #         print(f"❌ 公司信息解析失败，原始响应：{raw_response}")
     #         return None
 
-    def batch_extract_job_info(self, jobs_dict, save_path="data/job_key_info.json"):
+    def batch_extract_job_info(self, jobs_dict, save_path="job_key_info.json"):
         """
         批量提取岗位关键信息并保存
         :param jobs_dict: 岗位字典（如initialize.py中的jobs）
         :param save_path: 保存路径
         """
-        job_key_info = {}
         total = len(jobs_dict)
         print(f"开始批量提取{total}个岗位的关键信息...")
         tmp = 0
         for job_id, job in tqdm(jobs_dict.items()):
 
-            if "key_info" not in jobs_dict[job_id]:
-                key_info = self.extract_job_key_info(job.description)
-                jobs_dict[job_id]["key_info"] = {
-                    key_info or {}
-                }
+            if "key_info" not in job.keys():
+                key_info = self.extract_job_key_info(job["description"])
+                jobs_dict[job_id]["key_info"] = key_info
+
                 tmp += 1
-            if tmp % 50 == 0:
+            if tmp % 20 == 0:
                 fp = FileProcessor(save_path)
-                fp.save(job_key_info)
-                print(f"已保存{tmp}个岗位的关键信息")
+                fp.save(jobs_dict)
+                # print(f"已保存{tmp}个岗位的关键信息")
 
         # 保存结果
         fp = FileProcessor(save_path)
-        fp.save(job_key_info)
+        fp.save(jobs_dict)
         print(f"✅ 岗位关键信息已保存到 {save_path}")
-        return job_key_info
+        return jobs_dict
 
     # def batch_extract_company_info(self, companies_dict, save_path="company_key_info.json"):
     #     """

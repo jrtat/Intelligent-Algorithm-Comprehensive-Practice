@@ -88,7 +88,6 @@ processor/
   ├── README.md                    # 项目说明文件
   └── reset.py                     # 重置脚本
 ```
----
 
 ## 数据处理流程
 
@@ -96,8 +95,6 @@ processor/
 > - reset.py：将cleaned_data.json分为岗位、公司、城市、行业四个模块，分开处理。
 > - process.py：通过大语言模型从不同模块提取深层信息，从原信息得到目标信息。
 > - json2xlsx.py：将json文件转换为xlsx文件，便于组长使用。
-
----
 
 # 附录
 

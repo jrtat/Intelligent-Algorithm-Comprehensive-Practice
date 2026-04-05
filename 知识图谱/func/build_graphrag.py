@@ -1,6 +1,7 @@
-from .utils.get_models import get_llm_temp,get_llm,get_embedding_temp,get_embedding
+from .utils.get_models import get_llm_temp,get_llm,get_llm_silicon_flow,get_embedding_temp,get_embedding
 from .utils.conn_neo4j import connect_neo4j
 
+from langchain_community.callbacks import get_openai_callback
 import time
 from langchain_core.documents import Document
 from LLMGraphTransformer import LLMGraphTransformer
@@ -28,24 +29,25 @@ def init(raw_texts: list, init_type = 'add'): # 初始化整个 GraphRAG 系统
     # split_docs = text_splitter.split_documents(split_docs) # 未必需要分块
 
     # Step 2：初始化 LLM 和 Embedding 模型
-    RAG_llm = get_llm()
+    RAG_llm = get_llm_silicon_flow("deepseek-ai/DeepSeek-R1-0528-Qwen3-8B")
 
     # Step 3：设置知识图谱的 schema（允许哪些节点和属性）
     # 1. 定义 NodeSchema
     node_schemas = [
-        NodeSchema("职业类别"),  # 为每个节点类型指定属性
-        NodeSchema("岗位ID", ["location","diploma","major","personal qualities"]),  # 例如，为岗位ID添加薪资范围属性
-        NodeSchema("公司", ["industry","description"]),
-        NodeSchema("技术能力", ["description"]),
+        NodeSchema("职业类别"),
+        NodeSchema("岗位", ["工作地点", "薪资范围", "学历要求", "专业要求", "个人素质"]),
+        NodeSchema("公司", ["所属行业", "公司描述", "企业规模", "融资阶段"]),
+        NodeSchema("技能", ["技能描述"]),
         NodeSchema("证书")
     ]
+
     relationship_schemas = [
-        RelationshipSchema("职业类别", "需要掌握", "技术能力"),
+        RelationshipSchema("职业类别", "需要掌握", "技能"),
         RelationshipSchema("职业类别", "需要持有", "证书"),
-        RelationshipSchema("岗位ID", "属于", "职业类别"),
-        RelationshipSchema("岗位ID", "需要掌握", "技术能力"),
-        RelationshipSchema("岗位ID", "需要持有", "证书"),
-        RelationshipSchema("岗位ID", "来自于", "公司")
+        RelationshipSchema("岗位", "属于", "职业类别"),
+        RelationshipSchema("岗位", "需要掌握", "技能"),
+        RelationshipSchema("岗位", "需要持有", "证书"),
+        RelationshipSchema("岗位", "由...提供", "公司", ),
     ]
 
     # Step 4：创建 LLMGraphTransformer（把文本变成图结构）
@@ -65,8 +67,12 @@ def init(raw_texts: list, init_type = 'add'): # 初始化整个 GraphRAG 系统
         success = False
         for attempt in range(max_retries):
             try:
-                graph_doc = graph_transformer.convert_to_graph_document(doc) # 调用单个文档的转换方法
-                graph_documents.append(graph_doc)
+                with get_openai_callback() as cb:
+                    graph_doc = graph_transformer.convert_to_graph_document(doc) # 调用单个文档的转换方法
+                    print(f"本次调用总计消耗Token: {cb.total_tokens}")
+                    print(f"输入Token: {cb.prompt_tokens}")
+                    print(f"输出Token: {cb.completion_tokens}")
+                    graph_documents.append(graph_doc)
                 success = True
                 break  # 成功则跳出重试循环
             except Exception as e:
@@ -100,7 +106,7 @@ def deduplication():
     embedding_threshold = 0.75  # embedding阈值
     fuzzy_threshold = 75  # 字符相似阈值
     NO_MERGE_TYPES = {
-        '岗位id'
+        '岗位'
     }  # 不判重的节点类型
 
     # Step 1：初始化 llm Embedding 模型 & 连接 Neo4j 数据库

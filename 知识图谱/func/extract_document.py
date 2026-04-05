@@ -12,11 +12,11 @@ def extract_row(row):
     company_size = row['公司规模']
     company_desc = row['公司详情']
     text =  f'''
-这是一个招聘信息。岗位ID为“{id}”，它属于“{job_name}”这一职业类别。该岗位的工作地点位于“{location}”。
+这是一个招聘信息。岗位ID为“{id}”，它属于“{job_name}”这一职业。该岗位的工作地点位于“{location}”，薪资约为{salary}每月。
 
-该岗位的详细职责和要求（包含了该岗位对职业技能的要求）如下：{description}
+该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下：{description}
 
-该岗位的招聘公司是“{company_name}”。这家公司属于“{industry}”行业，公司规模为“{company_size}”，公司类型为“{company_type}”。公司的简介如下：{company_desc}
+该岗位由“{company_name}”提供。{company_name}属于“{industry}”行业，公司规模为“{company_size}”，公司类型为“{company_type}”。公司的简介如下：{company_desc}
 '''
     # print(text)
     return text

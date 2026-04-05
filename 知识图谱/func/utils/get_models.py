@@ -35,3 +35,11 @@ def get_llm_temp():
         api_key="EMPTY",  # vLLM 不需要真实 key
         temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
     )
+
+def get_llm_silicon_flow(model_name):
+    return ChatOpenAI(
+    model= model_name,   # 或硅基流动上的对应 model id
+    base_url="https://api.siliconflow.cn/v1",
+    api_key="sk-ahfwoezktscykkeyoyvqigunyemiyjqtxknysvcyryeipvhr",
+    temperature=0.01      # 低温度，提高结构化输出稳定性
+)

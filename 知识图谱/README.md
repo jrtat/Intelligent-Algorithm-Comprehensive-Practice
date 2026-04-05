@@ -26,9 +26,9 @@ graphRAG
 │   │   ├── conn_neo4j.py
 │   │   ├── graphsearcher.py
 │   ├── extract_document.py
-│   ├── build_graphRAG.py
+│   ├── build_graphrag.py
 │   ├── get_retriver.py
-│   └── use_graphRAG.py
+│   └── use_graphrag.py
 └── init.py
 ```
 

@@ -1,23 +1,9 @@
+from .utils.get_models import get_llm_temp,get_llm
+
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
-from langchain_openai import ChatOpenAI
 
-def get_llm():
-    return ChatOpenAI(
-        model="qwen3:8b",  # 模型名字（xjx实验室）
-        base_url="http://59.72.63.156:14138/v1", # url（xjx实验室）
-        api_key="EMPTY",  # vLLM 不需要真实 key
-        temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
-    )
-
-def get_llm_temp():
-    return ChatOpenAI(
-        model = "Qwen2.5-3B",  # 模型名字（本地）
-        base_url="http://127.0.0.1:8000/v1",  # url本地
-        api_key="EMPTY",  # vLLM 不需要真实 key
-        temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
-    )
 
 def use_llm(hybrid_retriever,question: str):
 

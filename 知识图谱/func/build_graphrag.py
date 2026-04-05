@@ -1,18 +1,15 @@
-from utils.get_models import get_llm_temp,get_llm,get_embedding_temp,get_embedding
-from utils.conn_neo4j import connect_neo4j
+from .utils.get_models import get_llm_temp,get_llm,get_embedding_temp,get_embedding
+from .utils.conn_neo4j import connect_neo4j
 
-import os, time
+import time
 from langchain_core.documents import Document
 from LLMGraphTransformer import LLMGraphTransformer
 from LLMGraphTransformer.schema import NodeSchema, RelationshipSchema
-from langchain_community.graphs import Neo4jGraph
 from langchain_text_splitters import RecursiveCharacterTextSplitter  # 分块
 from collections import defaultdict
 from rapidfuzz import fuzz
 from tqdm import tqdm
 import numpy as np
-
-
 
 #--- 初始化知识图谱 ---#
 def init(raw_texts: list, init_type = 'add'): # 初始化整个 GraphRAG 系统

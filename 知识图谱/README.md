@@ -22,14 +22,14 @@
 graphRAG
 ├── func
 │   ├── utils
-│   │   ├── get_models.py
-│   │   ├── conn_neo4j.py
-│   │   ├── graphsearcher.py
-│   ├── extract_document.py
-│   ├── build_graphrag.py
-│   ├── get_retriver.py
-│   └── use_graphrag.py
-└── init.py
+│   │   ├── get_models.py （提供初始化模型的函数，主要是llm和embedding）
+│   │   ├── conn_neo4j.py （提供连接图数据库相关的函数）
+│   │   ├── graphsearcher.py （提供图搜索相关的函数）
+│   ├── extract_document.py （从Excel中提取每一行，转成一段话，用于后续提取知识图谱）
+│   ├── build_graphrag.py （init负责构建知识图谱，deduplication负责节点去重）
+│   ├── get_retriver.py （获取混合检索器，尚未完工）
+│   └── use_graphrag.py （使用知识图谱增强llm的能力，尚未完工）
+└── init.py （调用get_extracted_document，init和deduplication完成知识图谱的构建工作）
 ```
 
 extract_document.py：把Excel文档转成文本列表

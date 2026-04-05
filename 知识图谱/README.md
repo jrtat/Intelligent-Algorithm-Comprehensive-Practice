@@ -2,49 +2,17 @@
 
 ## 思路
 
-用之前处理好的文本来构建graphRAG，结果存储在Neo4j中，并设置graph_retriever函数，use_llm函数。
-在后续使用大模型时把问题打包发给use_llm，该函数会调用graph_retriever在Neo4j上查询与话题相关的内容，将其打包给LLM，以提高LLM的回答能力。
-其中graph_retriever采用混合查询的方式，既使用向量的方式检索，也使用图的方式检索。
+用之前处理好的文本来构建graphRAG，结果存储在Neo4j中。
 
 ## 节点&边类型的设置
 
 #### 节点
 
 
----
-
-> old 目前打算通过先不预设类型，根据结果逐步设置节点，边的类型的方式确立类型
-
-- 岗位名称（约100种）
-  - 工资情况（月薪最小、月薪最大、平均月薪、四分位数）
-  - 学历分布
-  - 创新，沟通，抗压，能力要求（平均值？）
-  - 对实习时间要求的分布
-  - 垂直职业发展方向（集合）
-  - 城市分布
-
-- 行业
-  - 在GB/T 4754-2017所属的门类
-
-- 公司
-  - 企业规模
-  - 企业类型
-  - 公司发展情况
-  - 企业描述（非结构化文本）
-
-- 证书
-
-- 技能
 
 #### 关系
 
-岗位 --需要--> 技能
 
-岗位 --需要--> 证书
-
-岗位 --涉及--> 企业 
-
-岗位 --涉及--> 行业
 
 ---
 
@@ -53,10 +21,15 @@
 ```
 graphRAG
 ├── func
-│   ├── extract_document.py
-│   ├── build_graphRAG.py
-│   └── use_graphRAG.py
-└── main.py
+│   ├── utils
+│   │   ├── get_models.py （提供初始化模型的函数，主要是llm和embedding）
+│   │   ├── conn_neo4j.py （提供连接图数据库相关的函数）
+│   │   ├── graphsearcher.py （提供图搜索相关的函数）
+│   ├── extract_document.py （从Excel中提取每一行，转成一段话，用于后续提取知识图谱）
+│   ├── build_graphrag.py （init负责构建知识图谱，deduplication负责节点去重）
+│   ├── get_retriver.py （获取混合检索器，尚未完工）
+│   └── use_graphrag.py （使用知识图谱增强llm的能力，尚未完工）
+└── init.py （调用get_extracted_document，init和deduplication完成知识图谱的构建工作）
 ```
 
 extract_document.py：把Excel文档转成文本列表

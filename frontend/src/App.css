@@ -1,0 +1,587 @@
+/* ===== 整体布局 ===== */
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-align: left;
+}
+
+/* ===== 头部 ===== */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.subtitle {
+  color: #666;
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+/* ===== 筛选面板 ===== */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-input {
+  flex: 1 1 100%;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.filter-input:focus {
+  border-color: #4a90d9;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+.reset-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.reset-btn:hover {
+  background: #e8e8e8;
+}
+
+/* ===== 岗位列表 ===== */
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+  padding: 60px 0;
+}
+
+/* ===== 岗位卡片 ===== */
+.job-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px 20px;
+  background: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.job-card:hover {
+  border-color: #4a90d9;
+  box-shadow: 0 2px 12px rgba(74, 144, 217, 0.1);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.job-title {
+  margin: 0;
+  font-size: 17px;
+  color: #1a1a1a;
+}
+
+.job-salary {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.job-info {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.company {
+  color: #333;
+}
+
+.location {
+  color: #888;
+}
+
+/* ===== 标签 ===== */
+.job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tag-edu {
+  background: #f0f7ff;
+  color: #2b6cb0;
+}
+
+.tag-skill {
+  background: #f0fff4;
+  color: #276749;
+}
+
+/* ===== 展开详情 ===== */
+.job-detail {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #eee;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.job-detail h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #444;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.skill-tag {
+  padding: 3px 10px;
+  background: #eef3ff;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #3b5bdb;
+}
+
+.job-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+  white-space: pre-wrap;
+  margin: 0 0 12px;
+}
+
+.job-link {
+  display: inline-block;
+  color: #4a90d9;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.job-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== 详情页链接样式 ===== */
+.job-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* ===== 详情页布局 ===== */
+.job-detail-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 20px 0 24px;
+  color: #4a90d9;
+  text-decoration: none;
+  border: 1px solid #4a90d9;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #f0f7ff;
+}
+
+.job-detail-full {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.job-detail-full h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #333;
+}
+
+.job-section {
+  margin-bottom: 20px;
+}
+
+.job-section h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===== 能力条样式 ===== */
+.ability-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.ability-section h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #444;
+}
+
+.ability-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.ability-label {
+  width: 80px;
+  font-size: 13px;
+  color: #666;
+}
+
+.ability-bar {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+}
+
+.ability-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  transition: background 0.2s;
+}
+
+.ability-dot.active {
+  background: #4a90d9;
+}
+
+.ability-value {
+  width: 40px;
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+}
+
+/* ===== 岗位动作按钮 ===== */
+.job-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  background: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  text-align: center;
+  border: 1px solid #ddd;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: #4a90d9;
+  color: #fff;
+  border-color: #4a90d9;
+}
+
+/* ===== 画像分析页样式 ===== */
+.summary-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.summary-card {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.summary-card h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: #333;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: #666;
+}
+
+/* 薪资统计 */
+.salary-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.salary-min, .salary-max {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.salary-divider {
+  font-size: 18px;
+  color: #999;
+}
+
+.salary-bar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.salary-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4a90d9, #276749);
+}
+
+/* 学历分布 */
+.degree-pie {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.degree-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.degree-label {
+  width: 60px;
+  font-size: 13px;
+  color: #666;
+}
+
+.degree-bar {
+  flex: 1;
+  height: 20px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.degree-fill {
+  height: 100%;
+  background: #4a90d9;
+  transition: width 0.5s ease;
+}
+
+.degree-value {
+  width: 80px;
+  font-size: 13px;
+  color: #333;
+  text-align: right;
+}
+
+.company-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.company-tag {
+  padding: 6px 12px;
+  background: #f0f7ff;
+  color: #2b6cb0;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+/* ===== 地图页样式 ===== */
+.map-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.map-container {
+  position: relative;
+  margin: 20px 0;
+}
+
+/* 地图容器 - 使用绝对定位覆盖标记 */
+.map-image-wrapper {
+  position: relative;
+  width: 600px;
+  height: 500px;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.map-marker:hover .marker-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.marker-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.marker-label {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.2s;
+  padding: 4px 8px;
+  background: #333;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.map-image-wrapper:hover .marker-label,
+.map-marker:hover .marker-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.map-image-wrapper:hover .marker-label,
+.map-marker:hover .marker-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.map-legend {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.map-cities-list {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.map-cities-list h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #666;
+}
+
+.city-tag {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 4px;
+  background: #f0fff4;
+  color: #276749;
+  border-radius: 6px;
+  font-size: 12px;
+}

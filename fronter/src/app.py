@@ -1,0 +1,1 @@
+from flask import Flask, render_template, request\n\napp = Flask(__name__)\n\n@app.route('/' , methods=['GET', 'POST'])\ndef index():\n    if request.method == 'POST':\n        user_input = request.form['user_input']\n        return render_template('index.html', user_input=user_input)\n    return render_template('index.html')\n\nif __name__ == '__main__':\n    app.run(debug=True)

@@ -1,0 +1,1 @@
+<\!DOCTYPE html>\n<html>\n<head>\n    <title>交互示例</title>\n</head>\n<body>\n    <h1>欢迎使用交互式网页</h1>\n    <form method='POST'>\n        <input type='text' name='user_input' placeholder='输入内容'>\n        <input type='submit' value='提交'>\n    </form>\n    {% if user_input %}\n    <p>你输入的内容: {{ user_input }}</p>\n    {% endif %}\n</body>\n</html>

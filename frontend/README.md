@@ -1,73 +1,43 @@
-# React + TypeScript + Vite
+# 岗位数据看板
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 项目简介
+- Vite + React + TypeScript 前端项目，使用 bun 包管理
+- 用途：展示清洗挖掘后的岗位数据，支持搜索和筛选
 
-Currently, two official plugins are available:
+## 技术栈
+- **框架**: React 19 + TypeScript
+- **构建工具**: Vite 8
+- **包管理器**: bun 1.3
+- **样式**: 纯 CSS（App.css）
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 数据结构（src/data/）
+| 文件 | 内容 |
+|------|------|
+| `jobs.json` | 岗位详情（核心数据），按岗位ID索引，包含岗位名称、公司、地址、薪资、学历、技能、能力等级等 |
+| `cities.json` | 城市信息（地址、岗位列表、坐标、城市等级） |
+| `industries.json` | 行业公司分类（行业 → 公司列表） |
+| `companies.json` | 行业公司分类（同 industries） |
+| `cleaned_data.json` | 原始完整数据（目前不使用，已拆分） |
 
-## React Compiler
+## 当前功能
+- 岗位卡片列表展示
+- 关键词搜索（岗位名、公司名、技能）
+- 筛选：城市、城市等级、学历、行业
+- 点击卡片展开详情（职业技能、岗位描述、原始链接）
+- 重置筛选条件
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 文件结构
+```
+src/
+├── types/job.ts        # TypeScript 类型定义
+├── data/               # JSON 数据文件
+├── App.tsx             # 主组件（筛选逻辑 + 岗位卡片）
+├── App.css             # 样式
+└── index.css           # 全局样式
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 下一步可能的需求
+- 分页/虚拟滚动（数据量大时优化性能）
+- 数据可视化（城市地图、行业统计图表等）
+- 排序功能（按薪资、发布时间等）
+- 深色模式适配

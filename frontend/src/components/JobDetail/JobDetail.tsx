@@ -1,18 +1,15 @@
 import { useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import jobsData from '../../data/jobs.json';
 import { AbilityBar } from './AbilityBar';
 import './job-detail.css';
 
 export function JobDetailPage() {
-  const location = useLocation();
-  const jobCode = useMemo(() => {
-    return location.pathname.replace('/', '');
-  }, [location.pathname]);
+  const { jobId } = useParams<{ jobId: string }>();
 
   const job = useMemo(() => {
-    return jobsData[jobCode as keyof typeof jobsData];
-  }, [jobCode]);
+    return jobsData[jobId as keyof typeof jobsData];
+  }, [jobId]);
 
   if (!job) {
     return (
@@ -25,7 +22,7 @@ export function JobDetailPage() {
   return (
     <div className="app">
       <div className="job-detail-page">
-        <Link to="/" className="back-btn">← 返回列表</Link>
+        <Link to="/dashboard" className="back-btn">← 返回列表</Link>
 
         <div className="job-card">
           <div className="job-header">

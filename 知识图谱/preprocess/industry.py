@@ -384,4 +384,5 @@ def preprocess_industry(loc_df):
     return loc_df
 
 def preprocess_industry_easy(loc_df):
-    df['所属行业'] = df['所属行业'].apply(lambda x: list(set(str(x).split(','))))
+    loc_df['所属行业'] = loc_df['所属行业'].apply(lambda x: list(set(str(x).split(','))))
+    return loc_df

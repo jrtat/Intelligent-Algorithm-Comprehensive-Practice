@@ -382,3 +382,6 @@ def preprocess_industry(loc_df):
     # 再格式化为所需字符串
     loc_df["所属行业（标准）"] = loc_df["所属行业（标准）"].apply(format_industry_codes)
     return loc_df
+
+def preprocess_industry_easy(loc_df):
+    df['所属行业'] = df['所属行业'].apply(lambda x: list(set(str(x).split(','))))

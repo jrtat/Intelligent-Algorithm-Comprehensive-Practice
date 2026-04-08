@@ -135,7 +135,6 @@ def build_graphrag(raw_texts: list, init_type = 'add'): # 初始化整个 GraphR
 
     print("GraphRAG 初始化完成！")
 
-
 def transform_properties_to_nodes():
     """
         负责复杂化知识图谱的结构，将以下属性提取为独立节点：

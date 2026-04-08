@@ -19,9 +19,9 @@ def init_excel():
     df = df.drop_duplicates(subset=['岗位编码'])
     df.to_excel("processed.xlsx")
 
-init_excel()
+# init_excel()
 
-# raw_text = get_extracted_document(start_pos= 1, length= 100)
-# build_graphrag(raw_text,'rewrite')
+raw_text = get_extracted_document(start_pos= 1, length= 100)
+build_graphrag(raw_text,'rewrite')
 # transform_properties_to_nodes()
 # deduplication()

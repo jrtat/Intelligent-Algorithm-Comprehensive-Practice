@@ -1,7 +1,8 @@
-from func.get_retriever import get_retriever
-from func.use_graphrag import use_llm
+from 知识图谱.func.search_graphrag import init_query_conf, query_common_quality, query_unique_content_to_b, query_industries
 
-hybrid_retriever = get_retriever() # 初始化graphRAG后得到 hybrid_retriever
-answer = use_llm(hybrid_retriever,"熟练使用C++，Java，MySQL适合应聘哪些岗位？") # 提问
-print("=== GraphRAG 的回答 ===")
-print(answer) # 输出回答
+# 示例调用（把 "软件工程师" 和 "数据分析师" 替换成你实际的职业名称）
+init_query_conf()
+
+print("\n=== 共同素质 ===")
+res3 = query_common_quality("软件测试", "Java")
+print(res3["result"])

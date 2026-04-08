@@ -4,5 +4,5 @@ from 知识图谱.func.search_graphrag import init_query_conf, query_common_qual
 init_query_conf()
 
 print("\n=== 共同素质 ===")
-res3 = query_common_quality("软件测试", "Java")
+res3 = query_unique_content_to_b("软件测试", "Java")
 print(res3["result"])

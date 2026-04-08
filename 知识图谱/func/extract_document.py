@@ -23,7 +23,7 @@ def extract_row(row):
 '''
     return text
 
-def get_extracted_document(file_name = 'raw.xlsx', start_pos=1, length=100):
+def get_extracted_document(file_name = 'processed.xlsx', start_pos=1, length=100):
     """
     从Excel文件中读入数据，并将其处理成字符串列表，每个字符串是Excel中的一行。可以指定从哪行开始，读入多少行，以便进行分批处理。
     :param file_name: Excel的名字

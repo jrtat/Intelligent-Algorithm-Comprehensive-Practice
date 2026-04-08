@@ -1,0 +1,102 @@
+.job-profile-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.job-profile-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.job-profile-header h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.job-profile-subtitle {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.job-profile-content {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section {
+  margin-bottom: 40px;
+}
+
+.profile-section h3 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.radar-section {
+  margin-bottom: 40px;
+}
+
+.radar-chart-container {
+  width: 100%;
+}
+
+.details-section .detail-item {
+  margin-bottom: 24px;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #374151;
+  margin-right: 8px;
+}
+
+.detail-value {
+  color: #6b7280;
+}
+
+.skill-tag {
+  display: inline-block;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-item {
+  margin-bottom: 16px;
+}
+
+.ability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.ability-item {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.ability-item strong {
+  color: #4f46e5;
+  font-size: 1.25rem;
+}

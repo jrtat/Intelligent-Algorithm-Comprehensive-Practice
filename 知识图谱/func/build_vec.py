@@ -2,6 +2,7 @@ from .utils.conn_neo4j import connect_neo4j,graph_url,graph_username,graph_passw
 from .utils.get_models import get_llm,get_llm_temp, get_llm_silicon_flow ,get_embedding_temp,get_embedding
 from langchain_community.vectorstores.neo4j_vector import Neo4jVector
 
+duc_vs = None
 personal_quality_vs = None
 skill_vs = None
 certificate_vs = None

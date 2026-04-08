@@ -1,0 +1,138 @@
+/* ===== 详情页布局 ===== */
+.summary-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 20px 0 24px;
+  color: #4a90d9;
+  text-decoration: none;
+  border: 1px solid #4a90d9;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #f0f7ff;
+}
+
+.summary-card {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.summary-card h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: #333;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: #666;
+}
+
+/* 薪资统计 */
+.salary-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.salary-min, .salary-max {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.salary-divider {
+  font-size: 18px;
+  color: #999;
+}
+
+.salary-bar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.salary-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4a90d9, #276749);
+}
+
+/* 学历分布 */
+.degree-pie {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.degree-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.degree-label {
+  width: 60px;
+  font-size: 13px;
+  color: #666;
+}
+
+.degree-bar {
+  flex: 1;
+  height: 20px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.degree-fill {
+  height: 100%;
+  background: #4a90d9;
+  transition: width 0.5s ease;
+}
+
+.degree-value {
+  width: 80px;
+  font-size: 13px;
+  color: #333;
+  text-align: right;
+}
+
+.company-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.company-tag {
+  padding: 6px 12px;
+  background: #f0f7ff;
+  color: #2b6cb0;
+  border-radius: 12px;
+  font-size: 13px;
+}

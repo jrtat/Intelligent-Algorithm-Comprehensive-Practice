@@ -1,0 +1,129 @@
+/* ===== 详情页链接样式 ===== */
+.job-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* ===== 详情页布局 ===== */
+.job-detail-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 20px 0 24px;
+  color: #4a90d9;
+  text-decoration: none;
+  border: 1px solid #4a90d9;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #f0f7ff;
+}
+
+.job-detail-full {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.job-detail-full h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #333;
+}
+
+.job-section {
+  margin-bottom: 20px;
+}
+
+.job-section h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===== 能力条样式 ===== */
+.ability-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.ability-section h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #444;
+}
+
+.ability-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.ability-label {
+  width: 80px;
+  font-size: 13px;
+  color: #666;
+}
+
+.ability-bar {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+}
+
+.ability-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  transition: background 0.2s;
+}
+
+.ability-dot.active {
+  background: #4a90d9;
+}
+
+.ability-value {
+  width: 40px;
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+}
+
+/* ===== 岗位动作按钮 ===== */
+.job-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  background: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  text-align: center;
+  border: 1px solid #ddd;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: #4a90d9;
+  color: #fff;
+  border-color: #4a90d9;
+}

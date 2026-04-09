@@ -36,3 +36,41 @@
 #### 主界面
 
 现在有一个招聘信息的xlsx文件，里面有许多列，其中两列分别为“岗位名称”、“省”。现在想使用ts和react-simple-maps设计一个Web前端界面，用户可选择岗位（从已有岗位中选择，一次只能选择一个），选择岗位并确认后会读取xlsx文件将所有这个岗位的省在GeoJSON地图(本地文件“china.json”放在public的map文件夹中)上标记出来，以方便用户直观的看到岗位在全国的分布情况。若“省”这一列为空则跳过，若存在省相同的情况，则以不同颜色的标记来直观感受数量多少（从绿到红渐变）且让数量更多的标记比数量更少的标记稍大，对数量占比大于10%的标记，添加一个脉动外圈，吸引用户注意力。鼠标悬停时标记会轻微放大（onMouseEnter 增加半径），提升交互感。给出完整可运行的.css和.tsx代码
+
+现在想使用ts设计一个 “基于AI的大学生职业规划智能体” Web前端，用户可在输入栏中输入想给智能体发的消息。用户还可拖拽或者读取本地文件上传pdf简历，上传后会从这个pdf简历中提取结构化数据显示在右边供用户查看、添加与修改，对于右边的简历结构化信息栏用户可选则收起或者展开。点击发送后会将用户的消息和简历结构化信息通过后端接口传给数据处理模型，所以这部分只需要设计接口就行，模型我自己接入。给出完整可运行的.css和.tsx代码。
+注意环境为：
+{
+  "name": "front_proj",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/d3-geo": "^3.1.0",
+    "d3-geo": "^3.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-simple-maps": "^3.0.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^24.12.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/react-simple-maps": "^3.0.6",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.0",
+    "vite": "^8.0.4"
+  }
+}

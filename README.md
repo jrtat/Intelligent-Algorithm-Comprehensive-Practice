@@ -11,6 +11,7 @@
 
 
 简历接口：
+```
 interface ResumeData {
   name: string;
   age: string;
@@ -43,9 +44,10 @@ interface ResumeData {
     competitiveness: string;
   };
 }
-
+```
 
 传给前端的匹配topk接口：
+```
 {
   "code": 200, 
   "message": "success", 
@@ -125,3 +127,4 @@ interface ResumeData {
     }
   ]
 }
+```

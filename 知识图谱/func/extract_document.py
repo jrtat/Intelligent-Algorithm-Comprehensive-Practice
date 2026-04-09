@@ -32,6 +32,6 @@ def get_extracted_document(file_name = 'processed.xlsx', start_pos=1, length=100
     :return: 处理好的字符串列表
     """
     df = pd.read_excel(file_name, header=0)
-    df['text_for_llmtrans'] = df.apply(extract_row, axis=1)
+    df['text_for_llm'] = df.apply(extract_row, axis=1)
     df = df.iloc[start_pos-1 : start_pos-1+length] # 从 start_pos 行（行号从1开始）截取 length 行
-    return df['text_for_llmtrans'].tolist()
+    return df['text_for_llm'].tolist()

@@ -22,6 +22,7 @@ relationship_schemas = [
     RelationshipSchema("岗位", "属于", "职业类别"),
     RelationshipSchema("岗位", "来自", "公司")
 ]
+
 additional_instructions = """
 请严格按照以下规则从文本中提取与“岗位”相关的属性这段内容：
 - "岗位" 节点：是一个编号，例如 “CCL1464680980J40789256308”。
@@ -45,19 +46,17 @@ job_transforms = [
     {"prop": "职业技能", "label": "职业技能", "rel": "需要掌握"},
     {"prop": "证书", "label": "证书", "rel": "需要持有"},
     {"prop": "工作内容", "label": "工作内容", "rel": "负责"},
+    {"prop": "工作经验", "label": "工作经验", "rel": "需要拥有"},
     {"prop": "福利待遇", "label": "福利待遇", "rel": "提供"},
     {"prop": "专业", "label": "专业", "rel": "需要来自"},
 ]
+
 company_transforms = [
     {"prop": "行业", "label": "行业", "rel": "涉及"},
 ]
-job_remove = "p.综合素质, p.职业技能, p.证书, p.工作内容, p.福利待遇, p.专业"
+job_remove = "p.综合素质, p.职业技能, p.证书, p.工作内容, p.福利待遇, p.专业, p.工作经验"
 company_remove = "c.行业"
 
-no_merge_type = {
-        '岗位',
-        '职业类别'
-} # 不判重的节点类型
 embedding_threshold_by_type = {
     "行业": 0.95,
     "专业": 0.88,
@@ -68,20 +67,21 @@ fuzzy_threshold_by_type = {
     "专业": 88,
     "职业技能": 78
 }
+no_merge_type = { '岗位', '职业类别', '公司', '行业', '专业' } # 不判重的节点类型
 
 def build_graphrag(raw_texts: list, init_type = 'add'): # 初始化整个 GraphRAG 系统
     """
     从文档中提取出节点和关联并写入知识图谱
     :param raw_texts: 字符串列表，其中每个字符串是一条招聘信息
-    :param init_type: 为'add'表示向知识图谱中添加 raw_texts 提取出的节点和关联；
-                      为'rewrite'表示清空知识图谱后再添加 raw_texts 提取出的节点和关联。
+    :param init_type: 为 'add' 表示向知识图谱中添加 raw_texts 提取出的节点和关联；
+                      为 'rewrite' 表示清空知识图谱后再添加 raw_texts 提取出的节点和关联。
     :return: 无返回值
     """
 
     # Step 0：使用全局变量
     global node_schemas, relationship_schemas, additional_instructions
 
-    # Step 1：把原始文本分块（暂时弃用），并转成 LangChain Document 对象
+    # Step 1：把原始文本转成 LangChain Document 对象
     split_docs = [Document(page_content=text) for text in raw_texts]
 
     # Step 2：初始化 LLM 和 Embedding 模型
@@ -138,10 +138,10 @@ def build_graphrag(raw_texts: list, init_type = 'add'): # 初始化整个 GraphR
 def transform_properties_to_nodes():
     """
         负责复杂化知识图谱的结构，将以下属性提取为独立节点：
-        - 岗位的：综合素质、职业技能、证书、工作内容
+        - 岗位的：综合素质、职业技能、证书、工作经验、工作内容
         - 公司的：行业
         并建立对应关系：
-        - 岗位的：需要具有、需要掌握、需要持有、负责
+        - 岗位的：需要具有、需要掌握、需要持有、需要拥有、负责
         - 公司的：涉及
         最后删除原属性
     """
@@ -397,7 +397,7 @@ def deduplication(embedding_threshold = 0.82 , fuzzy_threshold = 82 ):
 '''
 node_schemas = [
     NodeSchema("职业类别"),
-    NodeSchema("岗位", ["工作地点", "薪资范围", "学历要求","晋升路径", "福利待遇", "工作经验"]),
+    NodeSchema("岗位", ["工作地点", "薪资范围", "学历要求","晋升路径", "福利待遇"]),
     NodeSchema("公司", ["行业", "公司描述", "企业规模", "融资阶段"]),
     NodeSchema("证书"),
     NodeSchema("综合素质"),
@@ -412,6 +412,7 @@ relationship_schemas = [
     RelationshipSchema("岗位", "需要具有", "综合素质"),
     RelationshipSchema("岗位", "需要掌握", "职业技能"),
     RelationshipSchema("岗位", "需要持有", "证书"),
+    RelationshipSchema("岗位", "需要拥有", "工作经验"),
     RelationshipSchema("岗位", "负责", "工作内容"),
     RelationshipSchema("岗位", "需要来自", "专业"),
     RelationshipSchema("公司", "涉及", "行业")

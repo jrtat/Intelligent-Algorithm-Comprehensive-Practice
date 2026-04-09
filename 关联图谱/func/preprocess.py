@@ -47,17 +47,17 @@ def get_data():
         p.学历要求 AS 学历要求,
         p.晋升路径 AS 晋升路径,
         p.工作经验 AS 工作经验,
-        collect(DISTINCT cat.text) AS 职业类别,
-        collect(DISTINCT c.text) AS 公司,
-        collect(DISTINCT q.text) AS 综合素质,
-        collect(DISTINCT s.text) AS 职业技能,
-        collect(DISTINCT cert.text) AS 证书,
-        collect(DISTINCT t.text) AS 工作内容,
-        collect(DISTINCT m.text) AS 专业
+        collect(DISTINCT cat.id) AS 职业类别,
+        collect(DISTINCT c.id) AS 公司,
+        collect(DISTINCT q.id) AS 综合素质,
+        collect(DISTINCT s.id) AS 职业技能,
+        collect(DISTINCT cert.id) AS 证书,
+        collect(DISTINCT t.id) AS 工作内容,
+        collect(DISTINCT m.id) AS 专业
     """ # 一次性获取所有岗位及其相关信息
     # 匹配数据库中所有标签为 岗位 的节点，并将它们绑定到变量 p
     # 对于每个岗位，尝试匹配一条 () 关系指向 () 节点。若没有匹配，cat 将为 null
-    # 使用 collect(DISTINCT cat.name) 将多个关联节点的 name 属性收集到一个列表中去重
+    # 使用 collect(DISTINCT ().id) 将多个关联节点的 id 属性收集到一个列表中去重
     # 返回结果 results 是一个 列表，其中每个元素是一个字典，对应一行查询结果（一个岗位及其关联数据）。比如以下格式：
     '''
     [{"岗位": "Cc114514", "薪资范围": "15000-25000每月", ..., "综合素质": "["乐观", "团队协作"]", ...},

@@ -1,7 +1,5 @@
-from 知识图谱.func.utils.conn_neo4j import connect_neo4j
-from .utils.get_models import get_llm_silicon_flow
-
-
+from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
+from KnowledgeGraph.func.utils.get_models import get_llm_silicon_flow
 
 from langchain_community.graphs import Neo4jGraph
 from langchain_neo4j import GraphCypherQAChain

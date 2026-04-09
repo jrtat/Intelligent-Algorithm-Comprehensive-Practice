@@ -1,5 +1,5 @@
-from .utils.conn_neo4j import connect_neo4j,graph_url,graph_username,graph_password,database_name
-from .utils.get_models import get_embedding_temp
+from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j,graph_url,graph_username,graph_password,database_name
+from KnowledgeGraph.func.utils.get_models import get_embedding_temp
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_neo4j import Neo4jVector

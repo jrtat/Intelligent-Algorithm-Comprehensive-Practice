@@ -1,4 +1,4 @@
-from .utils.conn_neo4j import connect_neo4j
+from 知识图谱.func.utils.conn_neo4j import connect_neo4j
 from .utils.get_models import get_llm_silicon_flow
 
 

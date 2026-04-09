@@ -1,5 +1,5 @@
-from .utils.get_models import get_llm_temp,get_llm,get_llm_silicon_flow,get_embedding_temp,get_embedding
-from .utils.conn_neo4j import connect_neo4j
+from .utils.get_models import get_llm_silicon_flow,get_embedding_temp
+from 知识图谱.func.utils.conn_neo4j import connect_neo4j
 
 from langchain_community.callbacks import get_openai_callback
 from langchain_core.documents import Document
@@ -389,6 +389,8 @@ def deduplication(embedding_threshold = 0.82 , fuzzy_threshold = 82 ):
         merged_count += len(dup_indices) - 1  # 累计合并的实体数量（除代表节点外的节点数）。
 
     print(f"实体去重完成！共合并 {merged_count} 个重复实体")
+
+
 
 #--- 最终我们期望达到的图结构 ---#
 

@@ -5,7 +5,7 @@ def extract_row(row):
     把df中的一行转成一个字符串
     """
     job_name = row['岗位名称']
-    id = row['岗位编码']
+    job_id = row['岗位编码']
     industry = row['所属行业']
     salary = row['薪资范围']
     location = row['地址']
@@ -15,7 +15,7 @@ def extract_row(row):
     company_size = row['公司规模']
     company_desc = row['公司详情']
     text =  f'''
-这是一个招聘信息。岗位为“{id}”，它属于“{job_name}”这一职业。该岗位的工作地点位于“{location}”，薪资约为{salary}每月。
+这是一个招聘信息。岗位为“{job_id}”，它属于“{job_name}”这一职业。该岗位的工作地点位于“{location}”，薪资约为{salary}每月。
 
 该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下：{description}
 

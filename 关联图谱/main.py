@@ -1,8 +1,8 @@
 from func.vectorization import init_data
-from func.classification import train_mlp, mlp_calc_proba, rf_calc_proba, XGBoost_calc_proba
+from func.classification import train_mlp, mlp_calc_proba, rf_calc_proba, xgboost_calc_proba
+from func.preprocess import get_data
 
 import numpy as np
-import pandas as pd
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 # Step 0：初始化模型 与 读取数据
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') # 检测是否有gpu，如果有就用cuda
 print(f"使用设备: {device}")
-df = pd.read_excel('processed.xlsx', header=0)
+df = get_data()
 
 # Step 1：处理数据
 X_fused = init_data(df)
@@ -25,7 +25,7 @@ class_names = le.classes_ # 保存编码器中的类别列表 class_names，用�
 # Step 2：训练分类器 并 得到分类结果 （三选一）
 # proba = mlp_calc_proba(device, X_fused) # 用MLP分类
 # proba = rf_calc_proba(X_fused, y) # 用RandomForest分类
-proba = XGBoost_calc_proba(X_fused, y) # 用XGBoost分类
+proba = xgboost_calc_proba(X_fused, y) # 用XGBoost分类
 
 # Step 3：构建岗位亲缘关系矩阵
 n_classes = len(class_names) # 类别数（或者叫节点数）

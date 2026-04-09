@@ -1,32 +1,17 @@
+from utils.get_model import get_embedding_temp
+
 import numpy as np
 from sklearn.preprocessing import StandardScaler, MultiLabelBinarizer
 from sentence_transformers import SentenceTransformer
-from langchain_openai import OpenAIEmbeddings  # 新增导入
 
-def calc_Embedding(df):
-    embeddings_model = OpenAIEmbeddings(
-        model="qwen3-embedding:8b",
-        base_url="http://59.72.63.156:14138/v1",  # 自定义端点
-        api_key="Empty",  # 按你提供的设置
-        dimensions=1536,  # 输出维度
-        tiktoken_enabled=False,
-        check_embedding_ctx_length=False  # 本地/自定义服务通常需要关闭
-    )
+def calc_embedding(df):
+    embeddings = get_embedding_temp()
 
     texts = df['combined_text'].tolist() # 获取文本列表
-    embeddings = embeddings_model.embed_documents(texts) # 使用 embed_documents 批量计算嵌入
+    embeddings_vec = embeddings.embed_documents(texts) # 使用 embed_documents 批量计算嵌入
     # LangChain 会自动按 chunk_size 分批请求，支持 show_progress_bar 类似效果
 
-    return np.array(embeddings, dtype=np.float32) # 返回时转为 NumPy 数组（与原来 SentenceTransformer 行为一致）
-
-def calc_Embedding_temp(df): # Sentence-Transformer 模型，中文效果优秀的模型
-    st_model = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2")
-    return st_model.encode(
-        df['combined_text'].tolist(),  # 将合并后的文本列转换为 Python 列表并作为输入
-        convert_to_numpy=True,  # 返回 NumPy 数组而非张量
-        show_progress_bar=True,  # 显示进度条
-        batch_size=32  # 一次处理 32 条文本，平衡内存与速度
-    )  # 调用 Sentence‑Transformer 模型的 encode 方法，将文本转换为嵌入向量
+    return np.array(embeddings_vec, dtype=np.float32) # 返回时转为 NumPy 数组（与原来 SentenceTransformer 行为一致）
 
 def init_data(df):
 
@@ -54,7 +39,7 @@ def init_data(df):
     df['combined_text'] = df[text_cols].fillna('').agg(' '.join, axis=1) # 把文本合成一句话
 
     # Step 3：计算岗位文本嵌入（二选一）
-    text_embeddings = calc_Embedding_temp(df)
+    text_embeddings = calc_embedding_temp(df)
 
     # Step 4：提取数值列（薪资范围、公司规模）并标准化
     numeric_cols = ['薪资范围', '公司规模']
@@ -74,5 +59,13 @@ def init_data(df):
 
     return X_fused
 
+#--- OLD ---#
 
-
+def calc_embedding_temp(df): # Sentence-Transformer 模型，中文效果优秀的模型
+    st_model = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2")
+    return st_model.encode(
+        df['combined_text'].tolist(),  # 将合并后的文本列转换为 Python 列表并作为输入
+        convert_to_numpy=True,  # 返回 NumPy 数组而非张量
+        show_progress_bar=True,  # 显示进度条
+        batch_size=32  # 一次处理 32 条文本，平衡内存与速度
+    )  # 调用 Sentence‑Transformer 模型的 encode 方法，将文本转换为嵌入向量

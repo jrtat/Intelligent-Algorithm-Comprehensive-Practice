@@ -1,10 +1,8 @@
-from .utils.conn_neo4j import connect_neo4j,graph_url,graph_username,graph_password,database_name
-from .utils.get_models import get_llm,get_llm_temp, get_llm_silicon_flow ,get_embedding_temp,get_embedding
+from 知识图谱.func.utils.conn_neo4j import connect_neo4j,graph_url,graph_username,graph_password,database_name
+from .utils.get_models import get_embedding_temp
 
-from typing import List, Dict, Any
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_neo4j import Neo4jVector
-from neo4j import GraphDatabase
 
 duc_vs = None
 personal_quality_vs = None
@@ -48,29 +46,6 @@ def create_specialized_vectorstore(
     )
     print(f" 已为节点类型“{node_label}” 创建向量索引（{index_name} ）")
     return vectorstore
-
-def create_chunks_tx(tx, doc_id: int, chunk_data: List[Dict[str, Any]]) -> None:
-    """在事务中创建 Chunk 节点和关系"""
-    query = """
-    MATCH (doc:Document) WHERE id(doc) = $doc_id
-
-    // 创建所有 Chunk 节点 + FROM_DOCUMENT 关系
-    UNWIND $chunk_data AS chunkData
-    CREATE (c:Chunk {
-        text: chunkData.text,
-        embedding: chunkData.embedding,
-        chunk_index: chunkData.index
-    })
-    CREATE (c)-[:FROM_DOCUMENT]->(doc)
-
-    WITH doc, collect(c) AS createdChunks
-
-    // 创建 NEXT_CHUNK 链（便于后续上下文检索）
-    UNWIND range(0, size(createdChunks)-2) AS i
-    WITH createdChunks[i] AS c1, createdChunks[i+1] AS c2
-    CREATE (c1)-[:NEXT_CHUNK]->(c2)
-    """
-    tx.run(query, doc_id=doc_id, chunk_data=chunk_data)
 
 def build_vec():
     """
@@ -229,7 +204,7 @@ def build_chunk():
         separators=["\n\n", "\n", "。", "！", "？", "；", " ", ""]
     ) # LangChain 提供的一种递归切分器，它会按 separators 列表中优先级从高到低的顺序尝试切分。
 
-    # Step 2：与图数据库建立连接（完全使用你项目风格的 Neo4jGraph）
+    # Step 2：与图数据库建立连接
     graph = connect_neo4j()
 
     # Step 3：读取 Document 并分块

@@ -99,7 +99,7 @@ def rf_calc_proba(X_fused,y):
 
     return proba
 
-def XGBoost_calc_proba(X_fused,y):
+def xgboost_calc_proba(X_fused, y):
 
     xgb_clf = XGBClassifier(
         n_estimators=300,

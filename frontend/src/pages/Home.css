@@ -59,3 +59,69 @@
   color: #6b7280;
   line-height: 1.6;
 }
+
+.profile-selector-card {
+  cursor: default;
+}
+
+.profile-selector {
+  margin-top: 20px;
+}
+
+.job-search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.job-search-input:focus {
+  border-color: #4f46e5;
+}
+
+.job-list {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.job-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #374151;
+}
+
+.job-item:hover {
+  background-color: #f3f4f6;
+}
+
+.job-item.selected {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.profile-preview {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.profile-preview h4 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.profile-count {
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 15px;
+}

@@ -18,10 +18,10 @@ const Home = () => {
             <p>查看实时岗位列表、筛选及基本统计数据</p>
           </div>
         </div>
-        <div className="home-card" onClick={() => navigate('/profile/1')}>
+        <div className="home-card" onClick={() => navigate('/profile-list')}>
           <div className="home-card-content">
             <h3>岗位画像</h3>
-            <p>通过雷达图深入了解特定岗位的核心能力维度</p>
+            <p>选择岗位类型查看整体能力画像与统计分析</p>
           </div>
         </div>
         <div className="home-card" onClick={() => navigate('/map')}>

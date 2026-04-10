@@ -1,7 +1,13 @@
 /* ===== 地图页样式 ===== */
 .map-page {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: -12px;
 }
 
 /* 岗位选择器 */
@@ -10,6 +16,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .job-selector-container label {
@@ -30,6 +37,33 @@
 .job-select:focus {
   outline: none;
   border-color: #4a90d9;
+}
+
+.confirm-btn {
+  padding: 10px 20px;
+  background: #4a90d9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background: #3a7bc8;
+}
+
+.confirm-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.stats-info {
+  padding: 8px 16px;
+  background: #f0f7ff;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #4a90d9;
 }
 
 .map-empty-state {
@@ -67,68 +101,34 @@
   background: #f0f7ff;
 }
 
-.map-container {
+.map-wrapper {
   position: relative;
   margin: 20px 0;
-}
-
-.map-image-wrapper {
-  position: relative;
-  width: 600px;
-  height: 500px;
-}
-
-.map-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border: 1px solid #e5e7eb;
+  background: #f9fafb;
   border-radius: 10px;
+  padding: 20px;
+  min-height: 500px;
 }
 
-.map-marker {
+.map-wrapper svg {
+  display: block;
+}
+
+.tooltip-hover {
   position: absolute;
-  transform: translate(-50%, -100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
-
-.map-marker:hover .marker-label {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.marker-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.marker-label {
-  opacity: 0;
-  transform: translateY(4px);
-  transition: all 0.2s;
-  padding: 4px 8px;
-  background: #333;
-  color: #fff;
-  border-radius: 4px;
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-.map-image-wrapper:hover .marker-label,
-.map-marker:hover .marker-label {
-  opacity: 1;
-  transform: translateY(0);
+  top: 30px;
+  right: 30px;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 8px;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .map-legend {
-  margin-top: 12px;
+  margin-top: 16px;
   padding: 12px;
   background: #f9f9f9;
   border-radius: 8px;

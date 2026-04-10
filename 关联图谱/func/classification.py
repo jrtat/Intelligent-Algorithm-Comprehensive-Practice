@@ -9,8 +9,8 @@ from xgboost import XGBClassifier
 from tqdm import tqdm
 
 class JobDataset(Dataset): # 将特征矩阵和标签转换为 PyTorch 张量，提供标准的数据集接口，便于 DataLoader 使用
-    def __init__(self, X_fused, y):
-        self.X = torch.tensor(X_fused, dtype=torch.float32)
+    def __init__(self, x_fused, y):
+        self.X = torch.tensor(x_fused, dtype=torch.float32)
         self.y = torch.tensor(y, dtype=torch.long)
 
     def __len__(self):
@@ -35,16 +35,16 @@ class MLPClassifier(nn.Module):
     def forward(self, x):
         return self.net(x)
 
-def train_mlp(device,X_fused, y, num_epochs, batch_size, learning_rate):
+def train_mlp(device, x_fused, y, num_epochs, batch_size, learning_rate):
 
     # Step 0：数据处理
-    dataset = JobDataset(X_fused, y) # 输入格式转换
+    dataset = JobDataset(x_fused, y) # 输入格式转换
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     # 使用 DataLoader 将数据集包装为可迭代对象
     # 每个迭代会返回一个小批量（batch_x, batch_y）
 
     # Step 1：配置模型
-    model = MLPClassifier(input_dim=X_fused.shape[1], num_classes=len(np.unique(y))).to(device) # 实例化 MLPClassifier 模型
+    model = MLPClassifier(input_dim=x_fused.shape[1], num_classes=len(np.unique(y))).to(device) # 实例化 MLPClassifier 模型
     # 使用 .to(device) 将模型参数移动到指定设备
     criterion = nn.CrossEntropyLoss()
     # 定义损失函数：交叉熵损失，适用于多分类问题
@@ -68,17 +68,17 @@ def train_mlp(device,X_fused, y, num_epochs, batch_size, learning_rate):
     # Step 4：用模型计算并返回结果
     return model
 
-def mlp_calc_proba(device, X_fused):
-    mlp_model = train_mlp(device, X_fused, y, num_epochs=60, batch_size=64, learning_rate=1e-3)
+def mlp_calc_proba(device, x_fused, y):
+    mlp_model = train_mlp(device, x_fused, y, num_epochs=60, batch_size=64, learning_rate=1e-3)
 
     mlp_model.eval()
     with torch.no_grad():
-        X_tensor = torch.tensor(X_fused, dtype=torch.float32).to(device)
-        logits = mlp_model(X_tensor)
+        x_tensor = torch.tensor(x_fused, dtype=torch.float32).to(device)
+        logits = mlp_model(x_tensor)
         proba = torch.softmax(logits, dim=1).cpu().numpy()
     return proba
 
-def rf_calc_proba(X_fused,y):
+def rf_calc_proba(x_fused, y):
     rf_clf = RandomForestClassifier(
         n_estimators=300,  # 树的数量
         max_depth=25,  # 最大深度
@@ -90,7 +90,7 @@ def rf_calc_proba(X_fused,y):
 
     proba = cross_val_predict(
         rf_clf,
-        X_fused,
+        x_fused,
         y,
         cv=5,
         method='predict_proba',
@@ -99,7 +99,7 @@ def rf_calc_proba(X_fused,y):
 
     return proba
 
-def xgboost_calc_proba(X_fused, y):
+def xgboost_calc_proba(x_fused, y):
 
     xgb_clf = XGBClassifier(
         n_estimators=300,
@@ -114,7 +114,7 @@ def xgboost_calc_proba(X_fused, y):
 
     proba = cross_val_predict(
         xgb_clf,
-        X_fused,
+        x_fused,
         y,
         cv=5,
         method='predict_proba',

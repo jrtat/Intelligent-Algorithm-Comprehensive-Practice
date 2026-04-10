@@ -1,63 +1,101 @@
 from utils.get_model import get_embedding_temp
 
-import numpy as np
 from sklearn.preprocessing import StandardScaler, MultiLabelBinarizer
 from sentence_transformers import SentenceTransformer
+import numpy as np
+import pandas as pd
+from typing import List
+import re
 
-def calc_embedding(df):
+# 假设 get_embedding_temp() 已在其他地方定义，返回 LangChain 嵌入模型实例
+# from your_embedding_module import get_embedding_temp
+
+def calc_embedding(texts: List[str]):
+    """
+    对文本列表进行嵌入计算，返回嵌入向量数组。
+    """
     embeddings = get_embedding_temp()
+    embeddings_vec = embeddings.embed_documents(texts)
+    return np.array(embeddings_vec, dtype=np.float32)
 
-    texts = df['combined_text'].tolist() # 获取文本列表
-    embeddings_vec = embeddings.embed_documents(texts) # 使用 embed_documents 批量计算嵌入
-    # LangChain 会自动按 chunk_size 分批请求，支持 show_progress_bar 类似效果
+def parse_salary_range(salary_str):
+    """
+    匹配模式：数字-数字，中间可能含空格，后面可选"元每月"或"每月"
+    """
+    pattern = r'(\d+)\s*-\s*(\d+)\s*(?:元)?每月'
+    match = re.search(pattern, salary_str.strip())
+    if match:
+        try:
+            v1 = float(match.group(1))
+            v2 = float(match.group(2))
+            return (v1 + v2) / 2.0
+        except:
+            return np.nan
+    return np.nan
 
-    return np.array(embeddings_vec, dtype=np.float32) # 返回时转为 NumPy 数组（与原来 SentenceTransformer 行为一致）
+def init_data(df: pd.DataFrame):
+    """
+    对给定的 DataFrame 进行特征工程，返回融合后的特征矩阵 X_fused。
+    输入 df 必须包含以下列：
+        - 薪资范围（str）
+        - 学历要求（str）
+        - 晋升路径（str）
+        - 综合素质（list of str）
+        - 职业技能（list of str）
+        - 证书（list of str）
+        - 工作内容（list of str）
+        - 专业（list of str）
+        - 工作经验（list of str）
+        - 行业（list of str）
+    职业类别作为标签单独处理，不参与特征融合。
+    """
 
-def init_data(df):
+    # Step 1：处理薪资范围（数值特征）
+    df['薪资平均值'] = df['薪资范围'].apply(parse_salary_range)
+    salary_median = df['薪资平均值'].median() # 计算中位数
+    df['薪资平均值'].fillna(salary_median, inplace=True) # 若存在缺失值，可用中位数填充（根据实际情况调整）
 
-    # Step 1：把编号（所属行业、公司类型） 转成 multi-hot 矩阵
-    all_industry = set()
-    for industry in df['所属行业']:
-        all_industry.update(industry)
-    all_development = set()
-    for development in df['公司类型']:
-        all_development.update(development) # 收集所有的 行业 和 公司类型 （集合的形式）
+    numeric_features = df[['薪资平均值']].values.astype(np.float32) # 将 薪资平均值 列提取为形为(样本数, 1)的NumPy数组，并转换为float32类型。
+    scaler = StandardScaler() # 创建一个标准化器实例，后续会对数据进行均值为0、方差为1的变换。
+    numeric_scaled = scaler.fit_transform(numeric_features)  # 对薪资数值执行标准化：标准化后的列均值为 0，方差为 1
 
-    industry_list = sorted(list(all_industry))
-    development_list = sorted(list(all_development)) # 将集合转成列表
+    # Step 2：处理学历要求、晋升路径（文本嵌入）
+    df['edu_promo_text'] = df['学历要求'].fillna('') + ' ' + df['晋升路径'].fillna('') # 合并两个文本列，避免缺失值干扰
+    texts = df['edu_promo_text'].tolist() # 将合并后的文本列提取为Python列表
+    text_embeddings = calc_embedding(texts)  # 调用自定义的 calc_embedding 函数，对文本列表批量计算嵌入向量
 
-    mlb_industry = MultiLabelBinarizer(classes=industry_list)
-    mlb_development = MultiLabelBinarizer(classes=development_list) # 用于将多标签列表转换为 multi-hot矩阵
-    # MultiLabelBinarizer 是 sklearn 提供的工具
+    # Step 3：处理多值列表列（Multi-hot 编码）
+    multi_cols = ['综合素质', '职业技能', '证书', '工作内容', '专业', '工作经验', '行业']
 
-    industry_multi_hot = mlb_industry.fit_transform(df['所属行业'])
-    development_multi_hot = mlb_development.fit_transform(df['公司类型']) # 根据提供的列表，将对应列的每个多标签列表转换为一个向量
-    # 输出为一个 (样本数, len(industry_list)) 的 NumPy 数组
+    for col in multi_cols: # 确保所有列均为列表类型（如果数据库返回字符串，需先转换）
+        if col in df.columns:
+            df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [])
+            # 对每个单元格应用匿名函数：若值已经是 list 则保留原样，否则（如字符串或 None）替换为空列表 []
+        else:
+            df[col] = [[] for _ in range(len(df))] # 如果该列根本不存在于 DataFrame，创建一列与 DataFrame 等长的空列表列
+            # 用不到
 
-    # Step 2：文本合并（地址 + 岗位详情）
-    text_cols = ['地址', '岗位详情']
-    df['combined_text'] = df[text_cols].fillna('').agg(' '.join, axis=1) # 把文本合成一句话
 
-    # Step 3：计算岗位文本嵌入（二选一）
-    text_embeddings = calc_embedding_temp(df)
+    multi_hot_parts = [] # 初始化一个空列表，用于暂存每一列的编码结果矩阵
+    for col in multi_cols:
+        mlb = MultiLabelBinarizer() # 实例化一个多标签二值化编码器
+        encoded = mlb.fit_transform(df[col]) # fit 会扫描该列中所有出现过的标签，构建一个固定顺序的类别列表；
+        # transform 将每个样本的标签列表转换为一个长度为类别总数的 0/1 向量，出现过的标签对应位置为 1，其余为 0。
+        # 返回形状为 (样本数, 类别数) 的稀疏矩阵（或密集 NumPy 数组）。
+        multi_hot_parts.append(encoded) # 将编码后的矩阵加入列表
+        print(f"列 '{col}' 编码后维度: {encoded.shape[1]}")
 
-    # Step 4：提取数值列（薪资范围、公司规模）并标准化
-    numeric_cols = ['薪资范围', '公司规模']
+    multi_hot_combined = np.hstack(multi_hot_parts)  # 沿列方向（水平）拼接列表中的所有编码矩阵，得到一个大矩阵，列数为所有列类别数之和。
 
-    scaler = StandardScaler() # 用于将数值特征标准化（减去均值，除以标准差），使每个特征均值为 0，方差为 1，消除量纲影响
-    numeric_features = scaler.fit_transform(df[numeric_cols].values) # 提取数值列的值（假设已经是数值类型），转换为 NumPy 数组
-
-    # Step 5：最终融合特征
+    # Step 4: 融合所有特征
     X_fused = np.hstack([
-        text_embeddings,  # Sentence-Transformer 语义向量
-        numeric_features,  # 标准化后的薪资 + 公司规模
-        industry_multi_hot,  # 行业 multi-hot
-        development_multi_hot  # 公司类型 multi-hot
-    ])
+        text_embeddings,  # 学历+晋升路径的语义向量
+        numeric_scaled,  # 薪资平均值（标准化）
+        multi_hot_combined  # 所有多值列的 multi-hot 编码
+    ]) # 沿列方向（水平）拼接多个二维数组，要求所有数组的行数（样本数）相同。
 
     print(f"最终融合特征维度: {X_fused.shape[1]}")
-
-    return X_fused
+    return X_fused # 返回融合后的特征矩阵，供后续监督学习模型训练使用。
 
 #--- OLD ---#
 

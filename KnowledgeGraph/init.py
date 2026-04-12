@@ -21,7 +21,7 @@ def init_excel():
 
 # init_excel()
 
-raw_text = get_extracted_document(start_pos= , length= )
-build_graphrag(raw_text,'add')
-# transform_properties_to_nodes()
-# deduplication()
+# raw_text = get_extracted_document(start_pos= 9001, length= 40)
+# build_graphrag(raw_text,'add')
+transform_properties_to_nodes()
+deduplication()

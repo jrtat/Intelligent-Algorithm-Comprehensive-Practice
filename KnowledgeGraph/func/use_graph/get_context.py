@@ -156,7 +156,7 @@ def get_knowledge_merge_vals(
 
 def get_job_property_merge_vals(
     job_type_id: int,
-    property_type: str  # "学历要求"、"晋升路径"、"工作经验" 之一
+    property_type: str  # "学历要求"、"晋升路径" 之一
 ) -> list[str]:
     """
     返回 list，每个元素是对应 Document 的 merge_val。

@@ -62,3 +62,31 @@ def get_related_node_ids(id_val, relation_type, directed = False):
 
     result = graph.query(cypher, params={"id_val": id_val})
     return [record["related_id"] for record in result]
+
+
+def get_property_by_internal_id(internal_id: int, property_key: str):
+    """
+    根据 Neo4j 内部节点 ID 获取指定属性的值。
+
+    Args:
+        internal_id: 节点的内部 ID（由 id(node) 返回的整数）
+        property_key: 要获取的属性名称
+
+    Returns:
+        对应属性的值，若节点不存在或属性不存在则返回 None
+    """
+    graph = connect_neo4j()
+
+    cypher = """
+    MATCH (n)
+    WHERE id(n) = $internal_id
+    RETURN n[$property_key] AS prop_value
+    """
+    result = graph.query(cypher, params={
+        "internal_id": internal_id,
+        "property_key": property_key
+    })
+
+    if result and result[0].get("prop_value") is not None:
+        return result[0]["prop_value"]
+    return None

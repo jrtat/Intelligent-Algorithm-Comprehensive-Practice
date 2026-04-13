@@ -162,4 +162,5 @@ if __name__ == '__main__':
     #     target="学历要求_提取",
     #     prompt="根据以下岗位信息提取学历要求..."
     # )
+    graph = connect_neo4j()
     pass

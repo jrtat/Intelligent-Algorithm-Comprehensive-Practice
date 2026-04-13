@@ -52,8 +52,8 @@ def create_specialized_vectorstore(
 
 def build_chunk():
     # Step 0：声明参数 与 全局变量
-    chunk_size = 200  # 分块大小
-    chunk_overlap = 40  # 重叠大小
+    chunk_size = 100  # 分块大小
+    chunk_overlap = 10  # 重叠大小
     batch_size = 20  # 批次大小
     skip = 0 # 分页变量
     total_docs = 0 # 处理的总 docs 数

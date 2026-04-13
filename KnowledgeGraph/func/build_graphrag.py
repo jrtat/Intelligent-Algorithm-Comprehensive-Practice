@@ -6,7 +6,9 @@ from langchain_core.documents import Document
 from LLMGraphTransformer import LLMGraphTransformer
 from LLMGraphTransformer.schema import NodeSchema, RelationshipSchema
 from collections import defaultdict
-from rapidfuzz import fuzz
+# from rapidfuzz import fuzz
+from fuzzywuzzy import fuzz
+import faiss
 from tqdm import tqdm
 import numpy as np
 import time
@@ -58,14 +60,20 @@ job_remove = "p.综合素质, p.职业技能, p.证书, p.工作内容, p.福利
 company_remove = "c.行业"
 
 embedding_threshold_by_type = {
-    "行业": 0.95,
-    "专业": 0.88,
-    "职业技能": 0.78
+    "综合素质": 0.76,
+    "职业技能": 0.76,
+    "工作经验": 0.76,
+    "福利待遇": 0.76,
+    "工作内容": 0.74,
+    "证书": 0.8
 }
 fuzzy_threshold_by_type = {
-    "行业": 90,
-    "专业": 88,
-    "职业技能": 78
+    "综合素质": 76,
+    "职业技能": 76,
+    "工作经验": 76,
+    "福利待遇": 76,
+    "工作内容": 74,
+    "证书": 80
 }
 no_merge_type = { '岗位', '职业类别', '公司', '行业', '专业' } # 不判重的节点类型
 
@@ -252,6 +260,180 @@ def transform_properties_to_nodes():
     graph.refresh_schema()
     print("当前 schema 已刷新。")
 
+def deduplication(embedding_threshold=0.8, fuzzy_threshold=80):
+    """
+    使用 FAISS 加速的大规模节点去重函数。
+    """
+    # Step 0：声明全局变量
+    global no_merge_type, embedding_threshold_by_type, fuzzy_threshold_by_type
+
+    # Step 1：初始化 llm Embedding 模型 & 连接 Neo4j 数据库
+    graph = connect_neo4j()
+    embeddings = get_embedding_temp()
+
+    # Step 2：查询并存储所有节点信息
+    entities_query = """
+        MATCH (n:__Entity__)
+        RETURN 
+            elementId(n) AS internal_id, 
+            n.id AS name,
+            labels(n) AS labels
+    """
+    entity_records = graph.query(entities_query) # 查询并记录：1. 内部id 。 id属性（也就是节点值） 3. 节点类型（label）
+
+    entity_list = []
+    for r in entity_records: # 确定节点的具体类型：遍历标签列表，取第一个不是 Entity 的 label 作为节点类型，否则保留 Entity
+        if not r.get("name"): # 节点值是空，则跳过
+            continue
+        node_labels = r["labels"]
+        entity_type = "__Entity__"
+        for label in node_labels:
+            if label != "__Entity__":
+                entity_type = label
+                break
+        entity_list.append({
+            "internal_id": r["internal_id"],
+            "name": r["name"],
+            "type": entity_type
+        })
+
+    # Step 3：提取所有名称并批量生成向量（显示进度）
+    names = [e["name"] for e in entity_list]
+    batch_size = 128 # 根据内存调整
+    vectors = []
+    print("开始生成 Embedding 向量...")
+    for i in tqdm(range(0, len(names), batch_size), desc="向量化进度"):
+        batch_texts = names[i: i + batch_size]
+        batch_emb = embeddings.embed_documents(batch_texts)  # 使用 LangChain 方法
+        vectors.extend(batch_emb)
+    dim = len(vectors[0])
+    print("已生成所有 Embedding 向量")
+
+    # Step 4：按类型分组，并构建 FAISS 索引，高效查找相似候选
+    type_to_indices = defaultdict(list)
+    for idx, ent in enumerate(entity_list): # type_to_indices 是字典，把元素按类型划分
+        typ = ent["type"]
+        if typ not in no_merge_type:  # 白名单内的类型直接跳过，不参与合并
+            type_to_indices[typ].append(idx)
+
+    # Step 5：初始化并查集
+    parent = list(range(len(entity_list))) # 爹数组
+
+    def find(x): # 查操作（带路径压缩）
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(x, y): # 并操作
+        rx, ry = find(x), find(y)
+        if rx != ry:
+            parent[ry] = rx
+
+    # Step 6：判断并记录哪些点需要合并
+    for typ, indices in type_to_indices.items():
+        print(f"当前合并类型{typ}")
+        if len(indices) < 2:
+            continue
+
+        emb_thresh = embedding_threshold_by_type.get(typ, embedding_threshold)
+        fuzzy_thresh = fuzzy_threshold_by_type.get(typ, fuzzy_threshold) # 获取该类型的两个阈值
+
+        typ_vectors = np.array([vectors[i] for i in indices]).astype(np.float32)
+        typ_names = [entity_list[i]["name"] for i in indices] # 提取该类型节点的向量和名称
+
+        faiss.normalize_L2(typ_vectors) # 使用内积近似余弦相似度，需提前归一化
+        index = faiss.IndexFlatIP(dim) # 建立 FAISS 索引
+        index.add(typ_vectors) # type: ignore
+
+        # 检索每个向量的 top_k 个最近邻（包括自身，自身相似度为1）
+        k = min(100, len(indices))  # 限制检索数量，平衡速度与召回
+        scores, neighbors = index.search(typ_vectors, k) # type: ignore
+
+        # 对每个节点及其近邻进行相似度判断
+        for i, idx_i in enumerate(indices):
+            for j_idx, nb_i in enumerate(neighbors[i]):
+                sim = scores[i][j_idx]
+
+                if nb_i == i or sim < emb_thresh: # 排除自身且相似度低于阈值的候选
+                    continue
+                idx_j = indices[nb_i]
+
+                name_i = entity_list[idx_i]["name"]
+                name_j = entity_list[idx_j]["name"]
+                fuzzy_score = fuzz.ratio(name_i, name_j) # 字符串二次确认
+
+                if sim >= emb_thresh or fuzzy_score >= fuzzy_thresh:
+                    union(idx_i, idx_j)
+
+
+    groups = defaultdict(list) # 根据并查集构建族群 groups（保持与原输出格式兼容）
+    for i in range(len(entity_list)):
+        root = find(i)
+        groups[root].append(i)
+
+    # Step 7：合并需要合并的点
+    merged_count = 0
+    for canonical_idx, dup_indices in groups.items():
+        if len(dup_indices) <= 1:
+            continue
+
+        node_element_ids = [entity_list[idx]["internal_id"] for idx in dup_indices]
+        canonical_name = entity_list[canonical_idx]["name"]
+        entity_type = entity_list[canonical_idx]["type"]
+
+        print(f"  合并 → {canonical_name}  (类型: {entity_type}, 合并 {len(dup_indices) - 1} 个)")
+
+        merge_cypher = """
+            MATCH (n:__Entity__)
+            WHERE elementId(n) IN $nodeElementIds
+            WITH collect(n) AS nodes
+            CALL apoc.refactor.mergeNodes(nodes, {
+                properties: 'combine',
+                mergeRels: true
+            })
+            YIELD node
+            SET node.id = $canonicalName
+            RETURN node
+        """
+        graph.query(merge_cypher, {
+            "nodeElementIds": node_element_ids,
+            "canonicalName": canonical_name
+        })
+        merged_count += len(dup_indices) - 1
+
+    print(f"实体去重完成！共合并 {merged_count} 个重复实体")
+
+#--- 最终我们期望达到的图结构 ---#
+
+'''
+node_schemas = [
+    NodeSchema("职业类别"),
+    NodeSchema("岗位", ["工作地点", "薪资范围", "学历要求","晋升路径", "福利待遇"]),
+    NodeSchema("公司", ["行业", "公司描述", "企业规模", "融资阶段"]),
+    NodeSchema("证书"),
+    NodeSchema("综合素质"),
+    NodeSchema("职业技能"),
+    NodeSchema("工作内容"),
+    NodeSchema("专业")
+]
+
+relationship_schemas = [
+    RelationshipSchema("岗位", "属于", "职业类别"),
+    RelationshipSchema("岗位", "来自", "公司"),
+    RelationshipSchema("岗位", "需要具有", "综合素质"),
+    RelationshipSchema("岗位", "需要掌握", "职业技能"),
+    RelationshipSchema("岗位", "需要持有", "证书"),
+    RelationshipSchema("岗位", "需要拥有", "工作经验"),
+    RelationshipSchema("岗位", "负责", "工作内容"),
+    RelationshipSchema("岗位", "需要来自", "专业"),
+    RelationshipSchema("公司", "涉及", "行业")
+]
+
+'''
+
+#--- old ---#
+'''
 def deduplication(embedding_threshold = 0.82 , fuzzy_threshold = 82 ):
     """
     用来把知识图谱中含义相近的节点进行合并。
@@ -307,6 +489,7 @@ def deduplication(embedding_threshold = 0.82 , fuzzy_threshold = 82 ):
 
     names = [e["name"] for e in entity_list] # 提取所有节点的名称列表 names。
     vectors = embeddings.embed_documents(names) # 调用 embeddings 模型为所有名称批量生成向量表示，结果 vectors 是一个列表，每个元素是对应名称的向量。
+    print("完成embedding计算")
 
     # Step 3：遍历每个节点，尝试找到能被合并的点，组成族群
     groups = defaultdict(list) # 字典，键为“代表节点”的索引，值为该族群包含的所有节点索引列表（初始为空列表）。用于记录哪些节点应合并到同一组。
@@ -389,34 +572,4 @@ def deduplication(embedding_threshold = 0.82 , fuzzy_threshold = 82 ):
         merged_count += len(dup_indices) - 1  # 累计合并的实体数量（除代表节点外的节点数）。
 
     print(f"实体去重完成！共合并 {merged_count} 个重复实体")
-
-
-
-#--- 最终我们期望达到的图结构 ---#
-
 '''
-node_schemas = [
-    NodeSchema("职业类别"),
-    NodeSchema("岗位", ["工作地点", "薪资范围", "学历要求","晋升路径", "福利待遇"]),
-    NodeSchema("公司", ["行业", "公司描述", "企业规模", "融资阶段"]),
-    NodeSchema("证书"),
-    NodeSchema("综合素质"),
-    NodeSchema("职业技能"),
-    NodeSchema("工作内容"),
-    NodeSchema("专业")
-]
-
-relationship_schemas = [
-    RelationshipSchema("岗位", "属于", "职业类别"),
-    RelationshipSchema("岗位", "来自", "公司"),
-    RelationshipSchema("岗位", "需要具有", "综合素质"),
-    RelationshipSchema("岗位", "需要掌握", "职业技能"),
-    RelationshipSchema("岗位", "需要持有", "证书"),
-    RelationshipSchema("岗位", "需要拥有", "工作经验"),
-    RelationshipSchema("岗位", "负责", "工作内容"),
-    RelationshipSchema("岗位", "需要来自", "专业"),
-    RelationshipSchema("公司", "涉及", "行业")
-]
-
-'''
-

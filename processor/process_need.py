@@ -2,118 +2,14 @@ import json
 from KnowledgeGraph.func.use_graph.cypher_search import Searcher
 from KnowledgeGraph.func.use_graph.get_context import ContextGetter
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
+from processor.utils.FileProcessor import FileProcessor
 from processor.utils.LLMInvoker import LLMInvoker
 
 model = LLMInvoker()
 
-
-# def get_id(str_val: str) -> str:
-#     """
-#     从字符串中提取 ID。假设输入格式为 "职业类别_123"，则返回 123。
-#     """
-#     try:
-#         return int(str_val.split("_")[-1])
-#     except (IndexError, ValueError):
-#         raise ValueError(f"无法从字符串 '{str_val}' 中提取 ID。请确保格式正确，例如 '职业类别_123'。")
-
-
 graph = connect_neo4j()
 getter = ContextGetter(graph)
 searcher = Searcher(graph)
-
-# 需求类型 → 对应的关系类型
-KNOWLEDGE_REL_MAP = {
-    "综合素质": "需要具有",
-    "职业技能": "需要掌握",
-    "证书": "需要持有",
-    "工作内容": "负责",
-    "工作经验": "需要拥有",
-    "专业": "需要来自",
-}
-
-
-# def get_job_type_chunks(job_type_id: int, source_type: str, source_value: str) -> str:
-#     """
-#     获取指定职业类别下指定类型的 Chunk，合并为一个 merge_val。
-#
-#     :param job_type_id: 职业类别节点 ID
-#     :param source_type: "knowledge"（知识类型）或 "property"（属性类型）
-#     :param source_value: 具体值
-#                         - source_type="knowledge" 时：知识类型名称
-#                         - source_type="property" 时：属性类型名称
-#     :return: 合并后的字符串
-#
-#
-#     """
-#     # records = graph.query(
-#     #     """
-#     #     MATCH (jt:职业类别)-[:属于]-(job:岗位)-[r]->()
-#     #     WHERE id(jt) = $job_type_id
-#     #       AND type(r) = $rel_type
-#     #
-#     #     MATCH (doc:Document)-[:MENTIONS]->(job)
-#     #     MATCH (chunk:Chunk)-[:FROM_DOCUMENT]->(doc)
-#     #
-#     #     RETURN chunk.text AS chunk_text
-#     #     """,
-#     #     params={"job_type_id": job_type_id, "rel_type": rel_type}
-#     # )
-#
-#
-#     graph = connect_neo4j()
-#
-#     if source_type == "knowledge":
-#         # 获取该职业类别下该知识类型关联的所有岗位的 Chunk
-#         rel_type = KNOWLEDGE_REL_MAP.get(source_value)
-#         if not rel_type:
-#             raise ValueError(f"不支持的知识类型：{source_value}，可选值：{list(KNOWLEDGE_REL_MAP.keys())}")
-#
-#         records = graph.query(
-#             """
-#             MATCH (jt:职业类别)-[:属于]-(job:岗位)-[r]->(knowledge)
-#             WHERE id(jt) = $job_type_id
-#               AND type(r) = $rel_type
-#
-#             MATCH (doc:Document)-[:MENTIONS]->(job)
-#             RETURN id(doc) as doc_id, knowledge.id as knowledge_words
-#             """,
-#             params={"job_type_id": job_type_id, "rel_type": rel_type}
-#         )
-#
-#         docs = {}
-#
-#         for r in records:
-#             docs[r["doc_id"]] = r["knowledge_words"]
-#         print(docs)
-#
-#     elif source_type == "property":
-#         # 获取该职业类别下所有岗位的该属性关联的 Chunk
-#         records = graph.query(
-#             """
-#             MATCH (jt:职业类别)-[:属于]-(job:岗位)
-#             WHERE id(jt) = $job_type_id
-#
-#             MATCH (doc:Document)-[:MENTIONS]->(job)
-#             MATCH (chunk:Chunk)-[:FROM_DOCUMENT]->(doc)
-#
-#             RETURN chunk.text AS chunk_text
-#             """,
-#             params={"job_type_id": job_type_id}
-#         )
-#
-#         chunks = [r["chunk_text"] for r in records if r.get("chunk_text")]
-#         merge_val = " ".join(chunks)
-#
-#         print(f"job_type_id={job_type_id}, property={source_value} → 找到 {len(chunks)} 个 Chunk")
-#         return merge_val
-#
-#     else:
-#         raise ValueError(f"不支持的 source_type：{source_type}，可选值：knowledge, property")
-#
-#     # MATCH (chunk:Chunk)-[:FROM_DOCUMENT]->(doc)
-#     #
-#     #             RETURN chunk.text AS chunk_text
-#
 
 def batch_extract_info_neo4j(job_type_id: int, source_type: str, source_value: str, target: str, prompt: str):
     """
@@ -213,4 +109,3 @@ if __name__ == '__main__':
     # get_job_type_chunks(id, "property", "学历要求")
     batch_extract_info_neo4j(id, "knowledge", "职业技能", "职业技能概述", "根据岗位信息，请提取技能...")
     batch_extract_info_neo4j(id, "property", "学历要求", "学历要求概述", "根据岗位信息，请提取学历要求...")
-

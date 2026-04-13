@@ -1,5 +1,5 @@
 langchain==1.2.13
-# langchain-core==1.2.23
+langchain-core==1.2.23
 langchain-community==0.4.1
 langchain-experimental==0.4.1
 langchain-openai==1.1.12
@@ -17,3 +17,8 @@ xgboost
 scikit-learn
 torch
 tqdm
+
+--extra-index-url https://download.pytorch.org/whl/cu126
+torch==2.6.0
+torchvision==0.21.0
+torchaudio==2.6.0

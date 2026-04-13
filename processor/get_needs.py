@@ -1,27 +1,18 @@
-from pathlib import Path
-import sys
 import json
 
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
+from processor.utils.LLMInvoker import LLMInvoker
 
-model = __import__('processor.utils.LLMInvoker', fromlist=['LLMInvoker']).LLMInvoker(
-    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
-)
+model = LLMInvoker()
 
-
-def get_id(str_val: str) -> str:
-    """
-    从字符串中提取 ID。假设输入格式为 "职业类别_123"，则返回 123。
-    """
-    try:
-        return int(str_val.split("_")[-1])
-    except (IndexError, ValueError):
-        raise ValueError(f"无法从字符串 '{str_val}' 中提取 ID。请确保格式正确，例如 '职业类别_123'。")
+# def get_id(str_val: str) -> str:
+#     """
+#     从字符串中提取 ID。假设输入格式为 "职业类别_123"，则返回 123。
+#     """
+#     try:
+#         return int(str_val.split("_")[-1])
+#     except (IndexError, ValueError):
+#         raise ValueError(f"无法从字符串 '{str_val}' 中提取 ID。请确保格式正确，例如 '职业类别_123'。")
 
 
 # 需求类型 → 对应的关系类型

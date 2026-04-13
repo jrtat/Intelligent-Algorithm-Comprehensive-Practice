@@ -3,8 +3,8 @@ from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from KnowledgeGraph.func.utils.get_models import get_embedding_temp
 
 class ContextGetter:
-    def __init__(self):
-        self.graph = connect_neo4j()
+    def __init__(self, graph):
+        self.graph = graph
 
     @staticmethod
     def cosine_similarity(vec1, vec2):
@@ -131,7 +131,7 @@ class ContextGetter:
               AND id(n) = $node_id
               AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自']
     
-            MATCH (doc:Document)-[:MENTIONS]->(n)
+            MATCH (doc:Document)-[:MENTIONS]->(job)
     
             RETURN DISTINCT id(doc) AS doc_id
             """,

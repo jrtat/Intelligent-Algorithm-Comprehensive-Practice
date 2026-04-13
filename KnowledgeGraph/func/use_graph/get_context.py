@@ -25,10 +25,10 @@ def get_merge_val_for_doc(
         """
         CALL db.index.vector.queryNodes('chunk_index', 1, $value_embedding)
         YIELD node AS chunk, score
-        WHERE (chunk)-[:FROM_DOCUMENT]->(d:Document) AND id(d) = $doc_id
+        MATCH (chunk)-[:FROM_DOCUMENT]->(d:Document)
+        WHERE id(d) = $doc_id
         WITH chunk, score
 
-        // 获取前后相邻 Chunk（利用已有的 NEXT_CHUNK 链表）
         OPTIONAL MATCH (prev:Chunk)-[:NEXT_CHUNK]->(chunk)
         OPTIONAL MATCH (chunk)-[:NEXT_CHUNK]->(next:Chunk)
 
@@ -127,7 +127,7 @@ def get_knowledge_merge_vals(
           AND id(n) = $node_id
           AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自']
 
-        MATCH (doc:Document)-[:MENTION]->(n)
+        MATCH (doc:Document)-[:MENTIONS]->(n)
 
         RETURN DISTINCT id(doc) AS doc_id
         """,
@@ -190,7 +190,7 @@ def get_job_property_merge_vals(
 
         doc_records = graph.query(
             """
-            MATCH (doc:Document)-[:MENTION]->(job:岗位)
+            MATCH (doc:Document)-[:MENTIONS]->(job:岗位)
             WHERE id(job) = $job_id
             RETURN DISTINCT id(doc) AS doc_id
             """,

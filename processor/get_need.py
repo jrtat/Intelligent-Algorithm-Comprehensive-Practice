@@ -17,6 +17,46 @@ KNOWLEDGE_REL_MAP = {
     "专业": "需要来自",
 }
 
+def get_info(job_type_id, source_type, source_value):
+    fp = FileProcessor(f"need_data/{searcher.get_property_by_internal_id(job_type_id, 'id')}_{source_value}.json")
+    dic = {}
+    if source_type == "knowledge":
+        ids = searcher.get_related_node_ids(job_type_id, "属于")
+        lst_ids = []
+        for i in ids:
+            lst_ids.extend(searcher.get_related_node_ids(i, KNOWLEDGE_REL_MAP[source_value]))
+        for key in lst_ids:
+            dic[searcher.get_property_by_internal_id(key, "id")] = getter.get_knowledge_merge_vals(job_type_id, key)
+
+    elif source_type == "property":
+        dic[source_value] = getter.get_job_property_merge_vals(job_type_id, source_value)
+
+    else:
+        print(f"未找到任何 Chunk，job_type_id={job_type_id}, source_type={source_type}, source_value={source_value}")
+        return
+    fp.save(dic)
+
+if __name__ == '__main__':
+
+    ids = searcher.get_all_node_ids_by_label("职业类别")
+
+    for i in ids:
+        get_info(i, "knowledge", "综合素质")
+        get_info(i, "knowledge", "职业技能")
+        get_info(i, "knowledge", "证书")
+        get_info(i, "knowledge", "专业")
+        get_info(i, "knowledge", "工作经验")
+
+        get_info(i, "property", "晋升路径")
+        get_info(i, "property", "学历要求")
+
+    for i in ids:
+        get_info(i, "knowledge", "工作内容")
+        get_info(i, "knowledge", "福利待遇")
+
+
+
+
 
 # def get_job_type_chunks(job_type_id: int, source_type: str, source_value: str) -> str:
 #     """
@@ -100,51 +140,3 @@ KNOWLEDGE_REL_MAP = {
 #     #
 #     #             RETURN chunk.text AS chunk_text
 #
-
-def get_info(job_type_id, source_type, source_value):
-    fp = FileProcessor(f"need_data/{searcher.get_property_by_internal_id(job_type_id, 'id')}_{source_value}.json")
-    dic = {}
-    if source_type == "knowledge":
-        ids = searcher.get_related_node_ids(job_type_id, "属于")
-        lst_ids = []
-        for i in ids:
-            lst_ids.extend(searcher.get_related_node_ids(i, KNOWLEDGE_REL_MAP[source_value]))
-        for key in lst_ids:
-            dic[searcher.get_property_by_internal_id(key, "id")] = getter.get_knowledge_merge_vals(job_type_id, key)
-
-    elif source_type == "property":
-        dic[source_value] = getter.get_job_property_merge_vals(job_type_id, source_value)
-
-    else:
-        print(f"未找到任何 Chunk，job_type_id={job_type_id}, source_type={source_type}, source_value={source_value}")
-        return
-    fp.save(dic)
-
-
-
-
-if __name__ == '__main__':
-    # 示例调用
-    # batch_extract_info_neo4j(
-    #     job_type_id=1,
-    #     source_type="property",
-    #     source_value="学历要求",
-    #     target="学历要求_提取",
-    #     prompt="根据以下岗位信息提取学历要求..."
-    # )
-    graph = connect_neo4j()
-
-    id = searcher.get_node_id_by_value_and_label("前端开发", "职业类别", "id")
-    print(id)
-    # lst_job = get_related_node_ids(id, "属于")
-    # for i in lst_job[:10]:
-    #     print(i)
-        # print(len(get_related_node_ids(605, KNOWLEDGE_REL_MAP["证书"])))
-
-    # print(get_knowledge_merge_vals(id, "职业技能", get_related_node_ids(id, KNOWLEDGE_REL_MAP["职业技能"][0])))
-
-    # get_job_type_chunks(id, "knowledge", "专业")
-    # get_job_type_chunks(id, "property", "学历要求")
-    get_info(id, "knowledge", "职业技能")
-    get_info(id, "property", "学历要求")
-

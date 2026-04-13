@@ -37,6 +37,91 @@ def init_data(df: pd.DataFrame):
     """
     对给定的 DataFrame 进行特征工程，返回融合后的特征矩阵 X_fused。
     输入 df 必须包含以下列：
+        - 薪资范围（str 或 list）
+        - 学历要求（str 或 list）
+        - 晋升路径（str 或 list）
+        - 综合素质（list of str）
+        - 职业技能（list of str）
+        - 证书（list of str）
+        - 工作内容（list of str）
+        - 专业（list of str）
+        - 工作经验（list of str）
+        - 行业（list of str）
+    """
+
+    # === 预处理：将可能为列表的字符串列转换为纯字符串 ===
+    def to_str_if_list(x):
+        if isinstance(x, list):
+            # 如果列表非空，取第一个元素；否则返回空字符串
+            return str(x[0]) if x else ''
+        return str(x) if x is not None else ''
+
+    str_columns = ['薪资范围', '学历要求', '晋升路径']
+    for col in str_columns:
+        if col in df.columns:
+            df[col] = df[col].apply(to_str_if_list)
+
+    # Step 1：处理薪资范围（数值特征）
+    df['薪资平均值'] = df['薪资范围'].apply(parse_salary_range)
+    salary_median = df['薪资平均值'].median()
+    df['薪资平均值'] = df['薪资平均值'].fillna(salary_median) # 避免 ChainedAssignmentError：直接赋值而非 inplace
+
+    numeric_features = df[['薪资平均值']].values.astype(np.float32)
+    scaler = StandardScaler()
+    numeric_scaled = scaler.fit_transform(numeric_features)
+
+    # Step 2：处理学历要求、晋升路径（文本嵌入）
+    df['edu_promo_text'] = (
+        df['学历要求'].fillna('').astype(str) + ' ' +
+        df['晋升路径'].fillna('').astype(str)
+    )
+    texts = df['edu_promo_text'].tolist()
+    text_embeddings = calc_embedding(texts)
+
+    # Step 3：处理多值列表列（Multi-hot 编码）
+    multi_cols = ['综合素质', '职业技能', '证书', '工作内容', '专业', '工作经验', '行业']
+    for col in multi_cols:
+        if col in df.columns:
+            df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [])
+        else:
+            df[col] = [[] for _ in range(len(df))]
+
+    multi_hot_parts = []
+    for col in multi_cols:
+        mlb = MultiLabelBinarizer()
+        encoded = mlb.fit_transform(df[col])
+        multi_hot_parts.append(encoded)
+        print(f"列 '{col}' 编码后维度: {encoded.shape[1]}")
+
+    multi_hot_combined = np.hstack(multi_hot_parts)
+
+    # Step 4: 融合所有特征
+    X_fused = np.hstack([
+        text_embeddings,
+        numeric_scaled,
+        multi_hot_combined
+    ])
+
+    print(f"最终融合特征维度: {X_fused.shape[1]}")
+    return X_fused
+
+#--- OLD ---#
+
+def calc_embedding_temp(df): # Sentence-Transformer 模型，中文效果优秀的模型
+    st_model = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2")
+    return st_model.encode(
+        df['combined_text'].tolist(),  # 将合并后的文本列转换为 Python 列表并作为输入
+        convert_to_numpy=True,  # 返回 NumPy 数组而非张量
+        show_progress_bar=True,  # 显示进度条
+        batch_size=32  # 一次处理 32 条文本，平衡内存与速度
+    )  # 调用 Sentence‑Transformer 模型的 encode 方法，将文本转换为嵌入向量
+
+'''
+
+def init_data(df: pd.DataFrame):
+    """
+    对给定的 DataFrame 进行特征工程，返回融合后的特征矩阵 X_fused。
+    输入 df 必须包含以下列：
         - 薪资范围（str）
         - 学历要求（str）
         - 晋升路径（str）
@@ -51,6 +136,7 @@ def init_data(df: pd.DataFrame):
     """
 
     # Step 1：处理薪资范围（数值特征）
+    df['薪资范围'] = df['薪资范围'].apply(lambda x: x[0] if isinstance(x, list) and x else str(x)) # 提取出来可能是列表
     df['薪资平均值'] = df['薪资范围'].apply(parse_salary_range)
     salary_median = df['薪资平均值'].median() # 计算中位数
     df['薪资平均值'].fillna(salary_median, inplace=True) # 若存在缺失值，可用中位数填充（根据实际情况调整）
@@ -75,7 +161,6 @@ def init_data(df: pd.DataFrame):
             df[col] = [[] for _ in range(len(df))] # 如果该列根本不存在于 DataFrame，创建一列与 DataFrame 等长的空列表列
             # 用不到
 
-
     multi_hot_parts = [] # 初始化一个空列表，用于暂存每一列的编码结果矩阵
     for col in multi_cols:
         mlb = MultiLabelBinarizer() # 实例化一个多标签二值化编码器
@@ -97,13 +182,5 @@ def init_data(df: pd.DataFrame):
     print(f"最终融合特征维度: {X_fused.shape[1]}")
     return X_fused # 返回融合后的特征矩阵，供后续监督学习模型训练使用。
 
-#--- OLD ---#
 
-def calc_embedding_temp(df): # Sentence-Transformer 模型，中文效果优秀的模型
-    st_model = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2")
-    return st_model.encode(
-        df['combined_text'].tolist(),  # 将合并后的文本列转换为 Python 列表并作为输入
-        convert_to_numpy=True,  # 返回 NumPy 数组而非张量
-        show_progress_bar=True,  # 显示进度条
-        batch_size=32  # 一次处理 32 条文本，平衡内存与速度
-    )  # 调用 Sentence‑Transformer 模型的 encode 方法，将文本转换为嵌入向量
+'''

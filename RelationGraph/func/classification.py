@@ -69,7 +69,7 @@ def train_mlp(device, x_fused, y, num_epochs, batch_size, learning_rate):
     return model
 
 def mlp_calc_proba(device, x_fused, y):
-    mlp_model = train_mlp(device, x_fused, y, num_epochs=60, batch_size=64, learning_rate=1e-3)
+    mlp_model = train_mlp(device, x_fused, y, num_epochs=100, batch_size=64, learning_rate=1e-3)
 
     mlp_model.eval()
     with torch.no_grad():
@@ -80,8 +80,8 @@ def mlp_calc_proba(device, x_fused, y):
 
 def rf_calc_proba(x_fused, y):
     rf_clf = RandomForestClassifier(
-        n_estimators=300,  # 树的数量
-        max_depth=25,  # 最大深度
+        n_estimators=500,  # 树的数量
+        max_depth=40,  # 最大深度
         min_samples_leaf=2,
         class_weight='balanced',  # 处理类别不平衡
         random_state=42,

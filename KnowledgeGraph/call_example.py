@@ -1,8 +1,7 @@
-from KnowledgeGraph.func.use_graph.graph_search import init_query_conf, query_unique_content_to_b
+from KnowledgeGraph.func.use_graph.chyper_search import get_node_id_by_value_and_label,get_related_node_ids
 
-# 示例调用（把 "软件工程师" 和 "数据分析师" 替换成你实际的职业名称）
-init_query_conf()
-
-print("\n=== 共同素质 ===")
-res3 = query_unique_content_to_b("软件测试", "Java")
-print(res3["result"])
+# print(get_job_property_merge_vals(1880,"学历要求"))
+id = get_node_id_by_value_and_label("统计员","职业类别","id")
+print(id)
+print(get_related_node_ids(id, "属于"))
+print(len(get_related_node_ids(id, "属于")))

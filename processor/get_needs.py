@@ -1,11 +1,11 @@
 import json
-
-from KnowledgeGraph.func.use_graph.cypher_search import get_node_id_by_value_and_label, get_related_node_ids
+from KnowledgeGraph.func.use_graph.cypher_search import Searcher
 from KnowledgeGraph.func.use_graph.get_context import ContextGetter
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from processor.utils.LLMInvoker import LLMInvoker
 
 model = LLMInvoker()
+
 
 # def get_id(str_val: str) -> str:
 #     """
@@ -16,7 +16,11 @@ model = LLMInvoker()
 #     except (IndexError, ValueError):
 #         raise ValueError(f"无法从字符串 '{str_val}' 中提取 ID。请确保格式正确，例如 '职业类别_123'。")
 
-getter = ContextGetter()
+
+graph = connect_neo4j()
+getter = ContextGetter(graph)
+searcher = Searcher(graph)
+
 # 需求类型 → 对应的关系类型
 KNOWLEDGE_REL_MAP = {
     "综合素质": "需要具有",
@@ -130,12 +134,12 @@ def batch_extract_info_neo4j(job_type_id: int, source_type: str, source_value: s
     # merge_val = get_job_type_chunks(job_type_id, source_type, source_value)
     dic = {}
     if source_type == "knowledge":
-        ids = get_related_node_ids(job_type_id, "属于")
+        ids = searcher.get_related_node_ids(job_type_id, "属于")
         lst_ids = []
         for i in ids:
-            lst_ids.extend(get_related_node_ids(i,KNOWLEDGE_REL_MAP[source_value]))
+            lst_ids.extend(searcher.get_related_node_ids(i,KNOWLEDGE_REL_MAP[source_value]))
         for key in lst_ids:
-            dic[key] = getter.get_knowledge_merge_vals(job_type_id, key)
+            dic[searcher.get_property_by_internal_id(key, "id")] = getter.get_knowledge_merge_vals(job_type_id, key)
 
     elif source_type == "property":
         dic[source_value] = getter.get_job_property_merge_vals(job_type_id, source_value)
@@ -196,7 +200,7 @@ if __name__ == '__main__':
     # )
     graph = connect_neo4j()
 
-    id = get_node_id_by_value_and_label("前端开发", "职业类别", "id")
+    id = searcher.get_node_id_by_value_and_label("前端开发", "职业类别", "id")
     print(id)
     # lst_job = get_related_node_ids(id, "属于")
     # for i in lst_job[:10]:

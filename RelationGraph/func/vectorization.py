@@ -1,4 +1,4 @@
-from utils.get_model import get_embedding_temp
+from RelationGraph.func.utils.get_model import get_embedding_temp
 
 from sklearn.preprocessing import StandardScaler, MultiLabelBinarizer
 from sentence_transformers import SentenceTransformer

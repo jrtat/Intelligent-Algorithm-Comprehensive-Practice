@@ -1,7 +1,7 @@
-from func.vectorization import init_data
-from func.classification import train_mlp, mlp_calc_proba, rf_calc_proba, xgboost_calc_proba
-from func.preprocess import get_data
-from func.get_result import build_matrix
+from RelationGraph.func.vectorization import init_data
+from RelationGraph.func.classification import train_mlp, mlp_calc_proba, rf_calc_proba, xgboost_calc_proba
+from RelationGraph.func.preprocess import get_data
+from RelationGraph.func.get_result import build_matrix
 
 import torch
 from sklearn.preprocessing import LabelEncoder

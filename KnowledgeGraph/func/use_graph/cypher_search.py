@@ -91,3 +91,24 @@ class Searcher:
         if result and result[0].get("prop_value") is not None:
             return result[0]["prop_value"]
         return None
+
+    def get_all_node_ids_by_label(self, node_label: str):
+        """
+        获取指定类型的所有节点的内部 ID 列表。
+
+        Args:
+            node_label: 节点类型（标签）
+
+        Returns:
+            该类型所有节点的内部 ID 列表，若无节点则返回空列表
+
+        Note:
+            返回的是 Neo4j 内部 id(node)。
+        """
+
+        cypher = f"""
+        MATCH (n:{node_label})
+        RETURN id(n) AS internal_id
+        """
+        result = self.graph.query(cypher)
+        return [record["internal_id"] for record in result]

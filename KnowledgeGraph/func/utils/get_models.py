@@ -1,4 +1,5 @@
 import os
+import torch
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings
 
@@ -22,10 +23,17 @@ def get_embedding_temp():  # 临时的Embedding模型
     :return: HuggingFaceEmbeddings的实例
     """
     os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"使用设备: {device.upper()}（bge-m3）")
     return HuggingFaceEmbeddings(
         model_name="BAAI/bge-m3",  # 中文效果很好的开源模型
-        model_kwargs={'device': 'cpu'},  # 没有 GPU 就用 cpu
-        encode_kwargs={'normalize_embeddings': True}
+        model_kwargs = {
+            'device': device
+        },
+        encode_kwargs = {
+            'normalize_embeddings': True,
+            'batch_size': 64 if device == "cuda" else 16  # GPU 可开大
+        }
     )
 
 def get_llm():

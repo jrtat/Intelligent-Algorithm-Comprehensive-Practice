@@ -5,8 +5,9 @@ from tqdm import tqdm
 
 class ContextGetter:
 
-    def __init__(self):
-        self.graph = connect_neo4j()
+    def __init__(self, graph, embeddings):
+        self.graph = graph
+        self.embeddings = embeddings
 
     @staticmethod
     def cosine_similarity(vec1, vec2):
@@ -48,8 +49,7 @@ class ContextGetter:
             return ""
 
         # Step 1.5：现场计算所有 chunk 的 embedding（取代原来存储的 chunk_embeddings）
-        embeddings = get_local_embedding()
-        chunk_embeddings = embeddings.embed_documents(text_chunks)
+        chunk_embeddings = self.embeddings.embed_documents(text_chunks)
 
         # Step 2：在 Python 端计算每个 chunk 与 value_embedding 的相似度，找出最相似的一个
         similarities = []
@@ -101,7 +101,6 @@ class ContextGetter:
         node_id: str
     ) -> list[str]:
         """保持完全不变，仅依赖 get_merge_val_for_doc"""
-        embeddings = get_local_embedding()
 
         value_record = self.graph.query(
             """
@@ -120,7 +119,7 @@ class ContextGetter:
         if not value:
             return []
 
-        value_embedding = embeddings.embed_query(value)
+        value_embedding = self.embeddings.embed_query(value)
 
         doc_records = self.graph.query(
             """
@@ -155,7 +154,6 @@ class ContextGetter:
         property_type: str
     ) -> list[str]:
         """保持完全不变，仅依赖 get_merge_val_for_doc"""
-        embeddings = get_local_embedding()
 
         job_records = self.graph.query(
             """
@@ -175,7 +173,7 @@ class ContextGetter:
             if not job_id or not isinstance(value, str) or not value.strip():
                 continue
 
-            value_embedding = embeddings.embed_query(value)
+            value_embedding = self.embeddings.embed_query(value)
 
             doc_records = self.graph.query(
                 """

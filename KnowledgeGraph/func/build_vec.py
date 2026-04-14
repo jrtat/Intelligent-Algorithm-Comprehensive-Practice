@@ -76,7 +76,7 @@ def build_chunk():
         records = graph.query(
             """
             MATCH (doc:Document)
-            RETURN id(doc) AS doc_id, doc.text AS value
+            RETURN elementId(doc) AS doc_id, doc.text AS value
             SKIP $skip LIMIT $limit
             """,
             params={"skip": skip, "limit": batch_size}
@@ -103,7 +103,7 @@ def build_chunk():
             # 直接把两个列表写入 Document 节点（而不是创建 Chunk 节点）
             graph.query(
                 """
-                MATCH (doc:Document) WHERE id(doc) = $doc_id
+                MATCH (doc:Document) WHERE elementId(doc) = $doc_id
                 SET doc.text_chunks = $chunk_texts,
                     doc.chunk_embeddings = $chunk_embeddings
                 """,

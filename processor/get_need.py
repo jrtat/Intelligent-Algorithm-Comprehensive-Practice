@@ -3,6 +3,7 @@ from KnowledgeGraph.func.use_graph.get_context import ContextGetter
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from KnowledgeGraph.func.utils.get_models import get_local_embedding
 from processor.utils.FileProcessor import FileProcessor
+from tqdm import tqdm
 
 graph = connect_neo4j()
 embeddings = get_local_embedding()
@@ -11,7 +12,7 @@ searcher = Searcher(graph)
 
 # 需求类型 → 对应的关系类型
 KNOWLEDGE_REL_MAP = {
-    "综合素质": "需要具有",
+    "综合素质": "需要具有", # 数值
     "职业技能": "需要掌握",
     "证书": "需要持有",
     "工作内容": "负责",
@@ -25,9 +26,11 @@ def get_info(job_type_id, source_type, source_value):
     if source_type == "knowledge":
         ids = searcher.get_related_node_ids(job_type_id, "属于")
         lst_ids = []
-        for i in ids:
+        print(f"需要提取{len(ids)}个岗位的{source_value}信息：")
+        for i in tqdm(ids):
             lst_ids.extend(searcher.get_related_node_ids(i, KNOWLEDGE_REL_MAP[source_value]))
-        for key in lst_ids:
+        print(f"需要汇总{len(lst_ids)}个画像：")
+        for key in tqdm(lst_ids):
             dic[searcher.get_property_by_internal_id(key, "id")] = getter.get_knowledge_merge_vals(job_type_id, key)
 
     elif source_type == "property":

@@ -17,6 +17,7 @@ xgboost
 scikit-learn
 torch
 tqdm
+setuptools
 
 --extra-index-url https://download.pytorch.org/whl/cu126
 torch==2.6.0

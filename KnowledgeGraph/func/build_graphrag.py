@@ -6,7 +6,6 @@ from langchain_core.documents import Document
 from LLMGraphTransformer import LLMGraphTransformer
 from LLMGraphTransformer.schema import NodeSchema, RelationshipSchema
 from collections import defaultdict
-# from rapidfuzz import fuzz
 from fuzzywuzzy import fuzz
 import faiss
 from tqdm import tqdm
@@ -151,16 +150,15 @@ def transform_properties_to_nodes():
         并建立对应关系：
         - 岗位的：需要具有、需要掌握、需要持有、需要拥有、负责
         - 公司的：涉及
-        最后删除原属性
+        最后删除原属性，
+        同时继承原实体与 Document 之间的 MENTIONS 关系。
     """
 
-    # Step 0： 声明全局变量
     global job_transforms, company_transforms, job_remove, company_remove
 
-    # Step 1：与数据库建立连接
     graph = connect_neo4j()
 
-    # Step 2：独立出岗位的属性
+    # ---------- 处理岗位属性 ----------
     for t in job_transforms:
         cypher_create = f"""
             MATCH (p:岗位)
@@ -188,21 +186,14 @@ def transform_properties_to_nodes():
             WHERE cleaned_value <> '' AND cleaned_value IS NOT NULL
             MERGE (n:{t['label']}:`__Entity__` {{__entity__: '{t['label']}', id: cleaned_value}})
             MERGE (p)-[:{t['rel']}]->(n)
+            WITH p, n
+            MATCH (d:Document)-[:MENTIONS]->(p)
+            MERGE (d)-[:MENTIONS]->(n)
         """
-        # 1. 匹配所有标签为 岗位 的节点，并过滤出那些属性 t['prop'] 不为 null 的节点
-        # 2. 首先尝试判断 p.属性 是否已经是一个列表：
-        #        判断该属性值的类型是否以 'LIST' 开头（例如 'LIST' 或 'LIST??'）。
-        #   如果已经是列表，直接使用原值。否则，需要按分隔符拆分：
-        #        先用 coalesce 处理 null 值，将其转为空字符串 ''。
-        #        然后连续使用 replace 将英文逗号 ,、中文逗号 ，、中文分号 ；、英文分号 ; 全部替换为顿号 、（统一分隔符）。
-        #        最后用 split(..., '、') 按顿号拆分成字符串列表，再对每个元素执行 trim(x) 去除首尾空格，得到清理后的列表 items。
-        # 3. 将列表展开为多行，每行一个 item。再次 trim 确保无首尾空格，命名为 cleaned_value。过滤掉空字符串或 NULL。
-        # 4. 创建或匹配一个标签为 t['label']、属性 id 为 cleaned_value（属性 __entity__ 为 t['label']）的节点 n。
-        # 5. 然后 MERGE 创建或匹配 p 到 n 的指定关系类型 t['rel']。使用 MERGE 避免重复创建。
         graph.query(cypher_create)
-        print(f"已处理岗位属性：{t['prop']} → {t['label']} 节点")
+        print(f"已处理岗位属性：{t['prop']} → {t['label']} 节点，并继承 MENTIONS 关系")
 
-    # 独立出公司的属性
+    # ---------- 处理公司属性 ----------
     for t in company_transforms:
         cypher_create = f"""
             MATCH (c:公司)
@@ -230,21 +221,14 @@ def transform_properties_to_nodes():
             WHERE cleaned_value <> '' AND cleaned_value IS NOT NULL
             MERGE (i:{t['label']}:`__Entity__` {{__entity__: '{t['label']}', id: cleaned_value}})
             MERGE (c)-[:{t['rel']}]->(i)
+            WITH c, i
+            MATCH (d:Document)-[:MENTIONS]->(c)
+            MERGE (d)-[:MENTIONS]->(i)
         """
-        # 1. 匹配所有标签为 公司 的节点，并过滤出那些属性 t['prop'] 不为 null 的节点
-        # 2. 首先尝试判断 c.属性 是否已经是一个列表：
-        #        判断该属性值的类型是否以 'LIST' 开头（例如 'LIST' 或 'LIST??'）。
-        #   如果已经是列表，直接使用原值。否则，需要按分隔符拆分：
-        #        先用 coalesce 处理 null 值，将其转为空字符串 ''。
-        #        然后连续使用 replace 将英文逗号 ,、中文逗号 ，、中文分号 ；、英文分号 ; 全部替换为顿号 、（统一分隔符）。
-        #        最后用 split(..., '、') 按顿号拆分成字符串列表，再对每个元素执行 trim(x) 去除首尾空格，得到清理后的列表 items。
-        # 3. 将列表展开为多行，每行一个 item。再次 trim 确保无首尾空格，命名为 cleaned_value。过滤掉空字符串或 NULL。
-        # 4. 创建或匹配一个标签为 t['label']、属性 id 为 cleaned_value （属性 __entity__ 为 t['label']）的节点 i。
-        # 5. 然后 MERGE 创建或匹配 c 到 i 的指定关系类型 t['rel']。使用 MERGE 避免重复创建。
         graph.query(cypher_create)
-        print(f"已处理公司属性：{t['prop']} → {t['label']} 节点")
+        print(f"已处理公司属性：{t['prop']} → {t['label']} 节点，并继承 MENTIONS 关系")
 
-    # Step 3：删除已提取的属性
+    # ---------- 删除原属性 ----------
     cypher_remove = f"""
     MATCH (p:岗位)
     REMOVE {job_remove}
@@ -256,7 +240,6 @@ def transform_properties_to_nodes():
     graph.query(cypher_remove)
     print("已删除原属性")
 
-    # Step 4：刷新schema
     graph.refresh_schema()
     print("当前 schema 已刷新。")
 

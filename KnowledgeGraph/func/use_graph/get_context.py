@@ -1,5 +1,5 @@
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
-from KnowledgeGraph.func.utils.get_models import get_embedding_temp
+from KnowledgeGraph.func.utils.get_models import get_embedding_temp,get_local_embedding
 
 from tqdm import tqdm
 
@@ -102,7 +102,7 @@ class ContextGetter:
         node_id: int
     ) -> list[str]:
         """（保持完全不变，仅依赖 get_merge_val_for_doc）"""
-        embeddings = get_embedding_temp()
+        embeddings = ()
 
         value_record = self.graph.query(
             """
@@ -156,7 +156,7 @@ class ContextGetter:
         property_type: str
     ) -> list[str]:
         """（保持完全不变，仅依赖 get_merge_val_for_doc）"""
-        embeddings = get_embedding_temp()
+        embeddings = get_local_embedding()
 
         job_records = self.graph.query(
             """

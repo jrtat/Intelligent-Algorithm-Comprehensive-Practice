@@ -22,11 +22,10 @@ class ContextGetter:
         self,
         doc_id: str,
         value_embedding: list,
-        chunk_overlap: int = 40
     ) -> str:
         """
-        核心逻辑：对单个 Document 找到最相似的 chunk + 其相邻 chunk 中更接近的一个，合并后返回 merge_val
-        不再查询 Chunk 节点和向量索引，而是直接从 Document 的列表属性读取，并在 Python 端计算相似度
+        核心逻辑：对单个 Document 找到最相似的 chunk + 其相邻 chunk 中相似度更高的一个，合并后返回 merge_val
+        由于划分 chunk 时已经没有 overlap，合并时直接拼接即可，无需任何 overlap 去重/trim 逻辑
         """
         # Step 1：直接从 Document 节点读取 text_chunks 和 chunk_embeddings 两个列表
         records = self.graph.query(
@@ -63,38 +62,36 @@ class ContextGetter:
         # 取出相似度最高的 chunk
         best_sim, top_idx, top_text = max(similarities, key=lambda x: x[0])
 
-        # Step 3：获取相邻的两个 candidate（prev 和 next）
+        # Step 3：获取相邻的两个 candidate（prev 和 next），并附上索引用于后续判断顺序
         candidates = []
         # 前一个 chunk
         if top_idx > 0:
             prev_emb = chunk_embeddings[top_idx - 1]
             if prev_emb:
                 sim_prev = self.cosine_similarity(value_embedding, prev_emb)
-                candidates.append((sim_prev, text_chunks[top_idx - 1]))
+                candidates.append((sim_prev, top_idx - 1, text_chunks[top_idx - 1]))
         # 后一个 chunk
         if top_idx < len(text_chunks) - 1:
             next_emb = chunk_embeddings[top_idx + 1]
             if next_emb:
                 sim_next = self.cosine_similarity(value_embedding, next_emb)
-                candidates.append((sim_next, text_chunks[top_idx + 1]))
+                candidates.append((sim_next, top_idx + 1, text_chunks[top_idx + 1]))
 
         if not candidates:
             return top_text
 
-        # 选相似度更高的相邻 chunk
-        best_adj_sim, best_adj_text = max(candidates, key=lambda x: x[0])
+        # Step 4：选出相似度更高的相邻 chunk
+        _, adj_idx, adj_text = max(candidates, key=lambda x: x[0])
 
-        # Step 4：合并（处理重叠逻辑保持不变）
-        if len(top_text) >= chunk_overlap and len(best_adj_text) >= chunk_overlap:
-            # SemanticChunker 虽然没有固定 overlap，但我们仍尝试重叠去重
-            if top_text[-chunk_overlap:] == best_adj_text[:chunk_overlap]:
-                merged = top_text + best_adj_text[chunk_overlap:]
-            else:
-                merged = top_text + " " + best_adj_text
+        # Step 5：合并 —— 因无 overlap，直接拼接（保持原始顺序）
+        if adj_idx < top_idx:
+            # prev 在前
+            merge_val = adj_text + top_text
         else:
-            merged = top_text + " " + best_adj_text
+            # next 在后
+            merge_val = top_text + adj_text
 
-        return merged
+        return merge_val
 
     def get_knowledge_merge_vals(
         self,

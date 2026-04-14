@@ -188,7 +188,7 @@ const Home = () => {
           <div className="eval-container">
             {/* 左侧功能区 */}
             <div className="eval-text">
-              <div className="eval-card" onClick={() => navigate('/ability-test')}>
+              <div className="eval-card" onClick={() => navigate('/capability-analysis')}>
                 <h3>🔬 能力测评</h3>
                 <p>
                   多维度拆解个人能力，涵盖专业技能、通用能力、潜力特质三大核心维度，
@@ -251,7 +251,7 @@ const Home = () => {
             <div className="report-actions">
               <button
                 className="report-cta"
-                onClick={() => navigate('/ability-test')}
+                onClick={() => navigate('/career-report')}
               >
                 立即获取专属报告
               </button>

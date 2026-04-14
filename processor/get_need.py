@@ -25,6 +25,7 @@ KNOWLEDGE_REL_MAP = {
     "工作内容": "负责",
     "工作经验": "需要拥有",
     "专业": "需要来自",
+    "福利待遇": "提供"
 }
 
 def get_info(job_type_id, source_type, source_value):

@@ -146,6 +146,7 @@ def batch_extract_info_neo4j(num: str, source_value: str, target: str, prompt: s
     fp_result.save(dic_result)
     fp_log = FileProcessor(f"log/{num}_{target}.json")
     fp_log.save(raw_response)
+    print(f"{jt} - {target} 已完成")
 
 
 def batch_score_neo4j(num: str, source_value: str, target: str, prompt: str):
@@ -295,7 +296,7 @@ def batch_score_neo4j(num: str, source_value: str, target: str, prompt: str):
     raw_response = model.call_ollama(p)
 
     if not raw_response:
-        print(f"❌ 职业类别 (key={jt}) - {target} 评分失败")
+        print(f"职业类别 (key={jt}) - {target} 评分失败")
         return
 
     # 将结果写入结果字典
@@ -322,7 +323,7 @@ def batch_score_neo4j(num: str, source_value: str, target: str, prompt: str):
     score = ability_score.get("score", "N/A")
     level = ability_score.get("level", "N/A")
     evidence_count = ability_score.get("statistics", {}).get("evidence_count", 0)
-    print(f"✅ {jt} - {target}: {score}/100 ({level}) | 证据数: {evidence_count}")
+    print(f"{jt} - {target}: {score}/100 ({level})")
 
 
 if __name__ == '__main__':

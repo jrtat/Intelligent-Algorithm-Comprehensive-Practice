@@ -26,7 +26,26 @@ def get_embedding_temp():  # 临时的Embedding模型
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"使用设备: {device.upper()}（bge-m3）")
     return HuggingFaceEmbeddings(
-        model_name="BAAI/bge-m3",  # 中文效果很好的开源模型
+        model_name="BAAI/bge-m3",  # 中文效果很好的开源模型 BAAI/bge-m3
+        model_kwargs = {
+            'device': device
+        },
+        encode_kwargs = {
+            'normalize_embeddings': True,
+            'batch_size': 64 if device == "cuda" else 16  # GPU 可开大
+        }
+    )
+
+def get_local_embedding(path="/home/xuejx/projects/Intelligent-Algorithm-Comprehensive-Practice/models/bge-m3"):
+    """
+    从本地加载一个 Embedding 模型
+    :param path: 模型路径
+    :return: HuggingFaceEmbeddings的实例
+    """
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"使用设备: {device.upper()}（{os.path.basename(path)}）")
+    return HuggingFaceEmbeddings(
+        model_name=path,
         model_kwargs = {
             'device': device
         },

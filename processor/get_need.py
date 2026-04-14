@@ -1,12 +1,12 @@
 from KnowledgeGraph.func.use_graph.cypher_search import Searcher
 from KnowledgeGraph.func.use_graph.get_context import ContextGetter
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
-from KnowledgeGraph.func.utils.get_models import get_embedding_temp
+from KnowledgeGraph.func.utils.get_models import get_local_embedding
 from processor.utils.FileProcessor import FileProcessor
 
 graph = connect_neo4j()
-embeddings = get_embedding_temp()
-getter = ContextGetter(graph)
+embeddings = get_local_embedding()
+getter = ContextGetter(graph, embeddings)
 searcher = Searcher(graph)
 
 # 需求类型 → 对应的关系类型

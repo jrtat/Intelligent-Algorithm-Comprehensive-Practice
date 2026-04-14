@@ -1,6 +1,7 @@
 from langchain_neo4j import Neo4jVector
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from KnowledgeGraph.func.utils.get_models import get_embedding_temp
+from tqdm import tqdm
 
 class ContextGetter:
     def __init__(self, graph, embeddings):
@@ -32,7 +33,7 @@ class ContextGetter:
             CALL db.index.vector.queryNodes('chunk_index', 1, $value_embedding)
             YIELD node AS chunk, score
             MATCH (chunk)-[:FROM_DOCUMENT]->(d:Document)
-            WHERE id(d) = $doc_id
+            WHERE elementId(d) = $doc_id
             WITH chunk, score
     
             OPTIONAL MATCH (prev:Chunk)-[:NEXT_CHUNK]->(chunk)
@@ -93,8 +94,8 @@ class ContextGetter:
 
     def get_knowledge_merge_vals(
         self,
-        job_type_id: int,
-        node_id: int # 该类型节点（已通过 job_type_id → 岗位 → node_id 两条边连接）
+        job_type_id: str,
+        node_id: str # 该类型节点（已通过 job_type_id → 岗位 → node_id 两条边连接）
     ) -> list[str]:
         """
         返回 list，每个元素是对应 Document 的 merge_val。
@@ -107,7 +108,7 @@ class ContextGetter:
         value_record = self.graph.query(
             f"""
                 MATCH (n)
-                WHERE id(n) = $node_id
+                WHERE elementId(n) = $node_id
                 RETURN n.id AS value
                 """,
             params={"node_id": node_id}
@@ -128,13 +129,13 @@ class ContextGetter:
         doc_records = self.graph.query(
             """
             MATCH (jt:职业类别)-[:属于]-(job:岗位)-[r]->(n)
-            WHERE id(jt) = $job_type_id 
-              AND id(n) = $node_id
+            WHERE elementId(jt) = $job_type_id 
+              AND elementId(n) = $node_id
               AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自']
     
             MATCH (doc:Document)-[:MENTIONS]->(job)
     
-            RETURN DISTINCT id(doc) AS doc_id
+            RETURN DISTINCT elementId(doc) AS doc_id
             """,
             params={"job_type_id": job_type_id, "node_id": node_id}
         )
@@ -160,7 +161,7 @@ class ContextGetter:
 
     def get_job_property_merge_vals(
         self,
-        job_type_id: int,
+        job_type_id: str,
         property_type: str  # "学历要求"、"晋升路径" 之一
     ) -> list[str]:
         """
@@ -173,8 +174,8 @@ class ContextGetter:
         job_records = self.graph.query(
             """
             MATCH (job:岗位)-[:属于]->(jt:职业类别)
-            WHERE id(jt) = $job_type_id
-            RETURN id(job) AS job_id, job[$prop_type] AS value
+            WHERE elementId(jt) = $job_type_id
+            RETURN elementId(job) AS job_id, job[$prop_type] AS value
             """,
             params={ "job_type_id": job_type_id, "prop_type": property_type }
         )
@@ -183,7 +184,7 @@ class ContextGetter:
         result = []
 
         # Step 2：遍历每个岗位，查找该岗位对应的 Document 并计算 merge_val
-        for job_r in job_records:
+        for job_r in tqdm(job_records):
             job_id = job_r.get("job_id")
             value = job_r.get("value")
 
@@ -195,8 +196,8 @@ class ContextGetter:
             doc_records = self.graph.query(
                 """
                 MATCH (doc:Document)-[:MENTIONS]->(job:岗位)
-                WHERE id(job) = $job_id
-                RETURN DISTINCT id(doc) AS doc_id
+                WHERE elementId(job) = $job_id
+                RETURN DISTINCT elementId(doc) AS doc_id
                 """,
                 params={"job_id": job_id}
             ) # 找出该岗位被 Document 通过 [:MENTION] 关系指向的 Document 节点

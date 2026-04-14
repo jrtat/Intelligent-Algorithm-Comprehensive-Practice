@@ -77,12 +77,12 @@ def build_chunk():
         records = graph.query(
             """
             MATCH (doc:Document)
-            RETURN id(doc) AS doc_id, doc.text AS value
+            RETURN elementId(doc) AS doc_id, doc.text AS value
             SKIP $skip LIMIT $limit
             """,
             params={"skip": skip, "limit": batch_size}
         )
-        # Cypher 查询：匹配所有标签为 Document 的节点，返回其内部 ID（id(doc)）和 text 属性。
+        # Cypher 查询：匹配所有标签为 Document 的节点，返回其内部 ID（elementId(doc)）和 text 属性。
         # SKIP $skip LIMIT $limit：分页机制，$skip 和 $limit 是参数化查询的占位符。
         # params：用字典将 Python 变量传入查询
 
@@ -115,7 +115,7 @@ def build_chunk():
 
             graph.query(
                 """
-                MATCH (doc:Document) WHERE id(doc) = $doc_id
+                MATCH (doc:Document) WHERE elementId(doc) = $doc_id
 
                 UNWIND $chunk_data AS chunkData
                 CREATE (c:Chunk {
@@ -136,7 +136,7 @@ def build_chunk():
                     "chunk_data": chunk_data
                 }
             )
-            # MATCH (doc:Document) WHERE id(doc) = $doc_id 找到之前读取的那个文档节点。
+            # MATCH (doc:Document) WHERE elementId(doc) = $doc_id 找到之前读取的那个文档节点。
             # UNWIND $chunk_data AS chunkData chunk_data 列表“展开”，每一行迭代作为一个 chunkData 变量。
             # CREATE (c:Chunk { ... }) 为每个 chunkData 创建一个新的 Chunk 节点，并将字典中的 text、embedding、chunk_index 作为属性存入。
             # CREATE (c)-[:FROM_DOCUMENT]->(doc) 同时创建从 Chunk 指向 Document 的关系 FROM_DOCUMENT，表明该块来源于该文档。

@@ -20,7 +20,7 @@ class ContextGetter:
 
     def get_merge_val_for_doc(
         self,
-        doc_id: int,
+        doc_id: str,
         value_embedding: list,
         chunk_overlap: int = 40
     ) -> str:
@@ -32,7 +32,7 @@ class ContextGetter:
         records = self.graph.query(
             """
             MATCH (doc:Document)
-            WHERE id(doc) = $doc_id
+            WHERE elementId(doc) = $doc_id
             RETURN 
                 doc.text_chunks AS text_chunks,
                 doc.chunk_embeddings AS chunk_embeddings
@@ -98,8 +98,8 @@ class ContextGetter:
 
     def get_knowledge_merge_vals(
         self,
-        job_type_id: int,
-        node_id: int
+        job_type_id: str,
+        node_id: str
     ) -> list[str]:
         """保持完全不变，仅依赖 get_merge_val_for_doc"""
         embeddings = get_local_embedding()
@@ -107,7 +107,7 @@ class ContextGetter:
         value_record = self.graph.query(
             """
             MATCH (n)
-            WHERE id(n) = $node_id
+            WHERE elementId(n) = $node_id
             RETURN n.id AS value
             """,
             params={"node_id": node_id}
@@ -126,11 +126,11 @@ class ContextGetter:
         doc_records = self.graph.query(
             """
             MATCH (jt:职业类别)-[:属于]-(job:岗位)-[r]->(n)
-            WHERE id(jt) = $job_type_id 
-              AND id(n) = $node_id
+            WHERE elementId(jt) = $job_type_id 
+              AND elementId(n) = $node_id
               AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自']
             MATCH (doc:Document)-[:MENTIONS]->(n)
-            RETURN DISTINCT id(doc) AS doc_id
+            RETURN DISTINCT elementId(doc) AS doc_id
             """,
             params={"job_type_id": job_type_id, "node_id": node_id}
         )
@@ -152,7 +152,7 @@ class ContextGetter:
 
     def get_job_property_merge_vals(
         self,
-        job_type_id: int,
+        job_type_id: str,
         property_type: str
     ) -> list[str]:
         """保持完全不变，仅依赖 get_merge_val_for_doc"""
@@ -161,8 +161,8 @@ class ContextGetter:
         job_records = self.graph.query(
             """
             MATCH (job:岗位)-[:属于]->(jt:职业类别)
-            WHERE id(jt) = $job_type_id
-            RETURN id(job) AS job_id, job[$prop_type] AS value
+            WHERE elementId(jt) = $job_type_id
+            RETURN elementId(job) AS job_id, job[$prop_type] AS value
             """,
             params={"job_type_id": job_type_id, "prop_type": property_type}
         )
@@ -181,8 +181,8 @@ class ContextGetter:
             doc_records = self.graph.query(
                 """
                 MATCH (doc:Document)-[:MENTIONS]->(job:岗位)
-                WHERE id(job) = $job_id
-                RETURN DISTINCT id(doc) AS doc_id
+                WHERE elementId(job) = $job_id
+                RETURN DISTINCT elementId(doc) AS doc_id
                 """,
                 params={"job_id": job_id}
             )

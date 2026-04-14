@@ -126,7 +126,7 @@ class ContextGetter:
             MATCH (jt:职业类别)-[:属于]-(job:岗位)-[r]->(n)
             WHERE elementId(jt) = $job_type_id 
               AND elementId(n) = $node_id
-              AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自']
+              AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自','需要拥有']
             MATCH (doc:Document)-[:MENTIONS]->(job)
             RETURN DISTINCT elementId(doc) AS doc_id
             """,

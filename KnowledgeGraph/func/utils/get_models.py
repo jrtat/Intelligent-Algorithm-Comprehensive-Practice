@@ -88,7 +88,27 @@ def get_llm_silicon_flow(
     【deepseek-ai/DeepSeek-R1-0528-Qwen3-8B】  免费
 
     .. note:
+    【deepseek-ai/DeepSeek-R1-Distill-Qwen-7B】  免费
+
+    .. note:
+    【Qwen/Qwen3-8B】 免费
+
+    .. note:
+    【Qwen/Qwen2.5-7B-Instruct】 免费
+
+    .. note:
+    【Qwen/Qwen3.5-4B】 免费
+
+    .. note:
+    【THUDM/GLM-Z1-9B-0414】 免费
+
+    .. note:
+    【THUDM/GLM-4.1V-9B-Thinking】 免费
+
+    .. note:
     【deepseek-ai/DeepSeek-V2.5】  1.33元 每百万
+
+
 
     :param model_name: 指定模型名字
     :param api_key: 指定api_key （默认是我（ls）的）

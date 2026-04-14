@@ -8,32 +8,28 @@ const scrollToSection = (id: string) => {
 
 const NAV_SECTIONS = [
   { id: 'hero', label: '首页' },
-  { id: 'market', label: '就业市场' },
-  { id: 'ability', label: '能力分析' },
-  { id: 'report', label: '职业报告' },
+  { id: 'insight', label: '岗位洞察' },
+  { id: 'eval', label: '能力测评' },
+  { id: 'report', label: '专属报告' },
 ];
 
 const Home = () => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('hero');
-  const [navVisible, setNavVisible] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // 监听滚动，控制导航栏显示/隐藏
+  // 各板块可见状态（用于触发进入动画，离开后重置，再次进入可重播）
+  const [insightVisible, setInsightVisible] = useState(false);
+  const [evalVisible, setEvalVisible] = useState(false);
+  const [reportVisible, setReportVisible] = useState(false);
+
+  // 板块 ref
+  const insightSectionRef = useRef<HTMLElement>(null);
+  const evalSectionRef = useRef<HTMLElement>(null);
+  const reportSectionRef = useRef<HTMLElement>(null);
+
+  // 监听滚动，控制导航栏当前激活项
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      // Hero（60px）之后显示导航栏
-      setNavVisible(scrollY > window.innerHeight * 0.5);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // IntersectionObserver 监听当前可见 section
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -50,150 +46,229 @@ const Home = () => {
 
     NAV_SECTIONS.forEach(({ id }) => {
       const el = document.getElementById(id);
-      if (el) observerRef.current?.observe(el);
+      if (el) observer.observe(el);
     });
 
-    return () => observerRef.current?.disconnect();
+    return () => observer.disconnect();
+  }, []);
+
+  // 监听三个板块的可见性，用于触发入场动画（支持离开后重置，再次进入重播）
+  useEffect(() => {
+    const sections = [
+      { ref: insightSectionRef, setVisible: setInsightVisible },
+      { ref: evalSectionRef, setVisible: setEvalVisible },
+      { ref: reportSectionRef, setVisible: setReportVisible },
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target as HTMLElement;
+          const section = sections.find((s) => s.ref.current === target);
+          if (section) {
+            // 进入视口时设为 true，离开时设为 false，确保每次进入都播放动画
+            section.setVisible(entry.isIntersecting);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sections.forEach(({ ref }) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="home-page">
-      {/* ===== 顶部浮动导航栏（仅后三页显示） ===== */}
-      <nav className={`top-nav ${navVisible ? 'visible' : ''}`}>
+      {/* ===== 固定导航栏 ===== */}
+      <nav className="top-nav">
         <div className="top-nav-inner">
-          {NAV_SECTIONS.map((s) => (
-            <button
-              key={s.id}
-              className={`nav-btn ${activeSection === s.id ? 'active' : ''}`}
-              onClick={() => scrollToSection(s.id)}
-            >
-              {s.label}
-            </button>
-          ))}
+          <div className="nav-logo">AI 职业规划</div>
+          <div className="nav-links">
+            {NAV_SECTIONS.map((s) => (
+              <span
+                key={s.id}
+                className={`nav-link ${activeSection === s.id ? 'active' : ''}`}
+                onClick={() => scrollToSection(s.id)}
+              >
+                {s.label}
+              </span>
+            ))}
+          </div>
+          <button className="nav-cta" onClick={() => scrollToSection('eval')}>
+            立即测评
+          </button>
+          <button className="nav-menu-btn">☰</button>
         </div>
       </nav>
 
-      {/* ===== 模块一：Hero ===== */}
+      {/* ===== 板块一：Hero 首屏 ===== */}
       <section className="hero-section" id="hero">
+        <div className="hero-bg" />
         <div className="hero-content">
           <div className="hero-badge">✨ AI 驱动 · 智能规划</div>
-          <h1 className="hero-title">基于 AI 的大学生职业规划智能体</h1>
+          <h1 className="hero-title">
+            AI 精准测评，让职业选择<span className="highlight">更简单</span>
+          </h1>
           <p className="hero-subtitle">
-            从岗位大数据出发，洞察市场趋势，分析个人能力，<br />
-            生成专属职业生涯发展报告
+            基于AI大数据，精准匹配你的能力、兴趣与岗位需求，告别迷茫，
+            解锁专属职业方向——无需复杂思考，一键测评，直达适配路径。
           </p>
+          <button className="hero-cta" onClick={() => scrollToSection('eval')}>
+            立即测评
+          </button>
+          <p className="hero-hint">测评免费 · 报告精准 · 隐私保护</p>
+        </div>
+        <div className="hero-scroll-hint">
+          <span>向下滑动</span>
+          <span className="hero-scroll-icon">↓</span>
+        </div>
+      </section>
 
-          {/* 三个跳转卡片 */}
-          <div className="hero-features">
-            <div className="hero-feature-card" onClick={() => scrollToSection('market')}>
-              <span className="hero-feature-icon">📊</span>
-              <span className="hero-feature-num">01</span>
-              <span className="hero-feature-title">快速了解就业市场需求</span>
-              <span className="hero-feature-desc">实时岗位分布、薪资行情、企业用人偏好</span>
-              <span className="hero-feature-arrow">→</span>
+      {/* ===== 板块二：全景洞察岗位 ===== */}
+      <section
+        className={`insight-section ${insightVisible ? 'section-visible' : ''}`}
+        id="insight"
+        ref={insightSectionRef}
+      >
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">全景洞察岗位，看清细节与发展关系</h2>
+            <div className="section-title-underline" />
+            <p className="section-desc">
+              覆盖全行业AI相关岗位，拆解岗位职责、技能要求、薪资范围、晋升路径，
+              用数据帮你看清岗位本质，避开选择误区。
+            </p>
+          </div>
+
+          <div className="insight-grid">
+            <div className="feature-card" onClick={() => navigate('/dashboard')}>
+              <div className="feature-icon">📊</div>
+              <h3 className="feature-title">岗位看板</h3>
+              <p className="feature-desc">
+                实时更新全行业AI相关岗位动态、薪资波动、招聘热度，一目了然
+              </p>
+              <span className="feature-link">进入 →</span>
             </div>
-
-            <div className="hero-feature-card" onClick={() => scrollToSection('ability')}>
-              <span className="hero-feature-icon">🎯</span>
-              <span className="hero-feature-num">02</span>
-              <span className="hero-feature-title">分析自身就业能力与意愿</span>
-              <span className="hero-feature-desc">多维度能力评估，找到最适合你的方向</span>
-              <span className="hero-feature-arrow">→</span>
+            <div className="feature-card" onClick={() => navigate('/profile-list')}>
+              <div className="feature-icon">👤</div>
+              <h3 className="feature-title">岗位画像</h3>
+              <p className="feature-desc">
+                拆解岗位核心职责、技能要求、任职门槛，精准呈现岗位核心特质
+              </p>
+              <span className="feature-link">进入 →</span>
             </div>
-
-            <div className="hero-feature-card" onClick={() => scrollToSection('report')}>
-              <span className="hero-feature-icon">📋</span>
-              <span className="hero-feature-num">03</span>
-              <span className="hero-feature-title">生成职业生涯发展报告</span>
-              <span className="hero-feature-desc">AI 智能生成个性化职业发展路径规划</span>
-              <span className="hero-feature-arrow">→</span>
+            <div className="feature-card" onClick={() => navigate('/map')}>
+              <div className="feature-icon">🗺️</div>
+              <h3 className="feature-title">岗位地图</h3>
+              <p className="feature-desc">
+                可视化展现岗位全国分布，清晰了解职业地区差异与机会
+              </p>
+              <span className="feature-link">进入 →</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== 模块二：快速了解就业市场需求 ===== */}
-      <section className="market-section" id="market">
-        <div className="section-card market-card">
-          <div className="section-card-header">
-            <span className="section-card-num color-blue">01</span>
-            <div>
-              <h2 className="section-card-title">快速了解就业市场需求</h2>
-              <p className="section-card-desc">从多角度洞察市场行情</p>
-            </div>
+      {/* ===== 板块三：科学测评 ===== */}
+      <section
+        className={`eval-section ${evalVisible ? 'section-visible' : ''}`}
+        id="eval"
+        ref={evalSectionRef}
+      >
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">科学测评实力，找到最适配你的岗位</h2>
+            <div className="section-title-underline" />
           </div>
-          <div className="feature-row">
-            <div className="feature-item" onClick={() => navigate('/dashboard')}>
-              <span className="feature-item-icon">📋</span>
-              <span className="feature-item-title">岗位看板</span>
-              <span className="feature-item-desc">实时岗位列表，多维度筛选，查看统计数据</span>
-              <span className="feature-item-link">进入 →</span>
+
+          <div className="eval-container">
+            {/* 左侧功能区 */}
+            <div className="eval-text">
+              <div className="eval-card" onClick={() => navigate('/capability-analysis')}>
+                <h3>🔬 能力测评</h3>
+                <p>
+                  多维度拆解个人能力，涵盖专业技能、通用能力、潜力特质三大核心维度，
+                  通过科学题库与AI分析，精准量化个人能力短板与优势，拒绝模糊判断。
+                </p>
+                <span className="eval-card-link">开始测评 →</span>
+              </div>
+
+              <div className="eval-card" onClick={() => navigate('/job-match')}>
+                <h3>🎯 岗位匹配</h3>
+                <p>
+                  基于能力测评结果，结合千万级岗位数据库，AI智能匹配岗位适配度，
+                  生成适配排名，标注适配亮点与改进方向，帮你快速锁定最适合的岗位。
+                </p>
+                <span className="eval-card-link">立即匹配 →</span>
+              </div>
             </div>
-            <div className="feature-item" onClick={() => navigate('/profile-list')}>
-              <span className="feature-item-icon">👤</span>
-              <span className="feature-item-title">岗位画像</span>
-              <span className="feature-item-desc">选择岗位类型，查看整体能力画像与统计分析</span>
-              <span className="feature-item-link">进入 →</span>
-            </div>
-            <div className="feature-item" onClick={() => navigate('/map')}>
-              <span className="feature-item-icon">🗺️</span>
-              <span className="feature-item-title">岗位地图</span>
-              <span className="feature-item-desc">在地图上直观查看不同岗位的地理分布情况</span>
-              <span className="feature-item-link">进入 →</span>
+
+            {/* 右侧图片区域（占位） */}
+            <div className="eval-visual">
+              <div className="eval-visual-placeholder">
+                <span>测评流程示意图位置</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== 模块三：分析自身就业能力与意愿 ===== */}
-      <section className="ability-section" id="ability">
-        <div className="section-card ability-card">
-          <div className="section-card-header">
-            <span className="section-card-num color-teal">02</span>
-            <div>
-              <h2 className="section-card-title">分析自身就业能力与意愿</h2>
-              <p className="section-card-desc">多维度评估，找到最适合你的方向</p>
-            </div>
+      {/* ===== 板块四：专属报告 ===== */}
+      <section
+        className={`report-section ${reportVisible ? 'section-visible' : ''}`}
+        id="report"
+        ref={reportSectionRef}
+      >
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">定制你的专属报告，解锁清晰职业路径</h2>
+            <div className="section-title-underline" />
+            <p className="section-desc">
+              一份专属报告，涵盖你的测评分析、岗位适配排名、能力提升建议、
+              长期职业规划，帮你从"迷茫"到"清晰"，一步到位。
+            </p>
           </div>
-          <div className="placeholder-row">
-            <div className="placeholder-item">
-              <div className="placeholder-item-icon">🔍</div>
-              <div className="placeholder-item-title">能力测评</div>
-              <div className="placeholder-item-desc">AI 多维度能力评估</div>
+
+          <div className="report-card-inner">
+            <div className="report-modules">
+              <div className="report-module">
+                <div className="report-module-icon">📋</div>
+                <div className="report-module-title">能力测评总结</div>
+              </div>
+              <div className="report-module">
+                <div className="report-module-icon">🎯</div>
+                <div className="report-module-title">岗位适配分析</div>
+              </div>
+              <div className="report-module">
+                <div className="report-module-icon">💡</div>
+                <div className="report-module-title">专属改进建议</div>
+              </div>
             </div>
-            <div className="placeholder-item">
-              <div className="placeholder-item-icon">⚡</div>
-              <div className="placeholder-item-title">意愿匹配</div>
-              <div className="placeholder-item-desc">基于兴趣与价值观匹配</div>
-            </div>
-            <div className="placeholder-item">
-              <div className="placeholder-item-icon">🚀</div>
-              <div className="placeholder-item-title">竞争力分析</div>
-              <div className="placeholder-item-desc">与目标岗位对比分析</div>
+            <div className="report-actions">
+              <button
+                className="report-cta"
+                onClick={() => navigate('/career-report')}
+              >
+                立即获取专属报告
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== 模块四：生成职业生涯发展报告 ===== */}
-      <section className="report-section" id="report">
-        <div className="section-card report-card">
-          <div className="section-card-header">
-            <span className="section-card-num color-violet">03</span>
-            <div>
-              <h2 className="section-card-title">生成职业生涯发展报告</h2>
-              <p className="section-card-desc">AI 智能生成专属职业发展路径规划</p>
-            </div>
-          </div>
-          <div className="placeholder-row single">
-            <div className="placeholder-item large">
-              <div className="placeholder-item-icon">📑</div>
-              <div className="placeholder-item-title">职业报告生成器</div>
-              <div className="placeholder-item-desc">输入背景与目标，获取专属职业规划方案</div>
-            </div>
-          </div>
+      {/* ===== Footer ===== */}
+      <footer className="home-footer">
+        <div className="footer-content">
+          <span>© 2026 AI 职业规划智能体</span>
+          <a href="#">隐私政策</a>
+          <a href="#">使用条款</a>
+          <a href="#">联系我们</a>
         </div>
-      </section>
+      </footer>
     </div>
   );
 };

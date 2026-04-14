@@ -1,0 +1,5 @@
+models/
+*egg-info/
+__pycache__
+.claude/
+.idea/

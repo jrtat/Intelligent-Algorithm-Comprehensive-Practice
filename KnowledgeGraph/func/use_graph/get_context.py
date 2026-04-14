@@ -25,8 +25,8 @@ class ContextGetter:
         chunk_overlap: int = 40
     ) -> str:
         """
-        核心逻辑（保持不变）：对单个 Document 找到最相似的 chunk + 其相邻 chunk 中更接近的一个，合并后返回 merge_val
-        【修改点】：不再查询 Chunk 节点和向量索引，而是直接从 Document 的列表属性读取，并在 Python 端计算相似度
+        核心逻辑：对单个 Document 找到最相似的 chunk + 其相邻 chunk 中更接近的一个，合并后返回 merge_val
+        不再查询 Chunk 节点和向量索引，而是直接从 Document 的列表属性读取，并在 Python 端计算相似度
         """
         # Step 1：直接从 Document 节点读取 text_chunks 和 chunk_embeddings 两个列表
         records = self.graph.query(
@@ -102,7 +102,7 @@ class ContextGetter:
         node_id: int
     ) -> list[str]:
         """（保持完全不变，仅依赖 get_merge_val_for_doc）"""
-        embeddings = ()
+        embeddings = get_local_embedding()
 
         value_record = self.graph.query(
             """

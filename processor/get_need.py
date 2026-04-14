@@ -1,9 +1,11 @@
 from KnowledgeGraph.func.use_graph.cypher_search import Searcher
 from KnowledgeGraph.func.use_graph.get_context import ContextGetter
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
+from KnowledgeGraph.func.utils.get_models import get_embedding_temp
 from processor.utils.FileProcessor import FileProcessor
 
 graph = connect_neo4j()
+embeddings = get_embedding_temp()
 getter = ContextGetter(graph)
 searcher = Searcher(graph)
 

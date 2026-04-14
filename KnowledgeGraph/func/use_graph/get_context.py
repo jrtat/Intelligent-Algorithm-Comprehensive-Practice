@@ -3,8 +3,9 @@ from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from KnowledgeGraph.func.utils.get_models import get_embedding_temp
 
 class ContextGetter:
-    def __init__(self, graph):
+    def __init__(self, graph, embeddings):
         self.graph = graph
+        self.embeddings = embeddings
 
     @staticmethod
     def cosine_similarity(vec1, vec2):
@@ -100,7 +101,7 @@ class ContextGetter:
         """
 
         # Step 0：与图建立连接 & 初始化模型
-        embeddings = get_embedding_temp()
+
 
         # Step 1: 从知识节点取出文本值
         value_record = self.graph.query(
@@ -121,7 +122,7 @@ class ContextGetter:
             return []
 
         # Step 2：把得到的文本值向量化
-        value_embedding = embeddings.embed_query(value)
+        value_embedding = self.embeddings.embed_query(value)
 
         # Step 3：找出“与 node_id 直接相连”且“属于该 job_type 的岗位体系下” 的 Document
         doc_records = self.graph.query(

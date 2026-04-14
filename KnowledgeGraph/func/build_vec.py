@@ -60,12 +60,12 @@ def build_chunk():
     global chunk_vs  # 保留声明，但后面不再使用（已废弃向量索引）
 
     # Step 1：初始化 Embedding 模型 和 分块器
-
     embeddings = get_local_embedding() # 使用与 ContextGetter 中一致的 embedding 函数
     splitter = SemanticChunker(
         embeddings,
         breakpoint_threshold_type="percentile", # 使用百分位数方式决定哪里“断句”（最常用、最稳定）
-        breakpoint_threshold_amount=0.5, # 句间相似度低于多少时截断
+        breakpoint_threshold_amount=0.6, # 句间相似度低于多少时截断
+        sentence_split_regex=r'(?<=[。！？.!?；：…\n\r「」『』“”‘’])\s*'
     )  # LangChain 提供的语义分块器，根据 embedding 相似度在语义断点处切分
 
     # Step 2：与图数据库建立连接
@@ -97,31 +97,25 @@ def build_chunk():
             if not chunk_texts:
                 continue
 
-            # 一次性计算所有 chunk 的 embedding（列表形式）
-            chunk_embeddings = embeddings.embed_documents(chunk_texts)
-
-            # 直接把两个列表写入 Document 节点（而不是创建 Chunk 节点）
+            # 直接把 chunk_texts 列表写入 Document 节点（不再存储 chunk_embeddings）
             graph.query(
                 """
                 MATCH (doc:Document) WHERE elementId(doc) = $doc_id
-                SET doc.text_chunks = $chunk_texts,
-                    doc.chunk_embeddings = $chunk_embeddings
+                SET doc.text_chunks = $chunk_texts
                 """,
                 params={
                     "doc_id": doc_id,
-                    "chunk_texts": chunk_texts,
-                    "chunk_embeddings": chunk_embeddings
+                    "chunk_texts": chunk_texts
                 }
             )
 
             total_docs += 1
             total_chunks += len(chunk_texts)
-            print(f"已处理 Document {doc_id} → 生成 {len(chunk_texts)} 个 chunk（已存为列表属性）")
+            print(f"已处理 Document {doc_id} → 生成 {len(chunk_texts)} 个 chunk（已存为 text_chunks 列表属性）")
 
         skip += batch_size
 
-    print(f"\n 完成！共处理 {total_docs} 个 Document，每个 Document 已将 chunks 存为 text_chunks / chunk_embeddings 列表属性。")
-
+    print(f"\n 完成！共处理 {total_docs} 个 Document，每个 Document 已将 chunks 存为 text_chunks 列表属性。")
 def build_vec():
     """
     初始化所有的向量索引

@@ -27,14 +27,13 @@ class ContextGetter:
         核心逻辑：对单个 Document 找到最相似的 chunk + 其相邻 chunk 中相似度更高的一个，合并后返回 merge_val
         由于划分 chunk 时已经没有 overlap，合并时直接拼接即可，无需任何 overlap 去重/trim 逻辑
         """
-        # Step 1：直接从 Document 节点读取 text_chunks 和 chunk_embeddings 两个列表
+        # Step 1：直接从 Document 节点读取 text_chunks（不再读取 chunk_embeddings）
         records = self.graph.query(
             """
             MATCH (doc:Document)
             WHERE elementId(doc) = $doc_id
             RETURN 
-                doc.text_chunks AS text_chunks,
-                doc.chunk_embeddings AS chunk_embeddings
+                doc.text_chunks AS text_chunks
             """,
             params={"doc_id": doc_id}
         )
@@ -44,10 +43,13 @@ class ContextGetter:
 
         r = records[0]
         text_chunks = r.get("text_chunks") or []
-        chunk_embeddings = r.get("chunk_embeddings") or []
 
         if not text_chunks or len(text_chunks) == 0:
             return ""
+
+        # Step 1.5：现场计算所有 chunk 的 embedding（取代原来存储的 chunk_embeddings）
+        embeddings = get_local_embedding()
+        chunk_embeddings = embeddings.embed_documents(text_chunks)
 
         # Step 2：在 Python 端计算每个 chunk 与 value_embedding 的相似度，找出最相似的一个
         similarities = []

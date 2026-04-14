@@ -101,7 +101,7 @@ class ContextGetter:
         job_type_id: int,
         node_id: int
     ) -> list[str]:
-        """（保持完全不变，仅依赖 get_merge_val_for_doc）"""
+        """保持完全不变，仅依赖 get_merge_val_for_doc"""
         embeddings = get_local_embedding()
 
         value_record = self.graph.query(
@@ -155,7 +155,7 @@ class ContextGetter:
         job_type_id: int,
         property_type: str
     ) -> list[str]:
-        """（保持完全不变，仅依赖 get_merge_val_for_doc）"""
+        """保持完全不变，仅依赖 get_merge_val_for_doc"""
         embeddings = get_local_embedding()
 
         job_records = self.graph.query(

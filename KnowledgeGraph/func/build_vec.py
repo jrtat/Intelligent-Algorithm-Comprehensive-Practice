@@ -64,8 +64,8 @@ def build_chunk():
     splitter = SemanticChunker(
         embeddings,
         breakpoint_threshold_type="percentile", # 使用百分位数方式决定哪里“断句”（最常用、最稳定）
-        breakpoint_threshold_amount=0.6, # 句间相似度低于多少时截断
-        sentence_split_regex=r'(?<=[。！？.!?；：…\n\r「」『』“”‘’])\s*'
+        breakpoint_threshold_amount=0.75, # 句间相似度低于多少时截断
+        sentence_split_regex = r'(?<=[。！？.!?；：…\n\r])\s*'
     )  # LangChain 提供的语义分块器，根据 embedding 相似度在语义断点处切分
 
     # Step 2：与图数据库建立连接

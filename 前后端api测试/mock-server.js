@@ -4,67 +4,42 @@ const crypto = require('crypto');
 
 const PORT = 8000;
 
-const mockJobData = {
-  job_id: "mock_job_001",
-  job_name: "前端开发工程师",
-  location: "北京·朝阳",
-  salary_range: "20k-35k",
-  salary_min: 20000,
-  company_name: "测试科技有限公司",
+// 单个岗位数据模板
+const createJobData = (id, jobName, companyName, location, salaryMin, salaryMax, matchScore, benchmarkScore) => ({
+  job_id: `mock_job_${id}`,
+  job_name: jobName,
+  location: location,
+  salary_range: `${salaryMin / 1000}k-${salaryMax / 1000}k`,
+  salary_min: salaryMin,
+  company_name: companyName,
   industry: "互联网",
   company_size: "500-1000人",
   company_type: "民营企业",
   update_date: "2026-04-14",
-  source_url: "https://example.com/job/1",
+  source_url: `https://example.com/job/${id}`,
   job_details: "岗位职责：负责公司前端业务开发...",
   company_details: "公司简介：一家专注于AI技术的互联网公司...",
-  match_score: 85.5,
-  benchmark_total_score: 80.0,
+  match_score: matchScore,
+  benchmark_total_score: benchmarkScore,
   dimension_analysis: {
-    professional_skill: {
-      score: 82,
-      benchmark_score: 85,
-      matched_reason: "熟练掌握 React/Vue 等主流框架",
-      missing_reason: "缺乏大型前端架构设计经验"
-    },
-    innovation_ability: {
-      score: 78,
-      benchmark_score: 75,
-      matched_reason: "有多个创新项目经验",
-      missing_reason: "无"
-    },
-    learning_ability: {
-      score: 88,
-      benchmark_score: 80,
-      matched_reason: "学习能力强，快速掌握新技术",
-      missing_reason: "无"
-    },
-    stress_resistance: {
-      score: 75,
-      benchmark_score: 78,
-      matched_reason: "能适应一定的工作压力",
-      missing_reason: "高压环境经验可以更多"
-    },
-    communication_ability: {
-      score: 80,
-      benchmark_score: 78,
-      matched_reason: "沟通表达清晰流畅",
-      missing_reason: "跨团队协作经验可以加强"
-    },
-    internship_experience: {
-      score: 70,
-      benchmark_score: 75,
-      matched_reason: "有相关实习经历",
-      missing_reason: "实习时间较短"
-    },
-    teamwork_ability: {
-      score: 82,
-      benchmark_score: 80,
-      matched_reason: "团队协作能力良好",
-      missing_reason: "无"
-    }
+    professional_skill: { score: 82, benchmark_score: 85, matched_reason: "熟练掌握 React/Vue 等主流框架", missing_reason: "缺乏大型前端架构设计经验" },
+    innovation_ability: { score: 78, benchmark_score: 75, matched_reason: "有多个创新项目经验", missing_reason: "无" },
+    learning_ability: { score: 88, benchmark_score: 80, matched_reason: "学习能力强，快速掌握新技术", missing_reason: "无" },
+    stress_resistance: { score: 75, benchmark_score: 78, matched_reason: "能适应一定的工作压力", missing_reason: "高压环境经验可以更多" },
+    communication_ability: { score: 80, benchmark_score: 78, matched_reason: "沟通表达清晰流畅", missing_reason: "跨团队协作经验可以加强" },
+    internship_experience: { score: 70, benchmark_score: 75, matched_reason: "有相关实习经历", missing_reason: "实习时间较短" },
+    teamwork_ability: { score: 82, benchmark_score: 80, matched_reason: "团队协作能力良好", missing_reason: "无" }
   }
-};
+});
+
+// 返回多个岗位数据
+const mockJobDataList = [
+  createJobData("001", "前端开发工程师", "测试科技有限公司", "北京·朝阳", 20000, 35000, 85.5, 80.0),
+  createJobData("002", "React开发工程师", "字节跳动", "北京·海淀", 30000, 50000, 82.3, 85.0),
+  createJobData("003", "Vue前端工程师", "阿里巴巴", "杭州", 25000, 45000, 78.9, 82.0),
+  createJobData("004", "前端架构师", "腾讯", "深圳·南山", 40000, 70000, 75.2, 88.0),
+  createJobData("005", "全栈开发工程师", "美团", "北京·朝阳", 28000, 48000, 80.6, 78.0),
+];
 
 // 存储任务状态
 const tasks = new Map();
@@ -103,7 +78,7 @@ const server = http.createServer((req, res) => {
       }, 1000);
 
       setTimeout(() => {
-        tasks.set(taskId, { status: 'completed', progress: 100, result: mockJobData });
+        tasks.set(taskId, { status: 'completed', progress: 100, result: mockJobDataList });
       }, 3000);
 
       res.writeHead(202, { 'Content-Type': 'application/json' });

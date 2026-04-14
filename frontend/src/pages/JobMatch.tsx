@@ -123,15 +123,20 @@ export default function JobMatch() {
   const [sortConfig, setSortConfig] = useState<{ key: 'salary_min' | 'match_score', direction: 'asc' | 'desc' } | null>({ key: 'match_score', direction: 'desc' });
   const [jobList, setJobList] = useState<JobData[]>([]);
 
-  // 从 sessionStorage 读取匹配结果
+  // 从 localStorage 读取匹配结果
   useEffect(() => {
-    const savedResult = sessionStorage.getItem('matchResult');
+    if (jobList.length > 0) return;
+
+    const savedResult = localStorage.getItem('matchResult');
     if (savedResult) {
       try {
         const parsed = JSON.parse(savedResult);
-        setJobList([parsed]);
-        // 清除 sessionStorage，避免刷新后重复显示
-        sessionStorage.removeItem('matchResult');
+        // 支持单个对象或数组两种格式
+        if (Array.isArray(parsed)) {
+          setJobList(parsed);
+        } else {
+          setJobList([parsed]);
+        }
       } catch (e) {
         console.error('解析匹配结果失败:', e);
       }
@@ -144,7 +149,7 @@ export default function JobMatch() {
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      result = result.filter(job => 
+      result = result.filter(job =>
         job.job_name.toLowerCase().includes(query) ||
         job.company_name.toLowerCase().includes(query) ||
         job.industry.toLowerCase().includes(query) ||
@@ -165,7 +170,7 @@ export default function JobMatch() {
     }
 
     return result;
-  }, [searchQuery, sortConfig]);
+  }, [jobList, searchQuery, sortConfig]);
 
   const highestScore = filteredAndSortedJobs.length > 0 
     ? Math.max(...filteredAndSortedJobs.map(j => j.match_score))

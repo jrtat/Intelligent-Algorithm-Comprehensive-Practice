@@ -388,8 +388,8 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
         },
       });
 
-      // 将匹配结果存储到 sessionStorage，供 JobMatch 页面使用
-      sessionStorage.setItem('matchResult', JSON.stringify(result));
+      // 将匹配结果存储到 localStorage，供 JobMatch 页面使用
+      localStorage.setItem('matchResult', JSON.stringify(result));
       navigate('/job-match');
     } catch (error: any) {
       console.error('匹配失败:', error);

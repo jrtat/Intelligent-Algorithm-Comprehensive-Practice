@@ -1,9 +1,13 @@
+import os
+
 from KnowledgeGraph.func.use_graph.cypher_search import Searcher
 from KnowledgeGraph.func.use_graph.get_context import ContextGetter
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from KnowledgeGraph.func.utils.get_models import get_local_embedding
 from processor.utils.FileProcessor import FileProcessor
 from tqdm import tqdm
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 graph = connect_neo4j()
 embeddings = get_local_embedding()
@@ -55,7 +59,7 @@ if __name__ == '__main__':
 
     ids = searcher.get_all_node_ids_by_label("职业类别")
 
-    for i in ids[0:10]:
+    for i in ids[50:]:
         get_info(i, "knowledge", "综合素质")
         get_info(i, "knowledge", "职业技能")
         get_info(i, "knowledge", "证书")

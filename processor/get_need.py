@@ -10,6 +10,9 @@ embeddings = get_local_embedding()
 getter = ContextGetter(graph, embeddings)
 searcher = Searcher(graph)
 
+fp_map = FileProcessor("maps/id2num.json")
+dic_map = fp_map.read()
+
 # 需求类型 → 对应的关系类型
 KNOWLEDGE_REL_MAP = {
     "综合素质": "需要具有", # 数值
@@ -21,17 +24,24 @@ KNOWLEDGE_REL_MAP = {
 }
 
 def get_info(job_type_id, source_type, source_value):
-    fp = FileProcessor(f"need_data/{searcher.get_property_by_internal_id(job_type_id, 'id')}_{source_value}.json")
-    dic = {}
+    fp = FileProcessor(f"need_data/{dic_map[job_type_id]}_{source_value}.json")
+    dic = fp.read()
     if source_type == "knowledge":
         ids = searcher.get_related_node_ids(job_type_id, "属于")
         lst_ids = []
         print(f"需要提取{len(ids)}个岗位的{source_value}信息：")
         for i in tqdm(ids):
             lst_ids.extend(searcher.get_related_node_ids(i, KNOWLEDGE_REL_MAP[source_value]))
-        print(f"需要汇总{len(lst_ids)}个画像：")
-        for key in tqdm(lst_ids):
+        set_ids = set(lst_ids)
+        print(f"需要汇总{len(set_ids)}个特征：")
+        c = 0
+        for key in tqdm(set_ids):
+            if searcher.get_property_by_internal_id(key, "id") in dic:
+                continue
             dic[searcher.get_property_by_internal_id(key, "id")] = getter.get_knowledge_merge_vals(job_type_id, key)
+            c += 1
+            if c % 10 == 0:
+                fp.save(dic)
 
     elif source_type == "property":
         dic[source_value] = getter.get_job_property_merge_vals(job_type_id, source_value)
@@ -45,7 +55,7 @@ if __name__ == '__main__':
 
     ids = searcher.get_all_node_ids_by_label("职业类别")
 
-    for i in ids:
+    for i in ids[0:10]:
         get_info(i, "knowledge", "综合素质")
         get_info(i, "knowledge", "职业技能")
         get_info(i, "knowledge", "证书")
@@ -55,7 +65,7 @@ if __name__ == '__main__':
         get_info(i, "property", "晋升路径")
         get_info(i, "property", "学历要求")
 
-    for i in ids:
+    # for i in ids[0:10]:
         get_info(i, "knowledge", "工作内容")
         get_info(i, "knowledge", "福利待遇")
 

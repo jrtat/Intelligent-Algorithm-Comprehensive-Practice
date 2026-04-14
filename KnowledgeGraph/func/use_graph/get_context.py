@@ -1,12 +1,12 @@
-from langchain_neo4j import Neo4jVector
 from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from KnowledgeGraph.func.utils.get_models import get_embedding_temp
+
 from tqdm import tqdm
 
 class ContextGetter:
-    def __init__(self, graph, embeddings):
-        self.graph = graph
-        self.embeddings = embeddings
+
+    def __init__(self):
+        self.graph = connect_neo4j()
 
     @staticmethod
     def cosine_similarity(vec1, vec2):
@@ -25,68 +25,72 @@ class ContextGetter:
         chunk_overlap: int = 40
     ) -> str:
         """
-        核心逻辑：对单个 Document 找到最相似的 Chunk + 其前后 Chunk 中更接近的一个，合并后返回 merge_val
+        核心逻辑（保持不变）：对单个 Document 找到最相似的 chunk + 其相邻 chunk 中更接近的一个，合并后返回 merge_val
+        【修改点】：不再查询 Chunk 节点和向量索引，而是直接从 Document 的列表属性读取，并在 Python 端计算相似度
         """
-        # Step 1： 使用向量索引找出该 Document 下最相似的 1 个 Chunk（限制在该 doc 的 Chunk）
+        # Step 1：直接从 Document 节点读取 text_chunks 和 chunk_embeddings 两个列表
         records = self.graph.query(
             """
-            CALL db.index.vector.queryNodes('chunk_index', 1, $value_embedding)
-            YIELD node AS chunk, score
-            MATCH (chunk)-[:FROM_DOCUMENT]->(d:Document)
-            WHERE elementId(d) = $doc_id
-            WITH chunk, score
-    
-            OPTIONAL MATCH (prev:Chunk)-[:NEXT_CHUNK]->(chunk)
-            OPTIONAL MATCH (chunk)-[:NEXT_CHUNK]->(next:Chunk)
-    
+            MATCH (doc:Document)
+            WHERE id(doc) = $doc_id
             RETURN 
-                chunk.text AS top_text,
-                prev.text AS prev_text,
-                prev.chunk_embedding AS prev_emb,
-                next.text AS next_text,
-                next.chunk_embedding AS next_emb,
-                score
+                doc.text_chunks AS text_chunks,
+                doc.chunk_embeddings AS chunk_embeddings
             """,
-            params={
-                "value_embedding": value_embedding,
-                "doc_id": doc_id
-            }
+            params={"doc_id": doc_id}
         )
 
         if not records:
             return ""
 
         r = records[0]
-        top_text = r.get("top_text") or ""
-        prev_text = r.get("prev_text")
-        prev_emb = r.get("prev_emb")
-        next_text = r.get("next_text")
-        next_emb = r.get("next_emb")
+        text_chunks = r.get("text_chunks") or []
+        chunk_embeddings = r.get("chunk_embeddings") or []
 
-        if not top_text:
+        if not text_chunks or len(text_chunks) == 0:
             return ""
 
-        # Step 2：判断前后两个 Chunk 中哪个与 value 更接近
-        candidates = []
-        if prev_text and prev_emb:
-            sim_prev = self.cosine_similarity(value_embedding, prev_emb)
-            candidates.append((sim_prev, prev_text))
-        if next_text and next_emb:
-            sim_next = self.cosine_similarity(value_embedding, next_emb)
-            candidates.append((sim_next, next_text))
+        # Step 2：在 Python 端计算每个 chunk 与 value_embedding 的相似度，找出最相似的一个
+        similarities = []
+        for i, emb in enumerate(chunk_embeddings):
+            if emb:  # 防止空向量
+                sim = self.cosine_similarity(value_embedding, emb)
+                similarities.append((sim, i, text_chunks[i]))
 
-        if not candidates:  # 如果没有前后 Chunk，直接返回 top
+        if not similarities:
+            return text_chunks[0] if text_chunks else ""
+
+        # 取出相似度最高的 chunk
+        best_sim, top_idx, top_text = max(similarities, key=lambda x: x[0])
+
+        # Step 3：获取相邻的两个 candidate（prev 和 next）
+        candidates = []
+        # 前一个 chunk
+        if top_idx > 0:
+            prev_emb = chunk_embeddings[top_idx - 1]
+            if prev_emb:
+                sim_prev = self.cosine_similarity(value_embedding, prev_emb)
+                candidates.append((sim_prev, text_chunks[top_idx - 1]))
+        # 后一个 chunk
+        if top_idx < len(text_chunks) - 1:
+            next_emb = chunk_embeddings[top_idx + 1]
+            if next_emb:
+                sim_next = self.cosine_similarity(value_embedding, next_emb)
+                candidates.append((sim_next, text_chunks[top_idx + 1]))
+
+        if not candidates:
             return top_text
 
-        best_sim, best_adj_text = max(candidates, key=lambda x: x[0]) # 选相似度最高的那个相邻 Chunk
+        # 选相似度更高的相邻 chunk
+        best_adj_sim, best_adj_text = max(candidates, key=lambda x: x[0])
 
-        # Step 3：合并（处理重叠）
+        # Step 4：合并（处理重叠逻辑保持不变）
         if len(top_text) >= chunk_overlap and len(best_adj_text) >= chunk_overlap:
-            # 由于 splitter 的 overlap 是固定 40 字符，且相邻 chunk 必然满足 end==start[overlap]
+            # SemanticChunker 虽然没有固定 overlap，但我们仍尝试重叠去重
             if top_text[-chunk_overlap:] == best_adj_text[:chunk_overlap]:
                 merged = top_text + best_adj_text[chunk_overlap:]
             else:
-                merged = top_text + " " + best_adj_text  # 兜底
+                merged = top_text + " " + best_adj_text
         else:
             merged = top_text + " " + best_adj_text
 
@@ -94,23 +98,18 @@ class ContextGetter:
 
     def get_knowledge_merge_vals(
         self,
-        job_type_id: str,
-        node_id: str # 该类型节点（已通过 job_type_id → 岗位 → node_id 两条边连接）
+        job_type_id: int,
+        node_id: int
     ) -> list[str]:
-        """
-        返回 list，每个元素是对应 Document 的 merge_val。
-        """
+        """（保持完全不变，仅依赖 get_merge_val_for_doc）"""
+        embeddings = get_embedding_temp()
 
-        # Step 0：与图建立连接 & 初始化模型
-
-
-        # Step 1: 从知识节点取出文本值
         value_record = self.graph.query(
-            f"""
-                MATCH (n)
-                WHERE elementId(n) = $node_id
-                RETURN n.id AS value
-                """,
+            """
+            MATCH (n)
+            WHERE id(n) = $node_id
+            RETURN n.id AS value
+            """,
             params={"node_id": node_id}
         )
 
@@ -122,99 +121,83 @@ class ContextGetter:
         if not value:
             return []
 
-        # Step 2：把得到的文本值向量化
-        value_embedding = self.embeddings.embed_query(value)
+        value_embedding = embeddings.embed_query(value)
 
-        # Step 3：找出“与 node_id 直接相连”且“属于该 job_type 的岗位体系下” 的 Document
         doc_records = self.graph.query(
             """
             MATCH (jt:职业类别)-[:属于]-(job:岗位)-[r]->(n)
-            WHERE elementId(jt) = $job_type_id 
-              AND elementId(n) = $node_id
+            WHERE id(jt) = $job_type_id 
+              AND id(n) = $node_id
               AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自']
-    
-            MATCH (doc:Document)-[:MENTIONS]->(job)
-    
-            RETURN DISTINCT elementId(doc) AS doc_id
+            MATCH (doc:Document)-[:MENTIONS]->(n)
+            RETURN DISTINCT id(doc) AS doc_id
             """,
             params={"job_type_id": job_type_id, "node_id": node_id}
         )
 
-        # Step 4：把找到的 Document 转成列表
         doc_ids = [r["doc_id"] for r in doc_records if r.get("doc_id") is not None]
-
         if not doc_ids:
             print(f"未找到与 job_type_id={job_type_id} 和 node_id={node_id} 关联的 Document")
             return []
 
-        # Step 5: 对每个 Document 计算 merge_val
-        result = [] # 记录结果
+        result = []
         for doc_id in doc_ids:
             merge_val = self.get_merge_val_for_doc(
                 doc_id=doc_id,
                 value_embedding=value_embedding
-            ) # 使用辅助函数
-            if merge_val:  # 只添加非空结果
+            )
+            if merge_val:
                 result.append(merge_val)
-
         return result
 
     def get_job_property_merge_vals(
         self,
-        job_type_id: str,
-        property_type: str  # "学历要求"、"晋升路径" 之一
+        job_type_id: int,
+        property_type: str
     ) -> list[str]:
-        """
-        返回 list，每个元素是对应 Document 的 merge_val。
-        """
-        # Step 0：与图建立连接 & 初始化模型
+        """（保持完全不变，仅依赖 get_merge_val_for_doc）"""
         embeddings = get_embedding_temp()
 
-        # Step 1：找出所有与 job_type 直接相连的 岗位 节点，并取出对应属性值
         job_records = self.graph.query(
             """
             MATCH (job:岗位)-[:属于]->(jt:职业类别)
-            WHERE elementId(jt) = $job_type_id
-            RETURN elementId(job) AS job_id, job[$prop_type] AS value
+            WHERE id(jt) = $job_type_id
+            RETURN id(job) AS job_id, job[$prop_type] AS value
             """,
-            params={ "job_type_id": job_type_id, "prop_type": property_type }
+            params={"job_type_id": job_type_id, "prop_type": property_type}
         )
 
-        seen_doc_ids = set()   # 避免同一个 Document 被重复添加
+        seen_doc_ids = set()
         result = []
 
-        # Step 2：遍历每个岗位，查找该岗位对应的 Document 并计算 merge_val
-        for job_r in tqdm(job_records):
+        for job_r in job_records:
             job_id = job_r.get("job_id")
             value = job_r.get("value")
-
             if not job_id or not isinstance(value, str) or not value.strip():
                 continue
 
-            value_embedding = embeddings.embed_query(value) # 计算属性值 value 中的 embedding 值
+            value_embedding = embeddings.embed_query(value)
 
             doc_records = self.graph.query(
                 """
                 MATCH (doc:Document)-[:MENTIONS]->(job:岗位)
-                WHERE elementId(job) = $job_id
-                RETURN DISTINCT elementId(doc) AS doc_id
+                WHERE id(job) = $job_id
+                RETURN DISTINCT id(doc) AS doc_id
                 """,
                 params={"job_id": job_id}
-            ) # 找出该岗位被 Document 通过 [:MENTION] 关系指向的 Document 节点
+            )
 
-            for doc_r in doc_records: # 实际上一个 岗位节点 只会连接一个 Document 节点
+            for doc_r in doc_records:
                 doc_id = doc_r.get("doc_id")
-
-                if doc_id is None or doc_id in seen_doc_ids: # 防止重复添加（没用）
+                if doc_id is None or doc_id in seen_doc_ids:
                     continue
-                seen_doc_ids.add(doc_id) # 记录 Document 节点的 id
+                seen_doc_ids.add(doc_id)
 
                 merge_val = self.get_merge_val_for_doc(
                     doc_id=doc_id,
                     value_embedding=value_embedding
-                ) # 调用辅助函数
-
-                if merge_val and merge_val.strip():   # 只添加非空结果
+                )
+                if merge_val and merge_val.strip():
                     result.append(merge_val)
 
         print(f"处理 job_type_id={job_type_id}, 属性={property_type} → 找到 {len(result)} 个 merge_val")

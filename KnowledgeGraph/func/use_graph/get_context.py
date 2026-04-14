@@ -127,7 +127,7 @@ class ContextGetter:
             WHERE elementId(jt) = $job_type_id 
               AND elementId(n) = $node_id
               AND type(r) IN ['需要具有','需要掌握','需要持有','负责','需要来自']
-            MATCH (doc:Document)-[:MENTIONS]->(n)
+            MATCH (doc:Document)-[:MENTIONS]->(job)
             RETURN DISTINCT elementId(doc) AS doc_id
             """,
             params={"job_type_id": job_type_id, "node_id": node_id}

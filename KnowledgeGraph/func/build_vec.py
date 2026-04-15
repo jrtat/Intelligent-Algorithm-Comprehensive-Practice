@@ -10,6 +10,7 @@ certificate_vs = None
 work_content_vs = None
 category_vs = None
 work_experience_vs = None
+welfare_vs = None
 
 company_vs = None
 company_industry_vs = None
@@ -115,26 +116,27 @@ def build_chunk():
         skip += batch_size
 
     print(f"\n 完成！共处理 {total_docs} 个 Document，每个 Document 已将 chunks 存为 text_chunks 列表属性。")
-def build_vec():
+
+def build_vec_ver1():
     """
     初始化所有的向量索引
     :return: 无返回值
     """
-    global personal_quality_vs, skill_vs, certificate_vs, work_content_vs, work_experience_vs, \
-        category_vs, company_vs, \
-        company_industry_vs, job_location_vs, job_major_vs
+    global personal_quality_vs, skill_vs, certificate_vs, work_content_vs, work_experience_vs, welfare_vs
     personal_quality_vs = create_specialized_vectorstore(
         index_name="综合素质_vector_index",
         node_label="综合素质",
         text_node_properties=["id"],
         embedding_node_property="综合素质_embedding",
         retrieval_query="""
-            RETURN 
-                node {.*, embedding: Null} AS text,
+        WITH node, score
+        OPTIONAL MATCH (position:岗位)-[]->(node)
+        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+        RETURN
+                coalesce(node.id, toString(node)) AS text,
                 score,
-                { 
-                    associated_posts: [(n)<-[:需要具有]-(p:岗位) | p.岗位]
-                } AS metadata
+                node {.*, 职业类型列表: 职业类型列表} AS metadata
         """
     )  # 综合素质向量索引
     skill_vs = create_specialized_vectorstore(
@@ -143,12 +145,14 @@ def build_vec():
         text_node_properties=["id"],
         embedding_node_property="职业技能_embedding",
         retrieval_query="""
-            RETURN 
-                node {.*, embedding: Null} AS text,
+        WITH node, score
+        OPTIONAL MATCH (position:岗位)-[]->(node)
+        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+        RETURN
+                coalesce(node.id, toString(node)) AS text,
                 score,
-                { 
-                    associated_posts: [(n)<-[:需要掌握]-(p:岗位) | p.岗位]
-                } AS metadata
+                node {.*, 职业类型列表: 职业类型列表} AS metadata
         """
     )  # 职业技能向量索引
     certificate_vs = create_specialized_vectorstore(
@@ -157,12 +161,14 @@ def build_vec():
         text_node_properties=["id"],
         embedding_node_property="证书_embedding",
         retrieval_query="""
-            RETURN 
-                node {.*, embedding: Null} AS text,
+        WITH node, score
+        OPTIONAL MATCH (position:岗位)-[]->(node)
+        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+        RETURN
+                coalesce(node.id, toString(node)) AS text,
                 score,
-                { 
-                    associated_posts: [(n)<-[:需要持有]-(p:岗位) | p.岗位]
-                } AS metadata
+                node {.*, 职业类型列表: 职业类型列表} AS metadata
         """
     )  # 证书向量索引
     work_content_vs = create_specialized_vectorstore(
@@ -171,86 +177,84 @@ def build_vec():
         text_node_properties=["id"],
         embedding_node_property="工作内容_embedding",
         retrieval_query="""
-            RETURN 
-                node {.*, embedding: Null} AS text,
+        WITH node, score
+        OPTIONAL MATCH (position:岗位)-[]->(node)
+        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+        RETURN
+                coalesce(node.id, toString(node)) AS text,
                 score,
-                { 
-                    associated_posts: [(n)<-[:负责]-(p:岗位) | p.岗位]
-                } AS metadata
+                node {.*, 职业类型列表: 职业类型列表} AS metadata
         """
     )  # 工作内容向量索引
-    work_experience_vs = create_specialized_vectorstore(
+    welfare_vs = create_specialized_vectorstore(
         index_name="工作经验_vector_index",
         node_label="工作经验",
         text_node_properties=["id"],
         embedding_node_property="工作经验_embedding",
         retrieval_query="""
-                RETURN 
-                    node {.*, embedding: Null} AS text,
+        WITH node, score
+        OPTIONAL MATCH (position:岗位)-[]->(node)
+        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+        RETURN
+                coalesce(node.id, toString(node)) AS text,
+                score,
+                node {.*, 职业类型列表: 职业类型列表} AS metadata
+        """
+    )
+    work_experience_vs = create_specialized_vectorstore(
+        index_name="福利待遇_vector_index",
+        node_label="福利待遇",
+        text_node_properties=["id"],
+        embedding_node_property="福利待遇_embedding",
+        retrieval_query="""
+            WITH node, score
+            OPTIONAL MATCH (position:岗位)-[]->(node)
+            OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+            WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+            RETURN
+                    coalesce(node.id, toString(node)) AS text,
                     score,
-                    { 
-                        associated_posts: [(n)<-[:需要拥有]-(p:岗位) | p.岗位]
-                    } AS metadata
+                    node {.*, 职业类型列表: 职业类型列表} AS metadata
             """
-    )  # 工作经验向量索引
+    )  # 福利待遇向量索引
+    print("所有向量索引创建完成！")
+
+def build_vec_ver114514():
+    global  category_vs, company_vs, company_industry_vs, job_location_vs, job_major_vs
     category_vs = create_specialized_vectorstore(
         index_name="category_vector_index",
         node_label="职业类别",
         text_node_properties=["id"],
         embedding_node_property="category_embedding",
-        retrieval_query="""
-            RETURN 
-                node {{.*, embedding: Null}} AS text,
-                score,
-                node AS metadata
-        """
+        retrieval_query=""
     )  # 职业类别自身
     company_vs = create_specialized_vectorstore(
         index_name="company_vector_index",
         node_label="公司",
         text_node_properties=[],
         embedding_node_property="company_embedding",
-        retrieval_query="""
-            RETURN 
-                node {{.*, embedding: Null}} AS text,
-                score,
-                node AS metadata
-        """
+        retrieval_query=""
     )  # 公司自身
     company_industry_vs = create_specialized_vectorstore(
         index_name="company_industry_vector_index",
         node_label="公司",
         text_node_properties=["所属行业"],
         embedding_node_property="company_industry_embedding",
-        retrieval_query="""
-            RETURN 
-                node {{.*, embedding: Null}} AS text,
-                score,
-                node AS metadata
-        """
+        retrieval_query=""
     )  # 公司 + “所属行业”专用索引
     job_location_vs = create_specialized_vectorstore(
         index_name="job_location_vector_index",
         node_label="岗位",
         text_node_properties=["工作地点"],
         embedding_node_property="job_location_embedding",
-        retrieval_query="""
-            RETURN 
-                node {{.*, embedding: Null}} AS text,
-                score,
-                {{岗位编号: node.岗位, 所属公司: node.公司}} AS metadata
-        """
+        retrieval_query=""
     )  # 岗位 + “工作地点”专用索引
     job_major_vs = create_specialized_vectorstore(
         index_name="job_major_vector_index",
         node_label="岗位",
         text_node_properties=["专业要求"],
         embedding_node_property="job_major_embedding",
-        retrieval_query="""
-            RETURN 
-                node {{.*, embedding: Null}} AS text,
-                score,
-                {{岗位编号: node.岗位, 所属公司: node.公司}} AS metadata
-        """
+        retrieval_query=""
     )  # 岗位 + “专业要求”专用索引
-    print("所有向量索引创建完成！")

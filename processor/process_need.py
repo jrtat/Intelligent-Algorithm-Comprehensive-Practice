@@ -217,21 +217,21 @@ def batch_score_neo4j(num: str, source_value: str, target: str, prompt: str):
     ### 输出格式要求：
     仅返回一个标准的 JSON 对象，格式如下（加分项的条数依评价标准和要求而定）：
     {{
-        "score": 加权计算后的总分数,
-        "level": 总分数对应的等级,
-        "reason": "该岗位在{target}方面上具体、客观的评分依据，要求不脱离原文",
-        "evidence": [
+        "{target}_score": 加权计算后的总分数,
+        "{target}_level": 总分数对应的等级,
+        "{target}_reason": "该岗位在{target}方面上具体、客观的评分依据，要求不脱离原文",
+        "{target}_evidence": [
           "最能体现{target}的原文描述1",
           "次重要的原文描述2",
           "补充说明的原文描述3"
         ],
-        "scoring_breakdown": {{
+        "{target}_scoring_breakdown": {{
           "加分项一": 加分项一对应的得分,
           "加分项二": 加分项二对应的得分,
           "加分项三": 加分项三对应的得分,
           "加分项四": 加分项四对应的得分
         }},
-        "importance_distribution":{{
+        "{target}_importance_distribution":{{
             "加分项一": 加分项一对应的占比,
             "加分项二": 加分项二对应的占比,
             "加分项三": 加分项三对应的占比,
@@ -274,13 +274,8 @@ def batch_score_neo4j(num: str, source_value: str, target: str, prompt: str):
         dic_result[jt] = {}
 
     # 保存该维度的评分结果
-    ability_score = raw_response.get(target, {})
-    dic_result[jt][target] = ability_score
-
-    # 保存元数据
-    if "_scoring_metadata" not in dic_result[jt]:
-        dic_result[jt]["_scoring_metadata"] = {}
-    dic_result[jt]["_scoring_metadata"][target] = raw_response.get("_metadata", {})
+    ability_score = raw_response.get(f"{target}_score", -1)
+    dic_result[jt][f"{target}_score"] = ability_score
 
     # 保存结果到文件
     fp_result.save(dic_result)

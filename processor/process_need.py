@@ -284,11 +284,7 @@ def batch_score_neo4j(num: str, source_value: str, target: str, prompt: str):
     fp_log = FileProcessor(f"log/{num}_{target}.json")
     fp_log.save(raw_response)
 
-    # 打印简要信息
-    score = ability_score.get("score", "N/A")
-    level = ability_score.get("level", "N/A")
-    evidence_count = ability_score.get("statistics", {}).get("evidence_count", 0)
-    print(f"{jt} - {target}: {score}/100 ({level})")
+    print(f"{jt} - {target}: {ability_score}/100")
 
 
 if __name__ == '__main__':

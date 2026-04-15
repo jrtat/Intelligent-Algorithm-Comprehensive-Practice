@@ -3,3 +3,9 @@ models/
 __pycache__
 .claude/
 .idea/
+.conda/
+.venv/
+.vscode/
+*.json
+__init__.py
+.env

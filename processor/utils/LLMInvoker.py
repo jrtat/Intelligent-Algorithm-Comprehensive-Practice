@@ -6,6 +6,9 @@ import json
 from processor.utils.FileProcessor import FileProcessor
 from tqdm import tqdm
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class LLMInvoker:
     """
@@ -13,7 +16,7 @@ class LLMInvoker:
     由于服务器资源有限，建议只调用一个模型
     """
 
-    def __init__(self, model_name="qwen3:8b", base_url="http://192.168.3.200:11434"):
+    def __init__(self, model_name=os.getenv('LOCAL_MODEL_NAME'), base_url=os.getenv('LOCAL_BASE_URL'), api_key=None):
         """
         初始化LLM调用器
         :param model_name: Ollama部署的模型名称（如qwen:7b、llama3:8b等）

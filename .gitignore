@@ -7,5 +7,4 @@ __pycache__
 .venv/
 .vscode/
 *.json
-__init__.py
 .env

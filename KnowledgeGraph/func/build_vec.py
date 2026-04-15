@@ -128,98 +128,147 @@ def build_vec_ver1():
         node_label="综合素质",
         text_node_properties=["id"],
         embedding_node_property="综合素质_embedding",
-        retrieval_query="""
-        WITH node, score
-        OPTIONAL MATCH (position:岗位)-[]->(node)
-        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
-        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
-        RETURN
-                coalesce(node.id, toString(node)) AS text,
-                score,
-                node {.*, 职业类型列表: 职业类型列表} AS metadata
-        """
+        retrieval_query=""
     )  # 综合素质向量索引
     skill_vs = create_specialized_vectorstore(
         index_name="职业技能_vector_index",
         node_label="职业技能",
         text_node_properties=["id"],
         embedding_node_property="职业技能_embedding",
-        retrieval_query="""
-        WITH node, score
-        OPTIONAL MATCH (position:岗位)-[]->(node)
-        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
-        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
-        RETURN
-                coalesce(node.id, toString(node)) AS text,
-                score,
-                node {.*, 职业类型列表: 职业类型列表} AS metadata
-        """
+        retrieval_query=""
     )  # 职业技能向量索引
     certificate_vs = create_specialized_vectorstore(
         index_name="证书_vector_index",
         node_label="证书",
         text_node_properties=["id"],
         embedding_node_property="证书_embedding",
-        retrieval_query="""
-        WITH node, score
-        OPTIONAL MATCH (position:岗位)-[]->(node)
-        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
-        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
-        RETURN
-                coalesce(node.id, toString(node)) AS text,
-                score,
-                node {.*, 职业类型列表: 职业类型列表} AS metadata
-        """
+        retrieval_query=""
     )  # 证书向量索引
     work_content_vs = create_specialized_vectorstore(
         index_name="工作内容_vector_index",
         node_label="工作内容",
         text_node_properties=["id"],
         embedding_node_property="工作内容_embedding",
-        retrieval_query="""
-        WITH node, score
-        OPTIONAL MATCH (position:岗位)-[]->(node)
-        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
-        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
-        RETURN
-                coalesce(node.id, toString(node)) AS text,
-                score,
-                node {.*, 职业类型列表: 职业类型列表} AS metadata
-        """
+        retrieval_query=""
     )  # 工作内容向量索引
     welfare_vs = create_specialized_vectorstore(
         index_name="工作经验_vector_index",
         node_label="工作经验",
         text_node_properties=["id"],
         embedding_node_property="工作经验_embedding",
-        retrieval_query="""
-        WITH node, score
-        OPTIONAL MATCH (position:岗位)-[]->(node)
-        OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
-        WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
-        RETURN
-                coalesce(node.id, toString(node)) AS text,
-                score,
-                node {.*, 职业类型列表: 职业类型列表} AS metadata
-        """
+        retrieval_query=""
     )
     work_experience_vs = create_specialized_vectorstore(
         index_name="福利待遇_vector_index",
         node_label="福利待遇",
         text_node_properties=["id"],
         embedding_node_property="福利待遇_embedding",
-        retrieval_query="""
-            WITH node, score
-            OPTIONAL MATCH (position:岗位)-[]->(node)
-            OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
-            WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
-            RETURN
+        retrieval_query=""
+    )  # 福利待遇向量索引
+
+    print("所有向量索引创建完成！")
+
+def get_vector(vec_type, embedding):
+    if vec_type == "综合素质":
+        return Neo4jVector.from_existing_index(
+            embedding=embedding,
+            url=graph_url, username=graph_username, password=graph_password,
+            index_name="综合素质_vector_index",   # 和创建时一致
+            retrieval_query = """
+                WITH node, score
+                OPTIONAL MATCH (position:岗位)-[]->(node)
+                OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+                WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+                RETURN
                     coalesce(node.id, toString(node)) AS text,
                     score,
                     node {.*, 职业类型列表: 职业类型列表} AS metadata
             """
-    )  # 福利待遇向量索引
-    print("所有向量索引创建完成！")
+        )
+    if vec_type == "职业技能":
+        return Neo4jVector.from_existing_index(
+            embedding=embedding,
+            url=graph_url, username=graph_username, password=graph_password,
+            index_name="职业技能_vector_index",   # 和创建时一致
+            retrieval_query = """
+                WITH node, score
+                OPTIONAL MATCH (position:岗位)-[]->(node)
+                OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+                WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+                RETURN
+                    coalesce(node.id, toString(node)) AS text,
+                    score,
+                    node {.*, 职业类型列表: 职业类型列表} AS metadata
+            """
+        )
+
+    if vec_type == "证书":
+        return Neo4jVector.from_existing_index(
+            embedding=embedding,
+            url=graph_url, username=graph_username, password=graph_password,
+            index_name="证书_vector_index",  # 和创建时一致
+            retrieval_query="""
+                WITH node, score
+                OPTIONAL MATCH (position:岗位)-[]->(node)
+                OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+                WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+                RETURN
+                    coalesce(node.id, toString(node)) AS text,
+                    score,
+                    node {.*, 职业类型列表: 职业类型列表} AS metadata
+            """
+        )
+
+    if vec_type == "工作内容":
+        return Neo4jVector.from_existing_index(
+            embedding=embedding,
+            url=graph_url, username=graph_username, password=graph_password,
+            index_name="工作内容_vector_index",  # 和创建时一致
+            retrieval_query="""
+                WITH node, score
+                OPTIONAL MATCH (position:岗位)-[]->(node)
+                OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+                WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+                RETURN
+                    coalesce(node.id, toString(node)) AS text,
+                    score,
+                    node {.*, 职业类型列表: 职业类型列表} AS metadata
+            """
+        )
+    if vec_type == "工作经验":
+        return Neo4jVector.from_existing_index(
+            embedding=embedding,
+            url=graph_url, username=graph_username, password=graph_password,
+            index_name="工作经验_vector_index",  # 和创建时一致
+            retrieval_query="""
+                WITH node, score
+                OPTIONAL MATCH (position:岗位)-[]->(node)
+                OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+                WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+                RETURN
+                    coalesce(node.id, toString(node)) AS text,
+                    score,
+                    node {.*, 职业类型列表: 职业类型列表} AS metadata
+            """
+        )
+    if vec_type == "福利待遇":
+        return Neo4jVector.from_existing_index(
+            embedding=embedding,
+            url=graph_url, username=graph_username, password=graph_password,
+            index_name="福利待遇_vector_index",  # 和创建时一致
+            retrieval_query="""
+                WITH node, score
+                OPTIONAL MATCH (position:岗位)-[]->(node)
+                OPTIONAL MATCH (position)-[:属于]->(occ:职业类型)
+                WITH node, score, collect(DISTINCT occ.id) AS 职业类型列表
+                RETURN
+                    coalesce(node.id, toString(node)) AS text,
+                    score,
+                    node {.*, 职业类型列表: 职业类型列表} AS metadata
+            """
+        )
+
+#--- Useless ---#
 
 def build_vec_ver114514():
     global  category_vs, company_vs, company_industry_vs, job_location_vs, job_major_vs

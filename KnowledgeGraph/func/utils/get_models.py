@@ -3,14 +3,18 @@ import torch
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 def get_embedding():
     """
     返回xjx实验室的模型
     :return: OpenAIEmbeddings的实例
     """
     return OpenAIEmbeddings(
-        model="qwen3-embedding:8b",
-        base_url="http://59.72.63.156:14138/v1",  # 自定义端点
+        model=os.getenv('LOCAL_EMBEDDING_MODEL_NAME'),
+        base_url=f"{os.getenv('LOCAL_BASE_URL')}/v1",  # 自定义端点
         api_key="Empty",
         dimensions=1536,
         tiktoken_enabled=False,
@@ -61,8 +65,8 @@ def get_llm():
     :return: ChatOpenAI的实例
     """
     return ChatOpenAI(
-        model="qwen3:8b",  # 模型名字（xjx实验室）
-        base_url="http://59.72.63.156:14138/v1", # url（xjx实验室）
+        model=os.getenv('LOCAL_MODEL_NAME'),  # 模型名字（xjx实验室）
+        base_url=f"{os.getenv('LOCAL_BASE_URL')}/v1", # url（xjx实验室）
         api_key="EMPTY",  # vLLM 不需要真实 key
         temperature=0  # 温度0 = 输出最稳定（对于提取图谱这个应用来说，0是最好的，不要调这个参数）
     )
@@ -81,7 +85,7 @@ def get_llm_temp():
 
 def get_llm_silicon_flow(
         model_name,
-        api_key = "sk-ahfwoezktscykkeyoyvqigunyemiyjqtxknysvcyryeipvhr"
+        api_key = os.getenv('SILICONFLOW_API')
     ):
     """
     .. note:

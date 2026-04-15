@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import mammoth from 'mammoth';
 import { processResume } from '../api/resumeApi';
+import { useToast } from '../context/ToastContext';
 import type { ResumeData } from '../types/job';
 
 interface CapabilityAnalysisProps {}
@@ -81,7 +82,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [showTextInputModal, setShowTextInputModal] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState<number | null>(null);
-  const [isMatching, setIsMatching] = useState(false);
+  const { showToast } = useToast();
   const [resumeData, setResumeData] = useState<ResumeData>(() => {
     const saved = localStorage.getItem('resumeData');
     if (saved) {
@@ -372,31 +373,31 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
       return;
     }
 
-    setIsMatching(true);
-    setToastMessage('正在提交简历并获取职业匹配...');
+    // 不阻塞用户操作，后台处理
+    processResume(resumeData, {
+      onProgress: () => {
+        // 静默更新进度，不打扰用户
+      },
+      onCompleted: (result) => {
+        localStorage.setItem('matchResult', JSON.stringify(result));
+        showToast({
+          message: '职业匹配已完成，点击查看匹配结果！',
+          onClick: () => navigate('/job-match'),
+          duration: 5000,
+        });
+      },
+      onFailed: (error) => {
+        showToast({
+          message: `匹配失败: ${error}`,
+          duration: 5000,
+        });
+      },
+    });
 
-    try {
-      const result = await processResume(resumeData, {
-        onProgress: (progress) => {
-          setToastMessage(`正在分析匹配度... ${progress}%`);
-        },
-        onCompleted: () => {
-          setToastMessage('匹配完成！');
-        },
-        onFailed: (error) => {
-          setToastMessage(`匹配失败: ${error}`);
-        },
-      });
-
-      // 将匹配结果存储到 localStorage，供 JobMatch 页面使用
-      localStorage.setItem('matchResult', JSON.stringify(result));
-      navigate('/job-match');
-    } catch (error: any) {
-      console.error('匹配失败:', error);
-      setToastMessage(error.message || '匹配失败，请重试');
-    } finally {
-      setIsMatching(false);
-    }
+    showToast({
+      message: '正在分析匹配度，请稍候...',
+      duration: 3000,
+    });
   };
 
   const handleRawTextSubmit = async () => {

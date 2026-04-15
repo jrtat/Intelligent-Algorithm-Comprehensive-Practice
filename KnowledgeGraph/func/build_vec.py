@@ -307,3 +307,13 @@ def build_vec_ver114514():
         embedding_node_property="job_major_embedding",
         retrieval_query=""
     )  # 岗位 + “专业要求”专用索引
+
+#--- Example ---#
+
+embedding = get_local_embedding()
+vector_store_eg = get_vector("职业技能",get_vector)
+for doc, score in vector_store_eg.similarity_search_with_score(query="你的问题", k=5):
+    print("文本:", doc.page_content)
+    print("职业类型列表:", doc.metadata.get("职业类型列表"))
+    print("相似度分数:", round(score, 4))   # 分数越小越相似（通常0~1之间）
+    print("---")

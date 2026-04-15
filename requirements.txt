@@ -15,11 +15,13 @@ fuzzywuzzy
 faiss-cpu
 xgboost
 scikit-learn
-torch
 tqdm
 setuptools
 
---extra-index-url https://download.pytorch.org/whl/cu126
 torch==2.6.0
 torchvision==0.21.0
 torchaudio==2.6.0
+
+fastapi
+uvicorn
+python-multipart

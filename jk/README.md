@@ -1,3 +1,7 @@
+后端FASTAPI依赖
+```cmd
+pip install fastapi uvicorn python-multipart
+```
 ### 专业技能
 具体细节：技能名称 
 抽象评级：基于关键词加权计算技能深度评分（0-5）

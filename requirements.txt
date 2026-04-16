@@ -11,6 +11,7 @@ pandas
 langchain_text_splitters
 langchain_neo4j
 LLMGraphTransformer
+transformers
 fuzzywuzzy
 faiss-cpu
 xgboost

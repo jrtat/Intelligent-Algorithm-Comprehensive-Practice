@@ -12,6 +12,7 @@ langchain_text_splitters
 langchain_neo4j
 LLMGraphTransformer
 transformers
+transformers[torch]
 fuzzywuzzy
 faiss-cpu
 xgboost

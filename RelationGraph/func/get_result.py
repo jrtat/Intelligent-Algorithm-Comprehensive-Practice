@@ -1,5 +1,4 @@
 import numpy as np
-from typing import List, Dict, Union
 
 def build_matrix(proba, y, class_names):
     n_classes = len(class_names)  # 类别数（或者叫节点数）
@@ -16,9 +15,7 @@ def build_matrix(proba, y, class_names):
     affinity_matrix = (affinity_matrix + affinity_matrix.T) / 2  # 上述操作得到的是不对称矩阵，通过取平均使其对称化，得到无向的亲缘强度
     return affinity_matrix
 
-def get_similar_occupations(occupation_name: str,
-                            class_names: np.ndarray,
-                            affinity_matrix: np.ndarray) -> List[Dict[str, Union[str, float]]]:
+def get_similar_occupations(occupation_name, class_names, affinity_matrix):
     """
     计算某个职业类别与其他所有职业类别的相似度，并按降序返回排序结果。
 

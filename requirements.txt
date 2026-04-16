@@ -11,18 +11,22 @@ pandas
 langchain_text_splitters
 langchain_neo4j
 LLMGraphTransformer
-transformers
+transformers==5.5.3
+transformers[torch]
+datasets == 4.8.4
 fuzzywuzzy
 faiss-cpu
 xgboost
 scikit-learn
 tqdm
 setuptools
+xlrd
 
 torch==2.6.0
 torchvision==0.21.0
 torchaudio==2.6.0
 
+peft==0.11.1
 fastapi
 uvicorn
 python-multipart

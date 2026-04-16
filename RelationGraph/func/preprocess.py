@@ -1,71 +1,115 @@
-from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
+from RelationGraph.func.utils.get_model import get_embedding_temp
 
+from sklearn.preprocessing import StandardScaler, MultiLabelBinarizer
+import numpy as np
 import pandas as pd
-from typing import Any, List
+import re
 
-#--- 全局变量 ---#
-database_name = "1f5dcc17"
-graph_url = "neo4j+s://1f5dcc17.databases.neo4j.io"
-graph_username = "1f5dcc17"
-graph_password = "J1-Sv2VA6q5Qw3rH5vFQSmYCwMtuCpF8kqt-W0UrEDU"
-
-def ensure_list(value: Any) -> List:
+def calc_embedding(texts):
     """
-    将任意值转换为列表，None 转为空列表
+    对文本列表进行嵌入计算，返回嵌入向量数组。
     """
-    if value is None:
-        return []
-    if isinstance(value, list):
-        return value
-    return [value]
+    embeddings = get_embedding_temp()
+    embeddings_vec = embeddings.embed_documents(texts)
+    return np.array(embeddings_vec, dtype=np.float32)
 
-def get_data():
-
-    graph = connect_neo4j()
-
-    query = """
-    MATCH (p:岗位)
-    OPTIONAL MATCH (p)-[:属于]->(cat:职业类别)
-    OPTIONAL MATCH (p)-[:来自]->(c:公司)
-    OPTIONAL MATCH (p)-[:需要具有]->(q:综合素质)
-    OPTIONAL MATCH (p)-[:需要掌握]->(s:职业技能)
-    OPTIONAL MATCH (p)-[:需要持有]->(cert:证书)
-    OPTIONAL MATCH (p)-[:负责]->(t:工作内容)
-    OPTIONAL MATCH (p)-[:需要来自]->(m:专业)
-    OPTIONAL MATCH (p)-[:需要拥有]->(exp:工作经验)
-    RETURN 
-        p.id AS 岗位id,
-        p.薪资范围 AS 薪资范围,
-        p.学历要求 AS 学历要求,
-        p.晋升路径 AS 晋升路径,
-        collect(DISTINCT cat.id) AS 职业类别,
-        collect(DISTINCT c.id) AS 公司,
-        collect(DISTINCT q.id) AS 综合素质,
-        collect(DISTINCT s.id) AS 职业技能,
-        collect(DISTINCT cert.id) AS 证书,
-        collect(DISTINCT t.id) AS 工作内容,
-        collect(DISTINCT m.id) AS 专业,
-        collect(DISTINCT exp.id) AS 工作经验,
-        [(p)-[:来自]->(c) | c.行业][0] AS 行业  
+def parse_salary_range(salary_str):
     """
-    # 解释：使用列表推导式收集所有关联公司的行业属性，再取第一个元素（下标0，因为公司只有一个所以是可行的）。
+    匹配模式：数字-数字，中间可能含空格，后面可选"元每月"或"每月"
+    """
+    pattern = r'(\d+)\s*-\s*(\d+)\s*(?:元)?每月'
+    match = re.search(pattern, salary_str.strip())
+    if match:
+        try:
+            v1 = float(match.group(1))
+            v2 = float(match.group(2))
+            return (v1 + v2) / 2.0
+        except:
+            return np.nan
+    return np.nan
 
-    results = graph.query(query)  # 执行查询
-    df = pd.DataFrame(results)    # 将查询结果转换为 DataFrame
+def init_data(df):
+    """
+    对给定的 DataFrame 进行特征工程，返回融合后的特征矩阵 X_fused。
+    输入 df 必须包含以下列：
+        - 薪资范围（str 或 list）
+        - 学历要求（str 或 list）
+        - 晋升路径（str 或 list）
+        - 综合素质（list of str）
+        - 职业技能（list of str）
+        - 证书（list of str）
+        - 工作内容（list of str）
+        - 专业（list of str）
+        - 工作经验（list of str）
+        - 行业（list of str）
+    """
 
-    #--- 处理“职业类别”和“公司”列：取第一个元素（若非空列表） ---#
-    for col in ["职业类别", "公司"]:
+    def to_str_if_list(x):
+        if isinstance(x, list):
+            # 如果列表非空，取第一个元素；否则返回空字符串
+            return str(x[0]) if x else ''
+        return str(x) if x is not None else ''
+
+    str_columns = ['薪资范围', '学历要求', '晋升路径']
+    for col in str_columns:
         if col in df.columns:
-            df[col] = df[col].apply(lambda x: x[0] if isinstance(x, list) and len(x) > 0 else None)
-        else:
-            df[col] = None
+            df[col] = df[col].apply(to_str_if_list)
 
-    #--- 处理多值列：转换为列表格式（新增“行业”列也包含在内） ---#
-    multi_value_cols = ["综合素质", "职业技能", "证书", "工作内容", "专业", "工作经验", "行业"]
-    for col in multi_value_cols:
+    # Step 1：处理薪资范围（数值特征）
+    df['薪资平均值'] = df['薪资范围'].apply(parse_salary_range)
+    salary_median = df['薪资平均值'].median()
+    df['薪资平均值'] = df['薪资平均值'].fillna(salary_median) # 避免 ChainedAssignmentError：直接赋值而非 inplace
+
+    numeric_features = df[['薪资平均值']].values.astype(np.float32)
+    scaler = StandardScaler()
+    numeric_scaled = scaler.fit_transform(numeric_features)
+
+    # Step 2：处理学历要求、晋升路径（文本嵌入）
+    df['edu_promo_text'] = (
+        df['学历要求'].fillna('').astype(str) + ' ' +
+        df['晋升路径'].fillna('').astype(str)
+    )
+    texts = df['edu_promo_text'].tolist()
+    text_embeddings = calc_embedding(texts)
+
+    # Step 3：处理多值列表列（Multi-hot 编码）
+    multi_cols = ['综合素质', '职业技能', '证书', '工作内容', '专业', '工作经验', '行业']
+
+    def clean_list(lst):
+        """将列表元素统一转为字符串，并过滤空值/无效占位符"""
+        if not isinstance(lst, list):
+            return []
+        cleaned = []
+        for item in lst:
+            s = str(item).strip()
+            # 过滤掉空字符串、'nan'、'None' 等无效标记
+            if s and s.lower() not in ('nan', 'none', ''):
+                cleaned.append(s)
+        return cleaned
+
+    # 替换原来的循环部分
+    for col in multi_cols:
         if col in df.columns:
-            df[col] = df[col].apply(ensure_list)
+            df[col] = df[col].apply(clean_list)
         else:
             df[col] = [[] for _ in range(len(df))]
 
-    return df
+    multi_hot_parts = []
+    for col in multi_cols:
+        mlb = MultiLabelBinarizer()
+        encoded = mlb.fit_transform(df[col])
+        multi_hot_parts.append(encoded)
+        print(f"列 '{col}' 编码后维度: {encoded.shape[1]}")
+
+    multi_hot_combined = np.hstack(multi_hot_parts)
+
+    # Step 4: 融合所有特征
+    x_fused = np.hstack([
+        text_embeddings,
+        numeric_scaled,
+        multi_hot_combined
+    ])
+
+    print(f"最终融合特征维度: {x_fused.shape[1]}")
+    return x_fused
+

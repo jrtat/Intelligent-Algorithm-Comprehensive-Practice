@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { JobList } from './components/JobList/JobList';
+import { JobDashboard } from './components/JobDashboard/JobDashboard';
 import { JobDetailPage } from './components/JobDetail/JobDetail';
 import { JobSummaryPage } from './components/JobSummary/JobSummary';
 import { JobMapPage } from './components/JobMap/JobMap';
@@ -27,7 +27,7 @@ function AppContent() {
       />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<JobList />} />
+        <Route path="/dashboard" element={<JobDashboard />} />
         <Route path="/summary" element={<JobSummaryPage />} />
         <Route path="/map" element={<JobMapPage />} />
         <Route path="/:jobId" element={<JobDetailPage />} />

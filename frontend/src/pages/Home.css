@@ -62,6 +62,21 @@ html, body {
   50% { opacity: 0.5; }
 }
 
+/* ===== tracking-in-expand 文字展开动画 ===== */
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    letter-spacing: normal;
+    opacity: 1;
+  }
+}
+
 /* 延迟动画类 */
 .animate-delay-1 { animation-delay: 0.1s; }
 .animate-delay-2 { animation-delay: 0.2s; }
@@ -136,8 +151,8 @@ section {
   opacity: 0;
 }
 
-/* ===== 固定导航栏 ===== */
-.top-nav {
+/* ===== 全局主导航栏 (Global Navbar) ===== */
+.global-navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -147,9 +162,66 @@ section {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  will-change: transform, opacity;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out, visibility 300ms ease-in-out;
 }
 
+.global-navbar.navbar-slide-in {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.global-navbar.navbar-slide-out {
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ===== 首页 CTA 引导栏 (Homepage CTA Bar) - 悬浮式居中胶囊导航 ===== */
+.cta-navbar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+}
+
+.cta-navbar.cta-slide-in {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.cta-navbar.cta-slide-out {
+  transform: translateX(-50%) translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 胶囊导航内部容器 */
+.cta-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 50px;
+  box-shadow:
+    0 8px 32px rgba(22, 119, 255, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+/* ===== 通用导航样式（Global Navbar 和 CTA Navbar 共用） ===== */
 .top-nav-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -160,23 +232,36 @@ section {
   justify-content: space-between;
 }
 
-.nav-logo {
-  font-size: 18px;
-  font-weight: 600;
-  color: #1677ff;
-}
-
-.nav-links {
+/* Global Navbar 导航链接 */
+.global-navbar .nav-links {
   display: flex;
   gap: 32px;
 }
 
+/* CTA 导航链接 */
+.cta-nav-inner .nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+/* CTA 导航品牌标识 */
+.cta-nav-inner .nav-logo {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1677ff;
+}
+
+/* 通用导航链接 */
 .nav-link {
   font-size: 15px;
   color: #666666;
   text-decoration: none;
   transition: color 0.3s ease;
   cursor: pointer;
+}
+
+.cta-nav-inner .nav-link {
+  font-size: 14px;
 }
 
 .nav-link:hover {
@@ -203,6 +288,26 @@ section {
 .nav-cta:hover {
   background: #0f62fe;
   transform: translateY(-1px);
+}
+
+/* CTA 导航栏强引导按钮 */
+.cta-nav-btn {
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #1677ff 0%, #0f62fe 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(22, 119, 255, 0.35);
+}
+
+.cta-nav-btn:hover {
+  background: linear-gradient(135deg, #0f62fe 0%, #0a50d8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(22, 119, 255, 0.45);
 }
 
 /* 移动端菜单按钮 */
@@ -268,7 +373,7 @@ section {
   line-height: 1.2;
   margin-bottom: 20px;
   opacity: 0;
-  animation: fadeInUp 0.8s ease-in-out 0.1s forwards;
+  animation: fadeInUp 0.8s ease-in-out 0.1s forwards, tracking-in-expand 0.9s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.1s forwards;
 }
 
 .hero-title .highlight {

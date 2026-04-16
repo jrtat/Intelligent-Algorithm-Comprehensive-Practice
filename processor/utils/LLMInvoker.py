@@ -72,6 +72,10 @@ class LLMInvoker:
             print(f"❌ 调用Ollama模型失败: {e}")
             return None
 
+        except Exception as e: # 可能出现输出不是json的情况，暂时跳过
+            print(f"❌ 未知错误: {e}")
+            return None
+
     def call_ollama_embedding(self, prompt):
         """
         调用 Ollama 模型获取嵌入向量

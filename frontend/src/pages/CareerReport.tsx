@@ -1,15 +1,18 @@
 import React from 'react';
+import { PageDashboard } from '../components/PageDashboard/PageDashboard';
 
 export default function CareerReport() {
   return (
-    <div className="space-y-10">
-      {/* Page Header */}
-      <div className="flex justify-between items-end">
-        <div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-on-surface">职业报告与行动计划</h2>
-          <p className="text-on-surface-variant mt-2 text-lg">资深 UX 架构师路径 • 2024 秋季策略</p>
-        </div>
-      </div>
+    <PageDashboard
+      title="职业报告与行动计划"
+      subtitle="资深 UX 架构师路径 • 2024 秋季策略"
+      showBreadcrumb
+      breadcrumbItems={[
+        { label: '首页', href: '/' },
+        { label: '职业报告' },
+      ]}
+    >
+    <div className="space-y-8">
 
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-12 gap-6">
@@ -167,5 +170,6 @@ export default function CareerReport() {
         </section>
       </div>
     </div>
+    </PageDashboard>
   );
 }

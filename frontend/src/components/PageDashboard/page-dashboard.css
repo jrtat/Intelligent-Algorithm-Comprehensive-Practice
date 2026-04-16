@@ -1,0 +1,129 @@
+/* ===== Page Dashboard Container ===== */
+.page-dashboard {
+  min-height: 100vh;
+  background-color: #F5F7FA;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Breadcrumb ===== */
+.dashboard-breadcrumb {
+  height: 36px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 14px;
+  border-bottom: 1px solid #E5E6EB;
+  flex-shrink: 0;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb-link {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+  color: #1677ff;
+}
+
+.breadcrumb-sep {
+  color: #999;
+  margin: 0 4px;
+}
+
+.breadcrumb-current {
+  color: #1677ff;
+  font-weight: 600;
+}
+
+/* ===== Main Content ===== */
+.dashboard-content {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E5E6EB;
+}
+
+.page-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===== Page Body ===== */
+.page-body {
+  flex: 1;
+}
+
+/* ===== Card Hover Effect ===== */
+.page-dashboard .bg-surface-container-lowest,
+.page-dashboard .bg-surface-container-low,
+.page-dashboard .bg-surface-container-lowest.rounded-xl,
+.page-dashboard .bg-surface-container-low.rounded-xl {
+  transition: box-shadow 0.2s ease;
+}
+
+.page-dashboard .bg-surface-container-lowest:hover,
+.page-dashboard .bg-surface-container-low:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Progress Bar Animation ===== */
+@keyframes progress-glow {
+  0% { box-shadow: 0 0 4px rgba(22, 119, 255, 0.4); }
+  50% { box-shadow: 0 0 8px rgba(22, 119, 255, 0.6); }
+  100% { box-shadow: 0 0 4px rgba(22, 119, 255, 0.4); }
+}
+
+.page-dashboard .bg-primary {
+  animation: progress-glow 2s ease-in-out infinite;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px) {
+  .dashboard-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 12px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+}

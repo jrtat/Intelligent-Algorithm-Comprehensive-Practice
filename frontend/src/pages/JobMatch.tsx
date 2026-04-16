@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import type { JobData } from '../types/job';
+import { PageDashboard } from '../components/PageDashboard/PageDashboard';
 
 const mockJobs: JobData[] = [
   {
@@ -187,30 +188,20 @@ export default function JobMatch() {
   if (selectedJob) {
     // Deep Analysis View
     return (
-      <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-on-surface-variant mb-8">
-          <button 
-            onClick={() => setSelectedJob(null)}
-            className="hover:text-primary transition-colors font-medium flex items-center gap-1"
-          >
-            <span className="material-symbols-outlined text-sm">arrow_back</span>
-            返回岗位列表
-          </button>
-          <span className="text-surface-container-highest">/</span>
-          <span className="text-primary font-semibold">深度解析</span>
-        </div>
+      <PageDashboard
+        title={`${selectedJob.job_name} - 深度解析`}
+        subtitle="基于核心算法理解力、产品架构设计及跨团队协作维度的量化对比"
+        showBreadcrumb
+        breadcrumbItems={[
+          { label: '首页', href: '/' },
+          { label: '岗位匹配', href: '/job-match' },
+          { label: '深度解析' },
+        ]}
+      >
+      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
 
         {/* Analysis Header */}
-        <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl font-black tracking-tight text-on-surface leading-tight">
-              {selectedJob.job_name} <span className="text-primary">人才匹配深度报告</span>
-            </h1>
-            <p className="mt-4 text-on-surface-variant text-lg leading-relaxed">
-              基于核心算法理解力、产品架构设计及跨团队协作维度的量化对比。本报告详细拆解了候选人在AI商业化落地与工程边界感知上的综合表现。
-            </p>
-          </div>
+        <header className="mb-8 flex flex-col md:flex-row md:items-end justify-end gap-6">
           <div className="bg-surface-container-low p-6 rounded-xl min-w-[280px] shadow-sm ring-1 ring-outline-variant/10">
             <div className="text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-1">综合匹配度</div>
             <div className="text-5xl font-black text-secondary">{selectedJob.match_score}%</div>
@@ -423,16 +414,23 @@ export default function JobMatch() {
           </section>
         </div>
       </div>
+      </PageDashboard>
     );
   }
 
   // Job List View
   return (
-    <div className="max-w-7xl mx-auto animate-in fade-in duration-500">
-      <div className="mb-10">
-        <h1 className="text-4xl font-black tracking-tight text-on-surface mb-3">岗位匹配</h1>
-        <p className="text-on-surface-variant max-w-2xl text-lg">根据您的技能矩阵和职业轨迹，为您精选的建筑与技术交叉领域机遇。</p>
-      </div>
+    <PageDashboard
+      title="岗位匹配"
+      subtitle="根据您的技能矩阵和职业轨迹，为您精选的建筑与技术交叉领域机遇"
+      showBreadcrumb
+      breadcrumbItems={[
+        { label: '首页', href: '/' },
+        { label: '岗位匹配' },
+      ]}
+    >
+    <div className="animate-in fade-in duration-500">
+      <div className="mb-8">
 
       {/* Filter/Stats row */}
       <div className="mb-10 bg-surface-container-low rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -559,7 +557,9 @@ export default function JobMatch() {
           </div>
         </div>
       </div>
+      </div>
     </div>
+    </PageDashboard>
   );
 }
 

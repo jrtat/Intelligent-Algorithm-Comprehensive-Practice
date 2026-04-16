@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
@@ -17,6 +17,13 @@ const Home = () => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('hero');
 
+  // ===== 导航栏切换状态管理 =====
+  const [isCtaBarVisible, setIsCtaBarVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState<'forward' | 'reverse' | null>(null);
+  const lastScrollY = useRef(0);
+  const heroSectionRef = useRef<HTMLElement>(null);
+
   // 各板块可见状态（用于触发进入动画，离开后重置，再次进入可重播）
   const [insightVisible, setInsightVisible] = useState(false);
   const [evalVisible, setEvalVisible] = useState(false);
@@ -26,6 +33,43 @@ const Home = () => {
   const insightSectionRef = useRef<HTMLElement>(null);
   const evalSectionRef = useRef<HTMLElement>(null);
   const reportSectionRef = useRef<HTMLElement>(null);
+
+  // ===== 导航栏切换逻辑 =====
+  const handleScroll = useCallback(() => {
+    if (isAnimating) return;
+
+    const scrollY = window.scrollY;
+    const heroHeight = heroSectionRef.current?.offsetHeight || 0;
+    const isPastHero = scrollY >= heroHeight;
+
+    // 正向切换：主导航收起 → CTA 栏显示
+    if (isPastHero && !isCtaBarVisible && scrollY > lastScrollY.current) {
+      setAnimationDirection('forward');
+      setIsAnimating(true);
+      setIsCtaBarVisible(true);
+      setTimeout(() => {
+        setIsAnimating(false);
+        setAnimationDirection(null);
+      }, 300);
+    }
+    // 反向切换：CTA 栏收起 → 主导航显示
+    else if (!isPastHero && isCtaBarVisible && scrollY < lastScrollY.current) {
+      setAnimationDirection('reverse');
+      setIsAnimating(true);
+      setIsCtaBarVisible(false);
+      setTimeout(() => {
+        setIsAnimating(false);
+        setAnimationDirection(null);
+      }, 300);
+    }
+
+    lastScrollY.current = scrollY;
+  }, [isAnimating, isCtaBarVisible]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   // 监听滚动，控制导航栏当前激活项
   useEffect(() => {
@@ -83,8 +127,8 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* ===== 固定导航栏 ===== */}
-      <nav className="top-nav">
+      {/* ===== 全局主导航栏 (Global Navbar) ===== */}
+      <nav className={`global-navbar ${isCtaBarVisible ? 'navbar-slide-out' : 'navbar-slide-in'}`}>
         <div className="top-nav-inner">
           <div className="nav-logo">AI 职业规划</div>
           <div className="nav-links">
@@ -98,15 +142,36 @@ const Home = () => {
               </span>
             ))}
           </div>
-          <button className="nav-cta" onClick={() => scrollToSection('eval')}>
+          <button className="nav-cta" onClick={() => navigate('/capability-analysis')}>
             立即测评
           </button>
           <button className="nav-menu-btn">☰</button>
         </div>
       </nav>
 
+      {/* ===== 首页 CTA 引导栏 (Homepage CTA Bar) ===== */}
+      <nav className={`cta-navbar ${isCtaBarVisible ? 'cta-slide-in' : 'cta-slide-out'}`}>
+        <div className="cta-nav-inner">
+          <div className="nav-logo">AI 职业规划</div>
+          <div className="nav-links">
+            {NAV_SECTIONS.map((s) => (
+              <span
+                key={s.id}
+                className={`nav-link ${activeSection === s.id ? 'active' : ''}`}
+                onClick={() => scrollToSection(s.id)}
+              >
+                {s.label}
+              </span>
+            ))}
+          </div>
+          <button className="cta-nav-btn" onClick={() => navigate('/capability-analysis')}>
+            立即测评
+          </button>
+        </div>
+      </nav>
+
       {/* ===== 板块一：Hero 首屏 ===== */}
-      <section className="hero-section" id="hero">
+      <section className="hero-section" id="hero" ref={heroSectionRef}>
         <div className="hero-bg" />
         <div className="hero-content">
           <div className="hero-badge">✨ AI 驱动 · 智能规划</div>

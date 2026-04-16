@@ -4,7 +4,7 @@ from processor.utils.LLMInvoker import LLMInvoker
 from processor.utils.FileProcessor import FileProcessor
 from tqdm import tqdm
 
-model = LLMInvoker(base_url="http://59.72.63.156:14138")
+model = LLMInvoker(base_url="https://dashscope.aliyuncs.com/compatible-mode/v1")
 
 def batch_extract_info(fp, source, target, prompt):
     '''

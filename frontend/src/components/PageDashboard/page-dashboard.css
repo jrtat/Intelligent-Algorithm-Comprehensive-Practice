@@ -1,7 +1,7 @@
 /* ===== Page Dashboard Container ===== */
 .page-dashboard {
   min-height: 100vh;
-  background-color: #F5F7FA;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
 }
@@ -85,19 +85,6 @@
 /* ===== Page Body ===== */
 .page-body {
   flex: 1;
-}
-
-/* ===== Card Hover Effect ===== */
-.page-dashboard .bg-surface-container-lowest,
-.page-dashboard .bg-surface-container-low,
-.page-dashboard .bg-surface-container-lowest.rounded-xl,
-.page-dashboard .bg-surface-container-low.rounded-xl {
-  transition: box-shadow 0.2s ease;
-}
-
-.page-dashboard .bg-surface-container-lowest:hover,
-.page-dashboard .bg-surface-container-low:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* ===== Progress Bar Animation ===== */

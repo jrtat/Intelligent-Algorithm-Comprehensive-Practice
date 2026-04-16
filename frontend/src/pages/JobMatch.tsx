@@ -202,7 +202,7 @@ export default function JobMatch() {
 
         {/* Analysis Header */}
         <header className="mb-8 flex flex-col md:flex-row md:items-end justify-end gap-6">
-          <div className="bg-surface-container-low p-6 rounded-xl min-w-[280px] shadow-sm ring-1 ring-outline-variant/10">
+          <div className="bg-surface-container-low p-6 rounded-xl min-w-[280px] ring-1 ring-outline-variant/10">
             <div className="text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-1">综合匹配度</div>
             <div className="text-5xl font-black text-secondary">{selectedJob.match_score}%</div>
             <div className="mt-2 flex items-center gap-2 text-sm text-secondary">
@@ -215,7 +215,7 @@ export default function JobMatch() {
         {/* Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* 1. Professional Skill */}
-          <section className="md:col-span-8 bg-surface-container-lowest p-8 rounded-xl ring-1 ring-outline-variant/15 shadow-sm">
+          <section className="md:col-span-8 bg-surface-container-lowest p-8 rounded-xl ring-1 ring-outline-variant/15">
             <div className="flex justify-between items-start mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center">
@@ -267,7 +267,7 @@ export default function JobMatch() {
           </section>
 
           {/* 2. Innovation Ability */}
-          <section className="md:col-span-4 bg-surface-container-lowest p-8 rounded-xl ring-1 ring-outline-variant/15 shadow-sm flex flex-col gap-6">
+          <section className="md:col-span-4 bg-surface-container-lowest p-8 rounded-xl ring-1 ring-outline-variant/15 flex flex-col gap-6">
             <div className="flex flex-col gap-4">
               <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center">
                 <span className="material-symbols-outlined">lightbulb</span>
@@ -353,12 +353,12 @@ export default function JobMatch() {
           </section>
 
           {/* Core Internship Experience Analysis */}
-          <section className="md:col-span-12 bg-white p-8 rounded-2xl ring-1 ring-primary/20 shadow-lg relative overflow-hidden mt-4">
+          <section className="md:col-span-12 bg-white p-8 rounded-2xl ring-1 ring-primary/20 relative overflow-hidden mt-4">
             <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
             <div className="relative z-10 flex flex-col md:flex-row gap-12">
               <div className="md:w-1/3">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
+                  <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white">
                     <span className="material-symbols-outlined">work</span>
                   </div>
                   <h3 className="text-2xl font-bold">核心实习经历</h3>
@@ -401,7 +401,7 @@ export default function JobMatch() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-4">
-                  <button className="bg-primary text-white px-8 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-primary-container transition-all shadow-md">
+                  <button className="bg-primary text-white px-8 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-primary-container transition-all">
                     <span className="material-symbols-outlined">rocket_launch</span>
                     获取专项提升计划
                   </button>

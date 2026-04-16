@@ -1,83 +1,145 @@
-/* ===== 地图页样式 ===== */
-.map-page {
-  max-width: 1000px;
-  margin: 0 auto;
-}
+/* job-map.css - 岗位地图样式 */
 
-.subtitle {
-  color: #6b7280;
-  font-size: 14px;
-  margin-top: -12px;
-}
-
-/* 岗位选择器 */
-.job-selector-container {
-  margin: 20px 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.job-selector-container label {
-  font-weight: 500;
-  color: #374151;
-}
-
-.job-select {
-  padding: 10px 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 14px;
-  background: white;
-  cursor: pointer;
-  min-width: 200px;
-}
-
-.job-select:focus {
-  outline: none;
-  border-color: #4a90d9;
-}
-
-.confirm-btn {
-  padding: 10px 20px;
+.back-btn {
+  padding: 8px 16px;
   background: #4a90d9;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 13px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
-.confirm-btn:hover {
+.back-btn:hover {
   background: #3a7bc8;
 }
 
-.confirm-btn:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
+/* 横向布局容器：图例 + 地图 */
+.map-content-row {
+  display: flex;
+  flex: 1;
+  gap: 12px;
+  min-height: 0;
+  overflow: hidden;
 }
 
-.stats-info {
-  padding: 8px 16px;
-  background: #f0f7ff;
+/* 图例（左侧，固定宽度） */
+.map-legend-inline {
+  width: 160px;
+  flex-shrink: 0;
+  background: #f9fafb;
   border-radius: 8px;
-  font-size: 14px;
-  color: #4a90d9;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
 }
 
+.legend-section-inline .legend-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.legend-section-inline .legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-section-inline .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.legend-section-inline .legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-section-inline .pulse-demo {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3b82f6;
+  animation: pulseDemo 1.5s infinite;
+}
+
+/* 地图容器 */
+.map-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* 确保 ECharts 实例填满容器 */
+.map-wrapper > div {
+  flex: 1;
+  min-height: 0;
+}
+
+/* 加载状态 */
+.map-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  z-index: 20;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #4a90d9;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.map-loading p {
+  margin-top: 12px;
+  color: #6b7280;
+}
+
+/* 空状态 */
 .map-empty-state {
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
   background: #f9fafb;
-  border-radius: 10px;
-  margin-top: 20px;
+  border-radius: 16px;
 }
 
 .empty-icon {
   font-size: 64px;
   margin-bottom: 16px;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .map-empty-state p {
@@ -85,91 +147,9 @@
   font-size: 16px;
 }
 
-.back-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  margin: 20px 0 24px;
-  color: #4a90d9;
-  text-decoration: none;
-  border: 1px solid #4a90d9;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.back-btn:hover {
-  background: #f0f7ff;
-}
-
-.map-wrapper {
-  position: relative;
-  margin: 20px 0;
-  background: #f9fafb;
-  border-radius: 10px;
-  padding: 20px;
-  min-height: 500px;
-}
-
-.map-wrapper svg {
-  display: block;
-}
-
-.tooltip-hover {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  padding: 10px 16px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  border-radius: 8px;
-  font-size: 13px;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.map-legend {
-  margin-top: 16px;
-  padding: 12px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: #666;
-}
-
-.legend-color {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-}
-
-.map-cities-list {
-  margin-top: 16px;
-  padding: 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-}
-
-.map-cities-list h4 {
-  margin: 0 0 12px;
-  font-size: 14px;
-  color: #666;
-}
-
-.city-tag {
-  display: inline-block;
-  padding: 6px 10px;
-  margin: 4px;
-  background: #f0fff4;
-  color: #276749;
-  border-radius: 6px;
-  font-size: 12px;
+/* 响应式 */
+@media (max-width: 768px) {
+  .legend-items {
+    gap: 12px;
+  }
 }

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import mammoth from 'mammoth';
 import { processResume } from '../api/resumeApi';
 import { useToast } from '../context/ToastContext';
+import { PageDashboard } from '../components/PageDashboard/PageDashboard';
 import type { ResumeData } from '../types/job';
 
 interface CapabilityAnalysisProps {}
@@ -444,11 +445,21 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
   );
 
   return (
-    <div className="space-y-12 relative">
+    <PageDashboard
+      title="能力分析"
+      subtitle="基于您的职业经历与项目积累，分析专业架构的多维图谱"
+      showBreadcrumb
+      breadcrumbItems={[
+        { label: '首页', href: '/' },
+        { label: '能力分析' },
+      ]}
+    >
+    <div className="space-y-8">
       {toastMessage && (
         <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[100] bg-error text-white px-6 py-3 rounded-lg shadow-lg font-bold animate-in fade-in slide-in-from-top-4">
           {toastMessage}
         </div>
+        
       )}
 
       {/* Clear Confirmation Modal */}
@@ -511,19 +522,6 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
         </div>,
         document.body
       )}
-
-      {/* Header Section */}
-      <section className="flex flex-col gap-6">
-        <div className="max-w-2xl">
-          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-2 block">技能情报</span>
-          <div className="flex items-center gap-4 mb-4">
-            <h2 className="text-5xl font-extrabold tracking-tight text-on-surface">能力分析</h2>
-          </div>
-          <p className="text-on-surface-variant text-lg leading-relaxed mb-6">
-            基于您的职业经历与项目积累，下方是您专业架构的多维图谱，突出了您的优势与核心板块。
-          </p>
-        </div>
-      </section>
 
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-12 gap-6">
@@ -812,6 +810,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
           </button>
         </div>
       </div>
-    </div>
+      </div>
+    </PageDashboard>
   );
 }

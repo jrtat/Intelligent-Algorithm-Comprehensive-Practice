@@ -69,11 +69,11 @@ class LLMInvoker:
             return json.loads(response_data.get("response", "").strip()) # 尝试解析JSON（转数据结构）json.loads(response_data.get("response", "").strip())
 
         except requests.exceptions.RequestException as e:
-            print(f"❌ 调用Ollama模型失败: {e}")
+            tqdm.write(f"调用Ollama模型失败: {e}")
             return None
 
         except Exception as e: # 可能出现输出不是json的情况，暂时跳过
-            print(f"❌ 未知错误: {e}")
+            tqdm.write(f"未知错误: {e}")
             return None
 
     def call_ollama_embedding(self, prompt):
@@ -100,16 +100,16 @@ class LLMInvoker:
             embedding = response_data.get("embedding", [])
 
             if not embedding:
-                print(f"⚠️ 返回的 embedding 为空")
+                tqdm.write(f"返回的 embedding 为空")
                 return None
 
             return embedding
 
         except requests.exceptions.RequestException as e:
-            print(f"❌ 调用 Ollama Embedding 模型失败：{e}")
+            tqdm.write(f"调用 Ollama Embedding 模型失败：{e}")
             return None
         except json.JSONDecodeError as e:
-            print(f"❌ 解析 Embedding 响应失败：{e}")
+            tqdm.write(f"解析 Embedding 响应失败：{e}")
             return None
 
     def extract_job_key_info(self, job_description):

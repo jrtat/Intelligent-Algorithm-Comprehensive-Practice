@@ -10,7 +10,6 @@ def create_job_data(id, job_name, company_name, location, salary_min, salary_max
         "industry": "互联网",
         "company_size": "500-1000人",
         "company_type": "民营企业",
-        "update_date": "2026-04-14",
         "source_url": f"https://example.com/job/{id}",
         "job_details": "岗位职责：负责公司前端业务开发...",
         "company_details": "公司简介：一家专注于AI技术的互联网公司...",

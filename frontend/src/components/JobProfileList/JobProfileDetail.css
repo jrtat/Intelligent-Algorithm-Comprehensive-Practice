@@ -1,81 +1,566 @@
-.profile-detail-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.profile-detail-page h2 {
-  font-size: 1.8rem;
-  color: #1f2937;
-  margin-bottom: 8px;
-}
-
-.profile-detail-page .subtitle {
-  color: #6b7280;
-  margin-bottom: 30px;
-}
-
-.profile-detail-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-}
-
-@media (max-width: 900px) {
-  .profile-detail-content {
-    grid-template-columns: 1fr;
-  }
-}
-
-.profile-card {
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
-}
-
-.profile-card h3 {
-  font-size: 1.1rem;
-  color: #1f2937;
-  margin-bottom: 20px;
-}
-
-.stat-item {
+.job-profile-view {
   display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid #f3f4f6;
+  flex-direction: column;
+  height: 100vh;
+  background: #f4f7fc;
 }
 
-.stat-item:last-child {
-  border-bottom: none;
+/* 面包屑导航 */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.9rem;
 }
 
-.stat-item.salary {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 2px solid #e5e7eb;
-  font-weight: 600;
-}
-
-.stat-label {
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-.stat-value {
+.breadcrumb-item:hover {
+  color: #3b82f6;
+}
+
+.breadcrumb-item.current {
   color: #1f2937;
   font-weight: 500;
+  cursor: default;
+}
+
+.breadcrumb-item.current:hover {
+  color: #1f2937;
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+  font-size: 0.7rem;
+  color: #d1d5db;
+}
+
+/* 顶部导航 */
+.top-nav {
+  height: 60px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-left i {
+  font-size: 1.4rem;
+  color: #3b82f6;
+}
+
+.job-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
 }
 
 .back-btn {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #4b5563;
+  transition: all 0.2s;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .back-btn:hover {
-  text-decoration: underline;
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+/* 主容器 */
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 左侧分类栏 */
+.sidebar {
+  width: 240px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed {
+  width: 48px;
+}
+
+.collapse-btn {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  font-size: 0.7rem;
+  color: #6b7280;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.collapse-btn:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.sidebar-header {
+  padding: 20px 16px 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.sidebar-header h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 8px;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #4b5563;
+  text-align: left;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.category-item:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.category-item.active {
+  background: #eef4ff;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.category-item i {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
+/* 右侧内容区 */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-container {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 分类卡片 */
+.category-card {
+  scroll-margin-top: 20px;
+}
+
+/* 已选岗位提示 */
+.selected-job-banner {
+  background: linear-gradient(135deg, #1e3a5f, #2c5282);
+  color: #ffffff;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  margin: 20px 24px 0 24px;
+  border-radius: 12px;
+}
+
+.selected-job-banner strong {
+  font-weight: 600;
+}
+
+/* 内容卡片 */
+.category-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  border: 1px solid rgba(203, 213, 225, 0.4);
+}
+
+.card-header {
+  padding: 20px 24px 12px 24px;
+  border-bottom: 1px solid #eef2f8;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-header i {
+  font-size: 1.6rem;
+  color: #3b82f6;
+  background: #eef4ff;
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.card-header h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: #1f2937;
+}
+
+.card-body {
+  padding: 20px 24px 24px 24px;
+}
+
+/* 评分条目 */
+.score-item {
+  margin-bottom: 18px;
+}
+
+.score-item:last-child {
+  margin-bottom: 0;
+}
+
+.score-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.score-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4b5563;
+}
+
+.score-name i {
+  font-size: 0.9rem;
+  color: #5b6e8c;
+  background: none;
+  padding: 0;
+}
+
+.progress-bar-bg {
+  background: #e2e8f0;
+  border-radius: 40px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 8px;
+  border-radius: 40px;
+  transition: width 0.3s ease;
+}
+
+.score-value {
+  font-weight: 700;
+  font-family: monospace;
+  color: #1f2937;
+}
+
+.level-tag {
+  font-size: 0.7rem;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 40px;
+  margin-left: 8px;
+  font-weight: normal;
+  color: #6b7280;
+}
+
+/* 标签云 */
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.tag {
+  background: #f0f4f9;
+  padding: 6px 14px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1e3a5f;
+  transition: all 0.2s;
+  border: 0.5px solid #e0e7ef;
+}
+
+.tag:hover {
+  background: #e6edf6;
+  transform: translateY(-1px);
+}
+
+/* 描述文本 */
+.desc-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.info-text {
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+
+/* 子区域标题 */
+.sub-section-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1f2937;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sub-section-title i {
+  color: #3b82f6;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: #9ca3af;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+}
+
+/* 分割线 */
+hr {
+  margin: 16px 0;
+  border: none;
+  height: 1px;
+  background: #ecf3f9;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef2f6;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b9c3cf;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 导航搜索框 */
+.nav-search {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 20px;
+}
+
+.nav-search .search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-search .search-box:hover {
+  border-color: #3b82f6;
+}
+
+.nav-search .search-box i {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.nav-search .search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  color: #1f2937;
+  background: transparent;
+}
+
+.nav-search .search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.nav-search .clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 2px;
+}
+
+.nav-search .clear-btn:hover {
+  color: #6b7280;
+}
+
+.nav-search .dropdown-arrow {
+  font-size: 0.75rem;
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+/* 下拉框 */
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-top: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.dropdown-item.active {
+  background: #eef4ff;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.dropdown-empty {
+  padding: 20px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+/* 响应式 */
+@media (max-width: 1000px) {
+  .sidebar {
+    width: 48px;
+  }
+
+  .sidebar .sidebar-header,
+  .sidebar .category-nav {
+    display: none;
+  }
+
+  .content-area {
+    padding: 16px;
+  }
+
+  .nav-search {
+    max-width: 200px;
+  }
 }

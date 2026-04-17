@@ -56,6 +56,10 @@ def train_bert_fold(train_texts, train_labels, val_texts, val_labels, num_classe
     在单个 fold 上微调 RoBERTa 模型。
     返回微调后的模型和 tokenizer 路径。
     """
+    torch.backends.cuda.matmul.allow_tf32 = True  # 启用 TF32 加速矩阵乘法 (4060 支持)
+    torch.backends.cudnn.allow_tf32 = True  # 启用 CUDNN 的 TF32
+    torch.backends.cudnn.benchmark = True  # 寻找最优卷积算法 (对 Transformer 也有加速)
+
     # 加载 tokenizer 和模型
     tokenizer = RobertaTokenizer.from_pretrained(config.MODEL_NAME)
     model = RobertaForSequenceClassification.from_pretrained(
@@ -92,6 +96,8 @@ def train_bert_fold(train_texts, train_labels, val_texts, val_labels, num_classe
         metric_for_best_model="accuracy",
         fp16=config.USE_FP16,
         dataloader_drop_last=False,
+        dataloader_num_workers=0, # Windows 必须设为 0，避免 IPC 开销
+        dataloader_pin_memory=False,  # 8G 显存较小，固定内存反而占系统 RAM
         report_to="none",  # 不上报 wandb 等
         label_smoothing_factor=config.LABEL_SMOOTHING,  # 关键参数！
     )
@@ -190,7 +196,14 @@ def bert_calc_proba(device, texts, y, le):
         proba: 与输入样本顺序相同的概率矩阵 (n_samples, n_classes)
     """
     # 1. 准备文本
-    print("正在准备文本数据...")
+    # 调试开始
+    print(f"y shape: {y.shape}")
+    print(f"y dtype: {y.dtype}")
+    print(f"y min: {y.min()}, max: {y.max()}")
+    print(f"Number of classes from LabelEncoder: {len(le.classes_)}")
+    print(f"First 5 labels: {y[:5]}")
+    print(f"First 5 label types: {[type(val) for val in y[:5]]}")
+    # 调试结束
     num_classes = len(le.classes_)
 
     # 2. 初始化 K-Fold

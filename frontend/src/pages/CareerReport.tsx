@@ -17,7 +17,7 @@ export default function CareerReport() {
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-12 gap-6">
         {/* Main Report Preview (Asymmetric Focus) */}
-        <section className="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+        <section className="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-8">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-xl font-bold">执行策略报告</h3>
             <div className="flex gap-2">
@@ -102,7 +102,7 @@ export default function CareerReport() {
         </aside>
 
         {/* Interactive Timeline (Gantt-Style) */}
-        <section className="col-span-12 bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+        <section className="col-span-12 bg-surface-container-lowest rounded-xl p-8">
           <div className="flex justify-between items-center mb-8">
             <div>
               <h3 className="text-xl font-bold">执行时间表</h3>

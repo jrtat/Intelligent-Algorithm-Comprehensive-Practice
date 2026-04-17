@@ -585,7 +585,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
         </div>
 
         {/* 2. Large Radar Chart */}
-        <div className="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+        <div className="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-8">
           <div className="flex flex-col items-start mb-8">
             <div className="flex items-center gap-4 mb-2">
               <h3 className="text-xl font-bold">维度掌控力</h3>
@@ -712,7 +712,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
 
         {/* 3. Overall Metrics */}
         <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-4">
+          <div className="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/10 flex flex-col justify-between gap-4">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-bold mb-1">就业竞争力</h3>
@@ -727,7 +727,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
               </div>
             )}
           </div>
-          <div className="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10 flex flex-col justify-between gap-4">
+          <div className="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/10 flex flex-col justify-between gap-4">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-bold mb-1">简历完整度</h3>
@@ -746,7 +746,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
       </div>
 
       {/* Resume Structured Info Form */}
-      <div className="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10">
+      <div className="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/10">
         <h3 className="text-xl font-bold mb-6">简历结构化信息确认</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>

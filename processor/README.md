@@ -129,9 +129,9 @@ processor/
 
 pip install modelscope # 下载modelscope
 
-modelscope download --model Qwen/Qwen2.5-3B-Instruct --local_dir ./models/Qwen2.5-3B-Instruct # 把Qwen2.5-3B下载到当前目录的/models/子文件夹里
+modelscope download --model Qwen/Qwen2.5-3B-Instruct --local_dir ./train/Qwen2.5-3B-Instruct # 把Qwen2.5-3B下载到当前目录的/train/子文件夹里
 # 1. 显存大的可以用更大的模型
-# 2. 模型保存的地址可以自行更改，默认路径值：C:\Windows\System32\models\Qwen2.5-7B 
+# 2. 模型保存的地址可以自行更改，默认路径值：C:\Windows\System32\train\Qwen2.5-7B 
 # 3. 不用时，模型可以直接在资源管理器删除
 
 ```

@@ -112,14 +112,14 @@ const categories = [
 export function JobProfileDetail() {
   const navigate = useNavigate();
   const params = useParams<{ jobName?: string }>();
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  // 从URL参数获取初始岗位名称
   const initialJobName = params.jobName ? decodeURIComponent(params.jobName) : '';
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedJobName, setSelectedJobName] = useState(initialJobName);
-  const [selectedCategory, setSelectedCategory] = useState('core');
+  const [activeSection, setActiveSection] = useState('core');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -133,6 +133,30 @@ export function JobProfileDetail() {
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // 监听滚动以更新当前活跃的分类
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!contentRef.current) return;
+
+      const scrollTop = contentRef.current.scrollTop;
+      const cards = contentRef.current.querySelectorAll('.category-card');
+
+      for (let i = cards.length - 1; i >= 0; i--) {
+        const card = cards[i] as HTMLElement;
+        if (card.offsetTop <= scrollTop + 100) {
+          setActiveSection(card.id);
+          break;
+        }
+      }
+    };
+
+    const content = contentRef.current;
+    if (content) {
+      content.addEventListener('scroll', handleScroll);
+      return () => content.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   // 获取所有岗位名称
@@ -189,11 +213,18 @@ export function JobProfileDetail() {
     setSelectedJobName(jobName);
     setSearchQuery('');
     setIsDropdownOpen(false);
-    // 更新URL
     navigate(`/profile-list/${encodeURIComponent(jobName)}`, { replace: true });
   };
 
-  const renderCategoryContent = () => {
+  // 滚动到指定卡片
+  const scrollToCard = (id: string) => {
+    const element = document.getElementById(id);
+    if (element && contentRef.current) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const renderAllCards = () => {
     if (!profileData) {
       return (
         <div className="empty-state">
@@ -203,9 +234,10 @@ export function JobProfileDetail() {
       );
     }
 
-    switch (selectedCategory) {
-      case 'core':
-        return (
+    return (
+      <>
+        {/* 核心能力评估 */}
+        <div id="core" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-chart-simple"></i>
@@ -238,10 +270,10 @@ export function JobProfileDetail() {
               })}
             </div>
           </div>
-        );
+        </div>
 
-      case 'skills':
-        return (
+        {/* 技能标签云 */}
+        <div id="skills" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-tags"></i>
@@ -255,10 +287,10 @@ export function JobProfileDetail() {
               </div>
             </div>
           </div>
-        );
+        </div>
 
-      case 'welfare':
-        return (
+        {/* 薪酬福利 */}
+        <div id="welfare" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-gift"></i>
@@ -275,10 +307,10 @@ export function JobProfileDetail() {
               )}
             </div>
           </div>
-        );
+        </div>
 
-      case 'education':
-        return (
+        {/* 学历要求&成长阶梯 */}
+        <div id="education" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-graduation-cap"></i>
@@ -314,10 +346,10 @@ export function JobProfileDetail() {
               </div>
             </div>
           </div>
-        );
+        </div>
 
-      case 'skillDetail':
-        return (
+        {/* 职业技能 · 深度要求 */}
+        <div id="skillDetail" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-laptop-code"></i>
@@ -334,10 +366,10 @@ export function JobProfileDetail() {
               </div>
             </div>
           </div>
-        );
+        </div>
 
-      case 'work':
-        return (
+        {/* 工作内容 · 核心挑战 */}
+        <div id="work" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-tasks"></i>
@@ -354,10 +386,10 @@ export function JobProfileDetail() {
               </div>
             </div>
           </div>
-        );
+        </div>
 
-      case 'comprehensive':
-        return (
+        {/* 综合实力 · 软实力 */}
+        <div id="comprehensive" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-users"></i>
@@ -374,10 +406,10 @@ export function JobProfileDetail() {
               </div>
             </div>
           </div>
-        );
+        </div>
 
-      case 'major':
-        return (
+        {/* 专业背景 */}
+        <div id="major" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-diploma"></i>
@@ -394,10 +426,10 @@ export function JobProfileDetail() {
               </div>
             </div>
           </div>
-        );
+        </div>
 
-      case 'experience':
-        return (
+        {/* 经验要求 */}
+        <div id="experience" className="category-card">
           <div className="card">
             <div className="card-header">
               <i className="fas fa-briefcase-clock"></i>
@@ -414,11 +446,9 @@ export function JobProfileDetail() {
               </div>
             </div>
           </div>
-        );
-
-      default:
-        return null;
-    }
+        </div>
+      </>
+    );
   };
 
   return (
@@ -509,14 +539,18 @@ export function JobProfileDetail() {
               </div>
               <nav className="category-nav">
                 {categories.map((cat) => (
-                  <button
+                  <a
                     key={cat.id}
-                    className={`category-item ${selectedCategory === cat.id ? 'active' : ''}`}
-                    onClick={() => setSelectedCategory(cat.id)}
+                    href={`#${cat.id}`}
+                    className={`category-item ${activeSection === cat.id ? 'active' : ''}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToCard(cat.id);
+                    }}
                   >
                     <i className={cat.icon}></i>
                     <span>{cat.label}</span>
-                  </button>
+                  </a>
                 ))}
               </nav>
             </>
@@ -524,14 +558,14 @@ export function JobProfileDetail() {
         </aside>
 
         {/* 右侧内容区 */}
-        <main className="content-area">
+        <main className="content-area" ref={contentRef}>
           {selectedJobName && (
             <div className="selected-job-banner">
               当前查看: <strong>{selectedJobName}</strong>
             </div>
           )}
-          <div className="category-content">
-            {renderCategoryContent()}
+          <div className="cards-container">
+            {renderAllCards()}
           </div>
         </main>
       </div>

@@ -202,11 +202,21 @@
 /* 右侧内容区 */
 .content-area {
   flex: 1;
-  padding: 24px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+}
+
+.cards-container {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
+}
+
+/* 分类卡片 */
+.category-card {
+  scroll-margin-top: 20px;
 }
 
 /* 已选岗位提示 */
@@ -214,8 +224,9 @@
   background: linear-gradient(135deg, #1e3a5f, #2c5282);
   color: #ffffff;
   padding: 12px 20px;
-  border-radius: 12px;
   font-size: 0.95rem;
+  margin: 20px 24px 0 24px;
+  border-radius: 12px;
 }
 
 .selected-job-banner strong {

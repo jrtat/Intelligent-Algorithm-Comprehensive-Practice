@@ -20,7 +20,8 @@ df = get_data_raw()
 
 # Step 1：处理数据
 print("Step 1")
-X_fused = init_data(df)
+# X_fused = init_data(df)
+X_fused = init_data_raw(df)
 # init_data_lora(df, init_type= "not raw")
 
 le = LabelEncoder() # 使用 LabelEncoder 将原始岗位名称（字符串）转换为整数标签 y（0, 1, 2, …）

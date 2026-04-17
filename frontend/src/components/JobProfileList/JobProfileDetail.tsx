@@ -1,149 +1,539 @@
-import { useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import ReactECharts from 'echarts-for-react';
-import jobsData from '../../data/jobs.json';
-import type { Job } from '../../types/job';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import resultData from '../../data/log/result.json';
 import './JobProfileDetail.css';
 
-export function JobProfileDetail() {
-  const { jobName } = useParams<{ jobName: string }>();
-  const decodedJobName = decodeURIComponent(jobName || '');
+interface ProfileData {
+  jobName: string;
+  scores: {
+    name: string;
+    score: number;
+    icon: string;
+  }[];
+  descriptions: {
+    skill: string;
+    comprehensive: string;
+    work: string;
+    major: string;
+    experience: string;
+    certificate: string;
+    welfare: string;
+    education: string;
+    promotion: string;
+  };
+}
 
-  // 获取同岗位名称的所有岗位
-  const similarJobs = useMemo(() => {
-    return Object.values(jobsData as Record<string, Job>).filter(
-      (j) => j.岗位名称 === decodedJobName
-    );
-  }, [decodedJobName]);
+// 预加载所有标签数据
+const allTagsData: Record<number, Record<string, string[]>> = {};
 
-  // 聚合计算平均值
-  const aggregatedScores = useMemo(() => {
-    if (similarJobs.length === 0) return null;
-    return {
-      沟通能力: Math.round(similarJobs.reduce((sum, j) => sum + j.沟通能力, 0) / similarJobs.length),
-      学习能力: Math.round(similarJobs.reduce((sum, j) => sum + j.学习能力, 0) / similarJobs.length),
-      抗压能力: Math.round(similarJobs.reduce((sum, j) => sum + j.抗压能力, 0) / similarJobs.length),
-      创新能力: Math.round(similarJobs.reduce((sum, j) => sum + j.创新能力, 0) / similarJobs.length),
-      实习能力: Math.round(similarJobs.reduce((sum, j) => sum + j.实习能力, 0) / similarJobs.length),
-    };
-  }, [similarJobs]);
+// 初始化标签数据
+const initTagsData = async () => {
+  const tagFiles = [
+    { key: 'skillTags', file: '职业技能概述.json' },
+    { key: 'comprehensiveTags', file: '综合素质概述.json' },
+    { key: 'workTags', file: '工作内容概述.json' },
+    { key: 'majorTags', file: '专业背景概述.json' },
+    { key: 'experienceTags', file: '工作经验概述.json' },
+    { key: 'certificateTags', file: '证书要求概述.json' },
+    { key: 'welfareTags', file: '福利待遇概述.json' },
+    { key: 'educationTags', file: '学历要求概述.json' },
+    { key: 'promotionTags', file: '晋升路径概述.json' },
+  ];
 
-  // 薪资统计
-  const salaryStats = useMemo(() => {
-    if (similarJobs.length === 0) return { min: 0, max: 0 };
-    const salaries = similarJobs.flatMap((j) => j.月薪范围);
-    return {
-      min: Math.min(...salaries),
-      max: Math.max(...salaries),
-    };
-  }, [similarJobs]);
-
-  if (similarJobs.length === 0) {
-    return (
-      <div className="app">
-        <p className="empty">未找到该岗位的画像数据</p>
-      </div>
-    );
+  for (let jobIndex = 0; jobIndex <= 50; jobIndex++) {
+    allTagsData[jobIndex] = {};
+    for (const { key, file } of tagFiles) {
+      try {
+        const module = await import(/* @vite-ignore */ `../../data/log/${jobIndex}_${file}`);
+        const tagKey = `${file.replace('.json', '')}_tags`;
+        if (module.default && module.default[tagKey]) {
+          allTagsData[jobIndex][key] = module.default[tagKey];
+        }
+      } catch {
+        // Ignore missing files
+      }
+    }
   }
+};
 
-  const radarOption = {
-    tooltip: {
-      trigger: 'item',
-    },
-    legend: {
-      data: ['能力评分'],
-      bottom: '5%',
-    },
-    radar: {
-      shape: 'circle',
-      center: ['50%', '55%'],
-      radius: '65%',
-      splitNumber: 5,
-      axisLine: {
-        lineStyle: { color: '#e0e0e0' },
-      },
-      splitLine: {
-        lineStyle: { color: '#e0e0e0' },
-      },
-      splitArea: {
-        areaStyle: { color: ['rgba(128, 128, 128, 0.1)'] },
-      },
-      indicator: [
-        { name: '沟通能力', max: 5 },
-        { name: '学习能力', max: 5 },
-        { name: '抗压能力', max: 5 },
-        { name: '创新能力', max: 5 },
-        { name: '实习能力', max: 5 },
-      ],
-    },
-    series: [
-      {
-        type: 'radar',
-        symbol: 'circle',
-        symbolSize: 8,
-        lineStyle: { width: 3, color: '#4f46e5' },
-        areaStyle: { color: 'rgba(79, 70, 229, 0.3)' },
-        data: [
-          {
-            value: [
-              aggregatedScores!.沟通能力,
-              aggregatedScores!.学习能力,
-              aggregatedScores!.抗压能力,
-              aggregatedScores!.创新能力,
-              aggregatedScores!.实习能力,
-            ],
-            name: decodedJobName,
-          },
-        ],
-      },
-    ],
+// 立即初始化
+initTagsData();
+
+// 获取指定岗位的标签数据
+const loadProfileTags = (jobIndex: number): Record<string, string[]> => {
+  return allTagsData[jobIndex] || {};
+};
+
+// 获取分数颜色
+const getScoreColor = (score: number) => {
+  if (score >= 75) return '#10b981';
+  if (score >= 65) return '#3b82f6';
+  if (score >= 55) return '#f59e0b';
+  return '#ef4444';
+};
+
+const getLevelText = (score: number) => {
+  if (score >= 80) return '优秀';
+  if (score >= 70) return '良好';
+  if (score >= 60) return '中等';
+  return '一般';
+};
+
+const scoreIcons: Record<string, string> = {
+  '创新能力评分_score': 'fas fa-lightbulb',
+  '抗压能力评分_score': 'fas fa-shield-heart',
+  '沟通能力评分_score': 'fas fa-comments',
+  '学习能力评分_score': 'fas fa-brain',
+  '实践能力评分_score': 'fas fa-hands',
+  '团队合作能力评分_score': 'fas fa-people-arrows',
+};
+
+const scoreKeys = [
+  '创新能力评分_score',
+  '抗压能力评分_score',
+  '沟通能力评分_score',
+  '学习能力评分_score',
+  '实践能力评分_score',
+  '团队合作能力评分_score',
+];
+
+const categories = [
+  { id: 'core', label: '核心能力评估', icon: 'fas fa-chart-simple' },
+  { id: 'skills', label: '技能标签云', icon: 'fas fa-tags' },
+  { id: 'welfare', label: '薪酬福利', icon: 'fas fa-gift' },
+  { id: 'education', label: '学历要求&成长阶梯', icon: 'fas fa-graduation-cap' },
+  { id: 'skillDetail', label: '职业技能 · 深度要求', icon: 'fas fa-laptop-code' },
+  { id: 'work', label: '工作内容 · 核心挑战', icon: 'fas fa-tasks' },
+  { id: 'comprehensive', label: '综合实力 · 软实力', icon: 'fas fa-users' },
+  { id: 'major', label: '专业背景', icon: 'fas fa-diploma' },
+  { id: 'experience', label: '经验要求', icon: 'fas fa-briefcase-clock' },
+];
+
+export function JobProfileDetail() {
+  const navigate = useNavigate();
+  const params = useParams<{ jobName?: string }>();
+
+  // 从URL参数获取初始岗位名称
+  const initialJobName = params.jobName ? decodeURIComponent(params.jobName) : '';
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedJobName, setSelectedJobName] = useState(initialJobName);
+  const [selectedCategory, setSelectedCategory] = useState('core');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // 点击外部关闭下拉框
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // 获取所有岗位名称
+  const jobNames = useMemo(() => Object.keys(resultData as Record<string, unknown>), []);
+
+  // 过滤岗位
+  const filteredJobs = useMemo(() => {
+    if (!searchQuery.trim()) return jobNames.slice(0, 20);
+    const query = searchQuery.toLowerCase();
+    return jobNames.filter(name => name.toLowerCase().includes(query)).slice(0, 20);
+  }, [searchQuery, jobNames]);
+
+  // 获取岗位索引
+  const jobIndex = useMemo(() => jobNames.indexOf(selectedJobName), [jobNames, selectedJobName]);
+
+  // 解析数据
+  const profileData = useMemo<ProfileData | null>(() => {
+    if (!selectedJobName) return null;
+    const data = resultData as Record<string, Record<string, unknown>>;
+    const jobInfo = data[selectedJobName];
+    if (!jobInfo) return null;
+
+    const scores = scoreKeys
+      .filter(key => key in jobInfo)
+      .map(key => ({
+        name: key.replace('评分_score', ''),
+        score: jobInfo[key] as number,
+        icon: scoreIcons[key] || 'fas fa-chart-simple',
+      }));
+
+    const descriptions = {
+      skill: (jobInfo['职业技能概述_description'] as string) || '',
+      comprehensive: (jobInfo['综合素质概述_description'] as string) || '',
+      work: (jobInfo['工作内容概述_description'] as string) || '',
+      major: (jobInfo['专业背景概述_description'] as string) || '',
+      experience: (jobInfo['工作经验概述_description'] as string) || '',
+      certificate: (jobInfo['证书要求概述_description'] as string) || '',
+      welfare: (jobInfo['福利待遇概述_description'] as string) || '',
+      education: (jobInfo['学历要求概述_description'] as string) || '',
+      promotion: (jobInfo['晋升路径概述_description'] as string) || '',
+    };
+
+    return { jobName: selectedJobName, scores, descriptions };
+  }, [selectedJobName]);
+
+  // 获取标签数据
+  const tagsData = useMemo(() => {
+    if (jobIndex === -1) return {};
+    return loadProfileTags(jobIndex);
+  }, [jobIndex]);
+
+  // 选择岗位
+  const handleSelectJob = (jobName: string) => {
+    setSelectedJobName(jobName);
+    setSearchQuery('');
+    setIsDropdownOpen(false);
+    // 更新URL
+    navigate(`/profile-list/${encodeURIComponent(jobName)}`, { replace: true });
+  };
+
+  const renderCategoryContent = () => {
+    if (!profileData) {
+      return (
+        <div className="empty-state">
+          <i className="fas fa-search"></i>
+          <p>请在上方搜索框选择岗位</p>
+        </div>
+      );
+    }
+
+    switch (selectedCategory) {
+      case 'core':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-chart-simple"></i>
+              <h2>核心能力评估</h2>
+            </div>
+            <div className="card-body">
+              {profileData.scores.map((item) => {
+                const fillColor = getScoreColor(item.score);
+                const level = getLevelText(item.score);
+                const scorePercent = (item.score / 100) * 100;
+                return (
+                  <div key={item.name} className="score-item">
+                    <div className="score-meta">
+                      <div className="score-name">
+                        <i className={item.icon}></i> {item.name}
+                      </div>
+                      <div>
+                        <span className="score-value">{item.score}</span>
+                        <span className="level-tag">{level}</span>
+                      </div>
+                    </div>
+                    <div className="progress-bar-bg">
+                      <div
+                        className="progress-fill"
+                        style={{ width: `${scorePercent}%`, background: fillColor }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+
+      case 'skills':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-tags"></i>
+              <h2>技能标签云</h2>
+            </div>
+            <div className="card-body">
+              <div className="tags-cloud">
+                {(tagsData.skillTags || []).map((tag, idx) => (
+                  <span key={idx} className="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'welfare':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-gift"></i>
+              <h2>薪酬福利</h2>
+            </div>
+            <div className="card-body">
+              <div className="tags-cloud">
+                {(tagsData.welfareTags || []).map((tag, idx) => (
+                  <span key={idx} className="tag">{tag}</span>
+                ))}
+              </div>
+              {profileData.descriptions.welfare && (
+                <p className="desc-text">{profileData.descriptions.welfare}</p>
+              )}
+            </div>
+          </div>
+        );
+
+      case 'education':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-graduation-cap"></i>
+              <h2>学历要求 & 成长阶梯</h2>
+            </div>
+            <div className="card-body">
+              <div style={{ marginBottom: '16px' }}>
+                <div className="sub-section-title">
+                  <i className="fas fa-university"></i> 学历门槛
+                </div>
+                <div className="tags-cloud">
+                  {(tagsData.educationTags || []).map((tag, idx) => (
+                    <span key={idx} className="tag">{tag}</span>
+                  ))}
+                </div>
+                {profileData.descriptions.education && (
+                  <p className="info-text">{profileData.descriptions.education}</p>
+                )}
+              </div>
+              <hr />
+              <div style={{ marginTop: '16px' }}>
+                <div className="sub-section-title">
+                  <i className="fas fa-chart-line"></i> 晋升体系
+                </div>
+                <div className="tags-cloud">
+                  {(tagsData.promotionTags || []).map((tag, idx) => (
+                    <span key={idx} className="tag">{tag}</span>
+                  ))}
+                </div>
+                {profileData.descriptions.promotion && (
+                  <p className="info-text">{profileData.descriptions.promotion}</p>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'skillDetail':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-laptop-code"></i>
+              <h2>职业技能 · 深度要求</h2>
+            </div>
+            <div className="card-body">
+              {profileData.descriptions.skill && (
+                <p className="desc-text">{profileData.descriptions.skill}</p>
+              )}
+              <div className="tags-cloud">
+                {(tagsData.skillTags || []).map((tag, idx) => (
+                  <span key={idx} className="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'work':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-tasks"></i>
+              <h2>工作内容 · 核心挑战</h2>
+            </div>
+            <div className="card-body">
+              {profileData.descriptions.work && (
+                <p className="desc-text">{profileData.descriptions.work}</p>
+              )}
+              <div className="tags-cloud">
+                {(tagsData.workTags || []).map((tag, idx) => (
+                  <span key={idx} className="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'comprehensive':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-users"></i>
+              <h2>综合素质 · 软实力</h2>
+            </div>
+            <div className="card-body">
+              {profileData.descriptions.comprehensive && (
+                <p className="desc-text">{profileData.descriptions.comprehensive}</p>
+              )}
+              <div className="tags-cloud">
+                {(tagsData.comprehensiveTags || []).map((tag, idx) => (
+                  <span key={idx} className="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'major':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-diploma"></i>
+              <h2>专业背景</h2>
+            </div>
+            <div className="card-body">
+              {profileData.descriptions.major && (
+                <p className="desc-text">{profileData.descriptions.major}</p>
+              )}
+              <div className="tags-cloud">
+                {(tagsData.majorTags || []).map((tag, idx) => (
+                  <span key={idx} className="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'experience':
+        return (
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-briefcase-clock"></i>
+              <h2>经验要求</h2>
+            </div>
+            <div className="card-body">
+              {profileData.descriptions.experience && (
+                <p className="desc-text">{profileData.descriptions.experience}</p>
+              )}
+              <div className="tags-cloud">
+                {(tagsData.experienceTags || []).map((tag, idx) => (
+                  <span key={idx} className="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
   };
 
   return (
-    <div className="app">
-      <div className="profile-detail-page">
-        <Link to="/profile-list" className="back-btn">← 返回岗位列表</Link>
-        <h2>{decodedJobName} - 整体画像</h2>
-        <p className="subtitle">基于 {similarJobs.length} 个岗位数据聚合分析</p>
+    <div className="job-profile-view">
+      {/* 面包屑导航 */}
+      <div className="breadcrumb">
+        <Link to="/" className="breadcrumb-item">
+          <i className="fas fa-home"></i> 首页
+        </Link>
+        <i className="fas fa-chevron-right breadcrumb-separator"></i>
+        <span className="breadcrumb-item current">岗位画像</span>
+      </div>
 
-        <div className="profile-detail-content">
-          <div className="profile-card radar-card">
-            <h3>能力维度雷达图</h3>
-            <ReactECharts option={radarOption} style={{ height: '400px', width: '100%' }} />
-          </div>
-
-          <div className="profile-card stats-card">
-            <h3>统计概览</h3>
-            <div className="stat-item">
-              <span className="stat-label">样本数量</span>
-              <span className="stat-value">{similarJobs.length} 个岗位</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">平均沟通能力</span>
-              <span className="stat-value">{aggregatedScores!.沟通能力}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">平均学习能力</span>
-              <span className="stat-value">{aggregatedScores!.学习能力}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">平均抗压能力</span>
-              <span className="stat-value">{aggregatedScores!.抗压能力}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">平均创新能力</span>
-              <span className="stat-value">{aggregatedScores!.创新能力}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">平均实习能力</span>
-              <span className="stat-value">{aggregatedScores!.实习能力}</span>
-            </div>
-            <div className="stat-item salary">
-              <span className="stat-label">月薪范围</span>
-              <span className="stat-value">¥{salaryStats.min} - ¥{salaryStats.max}</span>
-            </div>
-          </div>
+      {/* 顶部导航 */}
+      <header className="top-nav">
+        <div className="nav-left">
+          <i className="fas fa-briefcase"></i>
+          <span className="job-title">岗位画像</span>
         </div>
+
+        {/* 搜索框 */}
+        <div className="nav-search" ref={dropdownRef}>
+          <div className="search-box" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <i className="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="搜索岗位名称..."
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setIsDropdownOpen(true);
+              }}
+              onFocus={() => setIsDropdownOpen(true)}
+            />
+            {searchQuery && (
+              <button
+                className="clear-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSearchQuery('');
+                }}
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            )}
+            <i className={`fas fa-chevron-${isDropdownOpen ? 'up' : 'down'} dropdown-arrow`}></i>
+          </div>
+
+          {isDropdownOpen && (
+            <div className="search-dropdown">
+              {filteredJobs.length === 0 ? (
+                <div className="dropdown-empty">未找到匹配的岗位</div>
+              ) : (
+                filteredJobs.map((name) => (
+                  <div
+                    key={name}
+                    className={`dropdown-item ${selectedJobName === name ? 'active' : ''}`}
+                    onClick={() => handleSelectJob(name)}
+                  >
+                    {name}
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="nav-actions">
+          <Link to="/dashboard" className="back-btn">
+            <i className="fas fa-arrow-left"></i> 返回看板
+          </Link>
+        </div>
+      </header>
+
+      <div className="main-container">
+        {/* 左侧分类栏 */}
+        <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+          <button
+            className="collapse-btn"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          >
+            <i className={`fas fa-chevron-${sidebarCollapsed ? 'right' : 'left'}`}></i>
+          </button>
+          {!sidebarCollapsed && (
+            <>
+              <div className="sidebar-header">
+                <h3>岗位画像维度</h3>
+              </div>
+              <nav className="category-nav">
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    className={`category-item ${selectedCategory === cat.id ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(cat.id)}
+                  >
+                    <i className={cat.icon}></i>
+                    <span>{cat.label}</span>
+                  </button>
+                ))}
+              </nav>
+            </>
+          )}
+        </aside>
+
+        {/* 右侧内容区 */}
+        <main className="content-area">
+          {selectedJobName && (
+            <div className="selected-job-banner">
+              当前查看: <strong>{selectedJobName}</strong>
+            </div>
+          )}
+          <div className="category-content">
+            {renderCategoryContent()}
+          </div>
+        </main>
       </div>
     </div>
   );

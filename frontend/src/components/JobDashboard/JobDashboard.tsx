@@ -271,7 +271,7 @@ export function JobDashboard() {
                   </div>
 
                   <div className="job-actions">
-                    <Link to="/summary" state={{ jobName: selectedJob.岗位名称 }} className="action-btn">查看岗位画像</Link>
+                    <Link to={`/profile-list/${encodeURIComponent(selectedJob.岗位名称)}`} className="action-btn">查看岗位画像</Link>
                     <Link to="/map" state={{ jobName: selectedJob.岗位名称 }} className="action-btn">查看地图分布</Link>
                   </div>
                 </div>

@@ -175,6 +175,7 @@ def get_vector(vec_type, embedding):
         return Neo4jVector.from_existing_index(
             embedding=embedding,
             url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
+            database=os.getenv('DATABASE_NAME'),  # 数据库名
             index_name="综合素质_vector_index",   # 和创建时一致
             retrieval_query = """
                 WITH node, score
@@ -191,6 +192,7 @@ def get_vector(vec_type, embedding):
         return Neo4jVector.from_existing_index(
             embedding=embedding,
             url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
+            database=os.getenv('DATABASE_NAME'),  # 数据库名
             index_name="职业技能_vector_index",   # 和创建时一致
             retrieval_query = """
                 WITH node, score
@@ -208,6 +210,7 @@ def get_vector(vec_type, embedding):
         return Neo4jVector.from_existing_index(
             embedding=embedding,
             url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
+            database=os.getenv('DATABASE_NAME'),  # 数据库名
             index_name="证书_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score
@@ -225,6 +228,7 @@ def get_vector(vec_type, embedding):
         return Neo4jVector.from_existing_index(
             embedding=embedding,
             url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
+            database=os.getenv('DATABASE_NAME'),  # 数据库名
             index_name="工作内容_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score
@@ -241,6 +245,7 @@ def get_vector(vec_type, embedding):
         return Neo4jVector.from_existing_index(
             embedding=embedding,
             url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
+            database=os.getenv('DATABASE_NAME'),  # 数据库名
             index_name="工作经验_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score
@@ -257,6 +262,7 @@ def get_vector(vec_type, embedding):
         return Neo4jVector.from_existing_index(
             embedding=embedding,
             url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
+            database=os.getenv('DATABASE_NAME'),  # 数据库名
             index_name="福利待遇_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score
@@ -311,9 +317,10 @@ def build_vec_ver114514():
     )  # 岗位 + “专业要求”专用索引
 
 #--- Example ---#
+# build_vec_ver1()
 
 embedding = get_local_embedding()
-vector_store_eg = get_vector("职业技能",get_vector)
+vector_store_eg = get_vector("职业技能",embedding)
 for doc, score in vector_store_eg.similarity_search_with_score(query="你的问题", k=5):
     print("文本:", doc.page_content)
     print("职业类型列表:", doc.metadata.get("职业类型列表"))

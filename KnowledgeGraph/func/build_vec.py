@@ -1,4 +1,6 @@
-from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j,graph_url,graph_username,graph_password,database_name
+import os
+
+from KnowledgeGraph.func.utils.conn_neo4j import connect_neo4j
 from KnowledgeGraph.func.utils.get_models import get_embedding_temp, get_local_embedding
 
 from langchain_experimental.text_splitter import SemanticChunker
@@ -38,10 +40,10 @@ def create_specialized_vectorstore(
     embeddings = get_embedding_temp()
     vectorstore = Neo4jVector.from_existing_graph(
         embedding=embeddings, # embedding 模型
-        url=graph_url, # 图数据库url
-        username=graph_username, # 图数据库用户名
-        password=graph_password, # 图数据库密码
-        database=database_name, # 数据库名
+        url=os.getenv('GRAPH_URL'), # 图数据库url
+        username=os.getenv('GRAPH_USERNAME'), # 图数据库用户名
+        password=os.getenv('GRAPH_PASSWORD'), # 图数据库密码
+        database=os.getenv('DATABASE_NAME'), # 数据库名
         index_name=index_name,
         node_label=node_label,
         text_node_properties=text_node_properties,
@@ -172,7 +174,7 @@ def get_vector(vec_type, embedding):
     if vec_type == "综合素质":
         return Neo4jVector.from_existing_index(
             embedding=embedding,
-            url=graph_url, username=graph_username, password=graph_password,
+            url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
             index_name="综合素质_vector_index",   # 和创建时一致
             retrieval_query = """
                 WITH node, score
@@ -188,7 +190,7 @@ def get_vector(vec_type, embedding):
     if vec_type == "职业技能":
         return Neo4jVector.from_existing_index(
             embedding=embedding,
-            url=graph_url, username=graph_username, password=graph_password,
+            url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
             index_name="职业技能_vector_index",   # 和创建时一致
             retrieval_query = """
                 WITH node, score
@@ -205,7 +207,7 @@ def get_vector(vec_type, embedding):
     if vec_type == "证书":
         return Neo4jVector.from_existing_index(
             embedding=embedding,
-            url=graph_url, username=graph_username, password=graph_password,
+            url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
             index_name="证书_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score
@@ -222,7 +224,7 @@ def get_vector(vec_type, embedding):
     if vec_type == "工作内容":
         return Neo4jVector.from_existing_index(
             embedding=embedding,
-            url=graph_url, username=graph_username, password=graph_password,
+            url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
             index_name="工作内容_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score
@@ -238,7 +240,7 @@ def get_vector(vec_type, embedding):
     if vec_type == "工作经验":
         return Neo4jVector.from_existing_index(
             embedding=embedding,
-            url=graph_url, username=graph_username, password=graph_password,
+            url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
             index_name="工作经验_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score
@@ -254,7 +256,7 @@ def get_vector(vec_type, embedding):
     if vec_type == "福利待遇":
         return Neo4jVector.from_existing_index(
             embedding=embedding,
-            url=graph_url, username=graph_username, password=graph_password,
+            url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
             index_name="福利待遇_vector_index",  # 和创建时一致
             retrieval_query="""
                 WITH node, score

@@ -564,3 +564,121 @@ hr {
     max-width: 200px;
   }
 }
+
+/* 换岗路径卡片样式 */
+.transfer-count {
+  font-size: 0.8rem;
+  color: #6b7280;
+  font-weight: normal;
+  margin-left: auto;
+  background: #f3f4f6;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.empty-hint {
+  text-align: center;
+  color: #9ca3af;
+  padding: 40px 20px;
+  font-size: 0.95rem;
+}
+
+.transfer-paths {
+  display: flex;
+  flex-direction: column;
+}
+
+.transfer-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #ecf3f9;
+  transition: all 0.2s;
+}
+
+.transfer-item:last-child {
+  border-bottom: none;
+}
+
+.transfer-item:hover {
+  background: #fafbfc;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  border-radius: 12px;
+}
+
+.transfer-arrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.source-job {
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.transfer-arrow i {
+  color: #3b82f6;
+  font-size: 0.85rem;
+}
+
+.target-job {
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.target-job:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.similarity-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.similarity-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+  min-width: 70px;
+}
+
+.similarity-bar {
+  flex: 1;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.similarity-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 40px;
+  transition: width 0.3s ease;
+}
+
+.similarity-value {
+  font-weight: 700;
+  color: #10b981;
+  font-size: 0.9rem;
+  min-width: 50px;
+  text-align: right;
+}
+
+.transfer-desc {
+  font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}

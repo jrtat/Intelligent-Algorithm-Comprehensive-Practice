@@ -21,10 +21,19 @@ interface ProfileData {
     education: string;
     promotion: string;
   };
+  transferPaths: TransferPath[];
+}
+
+interface TransferPath {
+  source_job: string;
+  target_job: string;
+  description: string;
+  similarity: number;
 }
 
 // 预加载所有标签数据
 const allTagsData: Record<number, Record<string, string[]>> = {};
+const allTransferData: Record<number, TransferPath[]> = {};
 
 // 初始化标签数据
 const initTagsData = async () => {
@@ -53,6 +62,16 @@ const initTagsData = async () => {
         // Ignore missing files
       }
     }
+    // 加载换岗路径数据
+    try {
+      const transferModule = await import(/* @vite-ignore */ `../../data/log/${jobIndex}_换岗路径信息.json`);
+      if (transferModule.default) {
+        const paths: TransferPath[] = Object.values(transferModule.default);
+        allTransferData[jobIndex] = paths.sort((a, b) => b.similarity - a.similarity);
+      }
+    } catch {
+      allTransferData[jobIndex] = [];
+    }
   }
 };
 
@@ -62,6 +81,11 @@ initTagsData();
 // 获取指定岗位的标签数据
 const loadProfileTags = (jobIndex: number): Record<string, string[]> => {
   return allTagsData[jobIndex] || {};
+};
+
+// 获取指定岗位的换岗路径数据
+const loadTransferPaths = (jobIndex: number): TransferPath[] => {
+  return allTransferData[jobIndex] || [];
 };
 
 // 获取分数颜色
@@ -107,6 +131,7 @@ const categories = [
   { id: 'comprehensive', label: '综合实力 · 软实力', icon: 'fas fa-users' },
   { id: 'major', label: '专业背景', icon: 'fas fa-diploma' },
   { id: 'experience', label: '经验要求', icon: 'fas fa-briefcase-clock' },
+  { id: 'transfer', label: '换岗路径', icon: 'fas fa-route' },
 ];
 
 export function JobProfileDetail() {
@@ -118,9 +143,14 @@ export function JobProfileDetail() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedJobName, setSelectedJobName] = useState(initialJobName);
   const [activeSection, setActiveSection] = useState('core');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  // 获取所有岗位名称
+  const jobNames = useMemo(() => Object.keys(resultData as Record<string, unknown>), []);
+
+  // 初始化 selectedJobName，确保默认显示第一个岗位
+  const [selectedJobName, setSelectedJobName] = useState(initialJobName || (jobNames.length > 0 ? jobNames[0] : ''));
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -159,14 +189,11 @@ export function JobProfileDetail() {
     }
   }, []);
 
-  // 获取所有岗位名称
-  const jobNames = useMemo(() => Object.keys(resultData as Record<string, unknown>), []);
-
   // 过滤岗位
   const filteredJobs = useMemo(() => {
-    if (!searchQuery.trim()) return jobNames.slice(0, 20);
+    if (!searchQuery.trim()) return jobNames;
     const query = searchQuery.toLowerCase();
-    return jobNames.filter(name => name.toLowerCase().includes(query)).slice(0, 20);
+    return jobNames.filter(name => name.toLowerCase().includes(query));
   }, [searchQuery, jobNames]);
 
   // 获取岗位索引
@@ -199,8 +226,10 @@ export function JobProfileDetail() {
       promotion: (jobInfo['晋升路径概述_description'] as string) || '',
     };
 
-    return { jobName: selectedJobName, scores, descriptions };
-  }, [selectedJobName]);
+    const transferPaths = jobIndex !== -1 ? loadTransferPaths(jobIndex) : [];
+
+    return { jobName: selectedJobName, scores, descriptions, transferPaths };
+  }, [selectedJobName, jobIndex]);
 
   // 获取标签数据
   const tagsData = useMemo(() => {
@@ -444,6 +473,55 @@ export function JobProfileDetail() {
                   <span key={idx} className="tag">{tag}</span>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 换岗路径 */}
+        <div id="transfer" className="category-card">
+          <div className="card">
+            <div className="card-header">
+              <i className="fas fa-route"></i>
+              <h2>换岗路径</h2>
+              {profileData.transferPaths.length > 0 && (
+                <span className="transfer-count">共 {profileData.transferPaths.length} 条可转路径</span>
+              )}
+            </div>
+            <div className="card-body">
+              {profileData.transferPaths.length === 0 ? (
+                <p className="empty-hint">暂无推荐换岗路径</p>
+              ) : (
+                <div className="transfer-paths">
+                  {profileData.transferPaths.map((path, idx) => (
+                    <div key={idx} className="transfer-item">
+                      <div className="transfer-arrow">
+                        <span className="source-job">{path.source_job}</span>
+                        <i className="fas fa-arrow-right"></i>
+                        <span
+                          className="target-job"
+                          onClick={() => handleSelectJob(path.target_job)}
+                          title={`跳转到 ${path.target_job}`}
+                        >
+                          {path.target_job}
+                        </span>
+                      </div>
+                      <div className="similarity-row">
+                        <span className="similarity-label">岗位相似度</span>
+                        <div className="similarity-bar">
+                          <div
+                            className="similarity-fill"
+                            style={{ width: `${path.similarity * 100}%` }}
+                          ></div>
+                        </div>
+                        <span className="similarity-value">{(path.similarity * 100).toFixed(1)}%</span>
+                      </div>
+                      {path.description && (
+                        <p className="transfer-desc">{path.description}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -347,20 +347,20 @@ export function JobMapPage() {
       };
     }
 
-    // 颜色函数
+    // 颜色函数 - 与图例颜色保持一致
     const getColor = (count: number): string => {
       if (maxCount === 0) return isCountry ? '#66ccff' : '#ffaa66';
       const ratio = count / maxCount;
       if (isCountry) {
-        const r = Math.round(230 - ratio * 182);
-        const g = Math.round(244 - ratio * 146);
-        const b = Math.round(255 - ratio * 153);
-        return `rgb(${r}, ${g}, ${b})`;
+        // 全国地图：少=#cce0ff, 中=#4a90d9, 多=#1d4ed8
+        if (ratio < 0.4) return '#cce0ff';
+        if (ratio < 0.7) return '#4a90d9';
+        return '#1d4ed8';
       } else {
-        const r = 255;
-        const g = Math.round(242 - ratio * 158);
-        const b = Math.round(230 - ratio * 230);
-        return `rgb(${r}, ${g}, ${b})`;
+        // 省份地图：少=#ffd4a8, 中=#ff9933, 多=#cc3300
+        if (ratio < 0.4) return '#ffd4a8';
+        if (ratio < 0.7) return '#ff9933';
+        return '#cc3300';
       }
     };
 

@@ -547,6 +547,14 @@ result中的数据
 视觉轻量化：通过卡片、标签、图表等组件降低文本密集度，提升可读性；
 交互友好：支持信息折叠 / 展开、关键词高亮、评分可视化对比；
 
+
+if (!address) return null;
+  const rawCity = address.split('-')[0];
+  // 先查映射表，若有则返回映射值；否则若无"市"则加"市"
+  if (cityNameMap[rawCity]) return cityNameMap[rawCity];
+  return rawCity.endsWith('市') ? rawCity : rawCity + '市';
+
+  
 二、界面整体布局
 修改岗位画像代码，在右边的分类栏中添加“换岗路径”，并在右边的内容区域增加“换岗路径”卡片
 

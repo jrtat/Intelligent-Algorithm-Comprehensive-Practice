@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
 import jobsData from '../../data/jobs.json';
@@ -40,56 +40,9 @@ interface CityStat {
   ratio: number;
 }
 
-// 城市名称到省份名称的映射
-const cityToProvinceMap: Record<string, string> = {
-  '北京': '北京市', '上海': '上海市', '天津': '天津市', '重庆': '重庆市',
-  '广州': '广东省', '深圳': '广东省', '东莞': '广东省', '珠海': '广东省', '惠州': '广东省', '中山': '广东省',
-  '苏州': '江苏省', '南京': '江苏省', '无锡': '江苏省', '常州': '江苏省',
-  '杭州': '浙江省', '宁波': '浙江省', '温州': '浙江省',
-  '成都': '四川省', '宜宾': '四川省',
-  '武汉': '湖北省',
-  '西安': '陕西省',
-  '郑州': '河南省', '开封': '河南省',
-  '济南': '山东省', '烟台': '山东省', '威海': '山东省', '德州': '山东省', '济宁': '山东省',
-  '石家庄': '河北省', '唐山': '河北省', '保定': '河北省', '邢台': '河北省', '张家口': '河北省', '承德': '河北省',
-  '大连': '辽宁省', '营口': '辽宁省',
-  '昆明': '云南省',
-  '贵阳': '贵州省', '遵义': '贵州省', '毕节': '贵州省',
-  '合肥': '安徽省',
-  '南昌': '江西省', '赣州': '江西省',
-  '厦门': '福建省',
-  '吉林市': '吉林省',
-  '晋中': '山西省',
-  '阿克苏': '新疆维吾尔自治区',
-};
-
-function getProvinceFromAddress(address: string): string | null {
-  if (!address) return null;
-  const cityPart = address.split('-')[0];
-  return cityToProvinceMap[cityPart] || null;
-}
-
-function getCityFromAddress(address: string): string | null {
-  if (!address) return null;
-  return address.split('-')[0];
-}
-
 export function JobMapPage() {
-  const [selectedJobName, setSelectedJobName] = useState('');
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [locationData, setLocationData] = useState<LocationData>({});
-  const [chinaGeo, setChinaGeo] = useState<any>(null);
-  const [currentLevel, setCurrentLevel] = useState<'country' | 'province'>('country');
-  const [currentProvince, setCurrentProvince] = useState<{ adcode: number; name: string; center: [number, number] } | null>(null);
-  const [provinceGeo, setProvinceGeo] = useState<any>(null);
-  const [loadError, setLoadError] = useState<string | null>(null);
-  const chartRef = useRef<ReactECharts | null>(null);
-
-  // 生成唯一 key，强制重建地图实例，彻底解决实例残留问题
-  const mapKey = useMemo(() => {
-    return `${currentLevel}-${currentProvince?.adcode || 'country'}-${selectedJobName}`;
-  }, [currentLevel, currentProvince, selectedJobName]);
+  const location = useLocation();
+  const initialJobName = (location.state as { jobName?: string })?.jobName;
 
   // 获取所有唯一的岗位名称
   const jobNames = useMemo(() => {
@@ -99,6 +52,70 @@ export function JobMapPage() {
     });
     return Array.from(names).sort();
   }, []);
+
+  const [selectedJobName, setSelectedJobName] = useState(initialJobName || (jobNames.length > 0 ? jobNames[0] : ''));
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [locationData, setLocationData] = useState<LocationData>({});
+  const [chinaGeo, setChinaGeo] = useState<any>(null);
+  const [currentLevel, setCurrentLevel] = useState<'country' | 'province'>('country');
+  const [currentProvince, setCurrentProvince] = useState<{ adcode: number; name: string; center: [number, number] } | null>(null);
+  const [provinceGeo, setProvinceGeo] = useState<any>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const chartRef = useRef<ReactECharts | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // 点击外部关闭下拉框
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // 城市到省份映射表
+  const [cityToProvinceMap, setCityToProvinceMap] = useState<Record<string, string>>({});
+
+  // 加载城市省份映射表
+  useEffect(() => {
+    fetch('/map/city_province_map.json')
+      .then(res => res.json())
+      .then(data => setCityToProvinceMap(data))
+      .catch(err => console.error('加载city_province_map.json失败:', err));
+  }, []);
+
+  // 获取省份名称
+  const getProvinceFromAddress = useCallback((address: string): string | null => {
+    if (!address) return null;
+    const cityPart = address.split('-')[0];
+    // 去掉"市"后缀后查找
+    const cityWithoutSuffix = cityPart.endsWith('市') ? cityPart.slice(0, -1) : cityPart;
+    return cityToProvinceMap[cityWithoutSuffix] || null;
+  }, [cityToProvinceMap]);
+
+  // 获取城市名称（带"市"后缀）
+  const getCityFromAddress = useCallback((address: string): string | null => {
+    if (!address) return null;
+    const cityPart = address.split('-')[0];
+    const cityWithoutSuffix = cityPart.endsWith('市') ? cityPart.slice(0, -1) : cityPart;
+    // 查映射表，如果找到则用映射表中的省份格式（已包含"市"），否则加上市
+    const province = cityToProvinceMap[cityWithoutSuffix];
+    if (province) {
+      // 返回映射表中对应的城市名格式（从映射表的值反推省份下的城市）
+      // 实际上我们需要返回原始城市名，但要确认在映射表中存在
+      return cityPart.endsWith('市') ? cityPart : cityPart + '市';
+    }
+    return cityPart.endsWith('市') ? cityPart : cityPart + '市';
+  }, [cityToProvinceMap]);
+
+  // 生成唯一 key，强制重建地图实例，彻底解决实例残留问题
+  const mapKey = useMemo(() => {
+    return `${currentLevel}-${currentProvince?.adcode || 'country'}-${selectedJobName}`;
+  }, [currentLevel, currentProvince, selectedJobName]);
 
   const filteredJobNames = useMemo(() => {
     if (!searchKeyword) return jobNames;
@@ -333,7 +350,7 @@ export function JobMapPage() {
     if (stats.length === 0) {
       const mapName = isCountry ? 'china' : (provinceGeo ? `province_${provinceGeo.adcode}` : 'china');
       return {
-        geo: {
+        geo: [{
           map: mapName,
           roam: true,
           zoom: isCountry ? 1.2 : 1.5,
@@ -341,7 +358,7 @@ export function JobMapPage() {
           itemStyle: { areaColor: '#e8ecf1', borderColor: '#b8c5d6', borderWidth: 0.6 },
           emphasis: { itemStyle: { areaColor: '#d0d8e4' }, label: { show: false } },
           select: { disabled: true },
-        },
+        }],
         series: [],
         tooltip: { show: false },
       };
@@ -349,18 +366,18 @@ export function JobMapPage() {
 
     // 颜色函数 - 与图例颜色保持一致
     const getColor = (count: number): string => {
-      if (maxCount === 0) return isCountry ? '#66ccff' : '#ffaa66';
+      if (maxCount === 0) return isCountry ? '#60a5fa' : '#ffaa66';
       const ratio = count / maxCount;
       if (isCountry) {
-        // 全国地图：少=#cce0ff, 中=#4a90d9, 多=#1d4ed8
-        if (ratio < 0.4) return '#cce0ff';
-        if (ratio < 0.7) return '#4a90d9';
-        return '#1d4ed8';
+        // 全国地图：少=#60a5fa, 中=#2563eb, 多=#1e3a8a
+        if (ratio < 0.4) return '#60a5fa';
+        if (ratio < 0.7) return '#2563eb';
+        return '#1e3a8a';
       } else {
-        // 省份地图：少=#ffd4a8, 中=#ff9933, 多=#cc3300
-        if (ratio < 0.4) return '#ffd4a8';
-        if (ratio < 0.7) return '#ff9933';
-        return '#cc3300';
+        // 省份地图：少=#fb923c, 中=#ea580c, 多=#9a3412
+        if (ratio < 0.4) return '#fb923c';
+        if (ratio < 0.7) return '#ea580c';
+        return '#9a3412';
       }
     };
 
@@ -391,7 +408,7 @@ export function JobMapPage() {
     const mapName = isCountry ? 'china' : `province_${provinceGeo?.adcode}`;
     const mapCenter = isCountry ? [105, 36] : currentProvince?.center;
 
-    // geo 组件用于底图和散点图
+    // geo 组件用于底图和散点图（必须使用数组形式才能被 geoIndex 正确引用）
     const geoComponent = {
       map: mapName,
       roam: true,
@@ -412,7 +429,7 @@ export function JobMapPage() {
         geoIndex: 0,
         data: pulseData.map(d => ({ name: d.name, value: [d.value[0], d.value[1], d.value[2]], count: d.count, ratio: d.ratio })),
         symbolSize: (val: any) => getRadius(val[2]),
-        showEffectOn: 'emphasis',
+        showEffectOn: 'render',
         rippleEffect: { brushType: 'stroke', scale: 3, period: 4 },
         itemStyle: { color: (params: any) => getColor(params.data.count), borderColor: '#fff', borderWidth: 2 },
         emphasis: { scale: 1.3 },
@@ -432,7 +449,7 @@ export function JobMapPage() {
       });
     }
 
-    return { tooltip, geo: geoComponent, series, animation: true, animationDuration: 800, animationEasing: 'cubicOut' };
+    return { tooltip, geo: [geoComponent], series, animation: true, animationDuration: 800, animationEasing: 'cubicOut' };
   }, [currentLevel, provinceStats, cityStats, maxProvinceCount, maxCityCount, provinceGeo, currentProvince, selectedJobName]);
 
   const onEvents = useMemo(() => ({
@@ -459,24 +476,60 @@ export function JobMapPage() {
         <div className="dashboard-right" style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
           {/* Filter Bar */}
           <div className="filter-card" style={{ flexShrink: 0 }}>
-            <div className="filters">
-              <input
-                type="text"
-                className="filter-input"
-                placeholder="搜索岗位名称..."
-                value={searchKeyword}
-                onChange={(e) => setSearchKeyword(e.target.value)}
-              />
-              <select
-                className="filter-select"
-                value={selectedJobName}
-                onChange={(e) => handleJobChange(e.target.value)}
-              >
-                <option value="">请选择岗位类别</option>
-                {filteredJobNames.map(name => (
-                  <option key={name} value={name}>{name}</option>
-                ))}
-              </select>
+            <div className="map-top-bar">
+              <div className="job-name-display">
+                <span className="job-name-label">当前岗位：</span>
+                <span className="job-name-value">{selectedJobName || '请选择岗位'}</span>
+              </div>
+              <div className="job-search-dropdown" ref={dropdownRef}>
+                <div className="search-box" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                  <i className="fas fa-search"></i>
+                  <input
+                    type="text"
+                    placeholder="搜索岗位名称..."
+                    value={searchKeyword}
+                    onChange={(e) => {
+                      setSearchKeyword(e.target.value);
+                      if (!isDropdownOpen) setIsDropdownOpen(true);
+                    }}
+                    onFocus={() => setIsDropdownOpen(true)}
+                  />
+                  {searchKeyword && (
+                    <button
+                      className="clear-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSearchKeyword('');
+                      }}
+                    >
+                      <i className="fas fa-times"></i>
+                    </button>
+                  )}
+                  <i className={`fas fa-chevron-${isDropdownOpen ? 'up' : 'down'} dropdown-arrow`}></i>
+                </div>
+
+                {isDropdownOpen && (
+                  <div className="search-dropdown">
+                    {filteredJobNames.length === 0 ? (
+                      <div className="dropdown-empty">未找到匹配的岗位</div>
+                    ) : (
+                      filteredJobNames.map((name) => (
+                        <div
+                          key={name}
+                          className={`dropdown-item ${selectedJobName === name ? 'active' : ''}`}
+                          onClick={() => {
+                            handleJobChange(name);
+                            setSearchKeyword('');
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          {name}
+                        </div>
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
               {currentLevel === 'province' && (
                 <button className="back-btn" onClick={backToCountry}>返回全国地图</button>
               )}
@@ -492,20 +545,16 @@ export function JobMapPage() {
                   <div className="legend-title">标记说明</div>
                   <div className="legend-items">
                     <div className="legend-item">
-                      <span className="legend-color" style={{ backgroundColor: '#cce0ff' }}></span>
+                      <span className="legend-color" style={{ backgroundColor: '#60a5fa' }}></span>
                       <span>数量少</span>
                     </div>
                     <div className="legend-item">
-                      <span className="legend-color" style={{ backgroundColor: '#4a90d9' }}></span>
+                      <span className="legend-color" style={{ backgroundColor: '#2563eb' }}></span>
                       <span>数量中</span>
                     </div>
                     <div className="legend-item">
-                      <span className="legend-color" style={{ backgroundColor: '#1d4ed8' }}></span>
+                      <span className="legend-color" style={{ backgroundColor: '#1e3a8a' }}></span>
                       <span>数量多</span>
-                    </div>
-                    <div className="legend-item">
-                      <div className="pulse-demo"></div>
-                      <span>脉动</span>
                     </div>
                   </div>
                 </div>
@@ -514,15 +563,15 @@ export function JobMapPage() {
                     <div className="legend-title">城市标记</div>
                     <div className="legend-items">
                       <div className="legend-item">
-                        <span className="legend-color" style={{ backgroundColor: '#ffd4a8' }}></span>
+                        <span className="legend-color" style={{ backgroundColor: '#fb923c' }}></span>
                         <span>少</span>
                       </div>
                       <div className="legend-item">
-                        <span className="legend-color" style={{ backgroundColor: '#ff9933' }}></span>
+                        <span className="legend-color" style={{ backgroundColor: '#ea580c' }}></span>
                         <span>中</span>
                       </div>
                       <div className="legend-item">
-                        <span className="legend-color" style={{ backgroundColor: '#cc3300' }}></span>
+                        <span className="legend-color" style={{ backgroundColor: '#9a3412' }}></span>
                         <span>多</span>
                       </div>
                     </div>

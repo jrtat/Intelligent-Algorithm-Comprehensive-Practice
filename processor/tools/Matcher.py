@@ -1,4 +1,6 @@
 # 岗位匹配器
+from KnowledgeGraph.func.build_vec import get_vector
+from KnowledgeGraph.func.utils.get_models import get_local_embedding
 from processor.utils.FileProcessor import FileProcessor
 from processor.utils.LLMInvoker import LLMInvoker
 
@@ -16,6 +18,15 @@ model = LLMInvoker()
 
 fp_map = FileProcessor("maps/num2jt.json")
 dic_map = fp_map.read()
+
+match_map = { # 岗位的什么信息要看简历的什么
+    "综合素质": ["summary", "scoreExplanations"],
+    "职业技能": ["skills"],
+    "证书": ["certificates"],
+    "工作内容": ["targetRole"],
+    "工作经验": ["projectExperience", "internshipExperience", "practicalExperience"],
+    "福利待遇": ["hobbies"]
+}
 
 class Matcher:
     def __init__(self, resume_info):
@@ -178,7 +189,7 @@ class Matcher:
     def _extract_job_fields(num, keys):
         """
         从岗位信息中提取指定字段（需要结合 Neo4j 或其他数据源）
-
+        :param num: 岗位类别编号
         :param keys: 字段名或字段名列表
         :return: 提取的信息（字符串或字典）
         """
@@ -469,5 +480,39 @@ class Matcher:
         return self.scores.sort(key=lambda x: x[0], reverse=True)
 
 
+    # def get_embedding(self):
+    #
+    #     id = get_vector()
 
-    # def match_single_job(self, job_num):
+    def get_jobs(self): # 获取前几个最匹配的具体岗位
+        embedding = get_local_embedding()
+        for key in match_map:
+            vector_store_eg = get_vector(key, embedding)
+            query = ""
+            for i in match_map[key]:
+                # 可能是字符串、列表、字典
+                if isinstance(self.resume_info[i], str):
+                    query += self.resume_info[i] + " "
+                elif isinstance(self.resume_info[i], list):
+                    query += " ".join(self.resume_info[i]) + " "
+                elif isinstance(self.resume_info[i], dict):
+                    for k, v in self.resume_info[i].items():
+                        query += v + " "
+            for doc, score in vector_store_eg.similarity_search_with_score(query=query, k=1):
+                print(key)
+                print("文本:", doc.page_content)
+                print("关联岗位列表:", doc.metadata.get("关联岗位列表"))
+                print("相似度分数:", round(score, 4))  # 分数越小越相似（通常0~1之间）
+                print("---")
+
+
+    # def match_single_job(self): # 找出简历最接近的几个岗位（从不同方面分析）
+    #     # 新开一个，前面的可能没什么用
+    #     embedding = get_local_embedding()
+    #     vector_store_eg = get_vector("职业技能", embedding)
+    #     for doc, score in vector_store_eg.similarity_search_with_score(query="你的问题", k=5):
+    #         print("文本:", doc.page_content)
+    #         print("职业类型列表:", doc.metadata.get("职业类型列表")) # 相似度从高到低
+    #         print("相似度分数:", round(score, 4))  # 分数越小越相似（通常0~1之间）
+    #         print("---")
+

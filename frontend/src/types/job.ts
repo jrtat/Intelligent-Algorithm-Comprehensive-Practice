@@ -68,7 +68,7 @@ export interface ResumeData {
   projectExperience: string[];     // 项目经历列表
   internshipExperience: string[];  // 实习经历列表
   practicalExperience: string[];   // 实践活动经历列表
-  hobbies: string;                 // 兴趣爱好
+  hobbies: string[];                // 兴趣爱好列表
   summary: string;                 // 个人总结
   other: string;                   // 其他提取出的杂项信息
   targetRole: string;              // 主攻路径/目标岗位 (根据简历推断)

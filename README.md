@@ -106,7 +106,6 @@ interface JobData {
   industry: string;                // 所属行业
   company_size: string;            // 公司规模 (如: "10000人以上")
   company_type: string;            // 公司性质 (如: "民营企业")
-  update_date: string;             // 更新日期 (如: "2026-04-09")
   source_url: string;              // 来源链接 (点击岗位名称跳转的超链接)
   job_details: string;             // 岗位职责详细描述
   company_details: string;         // 公司简介详细描述

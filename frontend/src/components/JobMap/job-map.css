@@ -153,3 +153,134 @@
     gap: 12px;
   }
 }
+
+/* 搜索框下拉样式 */
+.job-search-dropdown {
+  position: relative;
+  flex: 0 0 auto;
+  width: 280px;
+}
+
+/* 顶部工具栏布局 */
+.map-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.job-name-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.job-name-label {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.job-name-value {
+  color: #1f2937;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.job-search-dropdown .search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.job-search-dropdown .search-box:hover {
+  border-color: #3b82f6;
+}
+
+.job-search-dropdown .search-box i {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.job-search-dropdown .search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  color: #1f2937;
+  background: transparent;
+}
+
+.job-search-dropdown .search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.job-search-dropdown .clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 2px;
+}
+
+.job-search-dropdown .clear-btn:hover {
+  color: #6b7280;
+}
+
+.job-search-dropdown .dropdown-arrow {
+  font-size: 0.75rem;
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+.job-search-dropdown .search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-top: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+
+.job-search-dropdown .dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.job-search-dropdown .dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.job-search-dropdown .dropdown-item:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.job-search-dropdown .dropdown-item.active {
+  background: #eef4ff;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.job-search-dropdown .dropdown-empty {
+  padding: 20px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}

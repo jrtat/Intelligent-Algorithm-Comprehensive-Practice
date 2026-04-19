@@ -44,35 +44,20 @@ def build_matrix(proba, y, class_names, save_path=None):
     return affinity_matrix
 
 def save_affinity_to_json(affinity_matrix, class_names, file_path):
-    """
-    将亲和矩阵与类别名保存为 JSON 文件。
+    # 确保 class_names 是 Python 原生字符串列表
+    if isinstance(class_names, np.ndarray):
+        class_names = class_names.tolist()          # 如果是 numpy 数组，转为列表
+    else:
+        class_names = [str(name) for name in class_names]  # 强制转换为字符串
 
-    Parameters
-    ----------
-    affinity_matrix : np.ndarray
-        亲和矩阵
-    class_names : list of str
-        类别名称列表
-    file_path : str
-        保存路径（.json 文件）
-    """
+    data = {
+        'class_names': class_names,
+        'affinity_matrix': affinity_matrix.tolist()
+    }
 
-    def save_affinity_to_json(affinity_matrix, class_names, file_path):
-        # 确保 class_names 是 Python 原生字符串列表
-        if isinstance(class_names, np.ndarray):
-            class_names = class_names.tolist()  # 如果是 numpy 数组，转为列表
-        else:
-            class_names = [str(name) for name in class_names]  # 强制转换为字符串
-
-        data = {
-            'class_names': class_names,
-            'affinity_matrix': affinity_matrix.tolist()
-        }
-
-        with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"亲和矩阵已保存至: {file_path}")
-
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print(f"亲和矩阵已保存至: {file_path}")
 
 def load_affinity_matrix(file_path):
     """

@@ -40,7 +40,7 @@ def get_embedding_temp():  # 临时的Embedding模型
         }
     )
 
-def get_local_embedding(path="/home/xuejx/projects/Intelligent-Algorithm-Comprehensive-Practice/models/bge-m3"):
+def get_local_embedding(path=f"{os.getenv('LOCAL_MODEL_PATH')}/bge-m3"):
     """
     从本地加载一个 Embedding 模型
     :param path: 模型路径

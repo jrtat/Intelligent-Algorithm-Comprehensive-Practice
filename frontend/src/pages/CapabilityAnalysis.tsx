@@ -108,13 +108,14 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
         if (!Array.isArray(parsed.projectExperience)) parsed.projectExperience = parsed.projectExperience ? [parsed.projectExperience] : [];
         if (!Array.isArray(parsed.internshipExperience)) parsed.internshipExperience = parsed.internshipExperience ? [parsed.internshipExperience] : [];
         if (!Array.isArray(parsed.practicalExperience)) parsed.practicalExperience = parsed.practicalExperience ? [parsed.practicalExperience] : [];
+        if (!Array.isArray(parsed.hobbies)) parsed.hobbies = parsed.hobbies ? [parsed.hobbies] : [];
         return parsed;
       } catch (e) {}
     }
     return {
       name: '', age: '', education: '', major: '', skills: [],
       certificates: [], projectExperience: [], internshipExperience: [],
-      practicalExperience: [], hobbies: '', summary: '', other: '',
+      practicalExperience: [], hobbies: [] as string[], summary: '', other: '',
       targetRole: '',
       completeness: 0,
       scores: { adaptability: 0, technicalDepth: 0, communication: 0, stressTolerance: 0, innovation: 0 }
@@ -319,7 +320,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
         }
 
         // 防御性处理：确保数组字段是数组，文本字段是字符串
-        const arrayFields = ['skills', 'certificates', 'projectExperience', 'internshipExperience', 'practicalExperience'];
+        const arrayFields = ['skills', 'certificates', 'projectExperience', 'internshipExperience', 'practicalExperience', 'hobbies'];
         for (const field of arrayFields) {
           if (parsed[field] !== undefined && parsed[field] !== null) {
              if (!Array.isArray(parsed[field])) {
@@ -336,7 +337,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
           }
         }
 
-        const stringFields = ['name', 'age', 'education', 'major', 'hobbies', 'summary', 'other', 'targetRole'];
+        const stringFields = ['name', 'age', 'education', 'major', 'summary', 'other', 'targetRole'];
         for (const field of stringFields) {
           if (parsed[field] !== undefined && parsed[field] !== null) {
             if (typeof parsed[field] === 'object') {
@@ -422,7 +423,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
     setResumeData({
       name: '', age: '', education: '', major: '', skills: [],
       certificates: [], projectExperience: [], internshipExperience: [],
-      practicalExperience: [], hobbies: '', summary: '', other: '',
+      practicalExperience: [], hobbies: [] as string[], summary: '', other: '',
       targetRole: '',
       completeness: 0,
       scores: { adaptability: 0, technicalDepth: 0, communication: 0, stressTolerance: 0, innovation: 0 },
@@ -791,10 +792,11 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
             values={resumeData.practicalExperience || []} 
             onChange={newVals => setResumeData({...resumeData, practicalExperience: newVals})} 
           />
-          <div className="md:col-span-2">
-            <label className="block text-sm font-bold mb-2">兴趣爱好</label>
-            <input value={resumeData.hobbies || ''} onChange={e => setResumeData({...resumeData, hobbies: e.target.value})} className="w-full p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入兴趣爱好" />
-          </div>
+          <ArrayInput
+            label="兴趣爱好"
+            values={resumeData.hobbies || []}
+            onChange={newVals => setResumeData({...resumeData, hobbies: newVals})}
+          />
           <div className="md:col-span-2">
             <label className="block text-sm font-bold mb-2">个人总结</label>
             <textarea value={resumeData.summary || ''} onChange={e => setResumeData({...resumeData, summary: e.target.value})} className="w-full p-3 rounded-lg border border-outline-variant bg-surface h-32 focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入个人总结" />

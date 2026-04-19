@@ -37,7 +37,7 @@ class ResumeData(BaseModel):
     projectExperience: List[str]
     internshipExperience: List[str]
     practicalExperience: List[str]
-    hobbies: str
+    hobbies: List[str]
     summary: str
     other: str
     targetRole: str

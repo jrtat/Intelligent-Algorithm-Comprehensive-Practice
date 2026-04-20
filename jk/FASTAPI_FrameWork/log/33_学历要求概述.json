@@ -1,0 +1,56 @@
+{
+  "学历要求概述_description": "该岗位的学历要求整体呈现宽松趋势，超过90%的岗位明确标注'学历不限'，主要面向年龄18-39岁的求职者，对工作经验无硬性要求。但存在约6%的岗位设置'大专及以上学历'门槛，且年龄上限调整为35岁。值得注意的是，部分岗位虽标注'学历不限'，但附加'接受无经验'条件，并承诺提供专业培训支持。学历要求未提及院校背景偏好或应届生专属政策，也未发现学历与经验的替代性表述。",
+  "学历要求概述_tags": [
+    "学历不限",
+    "大专及以上学历",
+    "接受无经验",
+    "年龄18-39岁",
+    "提供专业培训"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "学历门槛",
+      "confidence": "high",
+      "frequency": 24,
+      "evidence_count": 24,
+      "sample_evidence": [
+        "1.年龄18~39周岁，学历不限，工作经验不限。",
+        "1.年龄18~39周岁，学历不限，工作经验不限。"
+      ]
+    },
+    {
+      "feature_name": "年龄限制",
+      "confidence": "high",
+      "frequency": 24,
+      "evidence_count": 24,
+      "sample_evidence": [
+        "1.年龄18~39周岁，学历不限，工作经验不限。",
+        "1.年龄18~39周岁，学历不限，工作经验不限。"
+      ]
+    },
+    {
+      "feature_name": "大专学历要求",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "- 大专及以上学历，年龄在35岁以内。"
+      ]
+    },
+    {
+      "feature_name": "无经验接受度",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、男女均可，年龄建议22-30 4、接受无经验，前期有专业培训人员一对一指导"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 32,
+    "valid_features": 4,
+    "filtered_noise_count": 5,
+    "processing_notes": "发现5条无效数据（含3条'这是一个招聘信息'和2条空白文本），其中'大专及以上学历'与'学历不限'存在轻微冲突，但因属于不同岗位要求未强制合并"
+  }
+}

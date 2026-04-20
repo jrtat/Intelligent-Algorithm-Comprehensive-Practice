@@ -1,0 +1,71 @@
+{
+  "专业背景概述_description": "该岗位对专业背景的要求以计算机相关领域为核心，优先考虑计算机科学与技术、软件工程、地理信息科学等专业。硬性要求包括计算机相关专业本科及以上学历，优先考虑具有GIS、数字媒体技术等细分领域背景的候选人。部分岗位对数学、电子信息、自动化等理工科专业持开放态度，但非必须条件。特殊技术方向如三维可视化开发、前端框架（React/Vue）等需结合具体项目经验评估。",
+  "专业背景概述_tags": [
+    "计算机科学与技术",
+    "软件工程",
+    "地理信息科学",
+    "前端开发",
+    "三维可视化",
+    "数字媒体技术",
+    "GIS开发",
+    "计算机相关专业",
+    "数学",
+    "电子信息"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "计算机相关专业",
+      "confidence": "high",
+      "frequency": 43,
+      "evidence_count": 43,
+      "sample_evidence": [
+        "1、本科及以上学历，计算机或软件类专业；一年以上工作经验者优先。",
+        "任职要求1.本科及以上学历，计算机相关专业，具有 3-5 年前端开发工作经验。"
+      ]
+    },
+    {
+      "feature_name": "软件工程",
+      "confidence": "high",
+      "frequency": 11,
+      "evidence_count": 11,
+      "sample_evidence": [
+        "【岗位要求】1.计算机科学、软件工程、信息技术、数字媒体技术相关专业的硕士及以上学历，985/211院校毕业硕士优先；",
+        "1、本科及以上学历，软件工程、计算机科学与技术等相关专业；"
+      ]
+    },
+    {
+      "feature_name": "地理信息科学",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "1.本科及以上学历，地理信息科学、计算机科学、软件工程、数字媒体技术等相关专业，5年及以上前端开发实战经验，其中至少 3 年专注于 GIS 与三维前端开发领域，具备完整项目周期的前端主导开发经历。"
+      ]
+    },
+    {
+      "feature_name": "数学",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "本科以上学历，软件工程、信息技术与计算科学、数学等相关专业毕业。HTML、JavaScript、css、Ajax。"
+      ]
+    },
+    {
+      "feature_name": "数字媒体技术",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "【岗位要求】1.计算机科学、软件工程、信息技术、数字媒体技术相关专业的硕士及以上学历，985/211院校毕业硕士优先；",
+        "2.运用 HTML5、CSS3、JavaScript 等核心技术及 Vue."
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 65,
+    "valid_features": 5,
+    "filtered_noise_count": 22,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的条目及与专业背景无关的设备描述内容。合并了'计算机相关专业'等相似特征，排除了'自动化'等非专业类特征。"
+  }
+}

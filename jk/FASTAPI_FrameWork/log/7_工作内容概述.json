@@ -1,0 +1,88 @@
+{
+  "工作内容概述_description": "该岗位核心职责包括执行硬件测试任务（UT测试、SI/PI测试、通信指标测试等），操作专业测试仪器（示波器、负载仪、相噪仪等），参与产品开发全流程（从电路设计到测试验证），并负责测试数据整理与报告输出。常规工作涵盖各类通信模块（模组/WIFI/CPE）的基带测试、可靠性测试及性能参数验证；专项工作包括替代料评估、测试方法改进、原理图标准化整理等。需具备嵌入式系统知识（MCU/MPU/DSP），掌握Altium Designer等EDA工具，熟悉电源拓扑（反激/Buck/LLC）及光通信基础原理。",
+  "工作内容概述_tags": [
+    "硬件测试执行",
+    "测试仪器操作",
+    "通信模块测试",
+    "替代料评估",
+    "原理图标准化",
+    "电源拓扑分析",
+    "EDA工具使用",
+    "测试数据整理",
+    "嵌入式系统开发",
+    "光通信基础"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "UT测试",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "UT测试，SI/PI测试，I2C，SPI，UART，JTAG，PCIE，USB，GPIO等 3.一定要熟练操作示波器，负载仪，相噪仪，频率计"
+      ]
+    },
+    {
+      "feature_name": "模组、随身WIFI、CPE等产品的各通信指标测试",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、根据产品制定测试策略和测试计划，执行硬件测试用例2、模组、随身WIFI、CPE等产品的各通信指标测试、基带测试和可靠性测试"
+      ]
+    },
+    {
+      "feature_name": "测试仪器操作",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "UT测试，SI/PI测试，I2C，SPI，UART，JTAG，PCIE，USB，GPIO等 3.一定要熟练操作示波器，负载仪，相噪仪，频率计",
+        "理工科专业，熟悉相关电器设备操作（如绝缘电阻仪，耐压测试仪，万用表等）",
+        "熟练使用电源调测工具，如AC-source、DC-source、DC负载、示波器、万用表、电桥等"
+      ]
+    },
+    {
+      "feature_name": "替代料需求分析与评估",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "替代料需求分析与评估：深入分析替代料测试需求，评估物料替代对电路性能、可靠性的潜在影响。"
+      ]
+    },
+    {
+      "feature_name": "原理图标准化整理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、原理图标准化整理；2、BOM整理、跟进；"
+      ]
+    },
+    {
+      "feature_name": "熟悉开关电源拓扑",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、熟悉开关电源拓扑，如反激、buck、PFC、LLC等"
+      ]
+    },
+    {
+      "feature_name": "测试数据整理与报告输出",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "编辑产品datasheet，完善传感器测试条件，客户技术解答，项目对接"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 37,
+    "valid_features": 7,
+    "filtered_noise_count": 30,
+    "processing_notes": "过滤了所有包含'这是一个招聘信息'的文本及无效描述，合并了重复出现的测试仪器相关特征"
+  }
+}

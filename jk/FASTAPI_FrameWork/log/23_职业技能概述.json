@@ -1,0 +1,119 @@
+{
+  "职业技能概述_description": "该岗位要求具备服务端开发、用户数据管理、团队架构优化、业务风险控制等核心能力。熟练掌握数字化平台（如乐有家APP）的操作，能够进行多平台运营（小程序、APP、公众号）并设计会员权益体系。需具备客户标签体系搭建、用户名单分层管理、房源分析等专业技能，同时能够执行排班管理、业务风险控制等运营管理任务。基础技能包括服务响应效率优化，高级技能涉及客户分层运营策略制定和数字化平台深度应用。",
+  "职业技能概述_tags": [
+    "服务端开发",
+    "用户数据管理",
+    "团队架构优化",
+    "业务风险控制",
+    "数字化平台使用",
+    "多平台运营",
+    "客户分层运营",
+    "房源分析",
+    "排班系统操作",
+    "客户标签体系搭建"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "服务端开发",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉服务端开发、运维及用户数据管理，优化服务响应效率与客户体验"
+      ]
+    },
+    {
+      "feature_name": "用户数据管理",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉服务端开发、运维及用户数据管理，优化服务响应效率与客户体验"
+      ]
+    },
+    {
+      "feature_name": "团队架构优化",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "优化人员配置",
+        "优化人员配置",
+        "优化人员配置"
+      ]
+    },
+    {
+      "feature_name": "业务风险控制",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "防范业务风险",
+        "防范业务风险",
+        "防范业务风险"
+      ]
+    },
+    {
+      "feature_name": "数字化平台使用",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "用好乐有家APP等数字化大平台",
+        "用好乐有家APP等数字化大平台"
+      ]
+    },
+    {
+      "feature_name": "多平台运营",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "运营公司小程序、APP、公众号等多平台"
+      ]
+    },
+    {
+      "feature_name": "客户分层运营",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "制定分层运营策略（如高净值客户定向关怀）"
+      ]
+    },
+    {
+      "feature_name": "房源分析",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "分析房源利弊，为客户匹配合适房源"
+      ]
+    },
+    {
+      "feature_name": "排班系统操作",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "排班和订货",
+        "排班管理"
+      ]
+    },
+    {
+      "feature_name": "客户标签体系搭建",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "搭建动态更新的客户标签体系，支撑精准营销"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 58,
+    "valid_features": 10,
+    "filtered_noise_count": 48,
+    "processing_notes": "过滤掉所有包含'这是一个招聘信息'的无效条目，以及与技术技能无关的职责描述。部分特征因原文信息不足被标记为低置信度。"
+  }
+}

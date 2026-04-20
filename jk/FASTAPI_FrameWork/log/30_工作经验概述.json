@@ -1,0 +1,72 @@
+{
+  "工作经验概述_description": "该岗位更倾向具备相关行业从业背景或项目经验的候选人，优先考虑拥有政策研究、咨询项目实习经历、对外文化交流、文旅研学或活动策划执行经验者。对具备DCS/PLC工程、过程自动化产品技术知识、DeltaV BPCS/SIS经验者有明显偏好。国企、机关或大型企业背景者在同等条件下更具竞争力。岗位未明确要求最低工作年限，但更关注候选人的项目经验类型和行业背景匹配度。",
+  "工作经验概述_tags": [
+    "相关行业经验优先",
+    "政策研究/咨询项目实习经验",
+    "对外文化交流经验",
+    "文旅研学/活动策划执行",
+    "DCS/PLC工程经验",
+    "过程自动化技术知识",
+    "DeltaV BPCS/SIS经验",
+    "国企/大型企业背景"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "相关行业经验优先",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "有相关行业从业背景或相关项目工作经验者优先考虑。",
+        "有相关行业从业背景或相关项目工作经验者优先考虑。",
+        "有相关行业从业背景或相关项目工作经验者优先考虑。",
+        "有相关行业从业背景或相关项目工作经验者优先考虑。"
+      ]
+    },
+    {
+      "feature_name": "政策研究/咨询项目实习经验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "拥有相关实习经验者优先考虑，具备政策研究、咨询项目实习经历者，在同等条件下将更具竞争力。"
+      ]
+    },
+    {
+      "feature_name": "对外文化交流经验",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "7.热爱对外文化交流行业，对跨文化交流、文化旅游等富有兴趣并有一定了解；",
+        "有对外文化交流、文旅研学、活动策划执行或外事机构工作经历者优先。"
+      ]
+    },
+    {
+      "feature_name": "DCS/PLC工程经验",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2、有DCS/PLC工程、服务及维护经验优先。3、扎实的过程自动化产品技术知识，具备DeltaV BPCS/SIS经验者优先。",
+        "2、有DCS/PLC工程、服务及维护经验优先。3、扎实的过程自动化产品技术知识，具备DeltaV BPCS/SIS经验者优先。"
+      ]
+    },
+    {
+      "feature_name": "国企/大型企业背景",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "有机关、国企、大型企业背景者优先；3.",
+        "有机关、国企、大型企业背景者优先；3."
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 7,
+    "valid_features": 5,
+    "filtered_noise_count": 123,
+    "processing_notes": "大量原始数据包含'这是一个招聘信息'等无效文本，已全部过滤。'链家快8年的工作履历'等个人经历描述未作为岗位要求处理。未发现明确工作年限要求的原文。"
+  }
+}

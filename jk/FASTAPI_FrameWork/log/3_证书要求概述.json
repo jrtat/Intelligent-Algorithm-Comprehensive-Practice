@@ -1,0 +1,93 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质的要求主要集中在行业特定证书、职业资格证书及语言能力方面。必备条件包括电工证（部分岗位明确要求），优先考虑的证书包括海康机器人HCA/HCP认证、CCNP/CCIE网络认证、ACP/RHCE/HCIE/CKA云计算认证等。语言能力方面，英语四级或六级为常见要求。部分岗位对职称（如初级职称）或行业背景（如石化、化工、电力等行业经验）有优先考虑。需注意，证书要求多为优先条件，少数岗位对电工证等有强制性要求。",
+  "证书要求概述_tags": [
+    "电工证（必备）",
+    "英语六级",
+    "英语四级",
+    "CCNP/CCIE认证（优先）",
+    "HCA/HCP认证（优先）",
+    "ACP/RHCE/HCIE/CKA认证（优先）",
+    "初级职称（优先）",
+    "行业背景（石化/化工/电力等）"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "电工证（必备）",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "机械、电子、电气、自动化等相关专业，大专及以上学历；持有电工证（必备）；"
+      ]
+    },
+    {
+      "feature_name": "英语六级",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、有一定的英语基础，能够阅读相关文档；"
+      ]
+    },
+    {
+      "feature_name": "英语四级",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "8.英语四级及以上，具有较强的英文听、说、读、写能力；"
+      ]
+    },
+    {
+      "feature_name": "CCNP/CCIE认证（优先）",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "5、具有CCNP、CCIE以等相关职业资格证书者优先；"
+      ]
+    },
+    {
+      "feature_name": "HCA/HCP认证（优先）",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "6、拥有海康机器人认证的HCA、HCP证书优先；"
+      ]
+    },
+    {
+      "feature_name": "ACP/RHCE/HCIE/CKA认证（优先）",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "6、熟悉 Linux 系统，持有 ACP、RHCE、HCIE、CKA 等云计算或者操作系统厂商认证者优先。"
+      ]
+    },
+    {
+      "feature_name": "初级职称（优先）",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "初级职称或以上专业资格"
+      ]
+    },
+    {
+      "feature_name": "行业背景（石化/化工/电力等）",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "7、有石化、化工、电力、钢铁、冶金、轻工等行业或相关设计院等客户背景、行业背景及客户资源者优先考虑。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 32,
+    "valid_features": 8,
+    "filtered_noise_count": 14,
+    "processing_notes": "部分岗位提及的'驾照''体检证明'等未归类为证书要求，'行业背景'仅作为优先条件处理。原文中未明确提及'职称'与'证书'的直接关联，故未强制归类。"
+  }
+}

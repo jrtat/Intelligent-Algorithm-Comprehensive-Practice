@@ -1,0 +1,77 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质要求主要包括：必须持有建造师资格证书（一级/二级）或相关建筑类执业资格证、职称证及岗位证；优先考虑持有二级或以上注册建造师资格证书（矿业工程专业）、应急厅B证、PMP专业资质认证证书、ACCA证等。部分岗位要求具备英语简单沟通能力。职称方面，初级及以上职称或相关专业中级职称可能为加分项，但未明确列为硬性要求。需注意，部分证书要求与具体岗位职责相关，如C证、C1驾照等属于辅助资质。",
+  "证书要求概述_tags": [
+    "建造师资格证书（一级/二级）",
+    "建筑类执业资格证",
+    "应急厅B证",
+    "PMP专业资质认证",
+    "ACCA证",
+    "英语简单沟通",
+    "C证",
+    "C1驾照"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "建造师资格证书（一级/二级）",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "3.人才需具备工程施工经验，具备一级、二级建造师。",
+        "该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下： 因业务需要，招项目经理1名，需持有一级建造师或二级建造师"
+      ]
+    },
+    {
+      "feature_name": "建筑类执业资格证/职称证",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2.持有相关建筑类职（执）业资格证、职称证及岗位证；",
+        "5、不惧恐高，持C证及以上，抗压能力强；6、持C1及以上驾照优先；"
+      ]
+    },
+    {
+      "feature_name": "应急厅B证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具有二级或以上注册建造师资格证书（矿业工程专业）和应急厅B证。2."
+      ]
+    },
+    {
+      "feature_name": "PMP专业资质认证证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有PMP专业资质认证证书4.做事细致严谨5."
+      ]
+    },
+    {
+      "feature_name": "ACCA证",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具有1年及以上融资租赁公司工作经验者、中级经济师及以上职称、中级会计师及以上职称、CPA、CFA、ACCA证者学历可放宽至本科。"
+      ]
+    },
+    {
+      "feature_name": "英语简单沟通",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "语言要求：英文简单沟通；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 13,
+    "valid_features": 6,
+    "filtered_noise_count": 3,
+    "processing_notes": "过滤掉3条无效原文（包含'这是一个招聘信息'的CPA、CFA条目及无关的中级经济师职称条目）。'C证'和'C1驾照'被归类为辅助资质而非核心证书要求。"
+  }
+}

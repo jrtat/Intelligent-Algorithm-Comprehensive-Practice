@@ -1,0 +1,54 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质要求较为有限，主要涉及语言能力和部分职称相关要求。明确要求韩语能力达到Topik四级以上，且具备英语沟通能力为加分项。对于职称方面，原文提及‘初级职称或以上专业资格’，但未明确具体证书名称或考核机构。其他如IT资格认证、ISTQB等证书在原文中仅作为泛泛提及，缺乏具体要求说明。岗位更侧重于学历背景、专业对口及销售经验等软性条件。",
+  "证书要求概述_tags": [
+    "Topik四级以上",
+    "英语沟通能力",
+    "初级职称要求",
+    "韩语能力",
+    "设备销售经验优先"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "Topik四级以上",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "韩语听说读写熟练，topik四级以上；兼备英语能力者优先；"
+      ]
+    },
+    {
+      "feature_name": "英语沟通能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "- 具备较强的沟通能力、谈判技巧及客户服务意识。- 熟悉半导体行业或相关领域的知识者优先。"
+      ]
+    },
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "任职要求：1、大专及以上学历，市场营销、新能源、电气工程、工商管理等相关专业优先；"
+      ]
+    },
+    {
+      "feature_name": "设备销售经验优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "- 英语好、会韩语、有设备销售经验者优先，优秀应届生亦可。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 8,
+    "valid_features": 4,
+    "filtered_noise_count": 4,
+    "processing_notes": "原文中‘初级职称或以上专业资格’的表述未明确指向具体证书名称，故置信度标记为低；‘英语好’等表述未明确对应四六级等证书，故未作为独立特征提取。"
+  }
+}

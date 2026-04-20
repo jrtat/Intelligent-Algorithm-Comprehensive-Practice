@@ -1,0 +1,74 @@
+{
+  "证书要求概述_description": "该岗位对专业资质和证书有明确要求，其中AWS/Azure架构师认证为必备条件，Oracle金银牌、CCNA/CCNP等证书为优先考虑项。初级职称或以上专业资格属于基本要求，软件助理工程师或初级软件工程师证为加分项。日语N3及以上水平可直接进入实习，但属于语言能力要求而非证书范畴。需注意，部分岗位对ISTQB等软件测试相关证书有提及，但未明确要求必须持有。",
+  "证书要求概述_tags": [
+    "AWS/Azure架构师认证",
+    "Oracle金银牌",
+    "CCNA/CCNP/CCIE",
+    "初级职称",
+    "软件助理工程师/初级软件工程师证",
+    "ISTQB认证",
+    "日语N3及以上"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "持有AWS/Azure架构师认证",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "曾参与跨境支付、交易所或银行核心系统开发。持有AWS/Azure架构师认证，熟悉金融级云部署。"
+      ]
+    },
+    {
+      "feature_name": "Oracle金银牌",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "NET，C#，C++/C，SAP，PHP，COBOL，IOS，Android，Salesforce,Python,CRM(dynamicsAX)等；有上述开发语言资格证书、oracle金银牌、CCNA或CCNP等计算机软硬件相关证书者可优先录用；"
+      ]
+    },
+    {
+      "feature_name": "CCNA/CCNP/CCIE",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "NET，C#，C++/C，SAP，PHP，COBOL，IOS，Android，Salesforce,Python,CRM(dynamicsAX)等；有上述开发语言资格证书、oracle金银牌、CCNA或CCNP等计算机软硬件相关证书者可优先录用；"
+      ]
+    },
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "基础职级岗位，接受双证齐全，0经验的应届生。"
+      ]
+    },
+    {
+      "feature_name": "具有软件助理工程师或初级软件工程师证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、良好的文档写作能力。5、具有软件助理工程师或初级软件工程师证\n"
+      ]
+    },
+    {
+      "feature_name": "相关证书（如ISTQB）",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、熟悉常用数据库，具备扎实的SQL知识。3、具备良好的责任心和沟通能力，能够高效协作并解决技术难题。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 16,
+    "valid_features": 6,
+    "filtered_noise_count": 4,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目，以及与证书要求无关的描述。日语N3要求被归类为语言能力而非证书，未纳入核心证书标签。"
+  }
+}

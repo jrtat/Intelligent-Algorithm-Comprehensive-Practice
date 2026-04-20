@@ -1,0 +1,92 @@
+{
+  "职业技能概述_description": "该岗位要求具备较强的社群运营与用户管理能力，能够独立组织游戏社群活动并进行用户深度运营。核心技能包括游戏社群管理（需具备50人以上社群组织经验）、活动策划执行（如节日主题活动、电竞赛事等）、用户调研与需求分析（特别是中老年客户群体）。同时需要掌握基础的团队管理技能，能够开展驻店推广、产品培训及客户维护工作。对特定游戏（如王者荣耀、和平精英）有深度了解者优先，且需具备良好的沟通协调能力及抗压能力。部分岗位涉及保险产品推广及课程研发能力，要求能结合客户需求提供定制化解决方案。",
+  "职业技能概述_tags": [
+    "游戏社群运营",
+    "活动策划执行",
+    "用户需求分析",
+    "驻店推广执行",
+    "团队管理能力",
+    "保险产品推广",
+    "课程研发能力",
+    "中老年客户开发",
+    "电竞赛事组织",
+    "客户关系维护"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "游戏社群管理",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "有50人以上游戏相关社群/兵团/战队/家族/帮派/社团等组织管理经验",
+        "定期组织平台内各类游戏/赛事/平台活动",
+        "极其热爱王者荣耀/和平精英/太空狼人杀/鹅鸭杀其中一款或多款游戏"
+      ]
+    },
+    {
+      "feature_name": "活动策划执行",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "作出活动计划安排;如在店内做母亲节，父亲节等主题活动",
+        "协同部长不定期组织社群顾客的旅游和回访"
+      ]
+    },
+    {
+      "feature_name": "用户需求分析",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "深入社区群体、开发有效的中老年客户，进行调研汇总",
+        "和用户做朋友并愿意深挖用户需求"
+      ]
+    },
+    {
+      "feature_name": "驻店推广执行",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "每月定期到门店开展驻店推广活动、培训、维护产品陈列",
+        "负责配合部长，去社区展开宣传活动"
+      ]
+    },
+    {
+      "feature_name": "团队管理能力",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "具备带团队能力、管理经验和较强的执行力",
+        "擅长从0到1的组建及综合运营管理"
+      ]
+    },
+    {
+      "feature_name": "保险产品推广",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "依托公司资源，为客户提供家门口保险需求解决方案"
+      ]
+    },
+    {
+      "feature_name": "课程研发能力",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "部分技能类课程研发、培训"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 22,
+    "valid_features": 7,
+    "filtered_noise_count": 31,
+    "processing_notes": "过滤掉所有包含'这是一个招聘信息'的条目（共30条），以及部分无效描述（如'安排面试'特征下的全部内容）。'政府关系维护管理'特征因原文支撑不足被过滤。"
+  }
+}

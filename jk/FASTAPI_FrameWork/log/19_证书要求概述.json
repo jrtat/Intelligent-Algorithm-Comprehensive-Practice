@@ -1,0 +1,70 @@
+{
+  "证书要求概述_description": "该岗位对专业资质有明确要求，优先考虑持有LEED AP、WELL AP、BREEAM AP、碳排查员、碳核算师等绿色建筑相关证书的候选人。同时要求具备市政行业甲级（给水工程、排水工程等）及工程咨询甲级（市政公用工程）资质。对于职称要求，明确需要初级职称或以上专业资格。在语言能力方面，英语或其他外语可作为工作语言者优先。此外，持有水利专业咨询师证书者也具有优先考虑资格。所有证书要求均属于优先条件，未发现必须持有的强制性证书要求。",
+  "证书要求概述_tags": [
+    "LEED AP",
+    "WELL AP",
+    "BREEAM AP",
+    "碳排查员",
+    "碳核算师",
+    "市政行业甲级资质",
+    "工程咨询甲级资质",
+    "初级职称",
+    "水利专业咨询师证书",
+    "英语语言能力"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "绿色建筑相关证书（LEED AP/WELL AP/BREEAM AP/碳排查员/碳核算师）",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "有LEED AP、WELL AP、BREEAM AP、碳排查员、碳核算师证书的优先；5.",
+        "有LEED AP、WELL AP、BREEAM AP、碳排查员、碳核算师证书的优先；5.",
+        "有LEED AP、WELL AP、BREEAM AP、碳排查员、碳核算师证书的优先；5."
+      ]
+    },
+    {
+      "feature_name": "市政行业甲级资质（给水工程/排水工程等）",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具备市政行业甲级（给水工程、排水工程、城镇燃气工程、道路工程、桥梁工程、城市隧道工程）；工程咨询甲级（市政公用工程）；"
+      ]
+    },
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "初级职称或以上专业资格"
+      ]
+    },
+    {
+      "feature_name": "英语或其他外语可作为工作语言",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "英语或其他外语可作为工作语言优先"
+      ]
+    },
+    {
+      "feature_name": "水利专业咨询师证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有水利专业咨询师证书"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 11,
+    "valid_features": 5,
+    "filtered_noise_count": 3,
+    "processing_notes": "原文中存在3条无效数据（包含'这是一个招聘信息'的文本、纯标点符号文本等），已全部过滤。'相关证书（如ISTQB）'对应的原文内容与特征无关，已剔除。'ORACLE、SQLServer 等 IT 资格认证'对应的原文内容与特征无关，已剔除。'不限'和'要求：22-40岁...'等条目未涉及证书要求，已过滤。"
+  }
+}

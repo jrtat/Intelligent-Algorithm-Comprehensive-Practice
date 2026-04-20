@@ -1,0 +1,64 @@
+{
+  "晋升路径概述_description": "该岗位提供双通道及三通道晋升机制，涵盖专业、质检、管理等方向。员工入职后可通过内部晋升、转岗等方式实现职业发展，例如从信息审核专员逐步晋升至组长、主管、经理等职级。公司提供带薪培训、定期晋升评估（每3-6个月）等培养机制，支持员工在内部跨部门发展。晋升路径明确，且强调公开透明的晋升流程，部分岗位在入职3-6个月后可实现管理岗晋升或薪资调整。",
+  "晋升路径概述_tags": [
+    "双通道晋升",
+    "三通道晋升",
+    "带薪培训",
+    "内部晋升",
+    "定期晋升机制",
+    "转岗机会",
+    "跨部门发展",
+    "公开透明晋升"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升通道类型",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "公司提供专业、质检和管理的三通道晋升渠道",
+        "公司提供管理和专业的双通道晋升渠道",
+        "入职3-6个月可内部晋升管理岗",
+        "每3-6个月公开透明晋升"
+      ]
+    },
+    {
+      "feature_name": "培养机制",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "！带薪培训！",
+        "入职有带薪培训，工作易上手"
+      ]
+    },
+    {
+      "feature_name": "发展机会",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "在职满三个月可晋升转岗",
+        "广阔晋升空间，五险一金",
+        "未来会在全国更多城市进驻，岗位及发展前景很好"
+      ]
+    },
+    {
+      "feature_name": "晋升周期",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "入职3-6个月可内部晋升管理岗",
+        "每3-6个月公开透明晋升"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 15,
+    "valid_features": 4,
+    "filtered_noise_count": 3,
+    "processing_notes": "过滤掉3条噪声数据（含'这是一个招聘信息'及无效文本），合并'双通道/三通道晋升'为统一特征，未提取具体职级名称以避免编造"
+  }
+}

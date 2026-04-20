@@ -1,0 +1,113 @@
+{
+  "工作内容概述_description": "该岗位主要负责金融、电商等行业系统的代码模块设计与开发，独立完成程序单元开发及功能测试，确保项目质量。工作模式采用互联网开发架构，整体分为前端展示、后端服务调度及核心运维三层。需基于Spring Cloud微服务架构实现高并发、高可用解决方案，并参与系统性能优化及线上问题排查。技术实现涵盖云服务、公有云、云平台及数字化平台相关业务，涉及AI技术探索、大数据处理及分布式系统开发。需与产品、设计、后端团队协作，完成需求分析、系统设计及开发计划制定。专项工作包括AI在人力资源业务中的应用探索、央行数字货币跨链支付方案设计、工业物联网系统开发及金融科技风控逻辑实现。",
+  "工作内容概述_tags": [
+    "Spring Cloud微服务架构开发",
+    "云平台系统设计",
+    "AI技术应用探索",
+    "高并发系统优化",
+    "Java开发",
+    "需求分析与系统设计",
+    "金融科技风控开发",
+    "分布式系统开发",
+    "团队协作与沟通",
+    "代码审查与测试"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "Spring Cloud微服务架构开发",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "1、参与公司核心业务系统的设计与开发，基于Spring Cloud微服务架构实现高并发、高可用解决方案；"
+      ]
+    },
+    {
+      "feature_name": "云平台系统设计",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "●云：云计算部门主要做云服务、公有云、云平台及数字化平台等云相关业务。"
+      ]
+    },
+    {
+      "feature_name": "AI技术应用探索",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "探索AI在人力资源业务场景的应用提效（如数据分析预测等）3."
+      ]
+    },
+    {
+      "feature_name": "高并发系统优化",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "实现弹性扩缩容，秒级故障自动切换，限流降级等核心功能"
+      ]
+    },
+    {
+      "feature_name": "Java开发",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "3年以上Java开发经验，Java基础掌握良好 2.了解Spring boot、mybatis、redis、mysql等常用开发框架与工具 3."
+      ]
+    },
+    {
+      "feature_name": "需求分析与系统设计",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "2、参与软件产品需求分析，产品设计；3、负责软件模块需求分析、系核心模块代码编写和单元测试，完成概要设计文档、详细设计文档；"
+      ]
+    },
+    {
+      "feature_name": "金融科技风控开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "实现符合香港金管局（HKMA）要求的KYC/AML风控逻辑（如交易监控、可疑行为预警）。"
+      ]
+    },
+    {
+      "feature_name": "分布式系统开发",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "设计高可靠容灾备份方案，构筑元数据索引、介质规划演进等能力"
+      ]
+    },
+    {
+      "feature_name": "团队协作与沟通",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "3、积极主动的与项目相关人员沟通交流，持续改善产品体验。"
+      ]
+    },
+    {
+      "feature_name": "代码审查与测试",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "岗位职责:1、根据需求设计完成产品功能或者服务的设计，文档编写，代码实现，单元测试和接口测试。2、配合研发经理完成sql脚本审核，codeReview 工作。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 108,
+    "valid_features": 10,
+    "filtered_noise_count": 78,
+    "processing_notes": "过滤掉所有包含'这是一个招聘信息'的无效文本，合并'云服务'与'云平台'为统一特征，'AI技术探索'与'AI应用'合并为'AI技术应用探索'。部分特征如'成都'因无效原文全部过滤而被丢弃。"
+  }
+}

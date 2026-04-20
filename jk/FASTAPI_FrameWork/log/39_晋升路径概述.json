@@ -1,0 +1,74 @@
+{
+  "晋升路径概述_description": "该岗位所在的公司提供良好的晋升平台和稳定的发展前景，员工可通过表现获得每年一次的调薪机会。公司设有完善的导师带教机制，注重员工培养，为有潜力的人员提供成长支持。岗位要求具备团队管理经验和良好的沟通协作能力，适合希望在管理或专业领域发展的候选人。虽然未明确说明职级体系的具体层级，但公司处于快速发展期，为员工提供了内部晋升和跨部门发展的可能性。",
+  "晋升路径概述_tags": [
+    "晋升平台",
+    "调薪机会",
+    "导师带教机制",
+    "团队管理经验",
+    "沟通协作能力",
+    "行业发展前景"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升平台",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "公司目前处于快速发展期，良好的晋升平台，稳定的行业发展前景，腾翔环境欢迎您的加入！"
+      ]
+    },
+    {
+      "feature_name": "调薪机会",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "-每年1次调薪机会（视表现及公司效益）"
+      ]
+    },
+    {
+      "feature_name": "导师带教机制",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "公司有完善的导师带教机制。"
+      ]
+    },
+    {
+      "feature_name": "团队管理经验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、具有丰富的团队管理经验、具有较强的组织、沟通和协调能力"
+      ]
+    },
+    {
+      "feature_name": "沟通协作能力",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "3、善于协调沟通，有良好的职业道德，有担当有责任感",
+        "4、具有良好的表达、沟通和团队协作能力，自信、有责任心"
+      ]
+    },
+    {
+      "feature_name": "行业发展前景",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "公司目前处于快速发展期，良好的晋升平台，稳定的行业发展前景"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 7,
+    "valid_features": 6,
+    "filtered_noise_count": 0,
+    "processing_notes": "所有原始数据均保留，未发现无效噪声内容"
+  }
+}

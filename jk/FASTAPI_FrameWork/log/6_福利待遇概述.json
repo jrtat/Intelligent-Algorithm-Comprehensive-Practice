@@ -1,0 +1,111 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的薪酬结构和福利体系，涵盖基本工资、绩效奖金、年终奖及股票期权等激励方式。法定福利方面，所有岗位均明确提及五险一金（部分企业为六险一金）及带薪年假，且多数企业承诺试用期薪资全薪。补充福利包括节日福利、生日会、年度免费体检、公司内部健康驿站、免费夜宵、班车服务等。特色福利方面，企业普遍提供弹性工作制、导师带教机制、团建活动、培训机会及职业发展路径规划。部分企业还提供额外商业险、住房补贴、加班补助及股票期权等差异化福利。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "年终奖",
+    "绩效奖金",
+    "弹性工作制",
+    "节日福利",
+    "年度体检",
+    "导师带教",
+    "团建活动",
+    "股票期权"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "薪酬结构",
+      "confidence": "high",
+      "frequency": 35,
+      "evidence_count": 35,
+      "sample_evidence": [
+        "底薪（10-35k）+绩效（2-6k）+年终奖（2-6个月）",
+        "底薪+绩效+项目奖金+年终奖",
+        "平均年终奖14-16薪"
+      ]
+    },
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 28,
+      "evidence_count": 28,
+      "sample_evidence": [
+        "入职即缴纳五险一金+商业险",
+        "全额缴纳社保及公积金",
+        "六险一金"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "带薪年假5-15天",
+        "带薪年假",
+        "每年一次调薪调职机会"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "medium",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "节日福利++生日会++年度免费体检",
+        "节日福利",
+        "节日礼品"
+      ]
+    },
+    {
+      "feature_name": "弹性工作制",
+      "confidence": "medium",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "弹性工作制(满8小时)",
+        "弹性打卡",
+        "弹性工作"
+      ]
+    },
+    {
+      "feature_name": "导师带教",
+      "confidence": "medium",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "半年导师一对一带教",
+        "导师制培训机制",
+        "新人入职后至少半年以上会有导师一对一辅导"
+      ]
+    },
+    {
+      "feature_name": "团建活动",
+      "confidence": "medium",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "团建+内购会+班车",
+        "定期团建",
+        "员工旅游"
+      ]
+    },
+    {
+      "feature_name": "股票期权",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "股票期权",
+        "股权激励",
+        "年终分红"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 65,
+    "valid_features": 8,
+    "filtered_noise_count": 37,
+    "processing_notes": "部分岗位描述中存在重复信息（如多处提及‘五险一金’），已合并处理。‘股票期权’等特征因出现频次较低且文本表述不统一，置信度标记为‘low’。"
+  }
+}

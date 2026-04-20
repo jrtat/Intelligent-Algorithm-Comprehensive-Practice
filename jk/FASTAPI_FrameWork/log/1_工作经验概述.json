@@ -1,0 +1,65 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备3年以上云计算领域研发、实施交付或运维经验，熟悉Shell/Python及自动化运维工具（如Ansible）。优先考虑拥有ESB/API网关实施、ETL实施或工作流编排项目经验者（1-5个项目经验）。需掌握复杂SQL编写及数据库性能优化能力，熟悉Kafka/Rabbitmq消息中间件原理。具备数据中心、建筑智能化或IT类安防项目现场实施经验者优先。要求能独立完成项目需求调研、方案书编写及用户培训工作，适应长期出差。英语六级及以上，能作为工作语言。具备工业数据采集技术、OPC/Modbus通讯协议知识者优先。要求熟悉Linux系统及Shell脚本编写，具备Webservice接口联调测试能力。",
+  "工作经验概述_tags": [
+    "云计算研发",
+    "自动化运维",
+    "数据中心项目经验",
+    "ETL实施",
+    "SQL优化",
+    "消息中间件",
+    "IT安防实施",
+    "项目方案设计",
+    "国际出差",
+    "工业通讯协议"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "工作年限要求",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "具有3年以上云计算领域研发、PoC、实施交付、运维工作经验3.熟练使用Shell/Python和自动化运维工具，如Ansible；",
+        "具有3年以上云计算领域研发、PoC、实施交付、运维工作经验3.熟练使用Shell/Python和自动化运维工具，如Ansible；"
+      ]
+    },
+    {
+      "feature_name": "项目经验类型",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "项目经验：有 ESB/API 网关实施、ETL 实施、工作流编排等同类项目实施经验，拥有 1 - 5 个项目经验。",
+        "3.能单独完成项目的需求调研、方案书的编写、用户培训、项目计划书等工作；"
+      ]
+    },
+    {
+      "feature_name": "行业经验要求",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "3、1年以上数据中心、建筑智能化、运维、IT类安防、系统集成等相关弱电行业项目现场实施工作经验者优先；4、能熟练使用AUTOCAD、PROJECT等相关工程实施软件者优先。",
+        "任职要求:1、硕士及以上学历，自动化、机械设计制造及其自动化、机械电子工程等工科专业；2、熟悉工业数据采集和传输技术，了解OPC、Modbus、S7等通讯协议；",
+        "1、大专及以上学历，电子电气类，机械工程类等相关专业，熟悉中心机房工程、智能化、弱电方面的基本知识；2、了解数据库操作，网站发布等；"
+      ]
+    },
+    {
+      "feature_name": "特殊经验要求",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "2、英语六级及以上， 听说读写流利，可作为工作语言；3、具备良好的理解和分析能力，对问题具有敏感性，抗压能力强；",
+        "熟悉使用Kafka/Rabbitmq等常用消息中间件，并了解其工作原理; 5.熟悉L inux操作系统，熟悉ShelI脚Unix管理命令; 6.",
+        "熟悉L inux操作系统，熟悉ShelI脚Unix管理命令; 6.了解webservice，会使用postman等工具做接口联调测试。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 58,
+    "valid_features": 4,
+    "filtered_noise_count": 26,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的无效条目，合并'数据中心'与'弱电工程'等相似行业经验描述，保留核心工作经验要求。"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "职业技能概述_description": "该岗位要求具备多领域综合能力，核心包括：1）商务运营能力：需独立完成航线报价、商务订舱、供应商谈判及合同管理，熟悉航运市场及船东资源维护；2）数据分析与方案设计能力：能利用大数据平台分析企业知识产权，编写建设方案及宣传材料；3）客户服务与解决方案能力：需通过电话/面谈挖掘客户需求，提供灵活用工、税务筹划等定制化服务；4）行业知识储备：需掌握仓储物流、电力产品标准、网络营销及财税知识；5）基础办公技能：熟练使用Office套件及ERP系统，具备报表整理能力。其中，航运商务操作、知识产权分析、税务筹划为高频核心技能，而葡萄牙语能力、短剧营销经验等为加分项。",
+  "职业技能概述_tags": [
+    "航运商务操作",
+    "知识产权分析",
+    "税务筹划",
+    "供应商管理",
+    "方案编写能力",
+    "Office办公软件",
+    "ERP系统操作",
+    "客户需求挖掘",
+    "网络营销",
+    "物流仓储知识"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "独立操作航线报价",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "5、能独立操作航线报价、定价及商务订舱操作，不仅限于单一航线",
+        "4、对航运市场价格有足够的敏感度，能开发和维护船东关系，并处理船东代理端相关问题"
+      ]
+    },
+    {
+      "feature_name": "知识产权分析",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "利用公司大数据智能平台，分析企业知识产权，为企业提供专业的解决方案",
+        "编写软件产品介绍说明，编写项目建设方案，完成项目售前工作"
+      ]
+    },
+    {
+      "feature_name": "税务筹划",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "开展税务筹划(包括灵活用工，工商代账、股权筹划、增值税筹划、企业所得税筹划、个税筹划等)业务",
+        "为企业规划专业合理的方案"
+      ]
+    },
+    {
+      "feature_name": "供应商管理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "节约采购成本，降低采购风险",
+        "协助上级进行供应商管理，不断优化供应商的服务质量"
+      ]
+    },
+    {
+      "feature_name": "Office办公软件",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "熟练使用 office等办公软件",
+        "熟悉公文写作格式，熟练运用OFFICE等办公软件（Excel 、word 、PPT )"
+      ]
+    },
+    {
+      "feature_name": "ERP系统操作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有过ERP系统操作经验（如：U8 金蝶 OA CRM等）"
+      ]
+    },
+    {
+      "feature_name": "客户需求挖掘",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "电话沟通，了解企业客户实际需求，邀约拜访，深度了解公司财税情况",
+        "微信视频跟进挖掘企业潜在客户"
+      ]
+    },
+    {
+      "feature_name": "网络营销",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉互联网，了解网络营销及广告传媒"
+      ]
+    },
+    {
+      "feature_name": "物流仓储知识",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解仓储物流知识、电力产品技术标准相关知识"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 31,
+    "valid_features": 9,
+    "filtered_noise_count": 22,
+    "processing_notes": "已过滤所有'这是一个招聘信息'相关条目及无效文本，合并'编写软件产品介绍说明'与'编写项目建设方案'为'方案编写能力'，'ERP系统操作经验'与'报表整理'合并为'ERP系统操作'。葡萄牙语能力等低频项未纳入核心标签。"
+  }
+}

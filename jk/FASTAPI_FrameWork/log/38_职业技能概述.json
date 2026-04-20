@@ -1,0 +1,68 @@
+{
+  "职业技能概述_description": "该岗位要求候选人具备内容审核与风险识别能力，能够准确判断图文及视频内容的画风导向，识别潜在风险并提出优化建议。需熟悉主流APP内容特征，具备较强的信息比对能力，能基于业务标准审核话题线索词并推动标准迭代。要求掌握基础的Excel操作技能，具备微信小游戏相关知识者优先。此外，需关注互联网热点，具备良好的网感和热点把控能力，能够根据业务变化快速响应需求。",
+  "职业技能概述_tags": [
+    "内容风险识别",
+    "信息比对能力",
+    "Excel基础操作",
+    "微信小游戏基础",
+    "热点敏感度",
+    "内容画风判断",
+    "标准审核能力",
+    "生态治理策略",
+    "业务响应能力"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "内容风险识别",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "了解主流图文和视频类APP特征和画风，对流行、热点、社会事件有关注、感兴趣，对于图文内容优劣有判断能力；对不同类别的文字和视频内容风险有敏感度，对画风导向判断准确",
+        "具备专业的质量分析方法，能够透过现象看本质，推动标注团队提升交付质量"
+      ]
+    },
+    {
+      "feature_name": "信息比对能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "比对客户上传信息进行审核按照SOP进行审核"
+      ]
+    },
+    {
+      "feature_name": "Excel基础操作",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有一定EXCEL表格基础，电脑使用熟练"
+      ]
+    },
+    {
+      "feature_name": "微信小游戏基础",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对微信小游戏有基础的了解"
+      ]
+    },
+    {
+      "feature_name": "热点敏感度",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对互联网行业有较深了解，热爱新闻、关心时事、有敏锐的新闻判断力，较强的热点把控能力"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 16,
+    "valid_features": 5,
+    "filtered_noise_count": 38,
+    "processing_notes": "大量无效条目（'这是一个招聘信息'）被过滤，剩余有效特征中'内容风险识别'出现频次最高且置信度最高"
+  }
+}

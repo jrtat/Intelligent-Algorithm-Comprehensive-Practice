@@ -1,0 +1,89 @@
+{
+  "职业技能概述_description": "该岗位核心要求包括广告投放与数据分析能力、营销文案撰写与内容策划能力、KOL合作资源挖掘与管理能力、国际贸易术语应用能力及ERP系统操作能力。必备技能涵盖广告投放数据跟踪分析、微博平台品牌策略研究、KOL广告价值评估、Excel数据透视表应用及SAP/Oracle系统操作。加分项包括成熟的陌拜技能与外勤地推经验。工作重点在于通过微信推广产品、维护客户关系、整理库存及合同管理，要求具备跨部门协作能力与多任务处理能力。",
+  "职业技能概述_tags": [
+    "广告投放与数据分析",
+    "KOL合作资源挖掘",
+    "营销文案撰写",
+    "ERP系统操作",
+    "国际贸易术语应用",
+    "微博平台品牌策略研究",
+    "客户关系维护",
+    "库存盘点管理",
+    "跨部门协作沟通",
+    "外勤地推推广"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "广告投放与数据分析",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "跟进投放数据，并分析成败，整理数据并分析问题所在，最后进行总结报告撰写。",
+        "进行广告投放，及时维护评论区，以及博主关系"
+      ]
+    },
+    {
+      "feature_name": "KOL合作资源挖掘",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "寻找微博上可进行合作的博主（KOL)，通过相关指标进行博主广告价值分析与判断，进行筛选并主动联系KOL",
+        "深入公司的品牌战略，了解推广的产品和微博平台特性，整理输出相关分析报告"
+      ]
+    },
+    {
+      "feature_name": "营销文案撰写",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "学习营销文案的撰写逻辑，产出图文形式的合作广告内容",
+        "内容策划及讨论，和小组同事、文案、设计、产品研发部门一起来沟通做出优质的广告内容"
+      ]
+    },
+    {
+      "feature_name": "ERP系统操作",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "精通Excel（VLOOKUP、数据透视表等）、ERP系统（如SAP/Oracle），熟悉国际贸易术语（如FOB、CIF）"
+      ]
+    },
+    {
+      "feature_name": "国际贸易术语应用",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "精通Excel（VLOOKUP、数据透视表等）、ERP系统（如SAP/Oracle），熟悉国际贸易术语（如FOB、CIF）"
+      ]
+    },
+    {
+      "feature_name": "客户关系维护",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "客户累积、维护、再次交易可持续性、转介绍"
+      ]
+    },
+    {
+      "feature_name": "库存盘点管理",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "定期整理主辅材料明细，盘点库存"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 15,
+    "valid_features": 7,
+    "filtered_noise_count": 45,
+    "processing_notes": "原始数据中大量存在'这是一个招聘信息'等无效文本，已全部过滤。'安排面试'、'外勤地推'等特征因无有效技能信息被剔除。'产品推广'等特征因信息碎片化未形成有效特征。"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "工作内容概述_description": "该岗位核心职责包括：1.搭建研学产品框架并制定市场推广策略，通过数据分析拆解目标并组织团队执行；2.依据标准化流程监督研学项目执行，处理突发事件；3.协调多方资源推动产品开发与优化；4.统筹团队协作完成项目交付管理。常规工作涵盖产品定位、市场数据收集、跨部门协作；专项工作包括项目可行性分析、客户关系维护及知识沉淀输出。岗位需具备统筹规划能力，能独立负责项目全流程管理，并具备灵活处理复杂问题的能力。",
+  "工作内容概述_tags": [
+    "研学产品框架搭建",
+    "市场推广策划",
+    "市场数据分析",
+    "项目执行监督",
+    "跨部门协作",
+    "客户关系协调",
+    "知识沉淀输出",
+    "项目可行性分析",
+    "团队复盘管理"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "研学产品框架搭建",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "搭建基地研学产品框架，根据市场反馈进行产品市场宣传推广策划，扩大研学产品品牌效应",
+        "搭建基地研学产品框架"
+      ]
+    },
+    {
+      "feature_name": "市场数据分析与目标拆解",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "收集市场数据，上传下达，拆解市场目标，制定计划",
+        "拆解市场目标"
+      ]
+    },
+    {
+      "feature_name": "项目执行监督与突发事件处理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "依据研学执行流程标准，了解并监督研学执行情况与效果，具备灵活斯文处理活动中突发状况"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作与资源整合",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "协调甲方、丙方客户关系"
+      ]
+    },
+    {
+      "feature_name": "知识沉淀与最佳实践输出",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "进行实施案例整理及价值提炼，形成可复用的知识或可推广的最佳业务实践"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 31,
+    "valid_features": 5,
+    "filtered_noise_count": 22,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的12条数据，排除无效描述如'职位福利'等非职责内容，合并'拆解市场目标'与'收集市场数据'为统一特征"
+  }
+}

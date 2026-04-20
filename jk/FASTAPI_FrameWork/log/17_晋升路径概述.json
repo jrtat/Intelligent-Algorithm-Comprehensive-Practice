@@ -1,0 +1,62 @@
+{
+  "晋升路径概述_description": "该岗位提供明确的晋升通道，主要包含管理发展路径。常见晋升路径包括店员→店长→主管→经理，以及BD→BDM→战区CM→城市经理。晋升周期通常为3个月考核一次，表现优异者最快2-3个月即可晋升。公司提供带薪培训、新人导师带教等成长支持，部分岗位存在内部转岗机会。晋升后薪资待遇显著提升，且有明确的职级体系支撑发展。",
+  "晋升路径概述_tags": [
+    "晋升通道：店员→店长→主管→经理",
+    "晋升通道：BD→BDM→战区CM→城市经理",
+    "三个月晋升考核",
+    "带薪培训",
+    "新人导师带教",
+    "薪资随职级提升",
+    "内部转岗机会"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升通道（管理路径）",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "员工→店长→主管→经理！能力说话，最快2-3个月晋升，薪资福利UP!",
+        "晋升路径:BD-BDM-战区CM-城市经理,三个月一次晋升机会,只要你够优秀,前途一片光明"
+      ]
+    },
+    {
+      "feature_name": "晋升周期",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "三个月一次晋升机会",
+        "最快 2-3个月 升职！",
+        "3个月一晋升"
+      ]
+    },
+    {
+      "feature_name": "培养机制",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "新人有师傅带",
+        "带薪培训",
+        "专人培训"
+      ]
+    },
+    {
+      "feature_name": "薪资增长机制",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "职位越高，工资越香",
+        "薪资福利UP!"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 23,
+    "valid_features": 4,
+    "filtered_noise_count": 2,
+    "processing_notes": "过滤了2条包含'这是一个招聘信息'的无效数据，其他噪声数据已按规则剔除"
+  }
+}

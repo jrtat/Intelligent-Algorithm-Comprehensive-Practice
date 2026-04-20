@@ -1,0 +1,72 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备良好的沟通协作能力，能够与跨部门团队成员有效合作，同时具备较强的抗压能力和适应能力，能够接受出差和异地工作安排。工作态度方面，需责任心强、细致严谨，并能主动承担工作任务。问题解决能力方面，要求具备逻辑思维和归纳总结能力，能独立处理复杂问题。核心素质包括团队协作、沟通表达、抗压能力、责任心和问题解决能力，加分项包括适应出差、学习能力及创新思维。",
+  "综合素质概述_tags": [
+    "沟通协作",
+    "抗压能力",
+    "责任心",
+    "问题解决",
+    "适应出差",
+    "逻辑思维",
+    "团队合作",
+    "学习能力",
+    "创新思维"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通协作能力",
+      "confidence": "high",
+      "frequency": 32,
+      "evidence_count": 32,
+      "sample_evidence": [
+        "优秀的沟通和协作能力，能够与跨部门的团队成员合作。",
+        "具备良好的团队合作精神和沟通能力。"
+      ]
+    },
+    {
+      "feature_name": "抗压能力",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "能承受一定工作压力和工作强度。",
+        "能适应短期的调动出差等。"
+      ]
+    },
+    {
+      "feature_name": "责任心",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "责任心强，发散思维,善于总结归纳问题。",
+        "工作细致，积极主动，具有团队意识。"
+      ]
+    },
+    {
+      "feature_name": "问题解决能力",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "善于总结归纳问题",
+        "具有较好的分析判断能力、沟通表达能力和综合协调"
+      ]
+    },
+    {
+      "feature_name": "适应出差",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "可接受异地工作优先",
+        "能适应一定强度的出差"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 2,
+    "valid_features": 5,
+    "filtered_noise_count": 124,
+    "processing_notes": "原始数据中包含大量重复的招聘声明和无效文本，已全部过滤。'发散思维'特征因语义范围与核心要求不完全匹配，归入问题解决能力类别处理。"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备扎实的Java技术基础，熟悉JVM原理及多线程编程，精通Spring Boot、Spring Cloud等主流开发框架，具备数据库设计及SQL调优能力。优先考虑有开源项目经验、技术博客或GitHub作品集的候选人。需熟悉Linux系统操作，具备独立解决问题能力，有良好的沟通协作精神。对分布式系统设计、高并发场景开发有实际经验者优先。",
+  "工作经验概述_tags": [
+    "JVM原理",
+    "Spring Boot开发",
+    "数据库设计",
+    "多线程编程",
+    "Linux系统操作",
+    "分布式系统设计",
+    "开源项目经验",
+    "SQL调优",
+    "技术博客",
+    "高并发开发"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "JVM原理",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下： 1、计算机相关专业，本科学历及以上;2、具有扎实的Java功底，了解JVM的原理，悉多线程，通信等相关技术;"
+      ]
+    },
+    {
+      "feature_name": "Spring Boot开发",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下： 1、计算机相关专业，本科学历及以上;2、具有扎实的Java功底，了解JVM的原理，悉多线程，通信等相关技术;3、精通SpringcCoud、SpringBoot、MyBatis等主流后端框架及前端框架Vue、uni-app，对优秀开源软件的源码有心得者优先;"
+      ]
+    },
+    {
+      "feature_name": "数据库设计",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下： 1、计算机相关专业，本科学历及以上;2、具有扎实的Java功底，了解JVM的原理，悉多线程，通信等相关技术;3、精通SpringcCoud、SpringBoot、MyBatis等主流后端框架及前端框架Vue、uni-app，对优秀开源软件的源码有心得者优先;4、精通数据库设计，优秀的SQL编写及调优能力，熟悉MySQL、Oracle等数据库，熟悉国产达梦、东方通中间件优先;"
+      ]
+    },
+    {
+      "feature_name": "分布式系统设计",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2、熟悉分布式系统的设计和应用，熟悉高并发、高负载、高可用性系统的设计开发及调优，熟悉分布式缓存、消息、数据库等机制；"
+      ]
+    },
+    {
+      "feature_name": "开源项目经验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、精通SpringcCoud、SpringBoot、MyBatis等主流后端框架及前端框架Vue、uni-app，对优秀开源软件的源码有心得者优先;"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 48,
+    "valid_features": 5,
+    "filtered_noise_count": 32,
+    "processing_notes": "原始数据中包含大量无效招聘信息文本，已全部过滤。工作年限要求在原文中未明确提及，故未包含在最终结果中。"
+  }
+}

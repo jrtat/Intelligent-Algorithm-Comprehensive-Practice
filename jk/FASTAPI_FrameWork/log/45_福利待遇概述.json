@@ -1,0 +1,167 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖薪酬激励、法定保障及特色关怀。薪酬结构包括无责底薪、绩效提成、年终奖及股票期权，部分岗位提供高达50%业绩分成。法定福利覆盖五险一金、带薪年假（5-15天）及法定节假日休假。补充福利包含餐补（500元/月）、交通补贴（企业滴滴每天最高65元）、住房补贴及年度健康体检。特色福利包括弹性工作制、团建旅游、技能培训（含导师带教及专业培训体系）、节日礼品（春节、中秋等）、孝心奖及员工旅游机会。部分企业提供购房贷款支持（最高50万）、补充医疗保险及出国游学机会。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "弹性工作",
+    "团建旅游",
+    "餐补",
+    "企业滴滴",
+    "股票期权",
+    "技能培训",
+    "节日福利",
+    "健康体检",
+    "购房贷款支持",
+    "补充医疗保险",
+    "出国游学"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 28,
+      "evidence_count": 28,
+      "sample_evidence": [
+        "缴纳五险:养老，医疗，生育，工伤，失业",
+        "入职缴纳五险一金"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "medium",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "享受带薪事假、病假、产假及年休假等多项法定假期",
+        "带薪年假5-15天"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 25,
+      "evidence_count": 25,
+      "sample_evidence": [
+        "无责底薪+绩效提成+激励奖金+大额回款奖励",
+        "优秀员工奖金、机构绩效奖、超额奖励"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "弹性工作制，有事就多忙",
+        "弹性工作、绩效奖金"
+      ]
+    },
+    {
+      "feature_name": "团建旅游",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "定期工会活动:下午茶零食、员工生日会+礼品、过节费、团队拓展、聚餐活动等",
+        "优秀员工定期进行出国游、国内精品游"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "500餐补+200企业滴滴",
+        "提供免费专业培训，入职后有导师一对一指导"
+      ]
+    },
+    {
+      "feature_name": "企业滴滴",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "下班企业滴滴每天最高可支付打车65元",
+        "十点以后有免费的企业滴滴"
+      ]
+    },
+    {
+      "feature_name": "股票期权",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "每年公司多次调薪、项目奖金、股票期权",
+        "北京（北京共1600多门店，可就近分配）面试流程: 经理面试（线上）——总部HR面试（线上/线下）——总监面试（线上）—— offer —— 培训（线下，包食宿） —— 签约入职、职位福利：五险一金、绩效奖金、股票期权、定期体检、补充医疗保险、节日福利、住房补贴、员工旅游"
+      ]
+    },
+    {
+      "feature_name": "技能培训",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "提供免费专业培训，入职后有导师一对一指导",
+        "企业专职培训师，新人培训+成长计划培训+外部培训+拓展培训+管理领导培训"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "享受国家法定节假日和相关节日礼品福利(春节、中秋、端午、三八妇女节等)",
+        "春节福利、奖励红包、中秋节福利、端午节福利"
+      ]
+    },
+    {
+      "feature_name": "健康体检",
+      "confidence": "medium",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "员工年度免费体检",
+        "每年都有公费健康体检"
+      ]
+    },
+    {
+      "feature_name": "购房贷款支持",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "入职满3年以上员工，可以向公司申请较高50万贷款买房",
+        "入职定期免费定制银行行服"
+      ]
+    },
+    {
+      "feature_name": "补充医疗保险",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "北京（北京共1600多门店，可就近分配）面试流程: 经理面试（线上）——总部HR面试（线上/线下）——总监面试（线上）—— offer —— 培训（线下，包食宿） —— 签约入职、职位福利：五险一金、绩效奖金、股票期权、定期体检、补充医疗保险、节日福利、住房补贴、员工旅游",
+        "转正后额外补充商业保险，给与更多医疗保障"
+      ]
+    },
+    {
+      "feature_name": "出国游学",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "公费出国游学机会，带你看遍全世界",
+        "优秀员工定期进行出国游、国内精品游"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 81,
+    "valid_features": 14,
+    "filtered_noise_count": 22,
+    "processing_notes": "部分特征如'股票期权'、'购房贷款支持'等因原文出现次数较少，置信度标记为low。'五险一金'、'团建旅游'等高频特征置信度为high。"
+  }
+}

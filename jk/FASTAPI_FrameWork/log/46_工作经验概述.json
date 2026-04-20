@@ -1,0 +1,70 @@
+{
+  "工作经验概述_description": "该岗位对工作经验的要求以应届生友好为主，优先考虑具备相关行业经验的候选人。核心要求包括：接受应届毕业生及无经验者，提供带教培训；优先考虑有国企行政、运营或企业营运管理经验者；具备私募创投基金募投管退全流程经验者优先；熟练使用Word、Excel、PowerPoint等办公软件。岗位对工作年限无强制要求，但部分岗位倾向有1-3年相关领域经验者。行业经验方面，金融、电商、互联网、医药等领域的背景为加分项。特殊要求包括：具备团队协作能力、沟通协调能力、商务接待礼仪及项目管理经验。",
+  "工作经验概述_tags": [
+    "应届生友好",
+    "带教培训",
+    "国企行政经验优先",
+    "私募基金经验优先",
+    "办公软件使用",
+    "1-3年经验优先",
+    "电商行业经验",
+    "互联网行业经验",
+    "医药行业经验",
+    "项目管理经验"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "应届生友好",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "18一25岁有无经验均可，都是会有老人一对一带",
+        "1，男女不限，入职提供免费的培训以及老带新，工作本身也很轻松。",
+        "有无经验均可，带薪培训，师父一对一带教"
+      ]
+    },
+    {
+      "feature_name": "办公软件使用",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.能够熟练使用办公软件，如Word、Excel、PowerPoint等；"
+      ]
+    },
+    {
+      "feature_name": "国企行政经验优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、完成领导交办的其他工作。二、任职要求1、本科学历，不限专业，有国企的行政、运营工作经验优先考虑；"
+      ]
+    },
+    {
+      "feature_name": "私募基金募投管退经验优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.具有私募创投基金相关工作经验、接触过募投管退全流程优先。"
+      ]
+    },
+    {
+      "feature_name": "1-3年经验优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、本科及以上学历，1-3年实习/工作经验；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 15,
+    "valid_features": 5,
+    "filtered_noise_count": 32,
+    "processing_notes": "大量原文包含'这是一个招聘信息'等无效信息，已全部过滤。部分特征（如电商/医药行业经验）因原文描述模糊未纳入。"
+  }
+}

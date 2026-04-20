@@ -1,0 +1,71 @@
+{
+  "工作内容概述_description": "该岗位主要负责小程序移动权益的销售上量及权益超市的开发维护，需对接移动营业厅完成产品销售任务。同时需进行末端数据跟进及门店、快递柜等基础设施的建设指标落实。日常工作中包含文件处理、数据统计分析、流程性邮件处理等行政支持工作，需与多部门协作完成项目需求。工作内容涉及系统模板的建立与优化，以及部分基础的健康服务支持工作，如导诊分诊、健康档案管理等。岗位要求具备一定的沟通协调能力，能够独立完成资料整理、报表统计及跨部门协作任务。",
+  "工作内容概述_tags": [
+    "小程序开发维护",
+    "数据统计分析",
+    "跨部门协作",
+    "系统模板优化",
+    "健康服务支持",
+    "文件处理",
+    "末端建设管理",
+    "流程性邮件处理",
+    "销售任务执行",
+    "行政支持"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "小程序移动权益销售",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "对接各移动营业厅，完成小程序移动权益的销售上量",
+        "权益超市的开发及维护"
+      ]
+    },
+    {
+      "feature_name": "末端数据跟进与建设",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "末端数据跟进以及末端建设（门店、快递柜）指标落实"
+      ]
+    },
+    {
+      "feature_name": "系统模板建立与优化",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "与国外专利相关的系统模板建立和优化"
+      ]
+    },
+    {
+      "feature_name": "文件处理与数据统计",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "统计部门律师每月工时、考勤、个人承办案件的相关情况",
+        "谨慎处理流程性邮件、转发传达、签收登记、分类归档",
+        "预算和报销:门店筹建期间做好预算内经费的报销和统计工作"
+      ]
+    },
+    {
+      "feature_name": "健康服务支持",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "必要时，要进行测血压，测血糖操作"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 63,
+    "valid_features": 5,
+    "filtered_noise_count": 58,
+    "processing_notes": "大量原始数据包含无效信息如'这是一个招聘信息'及重复内容，已全部过滤。健康服务支持相关特征因原文信息有限，置信度较低。"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "工作内容概述_description": "岗位核心职责涵盖生产管理、品质管控、系统操作及团队协作等多方面内容。常规工作包括日工时系统处理、生产流程管理、品质监控及收货管理，需独立完成设备维护、库存盘点等基础任务。专项工作涉及团队管理、绩效考核及市场拓展，如管理经销商、制定销售策略、开拓联通市场等。技术实现方面需掌握自动化设计、机构设计等工程能力，同时需与产品、设计、后端团队协同推进项目。工作内容以执行层操作为主，包含部分管理职能，强调流程规范与团队协作能力。",
+  "工作内容概述_tags": [
+    "日工时系统处理",
+    "生产流程管理",
+    "品质监控",
+    "库存盘点",
+    "团队管理",
+    "销售策略制定",
+    "市场拓展",
+    "自动化设计",
+    "机构设计",
+    "跨部门协作"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "日工时系统处理",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        " 日工时系统处理"
+      ]
+    },
+    {
+      "feature_name": "生产流程管理",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "楼面管理：生产管理、品质管理、收货管理、服务管理"
+      ]
+    },
+    {
+      "feature_name": "品质监控",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对食品生产、制作各环节进行有效管理，保证符合公司标准"
+      ]
+    },
+    {
+      "feature_name": "库存盘点",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "周盘点、货物调整及库房管理"
+      ]
+    },
+    {
+      "feature_name": "团队管理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "管理终端促销员、理货员和业务代表",
+        "管理考核期，根据实际情况建立队伍人员"
+      ]
+    },
+    {
+      "feature_name": "销售策略制定",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "制定并完成团队及个人的业绩目标"
+      ]
+    },
+    {
+      "feature_name": "市场拓展",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "负责湖北省内联通市场的开拓和维护"
+      ]
+    },
+    {
+      "feature_name": "自动化设计",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "从事自动化设计"
+      ]
+    },
+    {
+      "feature_name": "机构设计",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "从事机构设计"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "与产品、设计、后端的配合"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 54,
+    "valid_features": 10,
+    "filtered_noise_count": 44,
+    "processing_notes": "大量原文包含'这是一个招聘信息'等无效内容，已全部过滤。'参与健康管理产品需求收集'等特征因无效原文占比过高被剔除。"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "学历要求概述_description": "该岗位普遍要求大专及以上学历，部分岗位接受高中学历但需相关经验。应届生政策存在弹性，部分岗位明确接受优秀应届生或允许学历放宽。经验与学历之间存在替代关系，如具备半年以上相关经验可放宽学历要求。多数岗位未提及院校偏好，但对普通话标准、计算机操作能力、沟通协调能力等有明确要求。",
+  "学历要求概述_tags": [
+    "大专及以上学历",
+    "接受应届生",
+    "经验优先",
+    "普通话标准",
+    "计算机操作能力",
+    "沟通协调能力",
+    "学历放宽",
+    "售后服务经验",
+    "客户服务经验",
+    "金融行业经验"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "大专及以上学历",
+      "confidence": "high",
+      "frequency": 37,
+      "evidence_count": 37,
+      "sample_evidence": [
+        "大专及以上学历，有售后客服经验者优先；2.",
+        "任职要求：1、大专及以上学历；",
+        "需要大专及以上学历，35岁以下，男女不限，可接受优秀应届生(24年毕业):2."
+      ]
+    },
+    {
+      "feature_name": "接受应届生",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "可接受优秀应届生(24年毕业)",
+        "可接受优秀应届毕业生；",
+        "接受应届生"
+      ]
+    },
+    {
+      "feature_name": "经验优先",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "有售后客服经验者优先；2.",
+        "有电商售后相关经验者优先。",
+        "具备1年以上售后服务相关工作经验者优先;"
+      ]
+    },
+    {
+      "feature_name": "学历放宽",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "优秀者可放宽学历",
+        "中专高中有半年电话客户经验可放宽",
+        "如有过往相关从业经历或对该岗位意向明确学历可放宽"
+      ]
+    },
+    {
+      "feature_name": "普通话标准",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "普通话标准，擅长沟通；",
+        "普通话标准，口齿伶俐，会简单电脑操作",
+        "普通话标准，表达流畅、服务意识良好"
+      ]
+    },
+    {
+      "feature_name": "计算机操作能力",
+      "confidence": "high",
+      "frequency": 11,
+      "evidence_count": 11,
+      "sample_evidence": [
+        "熟练使用办公软件和操作电脑基础技能;",
+        "熟练操作电脑，打字速度40字/分钟以上；",
+        "能熟练使用Excel及Word等数据表格；"
+      ]
+    },
+    {
+      "feature_name": "沟通协调能力",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "具备一定的沟通协调能力;",
+        "有较强的沟通表达及协调能力；",
+        "具备良好的表达能力，普通话标准，吐字清晰"
+      ]
+    },
+    {
+      "feature_name": "售后服务经验",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "具备1年以上售后服务相关工作经验者优先;",
+        "有售后客服经验者优先；2.",
+        "熟悉售后服务流程和方法，具备一定的沟通协调能力;"
+      ]
+    },
+    {
+      "feature_name": "客户服务经验",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "有半年以上客服相关行业经验；",
+        "有客服经验优先，优异者可放宽",
+        "有售前&售后，在线&语音等的业务线切换经验"
+      ]
+    },
+    {
+      "feature_name": "金融行业经验",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "金融相关专业，持有证券投顾资格证优先考虑；",
+        "有银行，证券，贷款等金融经验优先录用。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 53,
+    "valid_features": 10,
+    "filtered_noise_count": 6,
+    "processing_notes": "过滤掉6条包含'这是一个招聘信息'的无效文本，其余文本均与学历要求相关。所有特征均基于原文直接提取，未进行主观推断。"
+  }
+}

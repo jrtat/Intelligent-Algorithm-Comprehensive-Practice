@@ -1,0 +1,71 @@
+{
+  "工作内容概述_description": "该岗位主要负责基于主流前端框架（如React）进行业务系统开发，主导跨平台（Web、移动端、电视端）项目部署与优化，参与GIS系统、三维可视化场景构建等专项技术实现。日常需完成组件封装、性能调优、与后端API对接等核心开发任务，同时承担需求评审、技术方案设计等协作工作。重点涉及Antd组件二次开发、H5性能优化、直播流传输方案设计、三维建模与交互开发等技术方向，需熟练使用TypeScript、Webpack/Vite等工具链，并具备AI辅助开发能力。",
+  "工作内容概述_tags": [
+    "React开发",
+    "Antd组件优化",
+    "H5性能优化",
+    "跨平台部署",
+    "GIS前端开发",
+    "三维建模开发",
+    "直播流传输方案",
+    "TypeScript编码",
+    "API接口对接",
+    "AI辅助调试"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "Antd组件开发与优化",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "基于Antd v4/v5进行业务开发，根据项目需求对Antd组件进行二次封装（如自定义Select选择器），优化组件功能与交互体验。5.",
+        "根据项目需求对Antd组件进行二次封装（如自定义Select选择器），优化组件功能与交互体验。5."
+      ]
+    },
+    {
+      "feature_name": "跨平台部署与适配",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "主导项目在电视端的部署流程，包括环境配置、资源打包、版本管理；精通电视端调试工具（如三星 Smart Development Studio、LG WebOS IDE），定位并解决兼容性问题；",
+        "负责三星、LG 电视 WebOS 平台的前端开发，实现直播流、视频点播等功能模块；开发电视端交互组件（遥控器适配、焦点管理、菜单导航等），适配不同品牌的硬件特性。",
+        "开发电视端交互组件（遥控器适配、焦点管理、菜单导航等），适配不同品牌的硬件特性。"
+      ]
+    },
+    {
+      "feature_name": "GIS系统前端开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.主导地理信息系统（GIS）前端开发工作，对接后端地理信息数据接口，挖掘并整合多元地理数据资源，利用 Mapbox、Cesium 等专业 GIS 前端库，开发如施工现场高精度地理定位、实时动态追踪、复杂地理空间分析、多图层地图可视化展示等功能，为智慧工地的精准决策、高效调度提供关键信息支撑。"
+      ]
+    },
+    {
+      "feature_name": "三维建模与交互开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4.依托三维建模与开发功底，运用 Blender、Unity、UE5 等工具，构建高度逼真且功能完备的三维场景模型，涵盖建筑工地全景虚拟漫游、建筑结构细节拆解与动态可视化展示、施工流程沉浸式模拟、设备设施实时状态监控等应用，通过材质渲染、光影特效优化、动画编排以及与前端交互逻辑融合，为项目各方提供身临其境的项目呈现与高效分析体验，助力精准决策。"
+      ]
+    },
+    {
+      "feature_name": "直播流传输方案设计",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "设计并实现直播流的实时传输方案（如 HLS、RTMP 协议适配），处理直播延迟、断流重连等场景；集成视频加密、DRM 版权保护等安全机制，确保内容合规播放；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 66,
+    "valid_features": 5,
+    "filtered_noise_count": 44,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的文本及无效描述，合并'Antd组件二次封装'与'Antd组件优化'为统一特征，'跨平台部署'整合电视端、移动端适配相关内容"
+  }
+}

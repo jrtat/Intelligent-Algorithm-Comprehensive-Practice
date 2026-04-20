@@ -1,0 +1,85 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质的要求主要包括：必须持有电工证或通过Eaton电工七门课程培训，具备低压电工证优先；需持有英语四级或同等水平的其他语言证书；需具备检测相关专业初级及以上职称。优先考虑持有ISO90001质量管理体系认证证书的候选人。此外，计算机二级证书为加分项。岗位要求候选人具备相关专业背景及基础技能，如电路安装调试、质量管理体系应用等。",
+  "证书要求概述_tags": [
+    "电工证",
+    "英语四级",
+    "初级职称",
+    "ISO90001认证",
+    "计算机二级证书",
+    "低压电工证",
+    "Eaton课程培训"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "电工证",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "持有电工证或通过Eaton电工七门课程培训；- 熟练掌握电力线路连接技术，能够独立完成复杂电路的安装和调试",
+        "最好有低压电工证，如没有可以安排培训单位报销费用"
+      ]
+    },
+    {
+      "feature_name": "英语四级或同等语言水平",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2、大学英语四级或以上，或同等水平的其他语言",
+        "2、大学英语四级或以上，或同等水平的其他语言"
+      ]
+    },
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具备检测相关专业初级以上职称"
+      ]
+    },
+    {
+      "feature_name": "ISO90001质量管理体系认证证书",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具有 iso90001 质量管理体系认证证书优先"
+      ]
+    },
+    {
+      "feature_name": "计算机二级证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "5、证书要求：毕业证、学位证、计算机二级证书、英语四级(480分以上)"
+      ]
+    },
+    {
+      "feature_name": "Eaton电工七门课程培训",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "持有电工证或通过Eaton电工七门课程培训；- 熟练掌握电力线路连接技术，能够独立完成复杂电路的安装和调试"
+      ]
+    },
+    {
+      "feature_name": "低压电工证",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "最好有低压电工证，如没有可以安排培训单位报销费用"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 7,
+    "valid_features": 7,
+    "filtered_noise_count": 1,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目，部分特征因原文信息不足置信度较低"
+  }
+}

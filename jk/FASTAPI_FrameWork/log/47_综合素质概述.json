@@ -1,0 +1,87 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备良好的沟通能力与团队协作精神，能够快速适应新环境并具备较强的学习能力。工作态度上需主动积极、严谨负责，能够独立解决问题并推动项目进展。具备跨部门协作经验者优先，同时需适应出差及销售支持工作。加分项包括舞台掌控能力、数据分析能力、产品调研经验及退伍军人/篮球爱好者背景。",
+  "综合素质概述_tags": [
+    "沟通能力",
+    "团队协作",
+    "适应能力",
+    "学习能力",
+    "责任心",
+    "问题解决",
+    "跨部门协作",
+    "数据分析",
+    "产品调研",
+    "出差适应",
+    "舞台掌控"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通能力",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "具备良好的沟通能力和培训技巧，有一定舞台掌控感。",
+        "具备良好的沟通能力和团队合作精神",
+        "较好的沟通能力、口头表达能力、PPT制作能力"
+      ]
+    },
+    {
+      "feature_name": "团队协作",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "具备良好的沟通能力和团队合作精神",
+        "团队协作能力强，较好的协同及沟通能力。",
+        "与团队成员和相关部门保持良好沟通"
+      ]
+    },
+    {
+      "feature_name": "适应能力",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "能够快速适应新环境，对电子商务有浓厚兴趣",
+        "能接受不定期出差。",
+        "能适应短期出差。"
+      ]
+    },
+    {
+      "feature_name": "学习能力",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "不断学习创新",
+        "具备良好的学习能力",
+        "统计分析技能扎实，善于利用数据驱动业务决策"
+      ]
+    },
+    {
+      "feature_name": "责任心",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "对结果负责",
+        "对市场敏锐，热爱研究产品"
+      ]
+    },
+    {
+      "feature_name": "舞台掌控",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有一定舞台掌控感"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 3,
+    "valid_features": 6,
+    "filtered_noise_count": 25,
+    "processing_notes": "过滤了25条包含'这是一个招聘信息'或无关内容的原文，合并了'沟通能力'等重复特征，退伍军人/篮球爱好者等标签归类为加分项"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备垂直产业B2B平台运营经验，优先考虑有新能源或环保行业背景者。需熟练使用办公软件，具备数据分析与文案撰写能力，能够适应出差和高强度工作。优先考虑有海外社媒平台运营经验、阿里巴巴国际站操作经验者。对电气行业市场经验有明确要求，部分岗位接受应届毕业生但需具备相关技能（如视频剪辑）。工作年限要求涵盖应届生至5年以上经验，部分岗位强调团队协作、抗压能力及客户服务意识。",
+  "工作经验概述_tags": [
+    "垂直产业B2B平台运营经验",
+    "新能源/环保行业背景",
+    "海外社媒平台运营",
+    "阿里巴巴国际站操作",
+    "数据分析与文案撰写",
+    "电气行业市场经验",
+    "办公软件熟练使用",
+    "出差适应能力",
+    "抗压能力",
+    "团队协作"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "垂直产业B2B平台运营工作经验",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有从事新能源或环保行业、垂直产业B2B平台运营工作经验、海外留学背景优先"
+      ]
+    },
+    {
+      "feature_name": "海外社媒平台者优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.熟悉电子商务，熟悉阿里巴巴国际站、海外社媒平台者优先；"
+      ]
+    },
+    {
+      "feature_name": "电气行业市场经验",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "电力相关专业中高级职称25人...",
+        "有3年以上品牌全案策划经验...",
+        "具备商业地产、购物中心、零售企业等商业项目招商和运营管理经验者优先。"
+      ]
+    },
+    {
+      "feature_name": "工作年限要求",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "35岁以下",
+        "有3年以上品牌全案策划经验",
+        "45岁以下，具有五年以上本岗位工作经历经验",
+        "应届生若具备优秀的作品与能力也可投递。"
+      ]
+    },
+    {
+      "feature_name": "办公软件技能",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟练使用日常办公软件（PPT、Word、Excel）"
+      ]
+    },
+    {
+      "feature_name": "应届生/实习生要求",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "应届生若具备优秀的作品与能力也可投递。",
+        "在校大学生/应届生（26/27年毕业生 可按照每天薪资80-130核算）优先考虑"
+      ]
+    },
+    {
+      "feature_name": "特殊技能要求",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "需要有剪辑经验"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 12,
+    "valid_features": 7,
+    "filtered_noise_count": 53,
+    "processing_notes": "大量原始数据包含'这是一个招聘信息'等无效内容，已全部过滤。部分岗位要求存在模糊表述，未强行提取不确定信息。"
+  }
+}

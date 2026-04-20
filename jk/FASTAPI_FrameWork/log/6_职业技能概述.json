@@ -1,0 +1,73 @@
+{
+  "职业技能概述_description": "该岗位要求具备扎实的编程能力，熟练掌握C++、Python等语言，并熟悉深度学习模型（如DNN/CNN/RNN/LSTM/GAN）的应用与实施。需精通编译器开发与优化技术，包括指令集适配、代码性能分析及开源工具链整合。具备AI框架（如TensorFlow/PyTorch）开发经验者优先，且需熟悉大规模并行计算技术以支持大模型训练与推理。此外，要求掌握嵌入式系统开发（如ARM/RH850芯片）、图形算法（OpenGL/Shader编程）及工业控制（运动控制算法/多轴机器人控制）等跨领域技能。具备软件开发V模型、ASPICE认证及硬件协同调试经验者为加分项。",
+  "职业技能概述_tags": [
+    "C++开发",
+    "深度学习模型应用",
+    "编译器优化",
+    "AI框架开发",
+    "大规模并行计算",
+    "嵌入式系统开发",
+    "图形算法开发",
+    "工业控制编程",
+    "软件开发V模型",
+    "硬件协同调试"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "深度学习模型应用（DNN/CNN/RNN/LSTM/GAN）",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "熟悉机器学习特别是深度学习，强化学习，熟悉深度神经网络DNN、卷积神经网络CNN、递归神经网络RNN、长期短期记忆LSTM、生成敌对网络GAN等模型的应用与实施",
+        "熟悉深度神经网络DNN、卷积神经网络CNN、递归神经网络RNN、长期短期记忆LSTM、生成敌对网络GAN等模型的应用与实施"
+      ]
+    },
+    {
+      "feature_name": "C++开发",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "使用C++开发IVD仪器（化学发光/流式细胞仪等）嵌入式控制软件，实现运动控制、温控及高精度信号采集处理",
+        "使用C++设计、开发和调试物流平台自动化程序"
+      ]
+    },
+    {
+      "feature_name": "编译器优化",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "分析并优化编译器产生的代码，确保其在各类工作负载下的高效执行",
+        "规划编译器的演进，与开源社区及第三方工具链(llvm、gcc)保持同步"
+      ]
+    },
+    {
+      "feature_name": "AI框架开发",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "负责大模型AI框架分布式调度、模型并行、数据并行的设计和调优、开发",
+        "负责Linux环境下C++、Python编程，进行深度学习训练框架的代码开发"
+      ]
+    },
+    {
+      "feature_name": "嵌入式系统开发",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "熟悉ARM R52+，RH850 系列芯片者优先考虑",
+        "理解Linux或类似FreeRTOS操作系统、文件系统、驱动和其他相关嵌入式开源软件原理"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 105,
+    "valid_features": 25,
+    "filtered_noise_count": 38,
+    "processing_notes": "合并了重复的深度学习模型描述，过滤了所有包含'这是一个招聘信息'的无效条目，将'熟悉软件开发V模型'与'了解ASPICE'合并为'软件开发V模型/ASPICE认证'特征"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "工作内容概述_description": "岗位核心职责涵盖教学实施、课程开发、行业动态跟踪及学生实践指导。常规工作包括根据教学计划实施专业课程（如航空服务礼仪、铁路客运组织等），采用互动式教学激发学生兴趣。专项工作涉及课程研发（如新媒体课程体系设计）、行业趋势研究（航空/高铁面试培训）、企业合作（组织学生实习见习）及培训材料更新（如店端话术优化）。需与企业、政府机构、学校等多方协作，结合实际需求调整教学内容，同时承担教学评估、培训效果跟踪等任务。",
+  "工作内容概述_tags": [
+    "专业课程教学实施",
+    "行业动态跟踪研究",
+    "课程体系开发设计",
+    "企业实习见习组织",
+    "培训材料更新维护",
+    "跨部门协作沟通",
+    "教学效果评估反馈",
+    "教学方法创新实践"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "专业课程教学实施",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "根据专业教学计划和课程标准，精心设计并实施航空、铁路客运服务相关课程的教学方案",
+        "承担《口腔解剖生理学》、《局部义齿工艺技术》等专业课程"
+      ]
+    },
+    {
+      "feature_name": "行业动态跟踪研究",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "关注航空、铁路客运服务行业动态与发展趋势",
+        "深入研究航空、高铁行业的面试要求与趋势"
+      ]
+    },
+    {
+      "feature_name": "课程体系开发设计",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "设计完整的新媒体课程体系",
+        "定制全面且针对性强的面试培训课程体系"
+      ]
+    },
+    {
+      "feature_name": "企业实习见习组织",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "与航空、铁路相关企业建立合作关系，带领学生开展企业实习",
+        "负责店端优秀销售案例及竞品话术收集总结"
+      ]
+    },
+    {
+      "feature_name": "培训材料更新维护",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "更新店端话术",
+        "根据板块更新情况，周汇总、月学习"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 59,
+    "valid_features": 5,
+    "filtered_noise_count": 14,
+    "processing_notes": "合并了'课程开发'和'课程体系设计'等相似特征，过滤了14条含'这是一个招聘信息'的无效文本"
+  }
+}

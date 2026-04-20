@@ -44,7 +44,7 @@ rf_calc_proba(rf_clf, X_fused, y, class_names)
 #--- mlp ---#
 
 mlp_clf = get_mlp(device, X_train, y_train, X_val, y_val)
-mlp_proba = mlp_predict_proba(mlp_clf, device, X_test)
+mlp_proba = mlp_predict_proba(mlp_clf, X_test, device)
 mlp_evaluate(mlp_proba, y_test)
 
 mlp_calc_proba(mlp_clf, device, X_fused, y, class_names)

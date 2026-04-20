@@ -1,10 +1,13 @@
 import numpy as np
 import torch
 import torch.nn as nn
+import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score
+from tqdm import tqdm
+import copy
 
-class JobDataset(Dataset): # 将特征矩阵和标签转换为 PyTorch 张量，提供标准的数据集接口，便于 DataLoader 使用
+class JobDataset(Dataset):
     def __init__(self, x_fused, y):
         self.X = torch.tensor(x_fused, dtype=torch.float32)
         self.y = torch.tensor(y, dtype=torch.long)
@@ -19,107 +22,140 @@ class MLPClassifier(nn.Module):
     def __init__(self, input_dim, num_classes, hidden_dim=1024):
         super().__init__()
         self.net = nn.Sequential(
-            nn.Linear(input_dim, hidden_dim), # 第一层 Hidden层 默认有 hidden_dim 个节点
-            nn.ReLU(), # 激活函数
-            nn.Dropout(0.3), # 在训练时，以 0.3 的概率随机“丢弃”当前层的部分神经元（将其输出置为 0），防止神经元之间产生复杂的共适应关系，从而抑制过拟合
-            nn.Linear(hidden_dim, hidden_dim // 2), # 第二层 Hidden层 节点数相较于第一层减半
-            nn.ReLU(), # 激活函数
-            nn.Dropout(0.3), # 同上
-            nn.Linear(hidden_dim // 2, num_classes) # 第三层 Output层
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(hidden_dim, hidden_dim // 2),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(hidden_dim // 2, num_classes)
         )
 
     def forward(self, x):
         return self.net(x)
 
-def get_mlp(x_train, y_train, device=None, num_epochs=20, batch_size=128, learning_rate=1e-3):
+def get_mlp(device,
+            x_train, y_train,
+            num_epochs=100,
+            batch_size=64,
+            learning_rate=1e-3,
+            hidden_dim=1024):
     """
-    训练 MLP 模型
+    训练 MLP 模型（无验证集，无早停，训练全部 epoch 后返回最终模型）。
 
     参数:
-        x_train (np.ndarray): 训练特征矩阵
+        device (torch.device): 计算设备
+        X_train (np.ndarray): 训练特征矩阵
         y_train (np.ndarray): 训练标签
-        device (str, optional): 计算设备 ('cuda' 或 'cpu')，默认为自动检测
         num_epochs (int): 训练轮数
         batch_size (int): 批次大小
         learning_rate (float): 学习率
+        hidden_dim (int): 第一隐藏层维度
 
     返回:
-        model (MLPClassifier): 训练好的 MLP 模型
+        model (MLPClassifier): 训练完成后的模型
     """
-    # 自动检测设备
-    if device is None:
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    # 创建数据集与加载器
+    train_dataset = JobDataset(x_train, y_train)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
-    # 数据处理
-    dataset = JobDataset(x_train, y_train)
-    loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
-
-    # 配置模型
+    # 模型、损失函数、优化器
     input_dim = x_train.shape[1]
     num_classes = len(np.unique(y_train))
-    model = MLPClassifier(input_dim=input_dim, num_classes=num_classes).to(device)
-
+    model = MLPClassifier(input_dim, num_classes, hidden_dim=hidden_dim).to(device)
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-    # 训练循环
-    model.train()
     for epoch in range(num_epochs):
-        total_loss = 0
-        for batch_x, batch_y in loader:
+        # 训练阶段
+        model.train()
+        total_loss = 0.0
+        for batch_x, batch_y in tqdm(train_loader, desc=f"Epoch {epoch + 1}/{num_epochs} [Train]", leave=False):
             batch_x, batch_y = batch_x.to(device), batch_y.to(device)
-
             optimizer.zero_grad()
             logits = model(batch_x)
             loss = criterion(logits, batch_y)
             loss.backward()
             optimizer.step()
-
             total_loss += loss.item()
+        avg_train_loss = total_loss / len(train_loader)
 
-        avg_loss = total_loss / len(loader)
-        print(f"Epoch {epoch+1}/{num_epochs} | 平均损失: {avg_loss:.4f}")
+        print(f"Epoch {epoch + 1:3d} | Train Loss: {avg_train_loss:.4f}")
 
+    print("训练完成，返回最终模型。")
     return model
 
-
-def mlp_predict_proba(model, x_test, device=None):
+def get_mlp_advance(device,
+                    x_train, y_train,
+                    x_val, y_val,
+                    num_epochs=100,
+                    batch_size=64,
+                    learning_rate=1e-3,
+                    hidden_dim=1024,
+                    patience=10):
     """
-    使用训练好的 MLP 模型计算测试集的预测概率
-
-    参数:
-        model (MLPClassifier): 训练好的 MLP 模型
-        x_test (np.ndarray): 测试特征矩阵
-        device (str, optional): 计算设备，默认自动检测
-
-    返回:
-        proba (np.ndarray): 预测概率矩阵，形状为 (样本数, 类别数)
+    训练 MLP 模型，使用验证集监控并返回最佳模型。
     """
-    if device is None:
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    # 创建数据集与加载器
+    train_dataset = JobDataset(x_train, y_train)
+    val_dataset = JobDataset(x_val, y_val)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
-    model.eval()
-    model.to(device)
+    # 模型、损失函数、优化器
+    input_dim = x_train.shape[1]
+    num_classes = len(np.unique(y_train))
+    model = MLPClassifier(input_dim, num_classes, hidden_dim=hidden_dim).to(device)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-    # 转换为张量并移动到设备
-    x_tensor = torch.tensor(x_test, dtype=torch.float32).to(device)
+    best_val_acc = 0.0
+    best_model_wts = copy.deepcopy(model.state_dict())
+    epochs_no_improve = 0
 
-    with torch.no_grad():
-        logits = model(x_tensor)
-        proba = torch.softmax(logits, dim=1).cpu().numpy()
+    for epoch in range(num_epochs):
+        # 训练阶段
+        model.train()
+        total_loss = 0.0
+        for batch_x, batch_y in tqdm(train_loader, desc=f"Epoch {epoch+1}/{num_epochs} [Train]", leave=False):
+            batch_x, batch_y = batch_x.to(device), batch_y.to(device)
+            optimizer.zero_grad()
+            logits = model(batch_x)
+            loss = criterion(logits, batch_y)
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+        avg_train_loss = total_loss / len(train_loader)
 
-    return proba
+        # 验证阶段
+        model.eval()
+        val_loss = 0.0
+        val_preds, val_targets = [], []
+        with torch.no_grad():
+            for batch_x, batch_y in val_loader:
+                batch_x, batch_y = batch_x.to(device), batch_y.to(device)
+                logits = model(batch_x)
+                loss = criterion(logits, batch_y)
+                val_loss += loss.item()
+                preds = torch.argmax(logits, dim=1)
+                val_preds.extend(preds.cpu().numpy())
+                val_targets.extend(batch_y.cpu().numpy())
+        avg_val_loss = val_loss / len(val_loader)
+        val_acc = accuracy_score(val_targets, val_preds)
 
+        print(f"Epoch {epoch+1:3d} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.4f}")
 
-def mlp_evaluate(proba_mlp_test, y_test):
-    """
-    基于预测概率计算并打印 MLP 模型的评估指标
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            best_model_wts = copy.deepcopy(model.state_dict())
+            epochs_no_improve = 0
+            print(f"  --> 新的最佳模型 (Val Acc = {val_acc:.4f})")
+        else:
+            epochs_no_improve += 1
+            if epochs_no_improve >= patience:
+                print(f"早停触发，在 epoch {epoch+1} 停止训练。")
+                break
 
-    参数:
-        proba_mlp_test (np.ndarray): 预测概率矩阵
-        y_test (np.ndarray): 真实标签
-    """
-    pred_mlp_test = np.argmax(proba_mlp_test, axis=1)
-    mlp_acc = accuracy_score(y_test, pred_mlp_test)
-    mlp_f1 = f1_score(y_test, pred_mlp_test, average='macro')
-    print(f"MLP 测试集结果 | Accuracy: {mlp_acc:.4f} | Macro F1: {mlp_f1:.4f}")
+    model.load_state_dict(best_model_wts)
+    print(f"训练完成，最佳验证准确率: {best_val_acc:.4f}")
+    return model

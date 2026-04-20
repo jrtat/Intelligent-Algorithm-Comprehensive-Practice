@@ -1,7 +1,9 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jobsData from '../data/jobs.json';
-import type { Job, JobData } from '../types/job';
+import type { Job, JobData, ResumeData, Report } from '../types/job';
+import { processReport } from '../api/reportApi';
+import { useToast } from '../context/ToastContext';
 import { PageDashboard } from '../components/PageDashboard/PageDashboard';
 
 // 随机推荐同类型岗位组件
@@ -142,6 +144,9 @@ export default function JobMatch() {
   const [sortConfig, setSortConfig] = useState<{ key: 'match_score', direction: 'asc' | 'desc' } | null>({ key: 'match_score', direction: 'desc' });
   const [jobList, setJobList] = useState<JobData[]>([]);
 
+  // Toast 通知
+  const { showToast } = useToast();
+
   // 从 localStorage 读取匹配结果
   useEffect(() => {
     if (jobList.length > 0) return;
@@ -200,9 +205,53 @@ export default function JobMatch() {
     setSortConfig({ key, direction });
   };
 
+  const handleGetReport = () => {
+    if (!selectedJob) return;
+
+    // 获取简历数据
+    const savedResume = localStorage.getItem('resumeData');
+    if (!savedResume) {
+      showToast({ message: '请先在能力分析页面填写简历信息', duration: 5000 });
+      return;
+    }
+
+    let resumeData: ResumeData;
+    try {
+      resumeData = JSON.parse(savedResume);
+    } catch {
+      showToast({ message: '简历数据解析失败', duration: 5000 });
+      return;
+    }
+
+    // 不阻塞用户操作，后台处理
+    processReport(
+      { resume: resumeData, job: selectedJob },
+      {
+        onProgress: () => {},
+        onCompleted: (result: Report) => {
+          localStorage.setItem('careerReport', JSON.stringify(result));
+          showToast({
+            message: '专项提升报告已生成，点击立即查看！',
+            onClick: () => navigate('/career-report'),
+            duration: 5000,
+          });
+        },
+        onFailed: (err) => {
+          showToast({ message: `报告生成失败: ${err}`, duration: 5000 });
+        },
+        onTimeout: () => {
+          showToast({ message: '任务处理超时，请稍后重试', duration: 5000 });
+        },
+      }
+    );
+
+    showToast({ message: '正在生成专项提升报告，请稍候...', duration: 3000 });
+  };
+
   if (selectedJob) {
     // Deep Analysis View
     return (
+      <>
       <PageDashboard
         title={`${selectedJob[0]} - 深度解析`}
         subtitle="基于核心算法理解力、产品架构设计及跨团队协作维度的量化对比"
@@ -506,9 +555,12 @@ export default function JobMatch() {
               </div>
 
               <div className="flex flex-wrap gap-4 mt-6">
-                <button className="bg-gradient-to-r from-primary to-primary/80 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:shadow-lg hover:shadow-primary/30 transition-all">
+                <button
+                  onClick={handleGetReport}
+                  className="bg-gradient-to-r from-primary to-primary/80 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:shadow-lg hover:shadow-primary/30 transition-all"
+                >
                   <span className="material-symbols-outlined">rocket_launch</span>
-                  获取专项提升计划
+                  获取专项提升报告
                 </button>
                 <button className="bg-white/80 text-on-surface-variant px-6 py-3 rounded-xl font-bold hover:bg-white transition-all border border-surface-container-high">
                   <span className="material-symbols-outlined text-sm mr-2">analytics</span>
@@ -523,6 +575,7 @@ export default function JobMatch() {
         </div>
       </div>
       </PageDashboard>
+    </>
     );
   }
 
@@ -640,6 +693,7 @@ export default function JobMatch() {
       </div>
     </div>
     </PageDashboard>
+
   );
 }
 

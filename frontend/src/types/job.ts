@@ -106,6 +106,11 @@ export interface DimensionAnalysis {
   teamwork_ability: DimensionScore;      // 团队协作
 }
 
+export interface ReportGenInput {
+  resume:ResumeData;
+  job:JobData
+}
+
 // 维度得分详情
 export interface DimensionScore {
   score: number;                   // 个人在该维度的得分 (1-100)
@@ -153,4 +158,220 @@ export interface TaskStatusResponse {
   progress?: number;          // 0-100，可选
   result?: JobData[];         // 当 status = "completed" 时返回数组
   error?: string;             // 当 status = "failed" 时返回错误信息
+}
+
+export interface Report {
+  "candidate_name":string,    // 姓名
+  "target_job":string,        // 目标岗位
+  "candidate_summary": {      // 个人总结
+    "current_background":string,
+    "core_strengths":string[],
+    "areas_for_improvement":string[]
+  },
+  "match_analysis": {         // 匹配分析
+    "skill_match_score":number,   // 技能匹配得分
+    "experience_match_score":number,  
+    "education_fit":string,
+    "overall_match_score":number,
+    "match_level":string
+  },
+  "gap_analysis": {
+    "hard_skills_gaps": Gap[],
+    "soft_skills_gaps": Gap[],
+    "experience_gaps": Gap[],
+    "certification_needs":string[]
+  },
+  "career_path_planning": {
+    "career_goals": {
+      "short_term": {
+        "duration":string,
+        "goal_description":string,
+        "key_milestones":string[],
+        "success_criteria":string[]
+      },
+      "mid_term": {
+        "duration":string,
+        "goal_description":string,
+        "key_milestones":string[],
+        "success_criteria":string[]
+      },
+      "long_term": {
+        "duration":string,
+        "goal_description":string,
+        "key_milestones":string[],
+        "success_criteria":string[]
+      }
+    },
+    "industry_trends": {
+      "social_demand":string,
+      "technology_trends":string,
+      "market_changes":string,
+      "salary_trends":string,
+    },
+    "development_path": {
+      "path_stages": Stage[],
+      "alternative_paths": AlternativePath[]
+    }
+  },
+  "development_plan": {
+    "phase_1": {
+      "duration":string,
+      "goals":string[],
+      "actions":string[],
+      "milestones":string[]
+    },
+    "phase_2":  {
+      "duration":string,
+      "goals":string[],
+      "actions":string[],
+      "milestones":string[]
+    },
+    "phase_3":  {
+      "duration":string,
+      "goals":string[],
+      "actions":string[],
+      "milestones":string[]
+    },
+    "phase_4":  {
+      "duration":string,
+      "goals":string[],
+      "actions":string[],
+      "milestones":string[]
+    }
+  },
+  "action_plan": {
+    "short_term_plan": {
+      "duration":string,
+      "learning_path": {
+        "courses":string[],
+        "books":string[],
+        "online_resources":string[],
+        "expected_outcomes":string[]
+      },
+      "practice_arrangements": {
+        "projects":string[],
+        "internships":string,
+        "competitions":string[],
+        "expected_outcomes":string[]
+      },
+      "certifications":string[],
+      "quantifiable_goals": QuantifiableGoal[]
+    },
+    "mid_term_plan": {
+      "duration":string,
+      "advanced_learning": {
+        "advanced_courses":string[],
+        "professional_training":string[],
+        "expected_outcomes":string[]
+      },
+      "project_experience": {
+        "independent_projects":string[],
+        "team_projects":string[],
+        "portfolio_building":string,
+        "expected_outcomes":string[]
+      },
+      "industry_engagement": {
+        "conferences":string[],
+        "tech_meetups":string[],
+        "networking":string,
+        "mentorship":string
+      },
+      "quantifiable_goals": QuantifiableGoal[]
+    },
+    "evaluation_framework": {
+      "evaluation_cycles": {
+        "self_assessment":string,
+        "deep_review":string,
+        "annual_review":string
+      },
+      "quantitative_metrics": [
+        {
+          "metric_name":string,
+          "scale":string,
+          "assessment_method":string,
+          "target_progression":string
+        },
+        {
+          "metric_name":string,
+          "unit":string,
+          "assessment_method":string,
+          "target_progression":string
+        },
+        {
+          "metric_name":string,
+          "unit":string,
+          "assessment_method":string,
+          "target_progression":string
+        },
+        {
+          "metric_name":string,
+          "scale":string,
+          "assessment_method":string,
+          "target_progression":string
+        },
+        {
+          "metric_name":string,
+          "scale":string,
+          "assessment_method":string,
+          "target_progression":string
+        }
+      ],
+      "dynamic_adjustment": {
+        "adjustment_triggers":string[],
+        "adjustment_process":string,
+        "feedback_loop":string
+      },
+      "risk_warning": {
+        "potential_obstacles":string[],
+        "early_warning_signs":string[],
+        "contingency_plans":string[]
+      }
+    }
+  },
+  "resource_recommendations": {
+    "courses":string[],
+    "books":string[],
+    "projects":string[],
+    "communities":string[]
+  },
+  "risk_assessment": {
+    "major_risks":string[],
+    "mitigation_strategies":string[],
+    "backup_plans":string[]
+  },
+  "success_probability": {
+    "probability_percentage":number,
+    "key_factors":string[],
+    "improvement_suggestions":string[]
+  },
+  "final_recommendation":string
+}
+
+export interface Gap {
+  "skill":string,
+  "importance":string,
+  "current_level":string,
+  "target_level":string,
+  "learning_resources":string[]
+}
+
+export interface Stage {
+  "stage_name":string,
+  "level":number,
+  "typical_duration":string,
+  "core_requirements":string[],
+  "key_responsibilities":string[],
+  "promotion_criteria":string
+}
+
+export interface AlternativePath {
+  "path_name":string,
+  "description":string,
+  "transition_requirements":string[]
+}
+
+export interface QuantifiableGoal {
+  "metric":string,
+  "target_value":string,
+  "measurement_method":string
 }

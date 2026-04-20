@@ -174,6 +174,7 @@ interface JobData {
   source_url: string;              // 来源链接 (点击岗位名称跳转的超链接)
   job_details: string;             // 岗位职责详细描述
   company_details: string;         // 公司简介详细描述
+  
   match_score: number;             // 综合匹配得分 (1-100)
   benchmark_total_score: number;   // 综合基准得分 (1-100)
   dimension_analysis: {            // 七大维度深度解析

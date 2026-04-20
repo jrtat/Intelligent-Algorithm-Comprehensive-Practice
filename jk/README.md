@@ -773,3 +773,21 @@ plaintext
 配色：沿用 Dashboard 主流轻量风格，主色选择 #1677ff（AntD 官方主色，适配专业场景），辅助色用浅灰（#F5F7FA）、分割线灰（#E5E6EB），避免色彩杂乱；
 响应式适配：Dashboard 容器支持自适应布局，在不同屏幕尺寸下（如平板、PC 大屏），核心双区可自动调整栅格占比，保证内容不挤压、阅读体验流畅；
 细节交互：模块 hover 时可添加轻微阴影加深效果，提升交互反馈感；里程碑模块的进度条添加动态加载效果（若支持）。
+
+```json
+export interface JobData {
+  job_name: string;                // 岗位类型名称
+  match_score: number;             // 综合匹配得分 (1-100)
+  benchmark_total_score: 60;   // 综合基准得分 固定60
+  
+  dimension_analysis: {            // 七大维度深度解析
+    professional_skill: DimensionScore;    // 专业技能
+    innovation_ability: DimensionScore;    // 创新能力
+    learning_ability: DimensionScore;      // 学习能力
+    stress_resistance: DimensionScore;     // 抗压能力
+    communication_ability: DimensionScore; // 沟通表达
+    internship_experience: DimensionScore; // 核心实习经历
+    teamwork_ability: DimensionScore;      // 团队协作
+  };
+}
+```

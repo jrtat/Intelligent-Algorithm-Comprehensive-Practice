@@ -729,7 +729,7 @@ class Matcher:
         return dic_map[job_num], score, dimension_analysis
 
     def get_result(self):
-        for i in range(51): # [6,15,30,39,50]
+        for i in range(6): # [6,15,30,39,50]
             self.scores.append(self.cal_score_simple(str(i)))
 
         self.scores.sort(key=lambda x: x[1], reverse=True)

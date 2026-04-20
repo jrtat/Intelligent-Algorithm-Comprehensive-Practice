@@ -92,32 +92,18 @@ export interface ResumeData {
   };
 }
 
-export interface JobData {
-  job_id: string;                  // 数据库原始ID，用于详情跳转
-  job_name: string;                // 岗位名称
-  location: string;                // 工作地点
-  salary_range: string;            // 薪资范围展示文本 (如: "25k-40k")
-  salary_min: number;              // 最低薪资，用于前端滑动条筛选和排序
-  company_name: string;            // 公司名称
-  industry: string;                // 所属行业
-  company_size: string;            // 公司规模 (如: "10000人以上")
-  company_type: string;            // 公司性质 (如: "民营企业")
-  source_url: string;              // 来源链接 (点击岗位名称跳转的超链接)
-  job_details: string;             // 岗位职责详细描述
-  company_details: string;         // 公司简介详细描述
-  
-  match_score: number;             // 综合匹配得分 (1-100)
-  benchmark_total_score: 60;   // 综合基准得分 (1-100)
-  
-  dimension_analysis: {            // 七大维度深度解析
-    professional_skill: DimensionScore;    // 专业技能
-    innovation_ability: DimensionScore;    // 创新能力
-    learning_ability: DimensionScore;      // 学习能力
-    stress_resistance: DimensionScore;     // 抗压能力
-    communication_ability: DimensionScore; // 沟通表达
-    internship_experience: DimensionScore; // 核心实习经历
-    teamwork_ability: DimensionScore;      // 团队协作
-  };
+// 岗位类型数据 - 元组格式 [job_name, match_score, dimension_analysis]
+export type JobData = [string, number, DimensionAnalysis]
+
+// 维度分析
+export interface DimensionAnalysis {
+  professional_skill: DimensionScore;    // 专业技能
+  innovation_ability: DimensionScore;    // 创新能力
+  learning_ability: DimensionScore;      // 学习能力
+  stress_resistance: DimensionScore;     // 抗压能力
+  communication_ability: DimensionScore; // 沟通表达
+  internship_experience: DimensionScore; // 核心实习经历
+  teamwork_ability: DimensionScore;      // 团队协作
 }
 
 // 维度得分详情
@@ -165,6 +151,6 @@ export interface TaskStatusResponse {
   taskId: string;
   status: "pending" | "processing" | "completed" | "failed";
   progress?: number;          // 0-100，可选
-  result?: JobData;           // 当 status = "completed" 时返回
+  result?: JobData[];         // 当 status = "completed" 时返回数组
   error?: string;             // 当 status = "failed" 时返回错误信息
 }

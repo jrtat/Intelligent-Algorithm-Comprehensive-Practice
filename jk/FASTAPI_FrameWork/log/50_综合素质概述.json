@@ -1,0 +1,98 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备较强的学习能力与适应能力，能够快速掌握智能柜推广业务流程并适应高强度工作环境。核心素质包括：1）优秀的沟通协调与团队协作能力，能有效维护客户关系并跨部门协同；2）高度责任心与主动执行力，能独立完成客户拓展、合同管理及项目跟进；3）突出的问题解决能力，需具备逻辑思维与创新意识以应对复杂业务场景。加分项包括：具备国网/南网对接经验、商务谈判能力及抗压能力。工作需接受高频出差（50%-70%）及驻外安排，要求候选人具备良好的职业素养与客户服务意识。",
+  "综合素质概述_tags": [
+    "学习能力",
+    "沟通协作",
+    "适应能力",
+    "团队合作",
+    "责任心",
+    "问题解决",
+    "出差接受度",
+    "谈判技巧",
+    "抗压能力",
+    "客户服务"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "学习能力",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "具备较强的学习能力，能快速掌握现有智能柜推广业务流程",
+        "具备较强的学习能力，能快速掌握现有智能柜推广业务流程",
+        "具备较强的学习能力，能快速掌握现有智能柜推广业务流程"
+      ]
+    },
+    {
+      "feature_name": "沟通协作",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "具有良好的沟通协调能力和团队合作意识",
+        "能与客户进行良好的沟通协调",
+        "具备良好的沟通协调、谈判能力和销售执行力"
+      ]
+    },
+    {
+      "feature_name": "适应能力",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "能适应长期驻点在外",
+        "能接受高频出差（占比约50%-70%），适应快节奏工作",
+        "能接受短期出差和应酬"
+      ]
+    },
+    {
+      "feature_name": "责任心",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "责任心强",
+        "工作细心、认真负责、有责任心",
+        "有较强的责任心和团队协作精神"
+      ]
+    },
+    {
+      "feature_name": "问题解决",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "较强的统筹协调能力",
+        "具备较强的组织、协调及沟通能力",
+        "具备较强的沟通协调、谈判能力和销售执行力"
+      ]
+    },
+    {
+      "feature_name": "出差接受度",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "能接受高频出差（占比约50%-70%），适应快节奏工作",
+        "能接受短期出差和应酬",
+        "能适应长期驻点在外"
+      ]
+    },
+    {
+      "feature_name": "谈判技巧",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具备优秀的谈判技巧和商务礼仪"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 3,
+    "valid_features": 7,
+    "filtered_noise_count": 12,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的无效条目及非相关描述，合并'沟通协调能力'与'团队合作意识'等语义相近特征"
+  }
+}

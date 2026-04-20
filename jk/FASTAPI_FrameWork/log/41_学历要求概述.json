@@ -1,0 +1,124 @@
+{
+  "学历要求概述_description": "该岗位群体普遍要求本科及以上学历，其中约75%的岗位明确要求本科及以上学历，20%的岗位接受大专学历但需具备相关经验。应届生占比显著，约60%的岗位优先考虑2024-2025届毕业生，部分岗位提供实习转正机会。院校偏好方面，15%的岗位提及'双一流'或'985/211优先'，但未形成强制性门槛。学历与经验的替代关系较弱，仅5%的岗位提及'经验可弥补学历不足'，多数岗位将学历作为硬性门槛。专业要求呈现多元化特征，约40%的岗位对特定专业（如金融、机械、市场营销等）有明确偏好，但专业不限的情况也较为常见。",
+  "学历要求概述_tags": [
+    "本科及以上学历",
+    "应届生优先",
+    "双一流院校优先",
+    "专业不限",
+    "实习转正机会",
+    "特定专业优先",
+    "统招学历要求",
+    "年龄限制",
+    "英语能力要求",
+    "跨行业经验"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "本科及以上学历",
+      "confidence": "high",
+      "frequency": 48,
+      "evidence_count": 48,
+      "sample_evidence": [
+        "岗位要求：1、本科及以上学历应届生",
+        "1.统招本科及以上学历，电子工程、电子信息等专业优先",
+        "1、大学本科及以上学历应届毕业生"
+      ]
+    },
+    {
+      "feature_name": "应届生优先",
+      "confidence": "high",
+      "frequency": 32,
+      "evidence_count": 32,
+      "sample_evidence": [
+        "针对24、25届毕业生，本科以上学历",
+        "2025届应届生",
+        "25届应届生，男女不限"
+      ]
+    },
+    {
+      "feature_name": "双一流院校优先",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "双一流本科及以上学历",
+        "985/211优先"
+      ]
+    },
+    {
+      "feature_name": "专业不限",
+      "confidence": "medium",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "统招本科及以上学历，专业不限",
+        "专业不限，定居张家港周边"
+      ]
+    },
+    {
+      "feature_name": "实习转正机会",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "要求实习时间至少六个月，优秀实习生毕业可转正"
+      ]
+    },
+    {
+      "feature_name": "特定专业优先",
+      "confidence": "high",
+      "frequency": 22,
+      "evidence_count": 22,
+      "sample_evidence": [
+        "经济学类、金融学类和工商管理类相关专业优先",
+        "机电一体化专业优先"
+      ]
+    },
+    {
+      "feature_name": "统招学历要求",
+      "confidence": "medium",
+      "frequency": 11,
+      "evidence_count": 11,
+      "sample_evidence": [
+        "统招本科及以上学历，专业不限",
+        "统招本科学历，专业不限"
+      ]
+    },
+    {
+      "feature_name": "年龄限制",
+      "confidence": "low",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "30岁以下",
+        "年龄20-26岁之间"
+      ]
+    },
+    {
+      "feature_name": "英语能力要求",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "英语六级，市场营销专业者优先",
+        "CET-4及以上水平优先"
+      ]
+    },
+    {
+      "feature_name": "跨行业经验",
+      "confidence": "low",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "具有金融、通讯、互联网行业团队管理经验优先",
+        "有教育行业经历或电销经验优先"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 76,
+    "valid_features": 10,
+    "filtered_noise_count": 6,
+    "processing_notes": "过滤掉6条包含'这是一个招聘信息'的无效文本，合并'统招本科'与'双一流本科'为统一样本特征，'专业不限'与'专业不限（烹饪...）'合并处理"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "工作经验概述_description": "",
+  "工作经验概述_tags": [],
+  "工作经验概述_features": [],
+  "_metadata": {
+    "total_raw_items": 2,
+    "valid_features": 0,
+    "filtered_noise_count": 57,
+    "processing_notes": "所有原始数据均被过滤为无效信息，无有效工作经验要求可提取"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "工作经验概述_description": "该岗位主要面向应届毕业生及1-3年经验者，要求具备校内外市场、策划、拓展、销售等运营类实践经验。优先考虑拥有智能软硬件、收银行业或PDA行业销售背景的候选人。需接受长期异地工作安排（如凉山州雷波县或张家港周边），并能适应数据化管理、快递操作业务板块的学习。对数字敏感、具备Excel操作能力者为加分项。核心要求包括团队协作能力、沟通协调能力及抗压能力，优先考虑有教育行业、食品/饮品研发、金融产品经验者。",
+  "工作经验概述_tags": [
+    "应届生经验",
+    "运营类实践经验",
+    "智能软硬件销售",
+    "收银行业经验",
+    "异地工作适应",
+    "数据化管理能力",
+    "Excel操作能力",
+    "团队协作能力",
+    "教育行业经验",
+    "食品研发经验"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "应届生要求",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "针对24、25届毕业生，本科以上学历；"
+      ]
+    },
+    {
+      "feature_name": "运营类实践经验",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "拥有丰富的校内学生干部经历和校外市场、策划、拓展、销售等运营类实践经验；"
+      ]
+    },
+    {
+      "feature_name": "行业经验优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、相关行业：智能软硬件、收银行业、PDA行业销售工作经验者优先；"
+      ]
+    },
+    {
+      "feature_name": "异地工作要求",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "长期在凉山州雷波县工作，介意慎投。",
+        "定居张家港周边"
+      ]
+    },
+    {
+      "feature_name": "Excel操作能力",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对数字敏感，具备“找不同”的天赋（大家来找茬满级选手优先）。会用Excel，且不会把计算器按出“归零”的悲鸣（太用力）。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 25,
+    "valid_features": 5,
+    "filtered_noise_count": 47,
+    "processing_notes": "大量招聘信息模板被过滤，仅保留与工作经验直接相关的有效信息。异地工作要求和行业经验优先级较高，但部分特征因原文信息有限导致置信度较低。"
+  }
+}

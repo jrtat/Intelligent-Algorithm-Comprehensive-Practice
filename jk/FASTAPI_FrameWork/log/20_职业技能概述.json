@@ -1,0 +1,61 @@
+{
+  "职业技能概述_description": "该岗位要求具备设计软件操作能力，能够完成土地红线作图及对接工作，熟练使用CAD、PS、AI等工具。同时需掌握档案数字化处理技能，包括纸质资料扫描、录入及电子档案整理。具备数据安全与合规管理知识（如《网络安全法》、ISO 27001）为加分项。岗位对专业软件操作能力要求较高，需具备实际工作经验，部分方向（如农药检测）需熟悉特定行业规范（如GLP要求）。核心技能集中在设计作图、档案数字化处理及基础合规知识，其中设计软件使用为必备技能，其他为辅助能力。",
+  "职业技能概述_tags": [
+    "设计软件使用",
+    "档案数字化处理",
+    "土地红线作图",
+    "合规法规知识",
+    "数据安全意识",
+    "ISO 27001标准",
+    "农药检测规范",
+    "GLP要求",
+    "文件分类整理",
+    "电子档案管理"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "设计软件使用",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "能熟练使用各类设计作图软件，如CAD、PS、AI等软件",
+        "能够完成项目土地选址过程中的土地红线作图及对接工作"
+      ]
+    },
+    {
+      "feature_name": "档案数字化处理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "将纸质资料通过扫描、录入、整理转成电子版资料",
+        "信息采集：将纸质资料重要信息录入到系统中"
+      ]
+    },
+    {
+      "feature_name": "合规法规知识",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉数据安全、合规管理相关法规（如《网络安全法》、ISO 27001等）优先"
+      ]
+    },
+    {
+      "feature_name": "农药检测规范",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉《农药登记试验质量管理规范》和GLP要求"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 5,
+    "valid_features": 4,
+    "filtered_noise_count": 36,
+    "processing_notes": "过滤全部包含'这是一个招聘信息'的噪声数据，合并设计软件相关描述，调整标签表述以符合行业通用术语"
+  }
+}

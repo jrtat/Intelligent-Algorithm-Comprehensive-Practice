@@ -1,0 +1,88 @@
+{
+  "职业技能概述_description": "该岗位要求具备知识产权法律实务操作能力，包括撰写和答复专利申请文件、处理涉外案件审查意见、熟悉专利审查流程及知识产权政策法规。需掌握唯德系统操作，具备涉外专利管理经验者优先。工作内容涵盖专利侵权诉讼、行政诉讼及知识产权代理服务，要求熟练处理国内外专利事务，具备多语言能力（英语六级、韩语为第二外语）及制图软件（如PRO/E）操作技能。核心能力包括专利文件撰写、审查意见答复、涉外案件处理及知识产权法律咨询。",
+  "职业技能概述_tags": [
+    "专利申请文件撰写",
+    "涉外专利审查意见处理",
+    "知识产权法律咨询",
+    "唯德系统操作",
+    "专利侵权及行政诉讼",
+    "多语言能力（英语/韩语）",
+    "制图软件操作（PRO/E）",
+    "专利审查流程实务",
+    "涉外专利管理",
+    "知识产权代理服务"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "专利申请文件撰写",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "撰写和答复：撰写新申请文件和答复审查意见",
+        "接收并答复公司委派的专利通知书"
+      ]
+    },
+    {
+      "feature_name": "涉外专利审查意见处理",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "处理涉外案件审查意见",
+        "翻译、校对涉外专利申请文件"
+      ]
+    },
+    {
+      "feature_name": "知识产权法律咨询",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "为企业提供知识产权法律方面的咨询、侵权及行政诉讼"
+      ]
+    },
+    {
+      "feature_name": "唯德系统操作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉唯德系统以及中国专利法"
+      ]
+    },
+    {
+      "feature_name": "专利审查流程实务",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉专利申请、审查流程和实务操作"
+      ]
+    },
+    {
+      "feature_name": "多语言能力（英语/韩语）",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "英语六级以上，拥有熟练和准确的英文阅读理解和书面表达能力，第二外语为韩语"
+      ]
+    },
+    {
+      "feature_name": "制图软件操作（PRO/E）",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "会CAD、PS、PRO/E、SOLIDWORKS、UG等任意一款制图软件"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 17,
+    "valid_features": 7,
+    "filtered_noise_count": 58,
+    "processing_notes": "大量'这是一个招聘信息'条目被过滤，SOLIDWORKS因无效原文被剔除，PRO/E因与岗位核心技能相关性较弱标记为低置信度"
+  }
+}

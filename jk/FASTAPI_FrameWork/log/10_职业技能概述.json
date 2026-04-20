@@ -1,0 +1,89 @@
+{
+  "职业技能概述_description": "该岗位要求具备质量管理体系相关的核心技能，包括熟练应用SPC、8D、FMEA等质量分析工具，精通APQP产品先前质量策划方法，熟悉IQC/IPQC/FQC/OQC全流程管理。需掌握品控七大手法、QFD功能展开、Cpk统计等专业工具，具备标准执行与落地能力，能针对生产异常提出改善建议。优先具备三坐标测量、探伤资质、内审员资格等专项技能，熟悉IATF16946、ISO9001等国际标准。工作内容涵盖质量计划编制、质量归零管理、产品评审及整改措施跟踪，要求具备电子元器件规范、锂电池检测标准等专业知识，能使用卡尺、千分表、二次元等检测设备。",
+  "职业技能概述_tags": [
+    "质量分析工具应用（SPC/8D/FMEA）",
+    "APQP产品策划",
+    "IQC/OQC流程管理",
+    "标准执行与落地",
+    "异常改善建议",
+    "三坐标测量技术",
+    "探伤资质",
+    "内审员资格",
+    "IATF16946标准",
+    "电子元器件规范",
+    "检测设备操作"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "质量分析工具应用",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "能熟练应用...SPC,8D,FMEA,Minitap等工具",
+        "掌握品控QC七大手法...FMEA、Cpk统计等质量工具",
+        "熟悉IATF16946、ISO9001等质量管理文件和常用工具"
+      ]
+    },
+    {
+      "feature_name": "APQP产品先前质量策划",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "精通APQP产品先前质量策划"
+      ]
+    },
+    {
+      "feature_name": "IQC/OQC流程管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉IQC/IPQC/FQC/OQC管理流程"
+      ]
+    },
+    {
+      "feature_name": "标准执行与落地",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "标准执行和落地：根据食品安全要求和大客户要求..."
+      ]
+    },
+    {
+      "feature_name": "异常改善建议",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉石墨工艺，能针对异常提出合理改善建议"
+      ]
+    },
+    {
+      "feature_name": "三坐标测量技术",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具有三坐标、探伤资质"
+      ]
+    },
+    {
+      "feature_name": "内审员资格",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有内审员资格"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 22,
+    "valid_features": 7,
+    "filtered_noise_count": 53,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的无效条目，合并'FMEA'等重复特征，将'卡尺/千分表/二次元'等检测设备操作整合为统一特征"
+  }
+}

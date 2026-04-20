@@ -1,0 +1,54 @@
+{
+  "证书要求概述_description": "该岗位对候选人的综合能力测试和特定职业证书有明确要求。其中，8Q测试中AQ/EQ/AAQ综合得分需≥6.5分且LQ≥7分，未达标者将被直接淘汰，属于硬性门槛要求。同时，持有老年人能力评估师或社群健康助理证书可作为优先录用的加分项。岗位画像显示，核心能力测试指标具有强制性，而特定行业证书则属于辅助筛选条件，整体更侧重候选人的综合素质评估。",
+  "证书要求概述_tags": [
+    "8Q测试综合得分要求",
+    "LQ得分要求",
+    "老年人能力评估师证书",
+    "社群健康助理证书",
+    "综合素质测试"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "8Q测试中AQ/EQ/AAQ综合得分≥6.5分",
+      "confidence": "high",
+      "frequency": 11,
+      "evidence_count": 11,
+      "sample_evidence": [
+        "5）8Q测试中AQ/EQ/AAQ综合得分≥6.5分、 LQ≥7分，分数不达标，不予录用；"
+      ]
+    },
+    {
+      "feature_name": "LQ≥7分",
+      "confidence": "high",
+      "frequency": 11,
+      "evidence_count": 11,
+      "sample_evidence": [
+        "5）8Q测试中AQ/EQ/AAQ综合得分≥6.5分、 LQ≥7分，分数不达标，不予录用；"
+      ]
+    },
+    {
+      "feature_name": "老年人能力评估师",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "从事养老社工，社区团购，本地生活，保险保障，家政，老年大学，康养旅游，宝妈，陪诊师经验者优先;5.持证优先:老年人能力评估师，社群健康助理。"
+      ]
+    },
+    {
+      "feature_name": "社群健康助理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "从事养老社工，社区团购，本地生活，保险保障，家政，老年大学，康养旅游，宝妈，陪诊师经验者优先;5.持证优先:老年人能力评估师，社群健康助理。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 4,
+    "valid_features": 4,
+    "filtered_noise_count": 0,
+    "processing_notes": "所有特征均来自有效原文，未发现噪声数据。8Q测试相关指标出现次数较多，但属于不同维度的独立要求。职业证书类特征出现频次较低，且明确标注为优先条件。"
+  }
+}

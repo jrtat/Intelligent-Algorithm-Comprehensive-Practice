@@ -1,0 +1,39 @@
+{
+  "职业技能概述_description": "根据提供的岗位信息，未发现明确的编程语言、开发框架、技术工具或专业能力领域相关描述。原始数据中大量包含无效内容（如'这是一个招聘信息'），且剩余有效信息主要涉及行政管理、客户服务、保险知识、医美护理等非技术领域，不符合岗位画像分析的核心要求。",
+  "职业技能概述_tags": [],
+  "职业技能概述_features": [
+    {
+      "feature_name": "CRM系统使用",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟练掌握公司CRM系统，买家开发App和相关业务流程规范。7."
+      ]
+    },
+    {
+      "feature_name": "保险知识",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2且各基木的金融，保险产早知识，对市场有一定的认知。3."
+      ]
+    },
+    {
+      "feature_name": "医美护理知识",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解常见医美项目的术后护理要点及可能的风险"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 9,
+    "valid_features": 3,
+    "filtered_noise_count": 38,
+    "processing_notes": "原始数据中90%以上内容为无效噪声，剩余有效信息未涉及技术类岗位要求"
+  }
+}

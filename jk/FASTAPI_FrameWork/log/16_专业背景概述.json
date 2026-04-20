@@ -1,0 +1,74 @@
+{
+  "专业背景概述_description": "岗位专业背景要求以生物相关专业为核心，涵盖药学、生物化学、分子生物学、细胞生物学等细分领域，同时涉及化学、医学、食品科学等关联学科。核心专业要求多为硕士及以上学历，部分岗位接受本科背景但优先考虑相关专业。特殊领域如CDMO/CRO、生物医药行业经验被明确提及。非生物类岗位中，计算机、物流、市场营销等专业也有一定需求，但优先级相对较低。专业限制程度呈现差异化，生物相关岗位多为硬性要求，而其他领域则多为优先考虑。",
+  "专业背景概述_tags": [
+    "生物技术",
+    "分子生物学",
+    "药学",
+    "生物化学",
+    "细胞生物学",
+    "CDMO/CRO经验",
+    "生物医药行业",
+    "化学专业",
+    "医学专业",
+    "食品科学",
+    "物流专业",
+    "市场营销",
+    "计算机相关专业"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "生物相关专业",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "硕士及以上学历，细胞生物学、分子生物学、生物化学、生物技术等生物相关专业",
+        "硕士及以上学历，医学、药学、生物等相关专业"
+      ]
+    },
+    {
+      "feature_name": "药学专业",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "药学、化学等相关专业背景人员，本科以上学历",
+        "硕士及以上学历，医学、药学、生物等相关专业"
+      ]
+    },
+    {
+      "feature_name": "生物化学",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "硕士及以上学历，细胞生物学、分子生物学、生物化学、生物技术等生物相关专业",
+        "硕士及以上学历，细胞生物学、分子生物学、生物化学、生物技术等生物相关专业"
+      ]
+    },
+    {
+      "feature_name": "计算机等相关专业优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "计算机等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "物流相关专业优先",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "物流、市场营销相关专业优先"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 26,
+    "valid_features": 5,
+    "filtered_noise_count": 4,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目，合并了'生物技术等生物相关专业'与'生物等相关专业'等相似特征，排除了语言类专业（如西班牙语、法语）与专业背景要求的无关性"
+  }
+}

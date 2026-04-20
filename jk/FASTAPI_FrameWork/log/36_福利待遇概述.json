@@ -1,0 +1,136 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖法定福利、补充福利及特色福利。薪酬结构包含基本工资、绩效奖金、年终奖等，部分岗位提供保底薪资及提成机制。法定福利方面，普遍包含五险一金、带薪年假及法定节假日休假。补充福利包括餐补、住宿补贴、交通补贴、生日福利、节日礼品、年度体检等。特色福利方面，提供团建旅游、下午茶、培训机会、弹性工作制（如大小休）、员工旅游及带薪培训等。部分岗位还提供高温津贴、工龄工资、晋升奖金及内部晋升通道。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "餐补",
+    "住宿补贴",
+    "团建旅游",
+    "弹性工作制",
+    "节日福利",
+    "年度体检",
+    "培训机会",
+    "年终奖",
+    "生日福利",
+    "交通补贴",
+    "晋升奖金"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "入职即享有五险一金",
+        "缴纳五险一金",
+        "购买五险一金"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "带薪年假",
+        "享受带薪年假",
+        "法定节假日正常带薪休息"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "绩效奖金",
+        "绩效提成",
+        "绩效考核制"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "提供餐补",
+        "餐补350元",
+        "公司提供餐补"
+      ]
+    },
+    {
+      "feature_name": "住宿补贴",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "提供住宿",
+        "包住",
+        "员工公寓可住宿"
+      ]
+    },
+    {
+      "feature_name": "团建旅游",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "集体旅游",
+        "团建活动",
+        "员工旅游"
+      ]
+    },
+    {
+      "feature_name": "弹性工作制",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "大小休",
+        "月休8天",
+        "弹性工作制"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "节日礼品",
+        "节日慰问金",
+        "节日福利"
+      ]
+    },
+    {
+      "feature_name": "年度体检",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "年度免费体检",
+        "定期体检"
+      ]
+    },
+    {
+      "feature_name": "培训机会",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "带薪培训",
+        "技能培训",
+        "职业发展规划"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 62,
+    "valid_features": 10,
+    "filtered_noise_count": 14,
+    "processing_notes": "过滤掉包含'这是一个招聘信息'的无效文本14条，合并重复特征并标注置信度，部分福利标准因原文表述模糊未纳入标签"
+  }
+}

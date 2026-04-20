@@ -1,0 +1,79 @@
+{
+  "晋升路径概述_description": "该岗位存在明确的晋升通道，包含管理与技术双通道模式。职级体系呈现阶梯式发展，如专员-组长-团队长、P1-P8级别等不同职级划分。公司提供完善的培养机制，包括师徒传帮带、高管培养、人才特训营、e-Learning平台等培训资源。晋升路径强调内部转岗可能性，如新媒体运营岗、主播岗、中后台职能岗可跨职能发展。发展支持包含定期晋升考核（半年一次）、一对一培训、导师制辅导、跨部门轮岗机会等成长支持体系。部分岗位提及短期即可晋升为经理，但未明确具体职级名称。",
+  "晋升路径概述_tags": [
+    "管理与技术双通道",
+    "阶梯式职级体系",
+    "师徒传帮带",
+    "e-Learning平台",
+    "跨职能发展",
+    "定期晋升考核",
+    "导师制培训",
+    "人才特训营",
+    "内部转岗机会"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升通道类型",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "管理与技术双通道模式",
+        "管理/专家双线可选",
+        "半年一次晋升考核",
+        "P1级别-P8级别"
+      ]
+    },
+    {
+      "feature_name": "职级体系描述",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "专员-组长-团队长",
+        "P1级别-P8级别",
+        "招聘专员一招聘主管一项目经理"
+      ]
+    },
+    {
+      "feature_name": "培养机制",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "师徒传帮带",
+        "高管培养",
+        "人才特训营",
+        "e-Learning平台",
+        "一对一培训"
+      ]
+    },
+    {
+      "feature_name": "晋升支持措施",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "定期培训辅导",
+        "导师制",
+        "跨部门轮岗机会"
+      ]
+    },
+    {
+      "feature_name": "发展机会",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "内部转岗",
+        "跨部门发展"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 20,
+    "valid_features": 5,
+    "filtered_noise_count": 3,
+    "processing_notes": "过滤了3条包含'这是一个招聘信息'的无效文本，合并了'管理/专家双线可选'与'管理与技术双通道模式'为统一特征"
+  }
+}

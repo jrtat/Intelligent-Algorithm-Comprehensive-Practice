@@ -1,0 +1,73 @@
+{
+  "职业技能概述_description": "该岗位要求候选人具备前端开发全栈能力，核心技能涵盖主流框架（React/Vue）及生态工具的深度使用，精通前端性能优化与工程化实践。必备技能包括：熟练使用React及Redux/React Router等生态工具进行组件化开发，精通Vue框架及ElementUI等组件库应用，掌握Axios/Fetch API交互技术，具备H5页面响应式布局能力。加分项包括：熟悉GIS开发（Mapbox/Cesium/OpenLayers）、视频编解码（H.264/H.265）及直播技术，了解AI辅助调试工具（DeepSeek/通义灵码），具备跨平台开发（Uniapp/Taro）经验。要求熟悉Webpack等构建工具配置，掌握CSS3动画及性能优化（Lighthouse工具），具备团队协作与技术方案设计能力。",
+  "职业技能概述_tags": [
+    "React开发",
+    "Vue框架使用",
+    "前端性能优化",
+    "GIS前端开发",
+    "API接口开发",
+    "Webpack配置",
+    "跨平台开发",
+    "组件化开发",
+    "H5响应式布局",
+    "AI辅助调试"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "React开发及生态工具使用",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "根据项目要求使用React及相关生态工具（如Redux, React Router）进行用户界面的开发",
+        "熟悉 React 组件生命周期、状态管理（Redux、Context API）、路由（React Router）等"
+      ]
+    },
+    {
+      "feature_name": "Vue框架及ElementUI应用",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "精通Vue等框架开发，使用Vue、elementUI进行管理后台业务开发",
+        "熟悉ElementUI、ElementPLUS、Echarts"
+      ]
+    },
+    {
+      "feature_name": "前端性能优化技术",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "熟悉Chrome DevTools、Lighthouse等工具进行页面性能分析",
+        "对项目技术选型，以及构建速度、页面渲染速度优化有一定理解和想法"
+      ]
+    },
+    {
+      "feature_name": "GIS前端开发能力",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "能够运用 Mapbox、Cesium、OpenLayers 等 GIS 前端库进行复杂地理信息功能开发",
+        "精通Postgis、Geoserver、Mapserver等空间数据库和数据管理工具"
+      ]
+    },
+    {
+      "feature_name": "API交互开发",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "API交互：熟练使用 Axios/Fetch 与后端交互",
+        "后端协作使用 axios/fetch 发起请求，处理错误和拦截器、CORS跨域问题"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 83,
+    "valid_features": 15,
+    "filtered_noise_count": 34,
+    "processing_notes": "已过滤包含'这是一个招聘信息'的无效条目34条，合并'React开发'相关重复特征，剔除Swift/SASS等无有效支撑的特征"
+  }
+}

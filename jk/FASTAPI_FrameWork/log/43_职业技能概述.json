@@ -1,0 +1,83 @@
+{
+  "职业技能概述_description": "该岗位要求具备较强的办公软件操作能力，包括熟练使用Word、Excel、WPS等工具，掌握VLOOKUP函数及数据处理技能。需熟悉国际贸易流程，包括报关、合同审核、船运及空运操作等。具备良好的英文书面能力，能进行信息检索、邮件撰写及材料阅读，优先通过大学英语六级考试。需掌握日语国际2-1级水平，具备商务沟通及跨文化协作能力。熟悉财务金蝶K3系统操作，能独立处理跨部门协调及评审会组织工作。具备学习能力，可快速掌握移民政策及法规要求，适应多区域（如云南）政府沟通需求。",
+  "职业技能概述_tags": [
+    "办公软件使用",
+    "国际贸易流程",
+    "英文书面能力",
+    "日语商务沟通",
+    "报关操作",
+    "VLOOKUP函数",
+    "财务系统操作",
+    "跨部门协作",
+    "政策法规学习",
+    "政府沟通协调"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "办公软件使用",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "熟练使用word、excle、wps等工具。",
+        "熟练掌握办公软件OFFICE及邮箱的操作。",
+        "熟练使用相关办公软件（word、excel、cad）",
+        "能够能熟练使用Microsoft Word，Excel，PowerPoint等办公软件"
+      ]
+    },
+    {
+      "feature_name": "国际贸易流程",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "熟悉国内、外贸易操作流程，熟悉船运、空运报关流程",
+        "熟悉贸易合同文本的基本知识，有独立处理报关及合同的审核经验优先",
+        "熟悉国内、外贸易操作流程，熟悉船运、空运报关流程"
+      ]
+    },
+    {
+      "feature_name": "英文书面能力",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "需要成熟的书面英文，如英文材料阅读、英文信息检索、英文邮件撰写等",
+        "要求通过大学英语六级考试，有雅思托福成绩者优先"
+      ]
+    },
+    {
+      "feature_name": "日语商务沟通",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "日语国际2-1级相当,口语及书面翻译熟练.2:乐于从事面国际贸易等商务营业工作"
+      ]
+    },
+    {
+      "feature_name": "VLOOKUP函数",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "可接受熟练使用Excel函数的应届毕业生"
+      ]
+    },
+    {
+      "feature_name": "财务系统操作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉财务金蝶K3系统的操作"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 17,
+    "valid_features": 6,
+    "filtered_noise_count": 24,
+    "processing_notes": "大量'这是一个招聘信息'内容被过滤，'安排面试'等特征因无效原文被剔除，'VLOOKUP函数'等低置信度特征仍保留但标记为低置信度"
+  }
+}

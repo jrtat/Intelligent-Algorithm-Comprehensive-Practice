@@ -1,0 +1,75 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备良好的沟通协调能力，能够与团队成员及跨部门协作完成任务，同时需具备较强的抗压能力和责任心。工作态度需积极主动，能够适应不定期加班及出差需求。核心能力包括：逻辑思维与问题解决能力（如高效处理标书制作任务），严谨性（如严守工作秘密、确保标书内容准确性），以及持续学习能力（如快速适应业务变化）。加分项包括优秀的文字表达能力、组织协调能力及团队精神。",
+  "综合素质概述_tags": [
+    "沟通协作能力",
+    "抗压能力",
+    "责任心",
+    "问题解决能力",
+    "团队精神",
+    "学习能力",
+    "严谨性",
+    "组织协调能力",
+    "适应能力"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通协作能力",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "具有良好的沟通协调能力及服从意识",
+        "具有优秀的沟通、协调和组织能力",
+        "3.熟练使用办公软件，具有良好的沟通、表达能力，善于团队合作"
+      ]
+    },
+    {
+      "feature_name": "抗压能力",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "能够承受一定的工作压力，适应不定期的加班",
+        "工作态度积极，适应能力、抗压能力强",
+        "身心健康，能够承担一定的工作压力"
+      ]
+    },
+    {
+      "feature_name": "责任心",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "做事认真负责",
+        "确保标书内容准确性，避免低级错误",
+        "工作认真，有责任心"
+      ]
+    },
+    {
+      "feature_name": "学习能力",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "学习能力强，成长性好",
+        "二、学习能力强，有良好的应变能力及沟通能力",
+        "能够高效处理标书制作相关任务"
+      ]
+    },
+    {
+      "feature_name": "严谨性",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "需严守工作秘密，确保标书内容准确性，避免低级错误"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 43,
+    "valid_features": 5,
+    "filtered_noise_count": 23,
+    "processing_notes": "原始数据中包含大量'这是一个招聘信息'等无效文本，已全部过滤。'严谨性'特征仅有一条有效证据，置信度标记为low。"
+  }
+}

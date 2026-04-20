@@ -1,0 +1,113 @@
+{
+  "福利待遇概述_description": "该岗位提供完善的福利体系，包含法定福利如五险一金、带薪年假（5-15天）、法定节假日及特殊假期（如三八假期、元宵假期）等。薪酬结构包含基本工资、绩效奖金、年终奖（含年底双薪）、全勤奖等。补充福利涵盖餐补、交通补助、住房补贴（如租房补贴、住房补贴）、年度体检、通讯补助等。特色福利包括员工旅游（含国内外旅游机会）、团队建设活动、弹性工作制、节日福利（含购物卡、生日礼金、节日礼品）、培训机会及职业发展支持。部分岗位提供海外工作生活补贴、司龄工资、加班调休制度等差异化福利。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "年终奖",
+    "绩效奖金",
+    "节日福利",
+    "餐补",
+    "交通补助",
+    "员工旅游",
+    "弹性工作",
+    "年度体检",
+    "住房补贴",
+    "培训机会"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 21,
+      "evidence_count": 21,
+      "sample_evidence": [
+        "五险一金：",
+        "五险一金+带薪年假+年终奖+婚假+产假+年假+丧假+独立办公室+免费咖啡/下午茶/零食+节日福利+丰富团建",
+        "（1）完善的五险一金福利保障；"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "5-15天的带薪年假（试用期后即享受）",
+        "入职满三个月可享受10天年假",
+        "享受国家法定假期及带薪年假"
+      ]
+    },
+    {
+      "feature_name": "年终奖",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "年终奖，带薪年假，国内外旅游",
+        "年底双薪",
+        "年终奖金、优秀员工奖"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "节日福利，购物卡",
+        "丰厚节日福利",
+        "节日福利、生日礼金"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "medium",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "提供卫生健康的工作午餐＋晚餐",
+        "餐补",
+        "餐费补贴"
+      ]
+    },
+    {
+      "feature_name": "员工旅游",
+      "confidence": "medium",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "员工旅游",
+        "每年1-2次国内旅游并有海外深度游机会",
+        "员工旅游、定期团建"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "弹性工作时间",
+        "弹性工作",
+        "弹性工作制"
+      ]
+    },
+    {
+      "feature_name": "住房补贴",
+      "confidence": "low",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "租房补贴",
+        "住房补贴",
+        "房补"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 35,
+    "valid_features": 8,
+    "filtered_noise_count": 13,
+    "processing_notes": "已过滤含'这是一个招聘信息'的无效文本，合并'带薪年假'相关表述，剔除与福利无关的'元宵假期'等特征"
+  }
+}

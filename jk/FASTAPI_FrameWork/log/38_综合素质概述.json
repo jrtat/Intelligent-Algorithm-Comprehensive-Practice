@@ -1,0 +1,107 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备良好的沟通协作能力，能够与团队成员及跨部门高效配合，同时具备较强的学习能力和抗压能力以适应工作需求。工作态度方面，需认真细致、责任心强，能够主动承担任务并确保工作质量。问题解决能力方面，需具备分析和解决问题的能力，能够通过优化流程提升工作效率。此外，候选人需具备一定的适应能力，能够接受排班制度及夜班安排，同时对内容安全审查具有敏感度，能够及时识别和处理风险内容。具备相关方言能力者为加分项。",
+  "综合素质概述_tags": [
+    "沟通协作能力",
+    "抗压能力",
+    "学习能力",
+    "责任心",
+    "问题解决能力",
+    "团队合作",
+    "适应能力",
+    "内容敏感度",
+    "排班适应",
+    "方言能力"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通协作能力",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "具备良好的沟通能力和团队合作精神",
+        "具有良好的团队沟通协调能力以及跨部门沟通能力",
+        "良好的沟通能力和团队协作精神，能承受工作压力"
+      ]
+    },
+    {
+      "feature_name": "抗压能力",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "具备良好的抗压力,能适应排班机制",
+        "抗压能力强，性格坚韧，能适应重复性工作",
+        "能够适应快速变化的工作环境"
+      ]
+    },
+    {
+      "feature_name": "学习能力",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "具备较强的学习能力和适应能力",
+        "学习能力强、思路清晰，能快速熟悉并掌握业务操作方法及流程",
+        "具备较强的学习能力和抗压能力"
+      ]
+    },
+    {
+      "feature_name": "责任心",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "工作认真负责，耐心细致",
+        "有责任心、细心、工作积极主动",
+        "有责任心，能够承受工作压力"
+      ]
+    },
+    {
+      "feature_name": "问题解决能力",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "具备出色的沟通表达能力、分析和解决问题的能力",
+        "对审核中发现的问题及时反馈，并对相关数据进行分析总结",
+        "通过工作中遇到的问题，提出对应的优化想法"
+      ]
+    },
+    {
+      "feature_name": "内容敏感度",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对严禁传播的内容关键点具有较高的敏感度"
+      ]
+    },
+    {
+      "feature_name": "排班适应",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "能适应排班机制",
+        "上班时间：排班制度、月休6-8天",
+        "时间8小时，倒班制，有通宵班"
+      ]
+    },
+    {
+      "feature_name": "方言能力",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "会粤语 潮汕话 客家话 闽南语相关方言"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 4,
+    "valid_features": 8,
+    "filtered_noise_count": 37,
+    "processing_notes": "部分特征如'不排斥销售和出差'因缺乏明确能力描述被过滤，'热爱八卦'等非能力相关特征被排除"
+  }
+}

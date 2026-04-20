@@ -1,0 +1,128 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖法定保障与特色关怀。薪酬结构包含基本工资、绩效奖金、年终奖及提成激励，部分岗位设有股权激励和十三薪。法定福利全面覆盖五险一金、带薪年假（5-15天）及法定节假日。补充福利包括餐补、交通补助、高温补贴、体检费及生日礼品。特色福利聚焦员工关怀，如定期组织电竞、桌游、户外徒步等主题活动，提供员工旅游、节日福利、弹性工作时间（含弹性到岗时间）、阅读室、健身房等设施。部分岗位设有忠诚奖（工龄工资）、伯乐奖、学术奖等专项激励，以及单位庆典费、夏季高温补贴等个性化福利。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "年终奖",
+    "员工旅游",
+    "弹性工作",
+    "餐补",
+    "交通补助",
+    "节日福利",
+    "忠诚奖（工龄工资）",
+    "电竞活动",
+    "阅读室",
+    "健身房",
+    "十三薪",
+    "股权激励"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 35,
+      "evidence_count": 35,
+      "sample_evidence": [
+        "职位福利：五险一金、绩效奖金、带薪年假、员工旅游、节日福利、周末双休、无试用期",
+        "周末双休，周一到周五每天80分钟的弹性到岗时间；级别工资、级别奖、过节费、生活补贴、夏季高温补贴、年终奖、单位庆典费、体检费等。"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 23,
+      "evidence_count": 23,
+      "sample_evidence": [
+        "5-15天带薪年休假",
+        "法定节假日、年休假、带薪年假、带薪法定假"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 28,
+      "evidence_count": 28,
+      "sample_evidence": [
+        "绩效奖金、年终分红、全勤奖、带薪年假",
+        "无责任底薪+高提成+激励奖金"
+      ]
+    },
+    {
+      "feature_name": "年终奖",
+      "confidence": "high",
+      "frequency": 19,
+      "evidence_count": 19,
+      "sample_evidence": [
+        "年终奖、伯乐奖、学术奖、客评奖",
+        "年底双薪、年终奖金"
+      ]
+    },
+    {
+      "feature_name": "员工旅游",
+      "confidence": "medium",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "员工旅游、节日福利、周末双休",
+        "定期团建、旅游"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 11,
+      "evidence_count": 11,
+      "sample_evidence": [
+        "弹性工作、弹性到岗时间",
+        "弹性工作制"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "medium",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "餐补、交通补助、带薪年假",
+        "餐费补贴、全勤补贴"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "medium",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "节日礼金、生日礼品、过节礼品/礼金",
+        "节日福利、生日礼金"
+      ]
+    },
+    {
+      "feature_name": "忠诚奖（工龄工资）",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "忠诚奖（工龄工资）、社保金、过节礼品/礼金",
+        "忠诚奖（工龄工资）、社保金"
+      ]
+    },
+    {
+      "feature_name": "电竞活动",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "兴趣圈：定期组织电竞、桌游、户外徒步等主题活动",
+        "运动时光：篮球社、羽毛球社，全员免费参与"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 63,
+    "valid_features": 10,
+    "filtered_noise_count": 15,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目及重复内容，'司龄假'等特征因无有效原文被剔除。部分特征如'专属衣柜'因出现频次过低且无明确标准未纳入最终标签。"
+  }
+}

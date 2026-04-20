@@ -1,0 +1,69 @@
+{
+  "职业技能概述_description": "该岗位要求候选人精通电话营销，熟悉电话营销售话术并具备良好的沟通表达能力，能够独立完成客户成单。需具备优秀的个人营销能力及客户思维意识，能有效管理客户资源并推动业务开展。优先考虑具备1年以上销售经验、拥有个人交通工具的候选人。岗位职责包括通过智能外呼系统进行车险续期业务，维护客户资源，参与线上合同办理及客户拜访。具备教育行业认同感、挑战高薪意愿及销售相关经验者优先。核心技能要求涵盖电话营销、客户沟通、销售转化、客户资源管理及基础业务流程操作。",
+  "职业技能概述_tags": [
+    "电话营销",
+    "客户沟通",
+    "销售转化",
+    "客户资源管理",
+    "车险续期业务",
+    "智能外呼系统操作",
+    "销售经验",
+    "教育行业认同",
+    "挑战高薪意愿"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "电话营销能力",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "精通电话营销，熟悉电话营销售话术，良好的沟通表达能力。",
+        "通过电脑智能外呼系统联系客户，进行车险续期业务的开展"
+      ]
+    },
+    {
+      "feature_name": "销售转化能力",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "优秀的个人营销能力及客户思维意识，能独立完成客户成单。",
+        "主管经理协助签单"
+      ]
+    },
+    {
+      "feature_name": "客户资源管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "负责收集上来客户资源的维护，管理"
+      ]
+    },
+    {
+      "feature_name": "销售经验要求",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有1年以上销售经验，有小车（因公外出公司会报销油费），能解决个人出行问题优先考虑"
+      ]
+    },
+    {
+      "feature_name": "教育行业认同",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "认可教育事业，热衷销售工作，愿意挑战高薪"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 15,
+    "valid_features": 5,
+    "filtered_noise_count": 10,
+    "processing_notes": "过滤了所有包含'这是一个招聘信息'的条目（共20条），以及与技能无关的公司信息、福利说明等非能力描述内容"
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "福利待遇概述_description": "该岗位提供全面的福利体系，涵盖法定福利、薪酬激励及特色关怀。法定福利包括五险一金、带薪年假、法定节假日等；薪酬结构包含基本工资、绩效奖金、年终奖及工龄工资，部分岗位提供阶梯式提成和年终分红；补充福利涵盖包吃住、交通补助、餐补、通讯补助、节日福利及生日津贴；特色福利包括弹性工作、员工旅游、定期团建、MOS认证培训、职业发展双通道及多次晋升机会。部分岗位提供住宿补贴、免费午餐、定期体检及采暖费补助，工作时间普遍为五天八小时制，部分岗位实行单休或双休。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "弹性工作",
+    "包吃住",
+    "交通补助",
+    "节日福利",
+    "员工旅游",
+    "培训机会",
+    "年终分红",
+    "工龄工资",
+    "定期体检",
+    "双通道晋升",
+    "餐补",
+    "通讯补助"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 28,
+      "evidence_count": 28,
+      "sample_evidence": [
+        "五险一金齐全",
+        "入职购买五险一金",
+        "缴纳五险一金"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "带薪年假",
+        "享受带薪年假",
+        "法定节日、带薪年假"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "绩效奖金",
+        "绩效奖金、年终分红",
+        "绩效奖金、加班补助"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "弹性工作",
+        "弹性工作、绩效奖金",
+        "弹性工作制"
+      ]
+    },
+    {
+      "feature_name": "包吃住",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "包住",
+        "包吃包住",
+        "提供住宿"
+      ]
+    },
+    {
+      "feature_name": "交通补助",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "交通补助",
+        "交通补助、通讯补助",
+        "交通补助、餐补"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "节日福利",
+        "节日福利、工龄工资",
+        "节日礼物、周年礼物"
+      ]
+    },
+    {
+      "feature_name": "员工旅游",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "员工旅游",
+        "员工旅游、定期团建",
+        "定期团建"
+      ]
+    },
+    {
+      "feature_name": "培训机会",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "一对一培训",
+        "试用期通过后提供MOS认证培训",
+        "免费培训"
+      ]
+    },
+    {
+      "feature_name": "年终分红",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "年终分红",
+        "绩效奖金、年终分红",
+        "年终奖金"
+      ]
+    },
+    {
+      "feature_name": "工龄工资",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "工龄工资",
+        "每年➕工龄工资"
+      ]
+    },
+    {
+      "feature_name": "定期体检",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "年度体检",
+        "定期体检",
+        "定期体检、员工旅游"
+      ]
+    },
+    {
+      "feature_name": "双通道晋升",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "管理+专业双通道",
+        "提供晋升空间",
+        "多次晋升机会"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "high",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "餐补",
+        "餐补、通讯补助",
+        "免费午餐"
+      ]
+    },
+    {
+      "feature_name": "通讯补助",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "通讯补助",
+        "通讯补助、带薪年假",
+        "通讯补助、餐补"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 52,
+    "valid_features": 15,
+    "filtered_noise_count": 13,
+    "processing_notes": "部分特征如'班车汽车公园地铁站站点'因信息碎片化且无明确福利指向被过滤，'家文化'等非福利内容未纳入。"
+  }
+}

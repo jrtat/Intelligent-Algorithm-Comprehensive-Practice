@@ -1,0 +1,54 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质的要求主要集中在基础技能认证和语言能力方面。必须持有计算机二级证书和大学英语四级证书，其中英语四级为基本门槛，能熟练阅读英文技术文档。优先考虑持有英语六级证书及计算机技术与软件专业技术资格证书（如软考证书），这些证书可作为竞争力加分项。岗位对职称或专业资格无强制要求，但学历需本科及以上，且需具备相关技术能力。",
+  "证书要求概述_tags": [
+    "计算机二级证书",
+    "英语四级",
+    "英语六级",
+    "计算机技术与软件专业技术资格证书"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "计算机二级证书",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "6.通过英语六级、计算机二级考试。"
+      ]
+    },
+    {
+      "feature_name": "大学英语四级",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "大学英语4级以上，能熟练阅读理解英文类技术文档。5.",
+        "1、 计算机科学或软件工程专业本科以上学历；2、 良好的英语沟通能力，通过英语六级优先；"
+      ]
+    },
+    {
+      "feature_name": "英语六级",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、 计算机科学或软件工程专业本科以上学历；2、 良好的英语沟通能力，通过英语六级优先；"
+      ]
+    },
+    {
+      "feature_name": "计算机技术与软件专业技术资格证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "高校任教一般要求有高校教师资格证，培训机构对教师资格证要求相对灵活，但有证者优先。此外，拥有计算机技术与软件专业技术资格证书等相关专业证书，可增加竞争力。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 5,
+    "valid_features": 4,
+    "filtered_noise_count": 0,
+    "processing_notes": "原始数据中未发现明确提及职称或专业资格要求的原文，故未提取相关特征。"
+  }
+}

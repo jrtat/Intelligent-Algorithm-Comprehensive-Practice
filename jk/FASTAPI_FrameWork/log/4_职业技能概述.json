@@ -1,0 +1,82 @@
+{
+  "职业技能概述_description": "该岗位要求候选人具备Java全栈开发能力，熟练掌握Spring Boot、Spring Cloud等主流框架，能够构建高可用、可扩展的后端服务。需精通分布式系统设计，熟悉Hadoop、Spark、Flink等大数据处理框架，并具备数据库优化经验（包括分库分表、分布式事务）。前端开发需掌握Vue、React等框架，熟悉B/S架构开发。此外，要求熟悉DevOps流程及CI/CD工具链（如Jenkins、GitLab CI），具备容器化技术（Docker、Kubernetes）应用经验。具备大规模电商系统架构经验者优先，同时要求熟悉网络协议（如SNMP、LLDP）及设备通信技术（SSH、TELNET）。对Prompt Engineering、AI工具链（如Copilot）有基础认知者为加分项。",
+  "职业技能概述_tags": [
+    "Spring Boot开发",
+    "分布式系统设计",
+    "Hadoop生态应用",
+    "DevOps实践",
+    "Vue前端开发",
+    "网络协议解析",
+    "大数据仓库构建",
+    "CI/CD工具链",
+    "Java EE企业级开发",
+    "设备通信协议"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "基于Spring全家桶构建后端服务",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "基于Spring全家桶（Spring Boot/Spring Cloud等）构建高可用、可扩展的后端服务；4."
+      ]
+    },
+    {
+      "feature_name": "分布式系统开发",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "掌握分库分表、分布式事务（如Seata）",
+        "具备较丰富的大规模电商系统（toB/toC）架构经验，包括但不限于服务化、异步、高可用、可扩展等"
+      ]
+    },
+    {
+      "feature_name": "大数据处理框架",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "熟悉Hive、Spark、HBase、Kafka等组件",
+        "深入理解 Map-Reduce 模型和Hadoop、 Spark、FIink、MPP DB等大数据和仓库相关知识"
+      ]
+    },
+    {
+      "feature_name": "DevOps工具链应用",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "熟悉DevOps流程，包括CI/CD工具链（如Jenkins, GitLab CI等）",
+        "熟悉Docker，熟悉Kubernetes应用优先"
+      ]
+    },
+    {
+      "feature_name": "网络协议开发",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "精通SNMP协议（v2c/v3），理解MIB库概念",
+        "理解并实际应用过LLDP协议进行网络邻居发现和拓扑构建"
+      ]
+    },
+    {
+      "feature_name": "前端开发框架",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "熟悉Vue全家桶，包括Vue2、vue3、Vuex、Element-UI等",
+        "熟悉B/S架构的开发，使用过spring mvc或者spring boot开发过项目"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 93,
+    "valid_features": 6,
+    "filtered_noise_count": 37,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目，合并了Spring相关技术栈描述，将大数据组件归类为统一特征"
+  }
+}

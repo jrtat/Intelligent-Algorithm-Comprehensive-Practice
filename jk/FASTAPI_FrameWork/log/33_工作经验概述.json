@@ -1,0 +1,59 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备2年以上游戏或千川电商领域的投放成功案例，精通巨量平台投放技巧及买量策略，能够独立完成数据分析和报告撰写。优先考虑具有月流水过千万游戏项目经验者，以及拥有卡牌、塔防、SLG品类在IAA+IAP混变产品投放经验者。必备技能包括手游投放经验及数据分析能力，加分项包含特定品类目投放经验。行业经验侧重游戏与电商领域，无明确年限限制但需具备成功案例支撑。",
+  "工作经验概述_tags": [
+    "游戏投放经验",
+    "电商领域投放",
+    "数据分析能力",
+    "巨量平台操作",
+    "买量策略制定",
+    "月流水千万项目经验",
+    "IAA+IAP混变产品",
+    "卡牌/塔防/SLG品类",
+    "独立数据分析报告",
+    "成功案例要求"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "拥有2年以上游戏或千川电商领域投放成功案例",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "拥有2年以上游戏或千川电商领域投放成功案例，精通巨量平台投放技巧及买量策略；熟练掌握数据分析工具，能够独立完成数据分析和报告撰写；"
+      ]
+    },
+    {
+      "feature_name": "有月流水过千万的游戏项目投放经验者优先考虑",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "- 有月流水过千万的游戏项目投放经验者优先考虑。"
+      ]
+    },
+    {
+      "feature_name": "有卡牌、塔防、SLG相关品类目在IAA+IAP混变产品的投放经验者优先考虑",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "- 有卡牌、塔防、SLG相关品类目在IAA+IAP混变产品的投放经验者优先考虑。"
+      ]
+    },
+    {
+      "feature_name": "手游投放经验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "- 行业经验：手游投放经验。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 10,
+    "valid_features": 4,
+    "filtered_noise_count": 47,
+    "processing_notes": "原始数据中大量存在'这是一个招聘信息'等无效内容，已全部过滤。'2年以上电气行业市场'等特征因无有效信息支撑被剔除。"
+  }
+}

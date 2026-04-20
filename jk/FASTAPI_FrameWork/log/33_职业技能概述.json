@@ -1,0 +1,72 @@
+{
+  "职业技能概述_description": "该岗位主要面向游戏陪玩领域，要求候选人具备热门手游（如和平精英、王者荣耀等）的实操能力，段位要求以黄金段位为基准，技术门槛较低。核心能力包括良好的沟通协调能力、积极主动的工作态度以及基本的客户服务意识。岗位无需专业技能或经验，强调性格开朗、能接受开麦交流，并具备基础的数据敏感度和创意方向理解能力。工作内容以游戏陪练、互动聊天为主，收入模式包含基础服务费与礼物分成。",
+  "职业技能概述_tags": [
+    "游戏陪玩",
+    "沟通协调能力",
+    "无需经验",
+    "热门手游实操",
+    "开麦交流",
+    "客户服务意识",
+    "数据敏感度",
+    "创意方向理解",
+    "段位要求低",
+    "礼物分成模式"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "游戏技能要求",
+      "confidence": "high",
+      "frequency": 25,
+      "evidence_count": 25,
+      "sample_evidence": [
+        "会和平精英/绝地求生/英雄联盟/王者荣耀/云顶之弈、其中任意一款游戏",
+        "技术和段位不要求（王者黄金，和平黄金即可）"
+      ]
+    },
+    {
+      "feature_name": "沟通能力要求",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "良好的沟通能力，性格开朗，喜欢与人交流",
+        "能提供高情绪价值，能接受开麦"
+      ]
+    },
+    {
+      "feature_name": "经验门槛",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "不要求技术",
+        "无需经验，需要露脸"
+      ]
+    },
+    {
+      "feature_name": "段位要求",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "技术要求低（王者黄金，和平黄金即可）",
+        "王者荣耀历史段位达到钻石及以上"
+      ]
+    },
+    {
+      "feature_name": "数据与创意能力",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对广告素材创意的输出以及创意的方向有明确的思路和想法"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 27,
+    "valid_features": 5,
+    "filtered_noise_count": 35,
+    "processing_notes": "部分岗位信息存在重复描述，已进行合并处理。'精通巨量平台投放技巧'等特征因与游戏陪玩岗位无关已被过滤。"
+  }
+}

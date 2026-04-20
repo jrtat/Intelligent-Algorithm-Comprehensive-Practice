@@ -1,0 +1,92 @@
+{
+  "综合素质概述_description": "该岗位要求具备较强的沟通协作能力，能够与客户、团队及跨部门高效对接，适应出差及不同工作环境。核心素质包括：责任心强，工作严谨细致，有始有终；具备良好的抗压能力与学习能力，能快速适应新环境及业务需求；逻辑思维清晰，能独立解决技术问题并推动项目交付。加分项包括：持有C类及以上驾照，能独立完成省内出差；具备跨部门协作经验及客户服务意识。工作态度需积极主动，适应高强度出差及工程现场作业，同时注重团队合作与客户关系维护。",
+  "综合素质概述_tags": [
+    "沟通协作能力",
+    "适应出差能力",
+    "责任心与严谨性",
+    "抗压与学习能力",
+    "问题解决能力",
+    "客户服务意识",
+    "团队合作精神",
+    "跨部门协调能力",
+    "现场作业适应性",
+    "驾驶技能"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通协作能力",
+      "confidence": "high",
+      "frequency": 48,
+      "evidence_count": 48,
+      "sample_evidence": [
+        "具备良好的沟通能力和团队合作精神，能够与客户和团队成员有效沟通。",
+        "善于与人沟通并具有良好的合作精神。"
+      ]
+    },
+    {
+      "feature_name": "适应出差能力",
+      "confidence": "high",
+      "frequency": 52,
+      "evidence_count": 52,
+      "sample_evidence": [
+        "能接受长期驻地油田现场，新疆、天津、大庆、辽河、陕北等。",
+        "能适应经常出差的工作要求。"
+      ]
+    },
+    {
+      "feature_name": "责任心与严谨性",
+      "confidence": "medium",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "做事踏实，有始有终。",
+        "责任心强，具备一定的沟通能力与团队合作能力。"
+      ]
+    },
+    {
+      "feature_name": "抗压与学习能力",
+      "confidence": "high",
+      "frequency": 35,
+      "evidence_count": 35,
+      "sample_evidence": [
+        "有较强的抗压能力，学习能力较强者优先考虑。",
+        "具备良好的抗压能力及较强的沟通协调能力。"
+      ]
+    },
+    {
+      "feature_name": "问题解决能力",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "指导他人正确安装、部署、调试系统向用户保质保量快速交付。",
+        "能独立解决流路、测量子系统的相关问题。"
+      ]
+    },
+    {
+      "feature_name": "客户服务意识",
+      "confidence": "high",
+      "frequency": 22,
+      "evidence_count": 22,
+      "sample_evidence": [
+        "维护客户关系，了解客户需求。",
+        "具备良好的客户服务意识，能够处理复杂的客户关系。"
+      ]
+    },
+    {
+      "feature_name": "驾驶技能",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "持有驾驶C（以上）证，并能独立安全驾驶（省内）。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 114,
+    "valid_features": 7,
+    "filtered_noise_count": 46,
+    "processing_notes": "原文中大量重复内容已合并，'这是一个招聘信息'等噪声数据已过滤。'迎难而上'等无有效支撑的特征已被剔除。"
+  }
+}

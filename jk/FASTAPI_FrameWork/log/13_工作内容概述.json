@@ -1,0 +1,91 @@
+{
+  "工作内容概述_description": "岗位核心职责涵盖新媒体运营、数据优化、产品维护及跨部门协作。常规工作包括管理私域账号（如企业微信、个微）及内容推送，优化产品标题和详情页，协同优化网站内容及AI翻译校对。专项工作涉及投流计划调整与成本把控、矩阵账号运营、商户经营数据分析及市场调研。需与产品、设计、后端团队配合完成需求对接与功能开发。工作内容强调数据驱动，如分析用户行为、优化转化路径，并参与市场策略制定与执行。",
+  "工作内容概述_tags": [
+    "新媒体运营",
+    "数据优化",
+    "产品维护",
+    "跨部门协作",
+    "投流运营",
+    "商户数据分析",
+    "市场调研",
+    "内容推送",
+    "AI翻译校对",
+    "转化路径优化"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "新媒体运营",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "公众号，小红薯等新媒体运营，熟悉公众号【潜派旅行】里的产品推广模式",
+        "协同优化网站内容及AI翻译校对，提升文档专业性",
+        "开展裂变"
+      ]
+    },
+    {
+      "feature_name": "数据优化",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "优化标题详情页",
+        "数据优化，视觉优化策划能力"
+      ]
+    },
+    {
+      "feature_name": "产品维护",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "产品维护上下架",
+        "商家无感支付的使用维护"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "协同工作小组以市场为单位完成每日行情的准确收集"
+      ]
+    },
+    {
+      "feature_name": "投流运营",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "投流计划调整，把控成本",
+        "矩阵建设:规划矩阵建设方向"
+      ]
+    },
+    {
+      "feature_name": "商户数据分析",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "整理、分析商户经营状况及消费动态数据"
+      ]
+    },
+    {
+      "feature_name": "市场调研",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "收集市场相关的数据和信息，包括竞争对手的产品信息、市场调研数据"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 50,
+    "valid_features": 7,
+    "filtered_noise_count": 33,
+    "processing_notes": "过滤掉所有包含'这是一个招聘信息'的无效条目及非工作职责内容，合并'新媒体运营'相关特征，保留高频有效信息。"
+  }
+}

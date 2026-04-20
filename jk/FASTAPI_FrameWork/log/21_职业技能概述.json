@@ -1,0 +1,86 @@
+{
+  "职业技能概述_description": "该岗位要求具备法律文书写作能力，熟悉民商事、刑事、行政等领域的法律法规，掌握诉讼与非诉讼业务流程。需能独立处理案件诉讼、执行及调解谈判，具备多角度解决纠纷的能力。同时要求规范完成案件结案报告及归档手续，保持良好的职业操守，无行业投诉或行政处罚记录。工作内容侧重法律实务操作与客户沟通，强调案件处理的专业性与标准化服务流程。",
+  "职业技能概述_tags": [
+    "法律文书写作",
+    "民商事法律",
+    "刑事法律",
+    "行政法律",
+    "诉讼业务流程",
+    "非诉讼业务流程",
+    "案件结案报告",
+    "归档手续",
+    "纠纷解决",
+    "职业操守规范"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "法律文书写作",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具备优秀的法律文书写作能力"
+      ]
+    },
+    {
+      "feature_name": "法律领域知识",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "精通民商事、刑事、行政等领域的法律法规"
+      ]
+    },
+    {
+      "feature_name": "诉讼与非诉讼业务",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉各类诉讼和非诉讼业务流程"
+      ]
+    },
+    {
+      "feature_name": "案件处理能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "办理事务所交待的相关的案件的诉讼、执行，能独挡一面"
+      ]
+    },
+    {
+      "feature_name": "纠纷解决能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "依据法规，多角度、多方法解决纠纷"
+      ]
+    },
+    {
+      "feature_name": "案件归档规范",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对内书写包括案件结案报告并完成归档手续"
+      ]
+    },
+    {
+      "feature_name": "职业操守要求",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "无投诉、未受到过行业行政处罚和纪律处分"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 12,
+    "valid_features": 7,
+    "filtered_noise_count": 54,
+    "processing_notes": "原始数据中大量重复的'这是一个招聘信息'被过滤，剩余内容主要围绕法律实务操作要求，未发现明确的编程语言或技术工具相关描述"
+  }
+}

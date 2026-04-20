@@ -1,0 +1,79 @@
+{
+  "工作内容概述_description": "该岗位核心职责围绕文件管理与文档控制展开，包括文件的收集、分类、归档及数字化处理。需与客户及设计团队沟通确认文件提交范围、格式及时间节点，协调内外部资源推进文件执行进度。负责文件分发矩阵维护、文件标准化检查及文件发放流程管理，确保文件合规性与可追溯性。同时需处理公章、合同章的使用审批及登记工作，保障文件管理的安全性与规范性。工作内容以文件流程管理为主，涉及跨部门协作与标准化执行。",
+  "工作内容概述_tags": [
+    "文件收集与分类",
+    "客户沟通确认文件要求",
+    "文件归档管理",
+    "文件分发矩阵维护",
+    "公章使用审批",
+    "跨部门协作",
+    "文件标准化检查",
+    "数字化档案处理"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "文件收集与分类",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "收集所需文件",
+        "对所有收集的文档进行排序和分类并放在服务器上",
+        "对归档卷宗中存在系统里有档号但没有电子卷宗、或档号重复、或并卷、或长期未归案卷等情况，完成缺失电子卷宗补录工作"
+      ]
+    },
+    {
+      "feature_name": "客户沟通确认文件要求",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "与客户确认VDS或VPIS提交文件范围，与设计确认文件提交时间节点",
+        "负责与客户的文控或技术沟通确认文件模板要求，文件或者图纸格式要求"
+      ]
+    },
+    {
+      "feature_name": "文件归档管理",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "对归档卷宗中存在系统里有档号但没有电子卷宗、或档号重复、或并卷、或长期未归案卷等情况，完成缺失电子卷宗补录工作",
+        "制作包含所有收集文档链接的摘要列表"
+      ]
+    },
+    {
+      "feature_name": "文件分发矩阵维护",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "更新项目文件分发矩阵，确保文件按矩阵要求分发"
+      ]
+    },
+    {
+      "feature_name": "公章使用审批",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "各公司的公章和合同章的使用和借出需要有公司领导的签字同意或微信软件请章截图同意"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "与设计确认文件提交时间节点，综合二者诉求提交计划，并监督文件内、外部的执行和进度反馈"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 25,
+    "valid_features": 6,
+    "filtered_noise_count": 19,
+    "processing_notes": "原始数据中存在大量招聘广告噪声文本，已全部过滤。部分特征因原文信息不足导致置信度较低。"
+  }
+}

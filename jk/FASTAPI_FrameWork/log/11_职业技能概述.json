@@ -1,0 +1,78 @@
+{
+  "职业技能概述_description": "该岗位核心要求包括：1. 具备优秀的沟通协调能力，能独立完成商务接待、客户拜访及跨部门协作任务；2. 熟悉商务礼仪规范及流程，具备敏锐的洞察力与临场应变能力；3. 掌握基础的国际物流知识及短视频制作流程，具备创意构思能力；4. 能熟练安排高层日程及处理电话、邮件等商务沟通事务；5. 具备基本的驾驶能力，能独立完成客户接送及差旅陪同工作。岗位对技术能力要求较低，重点考察综合素质、商务礼仪、沟通协调及执行落地能力。",
+  "职业技能概述_tags": [
+    "商务接待礼仪",
+    "跨部门协作",
+    "客户沟通",
+    "日程管理",
+    "国际物流基础",
+    "短视频创意构思",
+    "驾驶技能",
+    "商务礼仪规范",
+    "临场应变能力",
+    "邮件沟通"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "商务接待礼仪",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "3、熟悉商务接待礼仪及流程，有较强的沟通表达能力和人际交往能力，有敏锐的洞察力及判断力以及临场反应能力，不怯场；",
+        "3、综合素质好、知识面宽，熟悉成都及周边城市历史文化、景点情况；"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、团队沟通：促进跨部门沟通协作，提升团队工作效率与凝聚力。"
+      ]
+    },
+    {
+      "feature_name": "国际物流基础",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下： 要了解国际物流板块及有跟单经验的，熟手！"
+      ]
+    },
+    {
+      "feature_name": "短视频创意构思",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.了解短视频制作流程，具备创意构思能力。"
+      ]
+    },
+    {
+      "feature_name": "驾驶技能",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "需独立驾驶接送重要客户或陪同出差"
+      ]
+    },
+    {
+      "feature_name": "日程管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "安排高层日程安排及电话、邮件等沟通事宜。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 14,
+    "valid_features": 6,
+    "filtered_noise_count": 12,
+    "processing_notes": "原始数据中92.86%内容为招聘声明模板，仅提取出6个有效职业技能特征。所有特征均来自非模板文本，但技术类要求缺失，主要聚焦商务及行政支持能力。"
+  }
+}

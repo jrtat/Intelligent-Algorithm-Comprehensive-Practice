@@ -1,0 +1,117 @@
+{
+  "专业背景概述_description": "该岗位对专业背景要求呈现多元化特征，核心专业以计算机科学、软件工程、电子信息、通信工程等信息技术领域为主，相关专业涵盖机械工程、自动化、生物制药、食品科学等学科。其中，软件工程、计算机科学与技术、电子信息等专业被明确列为优先考虑对象，部分岗位对专业限制程度较宽松（如理工科专业不限）。特殊领域如智能座舱、车载电子导航等细分方向有明确需求，同时存在对跨学科能力（如生物化工与化妆品研发结合）的隐性要求。岗位对专业背景的硬性要求多集中在本科及以上学历，部分岗位对硕士学历有倾向性，但整体呈现'专业相关性优先于学历层次'的特征。",
+  "专业背景概述_tags": [
+    "软件工程",
+    "计算机科学与技术",
+    "电子信息工程",
+    "通信工程",
+    "自动化专业",
+    "生物制药",
+    "食品科学",
+    "机械工程",
+    "智能座舱技术",
+    "跨学科能力"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "软件工程",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "教育背景：本科或研究生在读，计算机科学、软件工程、信息技术、市场营销等相关专业优先。",
+        "（1）本科及以上学历，计算机科学、软件工程、信息技术等相关专业优先。（2）有 2 年以上平台产品支撑相关工作经验，有互联网行业经验者优先。"
+      ]
+    },
+    {
+      "feature_name": "计算机科学与技术",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "教育背景：本科或研究生在读，计算机科学、软件工程、信息技术、市场营销等相关专业优先。",
+        "（1）本科及以上学历，计算机科学、软件工程、信息技术等相关专业优先。（2）有 2 年以上平台产品支撑相关工作经验，有互联网行业经验者优先。"
+      ]
+    },
+    {
+      "feature_name": "电子信息工程",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "4、熟练使用Axure，Xmind,等逻辑交互工具5、有智能座舱/车载电子导航相关工作经验者优先；6、教育背景:大专及以上学历，电子信息、计算机、通信相关专业；",
+        "6、教育背景:大专及以上学历，电子信息、计算机、通信相关专业；"
+      ]
+    },
+    {
+      "feature_name": "通信工程",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "4、熟练使用Axure，Xmind,等逻辑交互工具5、有智能座舱/车载电子导航相关工作经验者优先；6、教育背景:大专及以上学历，电子信息、计算机、通信相关专业；",
+        "6、教育背景:大专及以上学历，电子信息、计算机、通信相关专业；"
+      ]
+    },
+    {
+      "feature_name": "自动化专业",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.本科及以上，电气工程、自动化等相关专业；"
+      ]
+    },
+    {
+      "feature_name": "生物制药",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.有医疗器械、生物制药等相关行业背景者优先。"
+      ]
+    },
+    {
+      "feature_name": "食品科学",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.统招本科及以上，生物学、化学、制药、食品科学、营养等相关专业；"
+      ]
+    },
+    {
+      "feature_name": "机械工程",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "②专业要求：理工类专业，机械、车辆工程等相关专业优先；"
+      ]
+    },
+    {
+      "feature_name": "智能座舱技术",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、熟练使用Axure，Xmind,等逻辑交互工具5、有智能座舱/车载电子导航相关工作经验者优先；"
+      ]
+    },
+    {
+      "feature_name": "跨学科能力",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "化妆品、精细化工、生物化工、化学等相关专业，本科及以上学历，;2.热爱研究化妆品；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 54,
+    "valid_features": 10,
+    "filtered_noise_count": 6,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目，以及与专业背景无关的特征（如'英语4级或以上'）。部分专业要求因原文表述模糊未纳入统计。"
+  }
+}

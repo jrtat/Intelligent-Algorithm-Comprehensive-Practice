@@ -1,0 +1,113 @@
+{
+  "专业背景概述_description": "该岗位核心要求为法学/法律相关专业本科及以上学历，优先考虑持有法律职业资格证书（A证）及通过国家司法考试的候选人。必备专业包括法学、法律类、民商法、经济法等法学细分领域，相关专业涵盖管理学、金融、人力资源等。特殊要求包括具备知识产权、国际法方向背景，以及熟悉《民法典》《公司法》等法律法规。优先考虑有法律实务经验、司法资格或涉外法务背景者，但对计算机、大数据等技术专业无硬性要求。",
+  "专业背景概述_tags": [
+    "法学/法律专业",
+    "法律职业资格证书",
+    "民商法/经济法",
+    "法律实务经验",
+    "司法考试通过",
+    "知识产权方向",
+    "国际法背景",
+    "《民法典》《公司法》熟悉度",
+    "管理学相关专业",
+    "金融专业背景"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "法学/法律专业",
+      "confidence": "high",
+      "frequency": 28,
+      "evidence_count": 28,
+      "sample_evidence": [
+        "1.本科及以上学历，法学专业；",
+        "法学相关专业，本科及以上学历，通过法才或者具备律师资格证。2."
+      ]
+    },
+    {
+      "feature_name": "法律职业资格证书",
+      "confidence": "medium",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "（3）持有《中华人民共和国法律职业资格证书》；",
+        "具备法律职业资格证书（A证）"
+      ]
+    },
+    {
+      "feature_name": "民商法/经济法",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "法学、民商法、经济法等法学专业优先；",
+        "民商法学、经济法学、诉讼法学等法学、法律相关专业"
+      ]
+    },
+    {
+      "feature_name": "司法考试通过",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "参加并通过国家法律职业资格考试者优先；",
+        "通过国家司法考试或统一法律职业资格考试"
+      ]
+    },
+    {
+      "feature_name": "知识产权方向",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "法学专业，知识产权方向优先；",
+        "熟悉知识产权法律法规"
+      ]
+    },
+    {
+      "feature_name": "国际法背景",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "法学/国际法等相关专业；",
+        "具备基础法律英语或法语听说读写能力"
+      ]
+    },
+    {
+      "feature_name": "《民法典》《公司法》熟悉度",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "熟悉《民法典》《公司法》《劳动合同法》及国企相关监管法规",
+        "熟悉《公司法》《合同法》《知识产权法》等相关法律法规"
+      ]
+    },
+    {
+      "feature_name": "管理学相关专业",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "研究生及以上学历，法学、管理学相关专业",
+        "管理学相关专业，具备法律职业资格证者优先"
+      ]
+    },
+    {
+      "feature_name": "金融专业背景",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "销售、法律、金融、财务等相关专业优先；",
+        "金融相关专业，本科及以上学历"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 62,
+    "valid_features": 9,
+    "filtered_noise_count": 16,
+    "processing_notes": "过滤掉16条含'这是一个招聘信息'的无效文本，合并'法学专业'与'法律专业'等语义相近特征，排除与岗位无关的'SQL数据库'等技术标签"
+  }
+}

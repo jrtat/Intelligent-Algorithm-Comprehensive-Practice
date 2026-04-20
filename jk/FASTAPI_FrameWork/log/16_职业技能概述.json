@@ -1,0 +1,71 @@
+{
+  "职业技能概述_description": "该岗位要求候选人具备融资租赁全流程操作能力，包括客户拜访、商务谈判、合同制作及客户关系维护等核心技能。需熟练掌握地推与陌拜销售技巧，适应高频次户外工作，具备良好的沟通能力和抗压能力。优先考虑有本地生活BD经验或充电宝行业背景者，能够独立完成询盘处理、报价协商及合同签订等任务。同时要求具备市场动态跟踪与招商策略调整能力，以提升商户拓展效率。",
+  "职业技能概述_tags": [
+    "融资租赁全流程操作",
+    "客户开发与维护",
+    "商务谈判能力",
+    "地推销售技能",
+    "市场分析与策略调整",
+    "合同处理能力",
+    "户外工作适应性",
+    "抗压能力",
+    "本地生活BD经验优先",
+    "充电宝行业经验优先"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "客户开发与商务谈判",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "负责客户拜访、商务谈判、合同制作等融资租赁全流程工作",
+        "负责区域内中小客户的集中跑动、开发、提供资金解决方案"
+      ]
+    },
+    {
+      "feature_name": "地推与陌拜销售技能",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "掌握成熟的陌拜技能，能在非固定场所与潜在用户快速建立信任关系",
+        "适应户外工作及高频次的地推拜访"
+      ]
+    },
+    {
+      "feature_name": "合同处理与执行能力",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "根据公司产品、价格及市场策略，独立处置询盘、报价、合同条款的协商及合同签订等事宜"
+      ]
+    },
+    {
+      "feature_name": "市场动态跟踪与策略调整",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "持续跟踪市场动态和竞争对手的情况，及时调整招商策略，提高地面商户拓展效率"
+      ]
+    },
+    {
+      "feature_name": "行业经验优先项",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "有本地生活BD岗位或相关行业优先",
+        "有充电宝、互联网支付等相关从业经验优先考虑"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 11,
+    "valid_features": 5,
+    "filtered_noise_count": 34,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的噪声数据，合并重复出现的客户开发相关描述，将优先条件单独归类为'行业经验优先项'"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖法定福利、绩效激励和特色关怀。薪酬结构以基本工资为基础，结合高提成、开单奖、业绩奖金等绩效激励，综合薪资可达8000元起，部分岗位提供13薪及年终双薪。法定福利方面，统一缴纳五险一金，并额外提供企业年金、补充医疗保险等保障。补充福利包括餐补、交通补贴、节日福利、生日福利、定期体检及高温补贴。特色福利方面，注重员工关怀，提供弹性工作制、带薪年假（含额外带薪假期）、团建旅游、国内外差旅机会、专业培训体系（含中国酒水知识培训、传统文化学习等）以及丰富的团队活动（如下午茶、户外拓展、节日庆典）。部分岗位提供住宿支持及职业发展激励（如团队管理津贴、精英股等）。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "年终奖",
+    "弹性工作",
+    "团建旅游",
+    "专业培训",
+    "节日福利",
+    "餐补",
+    "补充医疗保险",
+    "定期体检",
+    "高提成",
+    "开单奖",
+    "住宿支持"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 25,
+      "evidence_count": 25,
+      "sample_evidence": [
+        "五险一金、弹性工作、带团队、每年多次调薪、大牛带队、定期团建、年轻化团队、午休2小时",
+        "职位福利：周末双休、绩效奖金、五险一金、餐补、带薪年假、定期体检、节日福利"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "享受各类法定假期及社保福利",
+        "除享有国家法定节假日外，额外再享有带薪年假"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 22,
+      "evidence_count": 22,
+      "sample_evidence": [
+        "无责底薪+绩效+提成，月综合收入6000元以上",
+        "基本工资+绩效奖金+项目提成+公司分红"
+      ]
+    },
+    {
+      "feature_name": "高提成",
+      "confidence": "high",
+      "frequency": 19,
+      "evidence_count": 19,
+      "sample_evidence": [
+        "底薪+高提成+开单奖，综合薪资8000起",
+        "无责底薪3500+提成40%+丰厚奖金3K+（一次性发放）"
+      ]
+    },
+    {
+      "feature_name": "团建旅游",
+      "confidence": "high",
+      "frequency": 17,
+      "evidence_count": 17,
+      "sample_evidence": [
+        "不定期下午茶、定期团建、户外拓展、节日活动",
+        "员工旅游（每年最少两次）"
+      ]
+    },
+    {
+      "feature_name": "专业培训",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "中国酒水知识培训、中国传统文化学习",
+        "定期开展培训讲座和分享活动"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "high",
+      "frequency": 20,
+      "evidence_count": 20,
+      "sample_evidence": [
+        "节假日福利+免费专业知识培训",
+        "国家法定节假日心意礼品+每月奖金"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "弹性工作、带团队、每年多次调薪",
+        "弹性工作制，周末双休"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 45,
+    "valid_features": 8,
+    "filtered_noise_count": 12,
+    "processing_notes": "过滤掉12条无效原文（含'这是一个招聘信息'及纯标点文本），合并'中国酒水知识培训'与'中国传统文化学习'为'专业培训'特征"
+  }
+}

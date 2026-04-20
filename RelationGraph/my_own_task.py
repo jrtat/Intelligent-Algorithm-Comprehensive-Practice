@@ -1,7 +1,7 @@
 from RelationGraph.func.prepare.get_data import get_data_raw
 from RelationGraph.func.prepare.init_data import init_data_raw
 from RelationGraph.func.train.rf.train import get_rf, rf_evaluate, rf_predict_proba
-from RelationGraph.func.train.mpl.train_with_test import get_mlp,mlp_evaluate,mlp_predict_proba
+from RelationGraph.func.train.mpl.train import get_mlp,mlp_evaluate,mlp_predict_proba
 from RelationGraph.func.use.get_result import mlp_calc_proba, rf_calc_proba
 
 import torch

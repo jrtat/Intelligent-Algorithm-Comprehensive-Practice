@@ -1,7 +1,7 @@
 from RelationGraph.func.prepare.get_data import get_data_raw
 from RelationGraph.func.prepare.init_data import init_data_raw
 from RelationGraph.func.prepare.save_data_for_lora import save_data
-from RelationGraph.func.train.lora.test1 import train_and_evaluate_lora
+from RelationGraph.func.train.lora.train_advance import train_and_evaluate_lora
 # from RelationGraph.func.train.lora.train import train_and_evaluate_lora
 
 # Step 0：载入数据

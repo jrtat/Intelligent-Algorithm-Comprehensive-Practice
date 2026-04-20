@@ -55,5 +55,3 @@ def predict_probabilities(text: str) -> dict:
         probs = F.softmax(logits, dim=-1).squeeze(0).cpu().float().numpy()
 
     return {id2label[idx]: float(prob) for idx, prob in enumerate(probs)}
-
-

@@ -674,7 +674,7 @@ class Matcher:
                     "internship_experience": default_result.copy(),
                     "teamwork_ability": default_result.copy()
                 }
-                return 0, dimension_analysis
+                return 0, 0, dimension_analysis
 
             # 验证返回数据的完整性
             required_dimensions = [

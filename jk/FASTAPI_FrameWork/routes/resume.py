@@ -2,24 +2,8 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from uuid import uuid4
 import asyncio
-import sys
-import os
+
 from typing import List, Optional
-
-# 添加 processor 路径以导入 Matcher
-current_dir = os.path.dirname(os.path.abspath(__file__))
-# jk/FASTAPI_FrameWork/routes -> jk/FASTAPI_FrameWork -> jk -> 项目根目录
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
-processor_path = os.path.join(project_root, "processor")
-print(f"[DEBUG] current_dir: {current_dir}")
-print(f"[DEBUG] project_root: {project_root}")
-print(f"[DEBUG] processor_path: {processor_path}")
-print(f"[DEBUG] processor exists: {os.path.exists(processor_path)}")
-if processor_path not in sys.path:
-    sys.path.insert(0, processor_path)
-print(f"[DEBUG] sys.path: {sys.path[:3]}")
-
-# 导入 Matcher（IDE 可能显示未解析，但运行时正常）
 from processor.tools.Matcher import Matcher  # type: ignore
 
 router = APIRouter()

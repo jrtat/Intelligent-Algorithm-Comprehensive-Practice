@@ -1,0 +1,83 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备扎实的软件开发能力，优先考虑具有3-5年相关行业经验者。核心技能包括熟练掌握C/C++语言、Linux系统开发、多线程编程及工业通信协议（如RS232/RS485/Mobbus/TCP/IP/OPC等）。具备QT框架、GDAL库使用经验者优先。项目经验方面，强调参与过完整周期的软件开发或大型项目实施。行业经验方面，电力、新能源、智能制造、医疗设备等领域背景为加分项。特殊要求包括具备团队协作能力、良好的代码规范、英文文档阅读能力，以及有自动化开发、嵌入式系统或AI项目经验者优先。",
+  "工作经验概述_tags": [
+    "C/C++开发",
+    "Linux系统开发",
+    "工业通信协议",
+    "多线程编程",
+    "QT框架",
+    "大型项目经验",
+    "电力行业经验",
+    "智能制造背景",
+    "自动化开发",
+    "英文文档阅读"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "C/C++开发",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "要求：2、熟悉C/C++语言开发，有相关工作经验优先；",
+        "1、精通C++语言，有Linux/UNIX下程序设计和开发经验者优先。2、熟悉软件研发流程，具备软件工程思想。"
+      ]
+    },
+    {
+      "feature_name": "Linux系统开发",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "2、熟悉Linux平台C++或者C语言的开发，熟悉linux内核开发；",
+        "2、熟练使用Linux开发环境，掌握多线程、网络编程；"
+      ]
+    },
+    {
+      "feature_name": "工业通信协议",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "熟悉各种常见工业通信协议，如RS232/RS485/Mobbus/TCP/IP/OPC等5.",
+        "熟悉工业控制系统接口和协议（如Modbus、Profinet、canbus）。"
+      ]
+    },
+    {
+      "feature_name": "QT框架",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "2、熟练掌握C/C++语言，熟悉QT、GDAL者优先；",
+        "3、熟悉QT、GDAL者优先；"
+      ]
+    },
+    {
+      "feature_name": "大型项目经验",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "有大型项目开发经验者优先。",
+        "有完整周期的项目开发经验者优先。"
+      ]
+    },
+    {
+      "feature_name": "电力行业经验",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "·技术团队来自于南京大学、东南大学校友，皆拥有长期丰富的电力行业大型软件设计开发经验；",
+        "1、本科及以上学历，计算机、电子、通信等相关专业；2、3-5年无人机、电机等行业相关工作经验，有团队管理经验优先；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 112,
+    "valid_features": 6,
+    "filtered_noise_count": 68,
+    "processing_notes": "已过滤所有含'这是一个招聘信息'的无效条目及纯标点文本。工作年限要求未在原文中明确提及，因此未在描述中体现。"
+  }
+}

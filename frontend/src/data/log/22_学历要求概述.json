@@ -1,0 +1,123 @@
+{
+  "学历要求概述_description": "该岗位对学历要求以本科及以上为主（占比约65%），其中约35%明确要求统招或全日制学历。院校偏好方面，211/985院校及海外学历被多次提及作为优先条件。应届生政策存在差异化，部分岗位接受2025-2027届应届毕业生，但需提供毕业证及认证。学历与经验的替代关系在约20%的岗位中体现，如'经验不足可用学历弥补'或'实习转正'机制。硬性要求以'本科及以上学历'为主，优先条件包括'人力资源相关专业'和'招聘经验'。约15%的岗位设置弹性门槛，如'大专及以上学历，条件优秀者可放宽'。",
+  "学历要求概述_tags": [
+    "本科及以上学历",
+    "统招学历要求",
+    "211/985院校优先",
+    "应届生招聘",
+    "招聘经验优先",
+    "人力资源相关专业",
+    "弹性学历门槛",
+    "实习转正机会",
+    "海外学历优先",
+    "招聘软件技能"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "本科及以上学历",
+      "confidence": "high",
+      "frequency": 38,
+      "evidence_count": 38,
+      "sample_evidence": [
+        "本科及以上学历，人力资源管理、市场营销等相关专业优先考虑",
+        "统招本科及以上学历，专业不限",
+        "2026届或2027届毕业本科以上学历"
+      ]
+    },
+    {
+      "feature_name": "统招学历要求",
+      "confidence": "medium",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "统招本科及以上学历，人力资源、心理学、管理等相关专业优先",
+        "统招本科学历，优秀应届生或者有软件行业人事工作经验优先"
+      ]
+    },
+    {
+      "feature_name": "211/985院校优先",
+      "confidence": "medium",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "985/211优先",
+        "211/985院校及海外学历被多次提及作为优先条件"
+      ]
+    },
+    {
+      "feature_name": "应届生招聘",
+      "confidence": "medium",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "本岗位面向2025届应届毕业生",
+        "2026届或2027届毕业本科以上学历"
+      ]
+    },
+    {
+      "feature_name": "招聘经验优先",
+      "confidence": "high",
+      "frequency": 22,
+      "evidence_count": 22,
+      "sample_evidence": [
+        "至少2年以上招聘工作经验",
+        "半年以上互联网/中高端招聘工作经验"
+      ]
+    },
+    {
+      "feature_name": "人力资源相关专业",
+      "confidence": "high",
+      "frequency": 25,
+      "evidence_count": 25,
+      "sample_evidence": [
+        "人力资源管理、市场营销等相关专业优先考虑",
+        "人力资源相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "弹性学历门槛",
+      "confidence": "low",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "大专及以上学历，条件优秀者学历可以放宽",
+        "学历不限（本科以上不要）"
+      ]
+    },
+    {
+      "feature_name": "实习转正机会",
+      "confidence": "low",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "实习转正",
+        "有招聘实习经历的优先"
+      ]
+    },
+    {
+      "feature_name": "海外学历优先",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "国外高校毕业生，须获得教育部学历认证"
+      ]
+    },
+    {
+      "feature_name": "招聘软件技能",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "熟悉各种招聘渠道，善于整合资源",
+        "熟练使用招聘软件和Office办公软件"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 60,
+    "valid_features": 10,
+    "filtered_noise_count": 12,
+    "processing_notes": "已过滤12条无效原文（含'这是一个招聘信息'等噪声数据），部分岗位存在学历要求冲突（如本科与大专并存），但未强行提取矛盾信息"
+  }
+}

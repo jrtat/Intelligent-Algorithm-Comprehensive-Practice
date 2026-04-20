@@ -1,0 +1,109 @@
+{
+  "福利待遇概述_description": "该岗位提供具有竞争力的薪酬体系，包括基本工资、绩效奖金、提成及年终奖等多元激励。法定福利覆盖五险一金、带薪年假及国家法定节假日。补充福利包含餐补、交通补贴、通讯补助、住房补贴及节日福利。特色福利涵盖团建旅游、K歌聚餐、员工旅游、生日会及培训机会。部分岗位提供期权激励、弹性工作制及带薪培训。薪酬结构呈现阶梯式增长，优秀员工可享受额外奖金、晋升补贴及管理层发展路径。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "年终奖",
+    "团建旅游",
+    "餐补",
+    "交通补贴",
+    "住房补贴",
+    "期权激励",
+    "弹性工作"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "五险一金、带薪年假、定期体检、免费班车、高温补贴、节日福利",
+        "入职30天内缴纳五险一金",
+        "五险一金，带薪休假，年终奖，团建旅游"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "带薪年假",
+        "享受国家和公司的带薪年假",
+        "享有国家法定节假日+带薪年假"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "绩效奖金2000+提成",
+        "绩效奖金（视经验面议）",
+        "绩效奖金+年终奖"
+      ]
+    },
+    {
+      "feature_name": "年终奖",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "年终奖",
+        "年终公司效益好还有奖金",
+        "年底双薪、绩效奖金"
+      ]
+    },
+    {
+      "feature_name": "团建旅游",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "员工旅游+聚餐+K歌+团队拓展",
+        "年度旅游，优秀员工奖励",
+        "不定期下午茶、KTV、看电影"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "餐费补助600每月",
+        "包吃",
+        "免费提供住宿"
+      ]
+    },
+    {
+      "feature_name": "交通补贴",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "交通补",
+        "交通补贴"
+      ]
+    },
+    {
+      "feature_name": "期权激励",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "核心员工跟投创新业务计划股权激励",
+        "金砖奖"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 32,
+    "valid_features": 8,
+    "filtered_noise_count": 4,
+    "processing_notes": "过滤掉4条包含'这是一个招聘信息'的无效文本，合并'K歌'与'团建旅游'为特色福利类别"
+  }
+}

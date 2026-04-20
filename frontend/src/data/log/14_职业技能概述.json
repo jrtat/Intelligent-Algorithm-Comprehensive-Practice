@@ -1,0 +1,93 @@
+{
+  "职业技能概述_description": "该岗位要求具备法律咨询与案件处理能力，包括分析案情、记录案件信息、与当事人沟通洽谈并办理委托手续。需独立负责案件环节，直接接触案件及当事人，推进办案进程。熟练掌握法律文书起草、证据材料整理、庭前准备及调查取证等诉讼相关工作。需具备法律研究能力，能够研究案例法规并参与庭审记录。同时要求熟悉办公软件及线上协调工具（如思维导图、腾讯文档），具备公众号及律所网站文书编辑发布能力。具备法律文书写作能力，职业定位清晰，对律师职业有明确认知。需处理主办律师交办的其他事务，包括与团队沟通、客户事务性沟通等。",
+  "职业技能概述_tags": [
+    "法律文书起草",
+    "案件处理",
+    "证据整理",
+    "庭前准备",
+    "法律研究",
+    "案件交接",
+    "沟通能力",
+    "办公软件使用",
+    "商务谈判",
+    "合同审核"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "法律文书起草",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "1.协助律师处理诉讼案件相关工作，包括法律文书起草...",
+        "1.协助律师处理案件，起草法律文件、研究案例法规等",
+        "3、能够独立完成案件的起诉、应诉工作"
+      ]
+    },
+    {
+      "feature_name": "案件处理",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "1、接受当事人法律咨询，分析案情准确记录案件信息...",
+        "1、独立负责案件环节，直接接触案件本身及当事人...",
+        "2、与当事人沟通洽谈，了解当事人委托意向，办理委托",
+        "推进办案进程"
+      ]
+    },
+    {
+      "feature_name": "证据整理",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "1.协助律师处理诉讼案件相关工作，包括...证据材料的整理",
+        "2、谈判、收集整理相关的证据材料"
+      ]
+    },
+    {
+      "feature_name": "庭前准备",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "庭前准备工作"
+      ]
+    },
+    {
+      "feature_name": "法律研究",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "1.协助律师处理案件，起草法律文件、研究案例法规等",
+        "研究案例法规"
+      ]
+    },
+    {
+      "feature_name": "办公软件使用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟练使用办公软件、思维导图及腾讯文档等线上协调工具"
+      ]
+    },
+    {
+      "feature_name": "商务谈判",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉企业合资、收购、商务谈判、合同审核等相关法律问题"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 23,
+    "valid_features": 7,
+    "filtered_noise_count": 16,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的无效文本及重复冗余内容"
+  }
+}

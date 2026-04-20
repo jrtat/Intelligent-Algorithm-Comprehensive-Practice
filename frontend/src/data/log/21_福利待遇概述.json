@@ -1,0 +1,180 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖薪酬激励、法定保障及特色支持。薪酬结构以高提点模式为主（80%-90%），无管理费、卡位费，律所包增值税，支持远程办公及弹性工作时间。法定福利包含五险一金、带薪年假及法定节假日。补充福利包括办公环境优化（独立房间、共享工位）、交通补贴、住房补贴（青年律师优惠）、年度体检及节日福利。特色福利涵盖媒体宣传平台支持（网络、报纸、电视等）、业务培训（线上线下）、团建活动（乐队、球队等）、青年律师成长计划（导师指导、晋升通道）、公共案源支持及律所一体化中后台服务保障。",
+  "福利待遇概述_tags": [
+    "高提点模式",
+    "无管理费",
+    "远程办公",
+    "媒体宣传平台",
+    "青年律师成长计划",
+    "弹性工作",
+    "五险一金",
+    "带薪年假",
+    "办公环境优化",
+    "年度体检",
+    "业务培训",
+    "团建活动",
+    "公共案源支持",
+    "中后台服务",
+    "住房补贴"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "高提点模式",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "无管理费、卡位费、高提点模式(高达85%提点)",
+        "个人案源提成比例为80%",
+        "高提点模式(高达90%提点)",
+        "优厚的分配政策，干干净净开票后1、9分成"
+      ]
+    },
+    {
+      "feature_name": "无管理费",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "无管理费、卡位费",
+        "享受超低管理费",
+        "律所免管理费"
+      ]
+    },
+    {
+      "feature_name": "远程办公",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "无需坐班，可实现远程办公",
+        "无需坐班，可自由支配时间"
+      ]
+    },
+    {
+      "feature_name": "媒体宣传平台",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "为律师提供媒体宣传平台，包括不限于网络、报纸、电视、新闻等",
+        "律所为律师提供媒体宣传平台",
+        "律所有成熟的品宣，能够为律师个人品牌提供宣传"
+      ]
+    },
+    {
+      "feature_name": "青年律师成长计划",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "青年律师成长计划政策支持",
+        "青年执业律师可享受办公资源费用、管理费优惠，导师“1对1”帮扶指导"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "早9晚6不打卡，不限制律师工作时间",
+        "无需坐班，可自由支配时间"
+      ]
+    },
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "提供五险一金",
+        "律所专业人士提供税务筹划，办理五险一金",
+        "缴纳社保"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "提供带薪年假",
+        "单双轮休、法定节假日带薪休假"
+      ]
+    },
+    {
+      "feature_name": "办公环境优化",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "本所有独立房间及卡座，办公环境优",
+        "高端办公环境"
+      ]
+    },
+    {
+      "feature_name": "年度体检",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "年度体检"
+      ]
+    },
+    {
+      "feature_name": "业务培训",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "组织举办各类业务交流会议、线上线下直播学习培训",
+        "提供各类管理培训，每周律所沙龙"
+      ]
+    },
+    {
+      "feature_name": "团建活动",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "丰富多彩的文体活动，律所设有卓建乐队、卓建合唱团等俱乐部"
+      ]
+    },
+    {
+      "feature_name": "公共案源支持",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "律所公共案源丰富，可以给予律师案源支持",
+        "律所承诺提供一定金额的公共案源业务",
+        "提成律师所里会根据擅长的业务领域分配案件"
+      ]
+    },
+    {
+      "feature_name": "中后台服务",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "律所一体化运营中心为律师提供中后台服务"
+      ]
+    },
+    {
+      "feature_name": "住房补贴",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "青年执业律师可享受办公资源费用、管理费优惠"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 63,
+    "valid_features": 15,
+    "filtered_noise_count": 12,
+    "processing_notes": "过滤了12条噪声数据（如'这是一个招聘信息'、空字符串等），合并了语义相近特征，确保所有信息均有原文依据。"
+  }
+}

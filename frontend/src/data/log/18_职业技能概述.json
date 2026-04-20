@@ -1,0 +1,45 @@
+{
+  "职业技能概述_description": "该岗位要求候选人具备项目文件管理能力，能够协调相关部门间的文件流转并维护分发矩阵。需熟练使用PMT/船厂文控系统处理文控邮箱文件，确保流程及时性。同时要求掌握纸质档案向电子档案的转换技能，包括扫描、录入及数字采集等操作。核心能力聚焦在文件管理系统操作、电子档案处理及跨部门协作，属于文档管理与信息处理领域。",
+  "职业技能概述_tags": [
+    "项目文件管理",
+    "PMT/船厂文控系统操作",
+    "电子档案转换",
+    "跨部门协作",
+    "文档数字化处理"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "了解项目文件相关基础知识",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "主要职责 协调相关部门间的项目文件流转。更新项目文件分发矩阵，确保文件按矩阵要求分发。"
+      ]
+    },
+    {
+      "feature_name": "熟悉PMT/船厂文控系统",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "处理文控邮箱中的文件，确保及时跟进。任职要求熟悉PMT/船厂文控系统，了解项目文件相关基础知识。"
+      ]
+    },
+    {
+      "feature_name": "数字采集等转换为电子档案",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "可提供住宿五险一金3-5k档案文员1、内容：把纸质档案通过扫描、录入、数字采集等转换为电子档案。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 5,
+    "valid_features": 3,
+    "filtered_noise_count": 2,
+    "processing_notes": "过滤掉'录入'和'安排面试'两个特征的所有无效原文，其余特征均基于有效信息提取"
+  }
+}

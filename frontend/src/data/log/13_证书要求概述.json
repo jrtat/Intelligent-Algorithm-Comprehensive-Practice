@@ -1,0 +1,45 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质的要求主要包括语言能力方面的要求。岗位明确要求应聘者具备英语四级及以上水平，且具备良好的英文写作能力，英语读写能力精通者将被优先录用。目前未发现原文中提及职业资格证书（如PMP、软考等）、行业特定证书（如电工证、教师资格证等）或职称（如初级/中级/高级职称）的具体要求。所有证书和资质要求均以英语语言能力为核心，其他专业资质要求在现有数据中未体现。",
+  "证书要求概述_tags": [
+    "英语四级",
+    "英语写作能力",
+    "英语读写能力",
+    "语言能力优先"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "英语四级",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "3.英语四级及以上，具备良好的英文写作能力；",
+        "英语四级以上，读写精通优先录用；"
+      ]
+    },
+    {
+      "feature_name": "英语读写能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "英语四级以上，读写精通优先录用；"
+      ]
+    },
+    {
+      "feature_name": "英语写作能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.英语四级及以上，具备良好的英文写作能力；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 4,
+    "valid_features": 3,
+    "filtered_noise_count": 1,
+    "processing_notes": "原始数据中存在1条重复的岗位描述文本（'该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下：'），已按规则过滤。未发现明确的职称、职业资格证书或行业特定证书要求。"
+  }
+}

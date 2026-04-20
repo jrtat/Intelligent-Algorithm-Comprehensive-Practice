@@ -1,0 +1,96 @@
+{
+  "学历要求概述_description": "该岗位对学历要求呈现分层特征，本科及以上学历为硬性门槛，占比约45%，大专学历要求占比约35%，部分岗位接受应届生及无经验者。其中，统招本科及以上学历被明确提及为基本要求，且多数岗位接受应届毕业生，但未明确要求985/211院校背景。部分岗位对学历要求存在弹性空间，如'素质大于学历'的表述，但未形成普遍性替代规则。优先考虑条件中，'相关专业'和'有经验者'出现频率较高，而'海外学历'等特殊要求未在样本中出现。",
+  "学历要求概述_tags": [
+    "统招本科及以上学历",
+    "应届生可接受",
+    "大专及以上学历",
+    "相关专业优先",
+    "有经验者优先",
+    "无经验者可接受",
+    "学历弹性空间"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "统招本科及以上学历",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "学信网统招本科及以上学历，有市场推广或相关工作经验优先考虑",
+        "任职要求: 1、本科及以上学历；",
+        "学历及专业：本科及以上学历，专业不限；"
+      ]
+    },
+    {
+      "feature_name": "应届生可接受",
+      "confidence": "medium",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "接受相关专业应届大学生",
+        "应届毕业生，专业不限",
+        "可接受应届生"
+      ]
+    },
+    {
+      "feature_name": "大专及以上学历",
+      "confidence": "high",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "1.大专以上学历，有文案策划、新媒体运营、接待讲解经验者优先",
+        "1、大专及以上学历；专业不限；",
+        "1、大专及以上学历，运营管理、电子商务专业优先"
+      ]
+    },
+    {
+      "feature_name": "相关专业优先",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "市场营销、媒体运营等相关专业优先",
+        "电子商务、计算机专业优秀应届生",
+        "运营管理、电子商务专业优先"
+      ]
+    },
+    {
+      "feature_name": "有经验者优先",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "有通讯、数码、售后、维修等经验者优先",
+        "有美术馆运营工作经验者优先",
+        "有相关专业或运营岗位相关的经验优先"
+      ]
+    },
+    {
+      "feature_name": "无经验者可接受",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "接受无经验小白",
+        "接受无经验!",
+        "可接受无经验"
+      ]
+    },
+    {
+      "feature_name": "学历弹性空间",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "素质大于学历",
+        "不招员工，招一个热爱工作的饭友，战友，损友。接受无经验!"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 50,
+    "valid_features": 7,
+    "filtered_noise_count": 11,
+    "processing_notes": "发现2条包含'这是一个招聘信息'的无效数据，5条纯空字符串/标点数据，4条与学历要求无关的文本被过滤。'海外学历'等特殊要求未在样本中出现。"
+  }
+}

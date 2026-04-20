@@ -1,0 +1,109 @@
+{
+  "福利待遇概述_description": "该岗位提供市场领先的薪酬体系，包含基本工资、绩效奖金及年终奖等多元激励。法定福利涵盖五险一金、带薪年假及法定节假日。补充福利包括餐补、交通补助、住房补贴及定期体检。特色福利方面，公司注重员工关怀，提供弹性工作制、团队建设活动、培训晋升机会及员工互助基金。部分岗位提供免费住宿与餐饮支持，优秀员工可享受年终分红及管理奖金。薪酬结构明确，部分岗位明确提及高于行业平均水平的薪资水平。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "绩效奖金",
+    "带薪年假",
+    "弹性工作",
+    "员工互助基金",
+    "培训晋升",
+    "餐补",
+    "住房补贴",
+    "年终分红",
+    "团队建设"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "薪酬结构",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "公司提供领先于市场80%的平均薪资报酬",
+        "基本工资另加年终绩效提成",
+        "建立了完整职级薪级架构，提供具竞争力的薪酬"
+      ]
+    },
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "为员工提供养老保险、失业保险、医疗保险、工伤保险、生育保险",
+        "缴纳五险一金",
+        "五险一金、带薪年假、绩效提成奖金"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "带薪年假",
+        "带薪年假、定期团建",
+        "带薪年假、周末双休"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "可弹性一小时上班",
+        "弹性工作制",
+        "工作时间：早上8:30-18:30（可弹性一小时上班）"
+      ]
+    },
+    {
+      "feature_name": "员工互助基金",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "提供员工互助基金、无忧养老/二代成长计划",
+        "公司关爱及健康关怀：提供员工互助基金"
+      ]
+    },
+    {
+      "feature_name": "培训晋升",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "完善的培训体系助力你快速成长",
+        "多次晋升机会",
+        "每年1～3次学习晋升机会"
+      ]
+    },
+    {
+      "feature_name": "住房补贴",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "免费配备笔记本电脑，扩展坞",
+        "提供免费住宿，距离公司5分钟路程"
+      ]
+    },
+    {
+      "feature_name": "团队建设",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "定期团队活动（庆功会、公司旅游、聚餐，体育活动等）",
+        "定期团建",
+        "团队氛围超融洽"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 19,
+    "valid_features": 8,
+    "filtered_noise_count": 3,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目及重复内容，合并了'弹性工作'相关表述，统一了'培训晋升'等相似特征"
+  }
+}

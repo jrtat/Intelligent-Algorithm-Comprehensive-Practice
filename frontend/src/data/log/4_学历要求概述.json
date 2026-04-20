@@ -1,0 +1,111 @@
+{
+  "学历要求概述_description": "该岗位对学历要求以统招本科及以上学历为主（占比约65%），部分岗位接受大专学历（占比约20%），硕士及以上学历要求多出现在技术研发类岗位（占比约15%）。硬性学历门槛中，90%的岗位明确要求统招学历且学信网可查，其中约30%的岗位对985/211院校有优先倾向。应届生政策方面，75%的岗位接受应届毕业生，部分岗位明确说明可接受考研断档、无工作经验者。学历与经验的替代关系中，约25%的岗位提到'无经验者可接受'，但需具备编程语言基础或项目经验。值得注意的是，部分岗位对专业要求较宽泛（如'不要求专业'），而另一些则明确要求计算机相关专业。",
+  "学历要求概述_tags": [
+    "统招本科及以上学历",
+    "接受应届生",
+    "985/211优先",
+    "学信网可查",
+    "计算机相关专业",
+    "无经验可接受",
+    "硕士及以上学历",
+    "编程语言基础",
+    "双证要求",
+    "理工科专业"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "统招本科及以上学历",
+      "confidence": "high",
+      "frequency": 128,
+      "evidence_count": 128,
+      "sample_evidence": [
+        "统招本科及以上学历（学信网可查）",
+        "统招本科及以上学历，计算机相关专业",
+        "统招本科及以上学历；接受无经验"
+      ]
+    },
+    {
+      "feature_name": "学信网可查",
+      "confidence": "high",
+      "frequency": 85,
+      "evidence_count": 85,
+      "sample_evidence": [
+        "学信网可查的统招本科及以上学历",
+        "统招本科及以上学历，学信网可查",
+        "毕业证、学位证齐全，学信网可查"
+      ]
+    },
+    {
+      "feature_name": "接受应届生",
+      "confidence": "high",
+      "frequency": 75,
+      "evidence_count": 75,
+      "sample_evidence": [
+        "接受应届毕业生",
+        "2025届统招本科及以上学历",
+        "可接受无经验，但需会编程语言"
+      ]
+    },
+    {
+      "feature_name": "985/211优先",
+      "confidence": "medium",
+      "frequency": 35,
+      "evidence_count": 35,
+      "sample_evidence": [
+        "985/211院校硕士研究生",
+        "985/211院校优先",
+        "一本院校优先"
+      ]
+    },
+    {
+      "feature_name": "计算机相关专业",
+      "confidence": "high",
+      "frequency": 68,
+      "evidence_count": 68,
+      "sample_evidence": [
+        "计算机相关专业本科及以上学历",
+        "计算机、软件工程等相关专业",
+        "计算机科学与技术、软件工程等计算机相关专业"
+      ]
+    },
+    {
+      "feature_name": "无经验可接受",
+      "confidence": "medium",
+      "frequency": 32,
+      "evidence_count": 32,
+      "sample_evidence": [
+        "接受无经验者",
+        "无经验者可接受",
+        "可接受应届生或转行无经验者"
+      ]
+    },
+    {
+      "feature_name": "硕士及以上学历",
+      "confidence": "medium",
+      "frequency": 28,
+      "evidence_count": 28,
+      "sample_evidence": [
+        "硕士及以上学历",
+        "硕士研究生及以上学历",
+        "博士学历优先"
+      ]
+    },
+    {
+      "feature_name": "双证要求",
+      "confidence": "medium",
+      "frequency": 22,
+      "evidence_count": 22,
+      "sample_evidence": [
+        "需持双证",
+        "毕业证、学位证齐全",
+        "统招学历学位证，毕业证，学信网可查"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 217,
+    "valid_features": 8,
+    "filtered_noise_count": 43,
+    "processing_notes": "部分岗位描述中存在'这是一个招聘信息'等无效文本已过滤，'统招'与'学信网可查'等高频特征已合并处理，'计算机相关专业'与'理工科专业'等相似特征已归并"
+  }
+}

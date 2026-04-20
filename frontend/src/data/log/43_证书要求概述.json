@@ -1,0 +1,53 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质的要求主要集中在药学及医学相关领域，以及日语语言能力。岗位明确要求持有药学或医学相关的资格证书，属于必备条件。同时，日语国际2-1级水平（具备口语及书面翻译能力）被列为优先考虑的条件。此外，岗位对学历有明确要求（本科及以上），但未提及职称或驾驶资质作为证书要求。英语六级520分以上虽在部分描述中出现，但未被明确归类为证书要求，因此未纳入核心证书清单。",
+  "证书要求概述_tags": [
+    "药学相关资格证书",
+    "医学相关资格证书",
+    "日语国际2-1级",
+    "英语六级520分以上"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "药学相关资格证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "药学、医学相关资格证书。4."
+      ]
+    },
+    {
+      "feature_name": "医学相关资格证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.药学、医学相关资格证书。"
+      ]
+    },
+    {
+      "feature_name": "日语国际2-1级",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1:日语国际2-1级相当,口语及书面翻译熟练."
+      ]
+    },
+    {
+      "feature_name": "英语六级520分以上",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.英语六级520分以上或同等水平"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 5,
+    "valid_features": 4,
+    "filtered_noise_count": 1,
+    "processing_notes": "原文中'初级职称或以上专业资格'相关条目未明确提及职称证书要求，仅涉及学历和驾驶资质，故未纳入证书要求。'不限'条目因包含噪声信息被过滤。"
+  }
+}

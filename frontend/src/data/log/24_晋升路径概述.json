@@ -1,0 +1,71 @@
+{
+  "晋升路径概述_description": "该岗位提供明确的晋升通道，包含管理通道（组长→主管→经理）和技术通道（白银级→黄金级→砖石级→王者级）。公司设有系统的培训体系，包括岗前训练、定期技能培训、专业管理力培训及轮岗学习机会，支持员工全面了解业务板块并积累晋升经验。每年提供1-2次晋升选拔机会，通过完善的晋升制度实现职业发展。内部转岗和跨部门发展机会被明确提及，且提供带薪假期、节日礼金等福利支持成长。培养机制包含主任带教、总经理带队的储备人才培训，强调实践与理论结合。",
+  "晋升路径概述_tags": [
+    "系统化培训计划",
+    "轮岗学习",
+    "晋升机会",
+    "管理通道发展",
+    "技术通道发展",
+    "导师带教机制",
+    "跨部门发展",
+    "年度晋升选拔"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升通道",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "一年两次晋升选拔:组长一主管一-经理",
+        "晋升体系分为四大级别：白银级—黄金级—砖石级—王者级",
+        "每年1-2次升级/等晋升机会"
+      ]
+    },
+    {
+      "feature_name": "培训体系",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "系统的培训、晋升制度。",
+        "享受岗前训练，定期技能培训，专业系统化的岗中及管理力培训",
+        "1.1-2个月的系统培训期，快速由讲师小白成长为专业讲师。",
+        "可接受公司专业、系统化培训"
+      ]
+    },
+    {
+      "feature_name": "轮岗机制",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "按培养计划轮岗学习，全面了解培训体系各环节"
+      ]
+    },
+    {
+      "feature_name": "导师带教",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "入职有主任亲自带，享受岗前训练"
+      ]
+    },
+    {
+      "feature_name": "跨部门发展",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解公司各业务板块运作，为培训内容贴合实际需求提供支撑"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 14,
+    "valid_features": 5,
+    "filtered_noise_count": 2,
+    "processing_notes": "过滤了2条无效信息（'这是一个招聘信息。'和重复的出差要求条目），发现晋升通道存在技术通道与管理通道并行的描述，但未明确标注双通道制度。"
+  }
+}

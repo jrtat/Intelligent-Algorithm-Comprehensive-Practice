@@ -1,0 +1,76 @@
+{
+  "学历要求概述_description": "该岗位群体学历门槛以大专及以上为主（占比约65%），其中约30%岗位明确接受应届生或提供培训支持。硬性要求中，统招专科/本科学历出现频率最高（约50%），部分岗位对学历有弹性空间（如'有经验者可放宽'或'优秀应届生可接受'）。院校偏好方面，仅10%岗位提及985/211优先。值得注意的是，约25%岗位明确表示'经验可替代学历'，例如提供带教机制或接受无经验者。整体呈现'学历+经验'双轨制特征，但销售类岗位更倾向接受经验弥补学历不足。",
+  "学历要求概述_tags": [
+    "大专及以上学历",
+    "应届生可接受",
+    "统招学历优先",
+    "经验替代学历",
+    "销售岗位倾向",
+    "带教机制",
+    "无经验可接受",
+    "学历弹性空间"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "最低学历门槛",
+      "confidence": "high",
+      "frequency": 38,
+      "evidence_count": 38,
+      "sample_evidence": [
+        "统招专科及以上学历，部分区域店面可放宽学历",
+        "大专及以上学历，20-35岁",
+        "专科学历（可接受应届毕业生）"
+      ]
+    },
+    {
+      "feature_name": "学历弹性空间",
+      "confidence": "medium",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "有相关销售经验优先",
+        "有经验者可放宽",
+        "优秀者可放宽要求"
+      ]
+    },
+    {
+      "feature_name": "应届生政策",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "可接受应届毕业生",
+        "优秀应届生亦可",
+        "应届优秀毕业"
+      ]
+    },
+    {
+      "feature_name": "经验替代学历",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "无经验亦可，有专业培训",
+        "零经验轻松上手",
+        "接受无销售经验者"
+      ]
+    },
+    {
+      "feature_name": "院校偏好",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "985/211优先",
+        "计算机及机械自动化专业优先考虑",
+        "电子商务、市场营销相关专业优先"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 50,
+    "valid_features": 5,
+    "filtered_noise_count": 14,
+    "processing_notes": "过滤了14条无效原文（含'这是一个招聘信息'等噪声数据），其中12条与学历要求无关。'统招'要求出现频率较高（约50%），但未形成统一标签。"
+  }
+}

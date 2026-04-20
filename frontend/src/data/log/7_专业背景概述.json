@@ -1,0 +1,103 @@
+{
+  "专业背景概述_description": "该岗位对专业背景的要求主要集中在电子、通信、计算机、自动化等工科领域。核心专业包括电子工程、电子信息工程、通信工程、计算机科学与技术、自动化等，学历要求以大专及以上为主，部分岗位要求本科及以上学历。相关专业涵盖测控技术、电力电子、机械电子、软件工程等。优先考虑具备数字电路、模拟电路基础，熟悉测试仪器（如示波器、万用表）操作，掌握Linux/Windows系统及办公软件使用能力的候选人。部分岗位对英语四级有明确要求，且强调动手能力和实践经历的重要性。",
+  "专业背景概述_tags": [
+    "电子工程",
+    "通信工程",
+    "计算机科学与技术",
+    "自动化专业",
+    "数字电路基础",
+    "测试仪器操作",
+    "Linux系统",
+    "英语四级",
+    "测控技术",
+    "电力电子"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "电子工程",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "1)电子、自动化、控制、机电一体化等相关专业本科及以上学历‌；2)熟悉数字、模拟电路及相关电子知识",
+        "1、电子、通信、计算机等相关专业大专及以上学历；2、具备通信/电子基础知识"
+      ]
+    },
+    {
+      "feature_name": "通信工程",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "1、通信工程、电子、微波等相关专业，本科以上学历。2、具备扎实的理论知识及动手操作能力。",
+        "1、本科及以上学历，微电子、电子工程、自动化、通信及相关专业；2、有相关工作经验者优先"
+      ]
+    },
+    {
+      "feature_name": "计算机科学与技术",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "大专及以上学历，计算机、电子及相关专业2.熟悉windows、Linux操作系统3.",
+        "任职资格1.本科以上学历（电子工程、计算机科学或相关专业）。"
+      ]
+    },
+    {
+      "feature_name": "自动化专业",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "电子、通信、自动化、控制相关专业，本科毕业生或有相关工作经验优先",
+        "1)电子、自动化、控制、机电一体化等相关专业本科及以上学历"
+      ]
+    },
+    {
+      "feature_name": "数字电路基础",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "2、具备通信/电子基础知识，了解相关测试仪表、了解测试的常规知识",
+        "熟悉数字电路和模拟电路基础，对于单板电源完整性、信号完整性等设计有基础了解"
+      ]
+    },
+    {
+      "feature_name": "测试仪器操作",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "2、掌握基础测试工具（如万用表、X-ray检测仪）和测试方法（如ICT、FCT）",
+        "熟练掌握各种测试仪器，比如综测仪，信号源、频谱仪、光功率计"
+      ]
+    },
+    {
+      "feature_name": "Linux系统",
+      "confidence": "low",
+      "frequency": 5,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "熟悉windows、Linux操作系统",
+        "熟悉Windows操作系统，能熟练安装系统及调试"
+      ]
+    },
+    {
+      "feature_name": "英语四级",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "英语四级以上",
+        "英语4级及电子类专业优先考虑"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 107,
+    "valid_features": 8,
+    "filtered_noise_count": 24,
+    "processing_notes": "部分岗位提及'英语四级'要求，但相关原文数量较少，置信度标记为low。'Linux系统'相关描述存在模糊表述（如'熟悉windows、Linux操作系统'），故置信度较低。"
+  }
+}

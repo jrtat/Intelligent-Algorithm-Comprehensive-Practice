@@ -1,0 +1,11 @@
+{
+  "职业技能概述_description": "",
+  "职业技能概述_tags": [],
+  "职业技能概述_features": [],
+  "_metadata": {
+    "total_raw_items": 6,
+    "valid_features": 0,
+    "filtered_noise_count": 25,
+    "processing_notes": "所有原始特征均不符合技术类岗位画像要求，经严格过滤后无有效技术技能信息可提取"
+  }
+}

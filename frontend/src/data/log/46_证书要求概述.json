@@ -1,0 +1,30 @@
+{
+  "证书要求概述_description": "该岗位未明确提及任何职业资格证书、行业特定证书、语言证书或职称要求。岗位描述中仅提到'硕士学历优先'，但未将其归类为职称或资质要求。原始文本未提供可验证的证书或资质相关的信息。",
+  "证书要求概述_tags": [],
+  "证书要求概述_features": [
+    {
+      "feature_name": "无具体证书要求",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "岗位要求：1、教育背景："
+      ]
+    },
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "擅长做ppt；硕士学历优先。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 2,
+    "valid_features": 0,
+    "filtered_noise_count": 2,
+    "processing_notes": "所有特征均未满足证书/资质要求的提取标准，原文中未发现符合四个重点关注类别的有效信息"
+  }
+}

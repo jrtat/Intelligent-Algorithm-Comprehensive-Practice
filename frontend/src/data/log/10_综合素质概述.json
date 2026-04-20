@@ -1,0 +1,77 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备良好的沟通协作能力，能够与客户、生产、供应商等多方进行有效沟通，并具备跨部门协作推动质量改善的能力。工作态度方面需踏实勤勉、责任心强，能够服从管理并适应加班、出差等灵活工作安排。学习与适应能力方面需具备快速适应项目需求、持续改进质量控制流程的能力，并能接受少量出差安排。问题解决能力方面需具备逻辑推理能力、分析问题能力以及推动质量改善的执行力。核心素质包括团队合作精神、抗压能力、沟通能力、责任心等，加分项包括熟练使用设计类软件（如Cad、ProE、PS）、具备日语或英语沟通能力、有客户品质相关经验等。",
+  "综合素质概述_tags": [
+    "团队协作",
+    "抗压能力",
+    "沟通能力",
+    "责任心",
+    "跨部门协作",
+    "适应能力",
+    "逻辑思维",
+    "出差适应",
+    "学习能力",
+    "质量改善"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通协作能力",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "良好的沟通表达能力、踏实勤勉、具有抗压能力。",
+        "能与客户、生产、供货商沟通，推动质量改善",
+        "具有良好的沟通能力和团队合作精神"
+      ]
+    },
+    {
+      "feature_name": "抗压能力",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "具有抗压能力",
+        "能接受少量出差安排",
+        "有较强的抗压心态"
+      ]
+    },
+    {
+      "feature_name": "责任心",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "有责任心，服从管理",
+        "工作细致，求真务实，有较强的责任心",
+        "确保客户满意度"
+      ]
+    },
+    {
+      "feature_name": "适应能力",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "能配合客户需求加班，出差",
+        "能快速适应项目需求",
+        "能接受少量出差安排"
+      ]
+    },
+    {
+      "feature_name": "逻辑思维能力",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "逻辑推理能力强",
+        "分析问题能力"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 39,
+    "valid_features": 5,
+    "filtered_noise_count": 14,
+    "processing_notes": "过滤了14条无效文本（含'这是一个招聘信息'、纯标点、长度不足5字符等），保留了与综合素质直接相关的有效描述"
+  }
+}

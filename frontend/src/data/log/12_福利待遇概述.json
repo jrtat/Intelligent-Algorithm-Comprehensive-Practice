@@ -1,0 +1,108 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖薪酬激励与基础保障。薪酬结构包含基本工资（如5500-8000元底薪）、绩效奖金（如全勤奖500元/月、质量考核奖金）、计件工资及年终奖（如2个月工资左右）。法定福利方面，所有岗位均提供五险一金，部分企业额外增加六金保障（含医疗互助基金）。补充福利包括免费食宿（如大学式宿舍四人寝、免费工作餐）、交通补贴（如铁岭区域免费班车、宝马工厂多条路线通勤）、餐补（500元/月）、高温补贴及夜班补贴。特色福利涵盖带薪年假（最多15天/年）、节日福利（如购物卡、红包）、年度体检、培训机会及晋升通道。部分企业为长期员工设置周年庆礼品（如工作满6/12个月发放500元奖金）及超产奖金。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "免费食宿",
+    "绩效奖金",
+    "年终奖",
+    "交通补贴",
+    "高温补贴",
+    "夜班补贴",
+    "年度体检",
+    "节日福利",
+    "培训机会",
+    "晋升通道",
+    "超产奖金",
+    "餐补",
+    "长期服务奖金"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 34,
+      "evidence_count": 34,
+      "sample_evidence": [
+        "购买五险一金",
+        "缴纳六金（养老/失业/工伤/生育/医疗保险金，住房公积金）"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "带薪年假15天",
+        "有带薪年假 婚假 产假"
+      ]
+    },
+    {
+      "feature_name": "免费食宿",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "提供食宿，有空调，热水器",
+        "免费工作餐，菜品种类丰富，量大管饱"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "绩效奖金",
+        "质量考核+夜班补贴+餐补+高温补贴"
+      ]
+    },
+    {
+      "feature_name": "年终奖",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "2个月工资左右的年终奖",
+        "年底有十三薪"
+      ]
+    },
+    {
+      "feature_name": "交通补贴",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "免费厂车",
+        "宝马免费通勤（多条路线将近全沈阳）"
+      ]
+    },
+    {
+      "feature_name": "高温补贴",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "高温补贴",
+        "夜班补贴+餐补+高温补贴"
+      ]
+    },
+    {
+      "feature_name": "长期服务奖金",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "工作满6、12个月，即分别发放500元奖金",
+        "工作满5、10、15、20、25、30周年，即分别发放1,000、2,000、3,000、4,000、5,000、6,000元奖金"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 46,
+    "valid_features": 8,
+    "filtered_noise_count": 12,
+    "processing_notes": "过滤了12条含'这是一个招聘信息'或无效内容的原文，'夜补'等3个特征因缺乏明确标准被判定为低置信度或无效"
+  }
+}

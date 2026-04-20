@@ -1,0 +1,88 @@
+{
+  "工作经验概述_description": "该岗位对工作经验的要求主要集中在行业背景和项目经验两个维度。必备条件包括1-3年快消品行业经验，优先考虑冷冻类食品领域。在行业经验方面，明确要求具备油封或橡胶行业的产品设计、开发及项目管理经验。对于电气行业市场相关岗位，需具备2年以上相关经验。其他优先条件包括参与完整产品开发周期、具备市场分析能力、有SaaS产品经验等。岗位更倾向于招聘具备实际项目操作能力、能独立完成产品文档编写和原型设计的候选人，同时重视团队协作能力和行业资源积累。",
+  "工作经验概述_tags": [
+    "快消品行业经验",
+    "冷冻类食品经验",
+    "油封/橡胶行业产品设计",
+    "电气行业市场经验",
+    "SaaS产品开发",
+    "产品全周期开发",
+    "市场分析能力",
+    "项目管理经验",
+    "团队协作能力",
+    "行业资源积累"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "快消品行业经验",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "1.1年快消品行业工作经验，冷冻类食品优先；",
+        "有过电商、快消品、养生行业的从业经验；"
+      ]
+    },
+    {
+      "feature_name": "冷冻类食品经验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.1年快消品行业工作经验，冷冻类食品优先；"
+      ]
+    },
+    {
+      "feature_name": "油封/橡胶行业产品设计",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "有油封或橡胶行业相关的产品设计、开发及项目管理经验者优先；3.",
+        "2.有油封或橡胶行业相关的产品设计、开发及项目管理经验者优先；"
+      ]
+    },
+    {
+      "feature_name": "电气行业市场经验",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2年以上电气行业市场"
+      ]
+    },
+    {
+      "feature_name": "SaaS产品开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "本科及以上学历，有3年及以上SaaS产品相关经验"
+      ]
+    },
+    {
+      "feature_name": "产品全周期开发",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "5.全程有经验丰富老师傅带，参与到整个具体实际项目，后续独立规划和设计产品；"
+      ]
+    },
+    {
+      "feature_name": "市场分析能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.具备一定的市场分析能力，能及时了解市场动态。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 3,
+    "valid_features": 7,
+    "filtered_noise_count": 16,
+    "processing_notes": "原始数据中包含大量'这是一个招聘信息'等无效文本，已全部过滤。部分特征如'产品全周期开发'仅在单条原文中出现，置信度较低。"
+  }
+}

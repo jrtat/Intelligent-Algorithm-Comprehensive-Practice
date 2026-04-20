@@ -1,0 +1,136 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖薪酬激励、法定保障及特色关怀。薪酬结构包含基本工资、绩效奖金、年终奖及提成机制，部分岗位提供13薪或14薪。法定福利覆盖五险一金（含七险一金）、带薪年假（5-15天）、法定节假日及婚假等。补充福利包括餐补、交通补助、住房补贴（住宿提供）、定期体检、节日礼品及春节高铁票等。特色福利方面，提供弹性工作制、免费班车、员工旅游（短途/长途）、团建活动、下午茶及培训机会。部分岗位享有成本价购买公司产品、年度调薪及晋升机制等额外权益。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "弹性工作",
+    "员工旅游",
+    "餐补",
+    "交通补助",
+    "绩效奖金",
+    "年终奖",
+    "免费班车",
+    "定期体检",
+    "节日礼品",
+    "13薪",
+    "成本价购产品",
+    "年度调薪",
+    "培训机会"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "五险一金、绩效奖金、双休、定期体检、年度涨薪，午餐",
+        "缴纳五险一金，法定节假日，节日礼物礼品多多；3、每天8小时工作，上五休二；",
+        "七险一金、绩效奖金、餐补、带薪年假、定期体检、员工旅游、14薪、定期团建"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "重大节日福利待遇；工作满一年以上后每年有5天带薪休假；",
+        "每年5-15天带薪年假(幸福感超足哦)",
+        "带薪年假、弹性工作、员工旅游、节日福利"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "弹性工作、员工旅游、节日福利",
+        "弹性工作、团队气氛活泼、朝九晚五",
+        "弹性工作制、免费班车、员工旅游"
+      ]
+    },
+    {
+      "feature_name": "员工旅游",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "年度短途旅游、年度长途旅游（视公司当年效益而定）",
+        "员工旅游、定期团建",
+        "员工旅游+员工生日会+发放丰厚的奖励"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "餐补、交通补助、住房补贴、体检",
+        "餐补、采暖补贴、节日福利、定期体检",
+        "提供住宿人事行政："
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "绩效奖金、双休、定期体检、年度涨薪",
+        "绩效奖金、不加班、定期团建",
+        "绩效奖金、加班补助、交通补助"
+      ]
+    },
+    {
+      "feature_name": "年终奖",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "年终分红",
+        "13薪、定期团建"
+      ]
+    },
+    {
+      "feature_name": "免费班车",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "上下班免费园区班车",
+        "免费班车",
+        "免费乘坐本市轨道交通工具"
+      ]
+    },
+    {
+      "feature_name": "节日礼品",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "节日礼物礼品多多",
+        "节日福利礼品",
+        "节日津贴、春节高铁票"
+      ]
+    },
+    {
+      "feature_name": "13薪",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "14薪",
+        "13薪"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 32,
+    "valid_features": 10,
+    "filtered_noise_count": 7,
+    "processing_notes": "过滤了7条无效原文（含'这是一个招聘信息'及纯标点文本），合并了'员工旅游'与'年度旅游'等相似特征，'成本价购产品'等特色福利因出现次数较少标记为中等置信度"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "工作经验概述_description": "该岗位对工作经验的要求以优先条件为主，未明确要求最低工作年限。优先考虑具有相关行业经验的候选人，如助贷、建筑、电气等行业背景。项目经验方面未明确要求特定类型，但强调具备行业经验及沟通能力。特殊经验要求包括具备服务理念、团队合作精神、良好沟通能力等软技能，以及熟练使用办公软件等技术能力。部分岗位对年龄、本地户籍等有附加要求，但非核心工作经验要素。",
+  "工作经验概述_tags": [
+    "行业经验优先",
+    "沟通能力",
+    "办公软件技能",
+    "团队合作",
+    "助贷行业背景",
+    "建筑行业经验",
+    "电气行业经验",
+    "服务理念",
+    "项目经验不限",
+    "软技能要求"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "行业经验优先",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "3、工作经验：认可助贷行业，具有一定的沟通能力，及学习能力。",
+        "有相关工作经验者优先。",
+        "有相关工作经验者优先。"
+      ]
+    },
+    {
+      "feature_name": "建筑行业背景",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "公司具有20年建筑行业施工背景，深知行业痛点及发展方向。"
+      ]
+    },
+    {
+      "feature_name": "办公软件技能",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "6、熟练掌握各种办公软件Word、Excel、PS、CAD等；",
+        "熟练操作办公自动化软件"
+      ]
+    },
+    {
+      "feature_name": "服务理念与团队合作",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "5具有服务理念和团队合作精神；",
+        "具备良好的沟通协作能力，以及严谨的工作作风和品质意识。"
+      ]
+    },
+    {
+      "feature_name": "年龄与户籍要求",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "台州本地人，8小时单休",
+        "25-40周岁以内"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 84,
+    "valid_features": 5,
+    "filtered_noise_count": 66,
+    "processing_notes": "原始数据中存在大量无效条目（如'这是一个招聘信息'），经清洗后仅保留5个有效特征。工作年限要求未在原文中明确体现，仅发现'一年以上相关工作经验'的模糊表述，但未被归类为必备条件。"
+  }
+}

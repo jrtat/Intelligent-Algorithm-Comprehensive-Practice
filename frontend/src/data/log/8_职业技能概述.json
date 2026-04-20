@@ -1,0 +1,98 @@
+{
+  "职业技能概述_description": "该岗位要求具备电子电气设备测试与验证的核心能力，重点包括：1. 熟练操作高低温试验箱、振动台等实验室设备，掌握国军标GJB150系列、GB/T2423等测试标准；2. 熟悉新能源电力设备测试流程，能独立完成HIL台架搭建与维护，使用CAN工具（如INCA、Vector系列）进行通讯配置；3. 具备车载产品测试经验，包括治具管理、整车OTA测试及车载信息娱乐系统（仪表/多媒体/网联）功能验证；4. 精通电子检测设备操作，能进行电路分析与故障定位，熟悉ISO17025实验室管理体系；5. 掌握自动化测试工具（如Python、RobotFramework）及测试框架应用，具备射频性能测试、EMC试验等专项技能。优先考虑具备光伏逆变器、储能系统并网测试经验及德威创/北京同控等主流测试仪器操作能力者。",
+  "职业技能概述_tags": [
+    "高低温试验设备操作",
+    "国军标测试标准掌握",
+    "HIL台架搭建维护",
+    "车载系统测试",
+    "CAN总线工具应用",
+    "新能源电力设备测试",
+    "自动化测试框架应用",
+    "射频性能测试",
+    "EMC试验实施",
+    "ISO17025实验室管理"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "高低温试验设备操作",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2、熟悉国军标GJB150及GJB150A系列、GB/T2423、GJB1032等标准；3、了解高低温试验箱、振动台等实验室设备。",
+        "2、有做过高低温环境试验或者静电、浪涌、脉冲群等EMC试验，或者其他相关测试（例如:安规试验，光学测试等）经验者"
+      ]
+    },
+    {
+      "feature_name": "HIL台架搭建维护",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、能够独立完成HIL台架搭建、调试和日常维护工作；5、熟悉CAN工具，例如INCA、Vector系列，协助台架配置通讯。"
+      ]
+    },
+    {
+      "feature_name": "车载系统测试",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "车载产品测试经验，包括治具管理",
+        "熟悉车载信息娱乐功能，包括仪表，多媒体，车载网联等控制器功能"
+      ]
+    },
+    {
+      "feature_name": "新能源电力设备测试",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "熟悉风电场/风电机组、光伏发电站/光伏逆变器、储能电站/储能变换器等设备设施并网技术要求和测试规范等现行技术标准",
+        "2年及以上新能源电力设备测试相关工作经验，能够熟练操作故障电压发生装置、电网扰动模拟装置等测试装置"
+      ]
+    },
+    {
+      "feature_name": "自动化测试框架应用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "理解并应用过主流测试框架unitest,seleniumrobotframework"
+      ]
+    },
+    {
+      "feature_name": "射频性能测试",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具备射频性能测试，环境搭建维护能力"
+      ]
+    },
+    {
+      "feature_name": "EMC试验实施",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有做过高低温环境试验或者静电、浪涌、脉冲群等EMC试验"
+      ]
+    },
+    {
+      "feature_name": "ISO17025实验室管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉ISO17025实验室管理体系，有第三方认可或资质认定实验室检测工作经验"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 102,
+    "valid_features": 8,
+    "filtered_noise_count": 34,
+    "processing_notes": "过滤掉34条无效信息（含16条'这是一个招聘信息'、8条纯标点、5条长度不足5字符、5条无关内容），合并'高低温试验设备操作'等3组相似特征，保留8个有效特征"
+  }
+}

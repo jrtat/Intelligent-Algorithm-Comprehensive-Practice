@@ -1,0 +1,11 @@
+{
+  "证书要求概述_description": "",
+  "证书要求概述_tags": [],
+  "证书要求概述_features": [],
+  "_metadata": {
+    "total_raw_items": 1,
+    "valid_features": 0,
+    "filtered_noise_count": 1,
+    "processing_notes": "原始数据中包含无效文本'这是一个招聘信息'，经过滤后无有效证书资质信息可提取"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "创新能力评分_score": 38,
+  "创新能力评分_level": "较低",
+  "创新能力评分_reason": "原始数据中仅出现2条与创新能力相关的弱信号描述，且未提及明确的技术创新、问题解决创新性或前瞻性思维要求。其中'创新意识'和'优化升级'的表述较为模糊，未体现强制性或优先性要求。",
+  "创新能力评分_evidence": [
+    "具备良好的职业道德和创新意识。",
+    "Help to optimize and upgrade our service package and platform technology.Help with the team’s daily operation."
+  ],
+  "创新能力评分_scoring_breakdown": {
+    "技术创新要求": 20,
+    "问题解决创新性": 20,
+    "优化改进意识": 60,
+    "前瞻性思维": 20,
+    "自主探索精神": 60
+  },
+  "创新能力评分_importance_distribution": {
+    "技术创新要求": 0.25,
+    "问题解决创新性": 0.2,
+    "优化改进意识": 0.2,
+    "前瞻性思维": 0.2,
+    "自主探索精神": 0.15
+  },
+  "_metadata": {
+    "total_raw_items": 162,
+    "valid_evidence_count": 2,
+    "filtered_noise_count": 160,
+    "processing_notes": "原始数据中包含大量重复的'这是一个招聘信息'无效文本，且有效证据中未出现明确的创新能力要求描述"
+  }
+}

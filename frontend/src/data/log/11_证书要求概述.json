@@ -1,0 +1,54 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质要求主要集中在语言能力、行业特定证书及驾驶资质方面。普通话等级证书为优先考虑项，持有者在应聘中具有一定优势。基金从业资格证书属于必须考取的硬性要求，体现了岗位对专业资质的明确需求。驾驶证（C1及以上）作为加分项，虽非必备但能提升竞争力。此外，岗位对英语基础有基本要求（CET-4或同等水平），但未强制要求相关证书。整体来看，证书要求以实用性为导向，侧重基础资质与行业准入门槛。",
+  "证书要求概述_tags": [
+    "普通话等级证书",
+    "基金从业资格证书",
+    "C1驾驶证",
+    "CET-4英语证书",
+    "行业特定证书"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "普通话等级证书",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.有普通话证书和相关证书优先。"
+      ]
+    },
+    {
+      "feature_name": "基金从业资格证书",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "须考取基金从业资格证书"
+      ]
+    },
+    {
+      "feature_name": "C1驾驶证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "加分项）持有C1及以上驾照，驾驶技术娴熟。"
+      ]
+    },
+    {
+      "feature_name": "CET-4英语证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "英文基础良好（CET-4或同等水平以上）。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 15,
+    "valid_features": 4,
+    "filtered_noise_count": 11,
+    "processing_notes": "原始数据中存在大量无效条目（如'这是一个招聘信息'），经清洗后仅保留4项有效证书要求。基金从业资格证书为强制要求，其他证书均为优先项或加分项。"
+  }
+}

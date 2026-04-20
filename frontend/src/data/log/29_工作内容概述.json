@@ -1,0 +1,71 @@
+{
+  "工作内容概述_description": "该岗位核心职责包括市场推广与客户拓展、数据分析与报告撰写、商务协作与资源整合、项目执行与流程优化。常规工作涵盖市场调研、客户信息整理、推广策略制定及执行；专项工作涉及运输方案优化、数字化业务推进、智能设备维护等。需熟练使用新媒体工具进行宣传推广，具备跨部门协作能力，能独立完成系统操作及文档管理。工作重点在于通过数据分析支持决策，建立长期客户关系，并推动业务流程的数字化升级。",
+  "工作内容概述_tags": [
+    "市场推广",
+    "客户关系维护",
+    "数据分析",
+    "商务协作",
+    "项目执行",
+    "运输方案优化",
+    "数字化业务推进",
+    "新媒体宣传",
+    "系统操作",
+    "流程优化"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "市场调研与数据分析",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "收集市场信息及竞争对手动态，为商务决策提供支持。",
+        "参与市场调研、分析行业数据并给出建议。"
+      ]
+    },
+    {
+      "feature_name": "客户信息管理与维护",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "负责客户信息的整理和归纳，以便更好地把握客户需求。",
+        "加强客户管理，与客户维护良好的合作关系"
+      ]
+    },
+    {
+      "feature_name": "商务推广与资源整合",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "找实体商家我们联盟，给我们的会员打造更多更全面的消费场景",
+        "通过互联网技术给联盟商家推广引流"
+      ]
+    },
+    {
+      "feature_name": "运输方案优化",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "通过线路规划、成本分析等多种角度分析提供最优运输方案"
+      ]
+    },
+    {
+      "feature_name": "系统操作与文档管理",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "按时进行系统操作，EPR、飞书共享文档、OA流程等"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 28,
+    "valid_features": 5,
+    "filtered_noise_count": 17,
+    "processing_notes": "过滤了17条包含'这是一个招聘信息'或无效内容的原文，合并了'市场调研'相关特征，剔除了与核心职责无关的描述"
+  }
+}

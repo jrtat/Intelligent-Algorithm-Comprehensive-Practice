@@ -1,0 +1,116 @@
+{
+  "晋升路径概述_description": "该岗位提供明确的晋升通道，包括技术与管理双通道发展机会。公司设有完善的晋升体系，员工可通过业绩考核实现每3-6个月的升职加薪，典型职级路径包括专员-主管-经理及客户经理-回访经理-团队经理-销售总监等。培养机制包含带薪培训、导师指导、轮岗实践等，注重员工成长。内部转岗和跨部门发展机会丰富，优秀员工可晋升至管理岗或成为合伙人。公司强调透明公正的考核制度，为员工提供清晰的职业发展路径和多次晋升机会。",
+  "晋升路径概述_tags": [
+    "晋升通道",
+    "带薪培训",
+    "业绩考核晋升",
+    "双通道发展",
+    "轮岗实践",
+    "管理岗晋升",
+    "跨部门发展",
+    "导师指导",
+    "透明考核制度"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升通道",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "晋升方向：客户经理-回访经理-团队经理-销售总监",
+        "完善的晋升体系",
+        "管理岗位晋升机会多"
+      ]
+    },
+    {
+      "feature_name": "带薪培训",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "带薪培训，培训当月基本工资6800",
+        "提供专业系统化的带薪岗前培训",
+        "入职前两周以培训为主"
+      ]
+    },
+    {
+      "feature_name": "业绩考核晋升",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "每3个月业绩达标即可晋升",
+        "每三个月就有一次升职加薪",
+        "入职三个月后可以直接晋升经理"
+      ]
+    },
+    {
+      "feature_name": "双通道发展",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "两条发展路径：成为管理者或综合金融个人客户经理",
+        "管理岗与专业岗并行发展",
+        "双通道实现梦想"
+      ]
+    },
+    {
+      "feature_name": "轮岗实践",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "提供岗前培训、在职培训、外部培训、拓展训练"
+      ]
+    },
+    {
+      "feature_name": "管理岗晋升",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "优秀者可做管理岗",
+        "晋升至团队经理、副总经理、总经理",
+        "管理岗位缺口多"
+      ]
+    },
+    {
+      "feature_name": "跨部门发展",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "内部转岗机会",
+        "跨部门发展"
+      ]
+    },
+    {
+      "feature_name": "导师指导",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "入职主管会指导培训"
+      ]
+    },
+    {
+      "feature_name": "透明考核制度",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "透明、公正、公开的考核制度",
+        "晋升机制透明",
+        "考核制度公平"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 24,
+    "valid_features": 9,
+    "filtered_noise_count": 2,
+    "processing_notes": "过滤掉2条包含'这是一个招聘信息'的无效条目，合并相似晋升路径描述，保留高频且明确的晋升机制信息"
+  }
+}

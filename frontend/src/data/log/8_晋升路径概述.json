@@ -1,0 +1,70 @@
+{
+  "晋升路径概述_description": "该岗位提供清晰的职业发展路径，包含双通道晋升机制（技术与管理双通道），支持员工长期职业规划。公司设有明确的职级调薪制度，提供每年两次绩效调薪机会，以及符合标准的股权激励制度。在培养机制方面，公司为新员工提供导师带教、系统入职培训及不定期岗位培训，帮助员工快速成长。同时，公司鼓励内部转岗和跨部门发展，为员工创造多元化的发展空间。福利体系包含完善的五险一金、带薪年假、节日礼品等，结合双通道发展路径和专业职业规划导师支持，形成完整的成长支持体系。",
+  "晋升路径概述_tags": [
+    "双通道发展路径",
+    "绩效调薪机会",
+    "导师带教",
+    "职业规划导师",
+    "系统培训计划",
+    "股权激励制度",
+    "内部转岗机会",
+    "跨部门发展"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升通道",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "顺畅的晋升通道，有竞争力的薪资待遇、五险一金、假日旅游、下午茶等",
+        "提供双通道的发展路径，并配有专业的职业规划导师",
+        "高晋升机会，完善的晋升机制和岗位设置"
+      ]
+    },
+    {
+      "feature_name": "职级调薪",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "每年两次绩效调薪机会",
+        "每年2次职级调薪机会"
+      ]
+    },
+    {
+      "feature_name": "培养机制",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "试用期有大佬带教",
+        "完善的入职培训，导师一对一带教、公司不定期为员工组织相关岗位培训"
+      ]
+    },
+    {
+      "feature_name": "发展空间",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "转行转专业的同学也可以"
+      ]
+    },
+    {
+      "feature_name": "股权激励",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "符合公司股权激励制度条件者，每年享受公司分红"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 37,
+    "valid_features": 5,
+    "filtered_noise_count": 11,
+    "processing_notes": "原文中多次出现'这是一个招聘信息'等无效信息，已过滤。关于具体职级名称（如助理→经理等）未在原文中明确提及，故未编造。"
+  }
+}

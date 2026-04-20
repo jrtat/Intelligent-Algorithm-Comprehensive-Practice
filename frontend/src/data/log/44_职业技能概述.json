@@ -1,0 +1,91 @@
+{
+  "职业技能概述_description": "该岗位要求具备餐饮运营管理、设备维护、库存管理及团队协调等核心能力。必备技能包括值班管理（含开店/打烊）、设备维养、周盘点及库房管理等日常运营工作，需熟练掌握餐厅管理系统（如日工时系统处理）并执行高标准服务流程。高级技能涉及利润管理、排班管理及团队建设，要求能推动餐厅经营目标达成。此外，需具备现场问题处理能力，包括巡检营运现场并解决突发状况。岗位强调实践操作与标准化执行，适合有餐饮行业经验或学习意愿的候选人。",
+  "职业技能概述_tags": [
+    "值班管理",
+    "设备维养",
+    "周盘点管理",
+    "库房管理",
+    "日工时系统处理",
+    "利润管理",
+    "排班管理",
+    "团队建设",
+    "现场问题处理",
+    "餐饮运营管理"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "值班管理（含开店/打烊）",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "推动餐厅高标准执行力度，确保值班管理过程中的产品品质和顾客满意",
+        "值班组长/值班经理的工作职责 推动餐厅高标准执行力度，确保值班管理过程中的产品品质和顾客满意"
+      ]
+    },
+    {
+      "feature_name": "设备维养",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "执行餐厅设备日常维养工作（视餐厅需求）",
+        "设备维养"
+      ]
+    },
+    {
+      "feature_name": "周盘点及库房管理",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "周盘点、货物调整及库房管理",
+        "周盘点、货物调整及库房管理"
+      ]
+    },
+    {
+      "feature_name": "日工时系统处理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "日工时系统处理"
+      ]
+    },
+    {
+      "feature_name": "利润管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "学习到订存货管理、排班管理、利润管理、餐厅营销等经营一家餐厅的各项技能"
+      ]
+    },
+    {
+      "feature_name": "排班管理",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "月度排班，每天一个班次，早中晚三班各占1/3",
+        "排班管理"
+      ]
+    },
+    {
+      "feature_name": "现场问题处理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "巡检营运现场是否符合标准，解决营运现场突发问题",
+        "解决营运现场突发问题"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 24,
+    "valid_features": 7,
+    "filtered_noise_count": 10,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目及与岗位无关的描述，合并了重复出现的'值班管理'相关特征，保留高频且高置信度的核心技能要求。"
+  }
+}

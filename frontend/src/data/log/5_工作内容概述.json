@@ -1,0 +1,73 @@
+{
+  "工作内容概述_description": "该岗位核心职责聚焦于软件测试与质量保障，常规工作包括功能测试、接口测试、测试用例编写及缺陷跟踪，需独立完成测试执行与报告输出。专项工作涉及AI影像分析技术应用、银行金融系统测试及运营商集采测试等场景。需参与需求评审并提出优化建议，协同产品、开发团队推动问题闭环。工作场景包含全国多地驻场及外派，要求具备终端产品测试经验与跨部门协作能力。",
+  "工作内容概述_tags": [
+    "功能测试",
+    "测试用例编写",
+    "接口测试",
+    "缺陷跟踪",
+    "需求评审",
+    "AI影像分析",
+    "银行系统测试",
+    "运营商集采测试",
+    "跨部门协作",
+    "终端产品测试"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "功能测试执行",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "全国项目驻场测试，主要负责功能、数据或接口等相关测试工作",
+        "实习工作将主要负责进行北京一卡通APP功能测试（黑盒测试）"
+      ]
+    },
+    {
+      "feature_name": "测试用例设计与执行",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "负责复现、验证存储软件相关功能模块的问题。4、参与新模块的需求分析、用例编写、测试执行以及测试报告输出",
+        "运用探查性测试，发现测试用例没有覆盖区域的缺陷"
+      ]
+    },
+    {
+      "feature_name": "AI影像分析技术应用",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "透过PowerArena AI影像分析技术，协助厂区即时找出低生产效率肇因",
+        "协助制造业客户提升整体OEE表现"
+      ]
+    },
+    {
+      "feature_name": "银行金融系统测试",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "负责银行项目功能或性能测试，测试用例编写，外派北京多地银行",
+        "1、熟悉银行业务，要求1年以上金融项目测试工作经验"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作与需求评审",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "参与产品设计过程，提供测试建议和反馈",
+        "参与需求评审，提供测试策略和优化建议"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 32,
+    "valid_features": 5,
+    "filtered_noise_count": 178,
+    "processing_notes": "过滤了178条含'这是一个招聘信息'、空值及无关内容的噪声数据，合并了'功能测试'相关重复特征，保留高频且具业务价值的核心职责描述"
+  }
+}

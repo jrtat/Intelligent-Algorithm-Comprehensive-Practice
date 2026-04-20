@@ -1,0 +1,59 @@
+{
+  "职业技能概述_description": "该岗位主要面向绿色建筑与双碳政策相关领域，要求候选人具备建筑节能、低碳建筑、碳计算及碳核算等专业知识。优先考虑有绿色城区或生态城市项目经验者，熟悉碳排放基础知识及碳减排相关技能。具备双碳政策理解能力及低碳建筑相关研究或实习经历为加分项。岗位涉及行业研究、政策分析及项目咨询，需掌握专业术语并了解行业动态。",
+  "职业技能概述_tags": [
+    "双碳政策",
+    "碳核算",
+    "绿色建筑",
+    "建筑节能",
+    "低碳建筑",
+    "碳计算",
+    "碳排放管理",
+    "绿色城区规划",
+    "生态城市研究",
+    "行业政策分析"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "碳核算相关研究或实习就业经验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.了解双碳政策，有建筑节能、低碳建筑、碳计算、碳核算相关研究或实习就业经验的优先；"
+      ]
+    },
+    {
+      "feature_name": "了解绿色建筑、健康建筑、超低能耗建筑",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解绿色建筑、健康建筑、超低能耗建筑、绿色城区或生态城市，参与过相关项目的优先；3."
+      ]
+    },
+    {
+      "feature_name": "了解双碳政策",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.了解双碳政策，有建筑节能、低碳建筑、碳计算、碳核算相关研究或实习就业经验的优先；"
+      ]
+    },
+    {
+      "feature_name": "碳排放基础知识",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解碳排放，碳减排等相关基础知识"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 36,
+    "valid_features": 4,
+    "filtered_noise_count": 32,
+    "processing_notes": "原始数据中存在大量无效信息（如'这是一个招聘信息'、重复文本、非技能类描述），经清洗后仅保留4个有效特征。所有输出内容均有原文依据，未进行任何主观推断。"
+  }
+}

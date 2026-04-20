@@ -1,0 +1,30 @@
+{
+  "创新能力评分_score": 65.0,
+  "创新能力评分_level": "中等",
+  "创新能力评分_reason": "岗位要求具备独立科研思维、提出新研究思路、解决复杂技术问题及优化改进能力，但未明确强制要求创新性。关键证据包括：1. '具有较强的科研创新能力，能够独立思考，提出新的研究思路和方法'；2. 'Strong scientific problem-solving with attention to detail'；3. '具备独立的科研思维和研发能力'。创新能力是岗位的重要能力指标，但未作为核心竞争力。",
+  "创新能力评分_evidence": [
+    "具有较强的科研创新能力，能够独立思考，提出新的研究思路和方法。",
+    "Strong scientific problem-solving with attention to detail",
+    "具备独立的科研思维和研发能力"
+  ],
+  "创新能力评分_scoring_breakdown": {
+    "技术创新要求": 60,
+    "问题解决创新性": 60,
+    "优化改进意识": 40,
+    "前瞻性思维": 20,
+    "自主探索精神": 40
+  },
+  "创新能力评分_importance_distribution": {
+    "技术创新要求": 0.25,
+    "问题解决创新性": 0.2,
+    "优化改进意识": 0.2,
+    "前瞻性思维": 0.2,
+    "自主探索精神": 0.15
+  },
+  "_metadata": {
+    "total_raw_items": 325,
+    "valid_evidence_count": 12,
+    "filtered_noise_count": 113,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的条目及无效文本，保留与科研创新、问题解决、独立思考等相关的有效证据"
+  }
+}

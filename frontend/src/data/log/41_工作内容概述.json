@@ -1,0 +1,72 @@
+{
+  "工作内容概述_description": "该岗位主要负责整合行业资源并推动产品开发，核心职责包括：1.主导食品/饮品新品研发与设计，确保产品质量稳定；2.开展市场调研分析消费者需求，优化产品结构；3.参与跨部门协作推进业务拓展项目；4.组织培训课程实施人才发展计划；5.进行客户关系维护与市场推广工作。岗位要求具备跨领域协作能力，需熟练掌握产品开发流程，同时具备市场分析与团队管理技能，优先考虑有相关行业经验者。",
+  "工作内容概述_tags": [
+    "产品开发",
+    "市场调研",
+    "跨部门协作",
+    "培训实施",
+    "客户关系维护",
+    "业务拓展",
+    "质量管理",
+    "团队管理",
+    "行业资源整合"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "食品/饮品新品研发",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "负责食品/饮品新品研发与设计，保证产品的稳定质量",
+        "2、负责食品/饮品新品研发与设计，保证产品的稳定质量"
+      ]
+    },
+    {
+      "feature_name": "市场调研与分析",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "跟踪食品/饮品市场动态，了解消费者需求，优化现有产品",
+        "定期收集并分析市场动态，包括竞争对手信息、客户需求变化"
+      ]
+    },
+    {
+      "feature_name": "培训课程实施",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "组织实施新人制式课程授权培训",
+        "培训运作：组织实施本部职岗转冲等制式/半制式培训运作"
+      ]
+    },
+    {
+      "feature_name": "客户关系维护",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "客情关系维护",
+        "宣导公司政策、提升销售技能"
+      ]
+    },
+    {
+      "feature_name": "业务拓展项目",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "2.参与产品研发、市场推广等项目，推进公司业务拓展",
+        "整合国内外食品/饮品行业资源，打造行业爆品"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 73,
+    "valid_features": 5,
+    "filtered_noise_count": 52,
+    "processing_notes": "过滤了52条包含'这是一个招聘信息'的无效条目，合并了'产品开发'相关特征，排除了与岗位职责无关的公司介绍内容"
+  }
+}

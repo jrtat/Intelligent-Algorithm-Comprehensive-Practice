@@ -1,0 +1,79 @@
+{
+  "工作内容概述_description": "岗位核心职责涵盖ESG报告编制与行业研究分析、项目尽调与投资测算、房地产服务与客户关系管理、健康管理产品需求收集及行业动态跟踪。常规工作包括ESG报告编制、市场调研、客户咨询及项目评估，专项工作涉及行业趋势分析、投资模型搭建、房产交易服务及健康管理产品优化。需具备跨部门协作能力，与产品、设计、后端团队配合完成项目目标。高频需求包括行业研究分析、ESG报告编制、项目尽调、投资测算及客户关系维护，其中ESG相关工作出现频次最高，且与行业研究、政策分析强相关。",
+  "工作内容概述_tags": [
+    "ESG报告编制",
+    "行业研究分析",
+    "项目尽调",
+    "投资测算模型搭建",
+    "房地产客户服务",
+    "健康管理产品需求收集",
+    "客户关系维护",
+    "跨部门协作",
+    "市场动态跟踪",
+    "政策分析"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "ESG报告编制及设计相关工作",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "2、ESG收资相关工作；3、ESG报告编制及设计相关工作。",
+        "1、ESG同类企业调研相关工作；2、ESG收资相关工作；"
+      ]
+    },
+    {
+      "feature_name": "行业研究分析",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "结合【人形机器人-减速器、激光雷达、视觉、机械臂、软件开发、传感器】行业现状和技术发展，对行业的未来趋势进行前瞻性分析",
+        "关注行业动态，定期收集项目政策信息并汇报。"
+      ]
+    },
+    {
+      "feature_name": "项目尽调",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "主要负责项目前期业务，项目尽调，提供解决方法，以及商业BP的筛选。"
+      ]
+    },
+    {
+      "feature_name": "投资测算",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "Ø 投资测算。针对项目已有参数和市场调研参数的模拟，搭建投资测算模型，对险资、央国企等不同类型客户的投资回报关键指标测算"
+      ]
+    },
+    {
+      "feature_name": "房地产客户服务",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "深度了解北京优质楼盘及周边生活配套，成为城市房产专家  2.为顾客提供优质的房屋租赁、买卖服务体验"
+      ]
+    },
+    {
+      "feature_name": "健康管理产品需求收集",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解市场动态，收集行业信息，为产品优化提供参考。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 21,
+    "valid_features": 6,
+    "filtered_noise_count": 15,
+    "processing_notes": "大量原文包含'这是一个招聘信息'等无效内容，已过滤。'银行官方平台'等特征因原文信息不足被丢弃。'参与健康管理产品需求收集'因噪声过多未提取有效特征。"
+  }
+}

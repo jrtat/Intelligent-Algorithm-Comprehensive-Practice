@@ -1,0 +1,75 @@
+{
+  "工作内容概述_description": "该岗位核心职责包括办理招投标网站平台会员及日常维护，参与开标评标会议的组织与风险控制，负责标书制作、商务技术资料归档及电子商务平台资料准备。常规工作以招投标流程管理为主，包括文件整理、资质办理及会议筹备；专项工作涉及评标环节的风险把控、政府采购项目执行及多部门协作。需独立完成标书制作并确保资料合规性，同时协助招标经理落实开评标会议的准备工作，确保流程合法合规。",
+  "工作内容概述_tags": [
+    "招投标网站会员办理",
+    "开评标会议组织",
+    "标书制作与归档",
+    "评标风险控制",
+    "电子商务平台资料管理",
+    "政府采购项目执行",
+    "跨部门协作",
+    "资质文件整理"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "招投标网站会员办理",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "办理各类招投标网站平台会员，及日常维"
+      ]
+    },
+    {
+      "feature_name": "开评标会议组织",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "协助招标经理组织开标会议、评标会议"
+      ]
+    },
+    {
+      "feature_name": "标书制作与归档",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "负责信息收集及处理，标书制作，商务和技术资料的更新和归档"
+      ]
+    },
+    {
+      "feature_name": "评标风险控制",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "把控开标、评标环节的各项风险"
+      ]
+    },
+    {
+      "feature_name": "电子商务平台资料管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "电子商务平台微信及监督各地市审核资料准备"
+      ]
+    },
+    {
+      "feature_name": "政府采购项目执行",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "政府采购项目岗"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 12,
+    "valid_features": 6,
+    "filtered_noise_count": 25,
+    "processing_notes": "大量原文包含'这是一个招聘信息'等无效内容，已全部过滤。'参与健康管理产品需求收集'等特征因无有效支撑内容被剔除。"
+  }
+}

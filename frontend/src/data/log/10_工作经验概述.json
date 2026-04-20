@@ -1,0 +1,81 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备机械制造或加工行业2年及以上生产管理相关工作经验，熟悉机械制造工艺及质量管理流程，能运用8D方法处理质量问题。优先考虑具有每日制程稽核经验、压铸电子半成品检验经验、粉末冶金工艺知识或3D打印相关研究背景者。需掌握机械图纸识读能力，具备质量分析工具（SPC/FMEA等）使用经验，熟悉ISO9001质量管理体系。行业经验侧重机械加工、锂电池制造、家电质量管控等领域，特殊要求包括团队协作能力、问题解决能力及适应技术更新的持续学习意识。",
+  "工作经验概述_tags": [
+    "机械制造经验",
+    "生产管理",
+    "质量管理体系",
+    "制程稽核",
+    "压铸检验",
+    "粉末冶金工艺",
+    "3D打印技术",
+    "机械图纸识读",
+    "SPC/FMEA工具",
+    "家电质量管控"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "机械制造或加工行业经验",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "机械制造或加工行业，生产管理相关工作2年及以上经验",
+        "2年以上机械加工行业工作经验",
+        "熟悉机械制造工艺"
+      ]
+    },
+    {
+      "feature_name": "质量管理体系应用",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "熟悉ISO9001质量管理体系",
+        "熟悉ISO9001&amp;IATF16949质量体系"
+      ]
+    },
+    {
+      "feature_name": "制程稽核经验",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "每日制程稽核",
+        "有每日制程稽核经验"
+      ]
+    },
+    {
+      "feature_name": "压铸电子检验经验",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有1年以上压铸电子半成品、成品外观品质检验经验"
+      ]
+    },
+    {
+      "feature_name": "机械图纸识读",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "能识机械图纸"
+      ]
+    },
+    {
+      "feature_name": "粉末冶金工艺知识",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有学过粉末冶金课程，了解粉末冶金工艺技术"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 45,
+    "valid_features": 6,
+    "filtered_noise_count": 22,
+    "processing_notes": "已过滤22条包含'这是一个招聘信息'的无效条目，合并了重复出现的'机械制造或加工行业'要求，保留了所有可验证的行业经验描述"
+  }
+}

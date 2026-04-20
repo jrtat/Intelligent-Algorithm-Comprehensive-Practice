@@ -1,0 +1,110 @@
+{
+  "福利待遇概述_description": "该岗位提供具有市场竞争力的薪酬体系，包含基本工资、绩效奖金、年终奖及股票期权等多元激励。法定福利方面，全面覆盖五险一金（部分岗位为六险一金），并提供带薪年假（最长15天）、法定节假日休假等保障。补充福利涵盖餐补、交通补贴、住房补贴（包住）、定期体检、生日礼金等。特色福利包括弹性工作制、团建旅游、节日福利、培训机会及职业发展支持。部分岗位提供年底13薪、加班补助、通讯补贴及员工旅游等附加权益。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "住房补贴",
+    "绩效奖金",
+    "年终奖",
+    "餐补",
+    "股票期权",
+    "弹性工作",
+    "团建旅游",
+    "定期体检"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 45,
+      "evidence_count": 32,
+      "sample_evidence": [
+        "缴纳五险一金",
+        "入职全额缴纳六险一金",
+        "提供六险一金"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 28,
+      "evidence_count": 20,
+      "sample_evidence": [
+        "带薪年假",
+        "带薪年假（按毕业后累计工作计算，最多15天）",
+        "享受带薪年假"
+      ]
+    },
+    {
+      "feature_name": "住房补贴",
+      "confidence": "high",
+      "frequency": 22,
+      "evidence_count": 16,
+      "sample_evidence": [
+        "提供住宿",
+        "包住",
+        "员工公寓"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 31,
+      "evidence_count": 23,
+      "sample_evidence": [
+        "绩效奖金",
+        "绩效双薪",
+        "绩效奖"
+      ]
+    },
+    {
+      "feature_name": "年终奖",
+      "confidence": "high",
+      "frequency": 26,
+      "evidence_count": 19,
+      "sample_evidence": [
+        "年终奖",
+        "年底13薪",
+        "年终奖金"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "medium",
+      "frequency": 18,
+      "evidence_count": 13,
+      "sample_evidence": [
+        "餐补",
+        "工作餐",
+        "午餐补助"
+      ]
+    },
+    {
+      "feature_name": "股票期权",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "股票期权",
+        "公司分红"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 11,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "弹性工作制",
+        "弹性工作",
+        "做五休二"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 122,
+    "valid_features": 8,
+    "filtered_noise_count": 67,
+    "processing_notes": "已过滤包含'这是一个招聘信息'的无效文本及重复内容，部分特征如'衣食住行'已合并至对应福利类别"
+  }
+}

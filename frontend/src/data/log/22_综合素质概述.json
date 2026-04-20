@@ -1,0 +1,95 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备出色的沟通协调能力，能够与多部门协作并推动工作进展。需具备较强的学习适应能力，能快速适应多任务、高压工作环境。工作态度方面要求主动积极、责任心强，能承受工作压力并保持严谨细致的工作作风。问题解决能力方面需具备逻辑思维和创新意识，能独立完成招聘计划执行、候选人筛选及面试安排等工作。核心素质包括团队合作精神、抗压能力、执行力及服务意识，加分项包含招聘领域2年以上经验、数据分析工具使用能力及跨部门协作经验。",
+  "综合素质概述_tags": [
+    "沟通协调能力",
+    "团队合作精神",
+    "抗压能力",
+    "执行力",
+    "服务意识",
+    "学习适应能力",
+    "数据分析工具使用",
+    "招聘经验",
+    "跨部门协作"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通协调能力",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "出色的沟通、协调和推动能力，能够快速适应多任务、高压环境",
+        "具备良好的沟通能力和团队合作精神",
+        "沟通能力强，身体健康，工作认真负责，心态积极阳光"
+      ]
+    },
+    {
+      "feature_name": "抗压能力",
+      "confidence": "high",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "能够快速适应多任务、高压环境",
+        "能承担一定的工作压力",
+        "保持积极的工作态度，具备良好的抗压能力"
+      ]
+    },
+    {
+      "feature_name": "团队合作精神",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "具有团队合作意识",
+        "团队合作：与各部门紧密合作",
+        "具备良好的沟通能力和团队合作精神"
+      ]
+    },
+    {
+      "feature_name": "执行力",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "执行招聘计划，确保招聘交付的完成",
+        "工作态度认真、耐心、责任心强，稳定发展",
+        "具备较强的工作执行力"
+      ]
+    },
+    {
+      "feature_name": "学习适应能力",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "具备敏锐的市场洞察力和创新意识",
+        "具备一定的学习能力和适应能力",
+        "能适应公司快速发展的工作节奏"
+      ]
+    },
+    {
+      "feature_name": "招聘经验",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "至少在招聘方向沉淀2年以上时间"
+      ]
+    },
+    {
+      "feature_name": "数据分析工具使用",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟练使用数据分析工具和招聘软件"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 135,
+    "valid_features": 7,
+    "filtered_noise_count": 68,
+    "processing_notes": "原始数据中包含大量'这是一个招聘信息'等噪声内容，已全部过滤。'从容外交'和'懂内部管理'等特征因原文描述过于碎片化，未纳入最终标签体系。"
+  }
+}

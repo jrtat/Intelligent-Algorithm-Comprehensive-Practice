@@ -1,0 +1,123 @@
+{
+  "福利待遇概述_description": "该岗位提供全面的福利体系，涵盖法定及补充福利。薪酬结构包含基本工资、绩效奖金、年终分红及股票期权，部分岗位提供项目提成。法定福利方面，五险一金覆盖全面，带薪年假及法定节假日保障完善。补充福利包括餐补、交通补助、通讯补贴、定期体检等。特色福利涵盖节日福利、员工旅游、弹性工作（单双休）、年度健康体检、培训发展机会及晋升通道。部分岗位提供额外补贴如加班补助、免费工作餐及工会福利。薪酬范围在4000-7000元/月，部分岗位有年终双薪及调薪机制。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "绩效奖金",
+    "带薪年假",
+    "节日福利",
+    "定期体检",
+    "年终分红",
+    "股票期权",
+    "交通补助",
+    "餐补",
+    "员工旅游",
+    "弹性工作",
+    "年度调薪",
+    "项目提成"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "提供五险一金、绩效奖金、节假日福利、免费班车",
+        "五险一金带薪年假、定期体检、绩效奖金、节日福利",
+        "五险一金、绩效奖金、交通补助、餐补、通讯补助"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 14,
+      "evidence_count": 14,
+      "sample_evidence": [
+        "绩效奖金、带薪年假、节日福利、公司团建",
+        "绩效奖金、带薪年假、节日福利、免费班车",
+        "绩效奖金、年底双薪、员工旅游"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "带薪年假、定期体检、节日福利",
+        "带薪年假、法定节假日及带薪休假",
+        "带薪年假、节日福利、周末双休"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "high",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "节日福利、公司团建、周末双休",
+        "节日福利、免费午餐、车补话补",
+        "节日福利、员工年度旅游"
+      ]
+    },
+    {
+      "feature_name": "定期体检",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "定期体检、员工旅游",
+        "定期健康体检",
+        "定期体检、补充医疗保险"
+      ]
+    },
+    {
+      "feature_name": "年终分红",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "年终分红、绩效奖金、五险一金",
+        "年底双薪、年终分红",
+        "年终分红、项目提成"
+      ]
+    },
+    {
+      "feature_name": "股票期权",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "股票期权、加班补助"
+      ]
+    },
+    {
+      "feature_name": "交通补助",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "交通补助、餐补、通讯补助",
+        "交通补助、餐补、带薪年假",
+        "交通补助、节日福利"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "单双休、五险、国企单位",
+        "周末双休、法定休息",
+        "弹性工作（单双休）"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 31,
+    "valid_features": 9,
+    "filtered_noise_count": 2,
+    "processing_notes": "过滤掉2条无效原文（'这是一个招聘信息'及空值），'股票期权'特征因支持原文不足被标记为低置信度"
+  }
+}

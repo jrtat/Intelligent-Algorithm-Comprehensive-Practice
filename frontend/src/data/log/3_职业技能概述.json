@@ -1,0 +1,111 @@
+{
+  "职业技能概述_description": "该岗位要求具备生物实验技术（如荧光定量PCR、Western Blot、蛋白纯化、分子克隆等）和病毒包装经验（腺病毒、腺相关病毒等）。需掌握工业自动化相关技能（PLC编程、伺服控制、工业机器人调试），熟悉工业互联网+安全生产系统（ZigBee定位、安防监控集成）。具备数据库维护（MongoDB/SQL Server）、激光加工原理、电沉积工艺等专业能力。加分项包括Prompt调优、大模型应用、3D细胞培养等前沿技术经验。核心要求涵盖实验操作、设备调试、系统集成及行业解决方案落地能力。",
+  "职业技能概述_tags": [
+    "生物实验技术（PCR/Western Blot/蛋白纯化）",
+    "病毒包装经验（腺病毒/腺相关病毒）",
+    "工业自动化控制（PLC/伺服/机器人）",
+    "工业互联网+安全生产系统",
+    "数据库维护（MongoDB/SQL Server）",
+    "激光加工技术",
+    "电沉积工艺",
+    "Prompt调优与大模型应用",
+    "3D细胞培养技术"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "生物实验技术",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "2、熟练掌握细胞培养，荧光定量PCR，分子克隆，蛋白表达与纯化，抗体制备，Western Blot等基本技术",
+        "2、熟练掌握细胞培养，荧光定量PCR，分子克隆，蛋白表达与纯化，抗体制备，Western Blot等基本技术"
+      ]
+    },
+    {
+      "feature_name": "病毒包装经验",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "必须有病毒包装（慢病毒、腺病毒、腺相关病毒）相关经验！",
+        "必须有病毒包装（慢病毒、腺病毒、腺相关病毒）相关经验！"
+      ]
+    },
+    {
+      "feature_name": "工业自动化控制",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "精通主流品牌变频器，PLC，人机界面，伺服系统，工业机器人等工业自动化与传动产品应用及调试",
+        "熟悉三菱、西门子、AB、OMRON等其中之一的PLC编程"
+      ]
+    },
+    {
+      "feature_name": "工业互联网+安全生产系统",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "基于精准人员定位的工业互联网+危化安全生产人员定位系统技术支持",
+        "整合访客管理、出入口控制、人脸识别、视频监控等安防系统"
+      ]
+    },
+    {
+      "feature_name": "数据库维护",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "掌握数据库基本理论基础，了解 mongo db 或sql server基本维护",
+        "掌握数据库基本理论基础，了解 mongo db 或sql server基本维护"
+      ]
+    },
+    {
+      "feature_name": "激光加工技术",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "理解激光和激光加工原理，紫外激光，纳秒和皮秒激光器精密加工应用经验",
+        "熟悉激光焊接技术原理和监测系统的工作原理"
+      ]
+    },
+    {
+      "feature_name": "电沉积工艺",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "熟悉电沉积基本原理、电沉积涂层和镀液测试方法",
+        "电沉积设备维护保养，复杂异形件表面电沉积贵金属从业经验"
+      ]
+    },
+    {
+      "feature_name": "Prompt调优与大模型应用",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉 Prompt 调优，了解 RAG、FunctionCall、SFT 等技术，有大模型领域应用作品者优先"
+      ]
+    },
+    {
+      "feature_name": "3D细胞培养技术",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "具有3D细胞培养或器官芯片经验优先",
+        "具有3D细胞培养或器官芯片经验优先"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 132,
+    "valid_features": 9,
+    "filtered_noise_count": 45,
+    "processing_notes": "合并了重复的工业互联网+安全生产系统描述，整合了相似的自动化控制技能项，剔除了所有包含'这是一个招聘信息'的无效条目"
+  }
+}

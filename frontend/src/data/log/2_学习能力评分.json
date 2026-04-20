@@ -1,0 +1,30 @@
+{
+  "学习能力评分_score": 80,
+  "学习能力评分_level": "良好",
+  "学习能力评分_reason": "岗位明确要求具备快速学习新方法、持续科研创新能力及文献学习能力，强调自主研究能力和技术更新适应性。关键证据包括'能快速读取、吸收和学习新方法'及'具备独立的科研思维和研发能力'。",
+  "学习能力评分_evidence": [
+    "Capable in scientific investigation, with the skill to quickly read, absorb and learn new methodologies from scientific literature",
+    "4、具备较强的文献学习能力、研发调研能力、文字表达能力以及团队管理能力",
+    "果具有较强科研创新能力，能够独立思考，提出新的研究思路和方法"
+  ],
+  "学习能力评分_scoring_breakdown": {
+    "技术迭代速度": 80,
+    "自主学习要求": 80,
+    "知识广度要求": 60,
+    "深度学习深度": 60,
+    "知识分享输出": 40
+  },
+  "学习能力评分_importance_distribution": {
+    "技术迭代速度": 25,
+    "自主学习要求": 25,
+    "知识广度要求": 20,
+    "深度学习深度": 15,
+    "知识分享输出": 15
+  },
+  "_metadata": {
+    "total_raw_items": 128,
+    "valid_evidence_count": 18,
+    "filtered_noise_count": 62,
+    "processing_notes": "部分条目包含重复招聘信息，已按规则过滤无效内容"
+  }
+}

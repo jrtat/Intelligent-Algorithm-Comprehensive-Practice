@@ -1,0 +1,106 @@
+{
+  "职业技能概述_description": "该岗位要求具备硬件测试与调试的核心能力，熟练掌握FPGA设计、电路板焊接及测试仪器操作。基础技能包括使用示波器、万用表、频率计、负载仪等测试设备，以及电子物料表制作和样品电路板焊接。专业能力领域涵盖嵌入式处理器（MCU/MPU/DSP）原理、电源拓扑（AC/DC/DC/DC）分析及开关电源性能测试。高级技能要求精通EDA工具（如Altium Designer、PADS、嘉立创EDA）使用，熟悉BIOS功能配置及汽车OBD协议。具备光通信指标分析（S参数、相位噪声）和3GPP协议理解者为加分项。需具备独立分析故障、执行硬件稳定性测试及执行交通信号机测试方案的能力。",
+  "职业技能概述_tags": [
+    "FPGA设计",
+    "示波器操作",
+    "电路板焊接",
+    "EDA工具使用",
+    "嵌入式处理器理解",
+    "电源拓扑分析",
+    "开关电源测试",
+    "BIOS功能配置",
+    "OBD协议熟悉",
+    "光通信指标分析"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "测试仪器操作",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "一定要熟练操作示波器，负载仪，相噪仪，频率计",
+        "熟练使用测试仪器(示波器、频率计、频谱仪、电源负载)等"
+      ]
+    },
+    {
+      "feature_name": "FPGA设计",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、有电源测试经验 2、会FPGA 3、示波器、万用表等熟练使用；必备技能: 硬件测试"
+      ]
+    },
+    {
+      "feature_name": "EDA工具使用",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "熟悉使用至少一种EDA软件，PADS或者嘉立创EDA佳",
+        "了解Altium Designer、Candence等EDA工具"
+      ]
+    },
+    {
+      "feature_name": "嵌入式处理器理解",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解MCU、MPU、DSP等嵌入式处理器"
+      ]
+    },
+    {
+      "feature_name": "电源拓扑分析",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉AC/DC、DC/DC、DC/AC常用拓扑"
+      ]
+    },
+    {
+      "feature_name": "开关电源测试",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉开关电源各种性能指标含义和测试方法"
+      ]
+    },
+    {
+      "feature_name": "BIOS功能配置",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉BIOS的常用功能：BIOS更新、SMBIOS、接口控制、安全设置、启动项设置、CMOS等"
+      ]
+    },
+    {
+      "feature_name": "OBD协议熟悉",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉汽车诊断OBD协议"
+      ]
+    },
+    {
+      "feature_name": "光通信指标分析",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "对s参数，频谱，相位噪声，杂散等指标由深刻理解"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 41,
+    "valid_features": 9,
+    "filtered_noise_count": 19,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目，合并了EDA工具相关特征，剔除了重复的测试仪器描述"
+  }
+}

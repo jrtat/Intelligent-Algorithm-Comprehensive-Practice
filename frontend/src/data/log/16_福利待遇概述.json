@@ -1,0 +1,137 @@
+{
+  "福利待遇概述_description": "该岗位提供市场竞争力的薪酬结构，包含底薪、绩效奖金、提成、年终奖等。法定福利方面，普遍覆盖五险一金（部分岗位为六险一金），并提供带薪年假、法定节假日休息、加班补助等。补充福利包括餐补（320-500元/月）、交通补贴（500元/月）、住房补贴、节日福利、定期体检、商业保险等。特色福利涵盖弹性工作制、团队建设活动、培训机会（含带薪培训、师徒制带教）、晋升通道（季度调薪、年度晋升）、年终双薪、长期流水佣金等。部分岗位提供额外激励如月TOP奖、季度销售团队奖、新人奖等，优秀员工可享受高提成及奖金。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "绩效奖金",
+    "带薪年假",
+    "餐补",
+    "交通补贴",
+    "弹性工作制",
+    "团队建设",
+    "带薪培训",
+    "年终双薪",
+    "提成制度",
+    "商业保险",
+    "节日福利",
+    "晋升通道",
+    "长期流水佣金",
+    "住房补贴"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 24,
+      "evidence_count": 24,
+      "sample_evidence": [
+        "入职缴纳六险一金按照当地最高比例12%进行缴纳",
+        "入职当月缴纳五险一金",
+        "试用期正常缴纳六险一金"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "基本工资+奖金+油补+六险一金+福利费等",
+        "绩效奖金、全勤奖、带薪年假、节日福利",
+        "季度调薪，只认业绩不认人"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "带薪年假10-15天",
+        "带薪年假、法定节假日",
+        "每年4次调薪，带薪年假10-15天"
+      ]
+    },
+    {
+      "feature_name": "餐补",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "餐补330元/月",
+        "包三餐",
+        "餐补200元/月"
+      ]
+    },
+    {
+      "feature_name": "交通补贴",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "交通补助每月500(实报实销）",
+        "交通补助500元/月",
+        "交通话费补贴400元"
+      ]
+    },
+    {
+      "feature_name": "年终双薪",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "年底享受13薪",
+        "年终奖金按利润达成另发",
+        "年底双薪"
+      ]
+    },
+    {
+      "feature_name": "弹性工作制",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "弹性化办公机制，实行月休8～10天的自主调休",
+        "弹性工作制/双休就近分配",
+        "工作时间：早10 晚7 周末双休 法定休息"
+      ]
+    },
+    {
+      "feature_name": "团队建设",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "定期团队建设活动",
+        "每年多次调薪、员工旅游",
+        "不定期团建"
+      ]
+    },
+    {
+      "feature_name": "带薪培训",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "带薪培训，师傅一对一专业带教",
+        "入职带薪培训",
+        "带薪培训，师徒制带教"
+      ]
+    },
+    {
+      "feature_name": "长期流水佣金",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "可以拿到长期流水佣金",
+        "长期流水佣金、任职要求"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 61,
+    "valid_features": 10,
+    "filtered_noise_count": 14,
+    "processing_notes": "部分特征如'销冠百万年薪'、'带来360行的跨界管道收益'等因缺乏明确福利指向被过滤。'五险一金'与'六险一金'存在表述差异，统一归类为'五险一金'。"
+  }
+}

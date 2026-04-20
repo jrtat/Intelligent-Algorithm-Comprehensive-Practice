@@ -1,0 +1,87 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备特定行业或业务流程的实操经验，优先考虑具有相关领域背景的应聘者。核心经验要求包括：熟悉超市业务流程、长租公寓招商运营流程、房地产代建业务模式、跨境平台操作流程等。对于工作年限，部分岗位接受应届生或半年以上经验，但多数岗位要求1年以上相关经验。优先经验包括快速消费品行业背景、电商运营经验、ERP系统操作能力、数据分析能力等。岗位更倾向具备跨平台运营经验（如Temu、SHEIN）、团队管理能力或培训经验的候选人，同时接受有潜力的新人通过培训体系成长。",
+  "工作经验概述_tags": [
+    "超市业务流程熟悉",
+    "长租公寓招商运营经验",
+    "房地产代建业务模式了解",
+    "跨境电商平台操作经验",
+    "快速消费品行业背景",
+    "ERP系统操作能力",
+    "数据分析能力",
+    "Temu运营经验",
+    "团队管理经验",
+    "培训经验"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "熟悉超市业务流程",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "–高中/中专及以上学历，零售、管理相关专业优先。–熟悉超市业务流程，具备基础电脑操作能力（Excel/ERP系统）"
+      ]
+    },
+    {
+      "feature_name": "快速消费品行业优先",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2、具备人员培训和管理经验，快速消费品行业优先，熟悉操作office软件；3、有较强的数据统计、分析能力，熟练运用办公软件，尤其是EXCEL统计分析公式；",
+        "1、管理类专业背景，财务、统计专业优先，本科学历及以上、研究生优先。2、有财务实习经验者优先；"
+      ]
+    },
+    {
+      "feature_name": "了解房地产代建行业主要业务模式优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、2024级或2025级毕业生，房地产开发与经营、管理类相关专业本科及以上学历；2、了解房地产代建行业主要业务模式优先，熟悉房地产项目开发全流程优先；"
+      ]
+    },
+    {
+      "feature_name": "熟悉跨境平台整个操作流程",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "工作经验：拥有TEMU、SHEIN或其他跨境电商平台运营经验者优先考虑，熟悉跨境平台整个操作流程，熟悉产品的推广和优化；"
+      ]
+    },
+    {
+      "feature_name": "熟悉长租公寓招商运营工作流程",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、大专以上学历；3、熟悉长租公寓招商运营工作流程，具有同行业工作经验者优先；"
+      ]
+    },
+    {
+      "feature_name": "Temu助理经验半年以上",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3-6月（可提前转） 岗位职责:1、简单改图改视频2、上传商品链接文案及资质3、售后邮件回复4、平台日常事务5、安排发货及少量自发货  岗位要求：1、Temu助理经验半年以上2、熟练PS和视频软件3、大专以上4、店小秘ERP使用经验优先5、熟练使用办公软件 （钉钉、word、exel） 待遇："
+      ]
+    },
+    {
+      "feature_name": "2年以上电气行业市场",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.具备1年以上的工作经验，有行政、人事、运营等多方面工作经验者优先；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 12,
+    "valid_features": 7,
+    "filtered_noise_count": 34,
+    "processing_notes": "大量原始文本包含'这是一个招聘信息'等无效内容，已过滤。部分特征如'2年以上电气行业市场'的原文信息不完整，置信度较低。"
+  }
+}

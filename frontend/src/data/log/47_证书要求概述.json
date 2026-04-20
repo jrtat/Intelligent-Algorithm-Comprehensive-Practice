@@ -1,0 +1,19 @@
+{
+  "证书要求概述_description": "",
+  "证书要求概述_tags": [],
+  "证书要求概述_features": [
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "low",
+      "frequency": 0,
+      "evidence_count": 0,
+      "sample_evidence": []
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 1,
+    "valid_features": 0,
+    "filtered_noise_count": 1,
+    "processing_notes": "原始数据中未发现符合要求的证书/资质相关信息，所有特征均因缺乏有效证据被过滤"
+  }
+}

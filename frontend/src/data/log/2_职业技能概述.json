@@ -1,0 +1,80 @@
+{
+  "职业技能概述_description": "该岗位要求候选人具备扎实的分子生物学实验技能（如CRISPR、PCR/qPCR/RT-PCR）及蛋白质表达、纯化与分析能力（SEC、离子交换、Octet、DLS）。熟练掌握自动化和高通量技术，具备SDS-PAGE、Western blotting、HPLC、质谱等分析技术经验。需熟悉基因组工程学、遗传学、细胞生物学、生物信息学、合成生物学等研究方向，具备流利的英语读写能力。优先考虑有电生理、蛋白纯化、遗传筛选或小鼠疾病模型实验背景者。需掌握高分辨成像技术及生物探针技术，熟悉TCGA/ICGC等公共数据库及Python/R语言。具备科研项目管理能力，能独立开展研究并撰写论文。",
+  "职业技能概述_tags": [
+    "分子生物学实验",
+    "蛋白质纯化技术",
+    "高通量实验技术",
+    "生物信息学分析",
+    "基因组工程",
+    "蛋白质表达分析",
+    "英语科研写作",
+    "SDS-PAGE技术",
+    "Western blotting",
+    "HPLC操作",
+    "质谱分析",
+    "TCGA数据库",
+    "Python编程",
+    "科研项目管理",
+    "论文撰写能力"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "分子生物学实验技能",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "o 分子生物学实验（CRISPR、克隆、PCR/qPCR/RT-PCR）；o 蛋白质表达、纯化与分析（如SEC、离子交换、Octet、DLS）；",
+        "（3）有电生理、蛋白纯化、遗传筛选或小鼠疾病模型实验背景者优先考虑；",
+        "Familiarity with automation and high-throughput techniques for protein expression and purification.Strong analytical and problem-solving skills, with experience in analytical techniques such as SDS-PAGE, Western blotting, HPLC, and mass spectrometry."
+      ]
+    },
+    {
+      "feature_name": "蛋白质纯化与分析",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "o 蛋白质表达、纯化与分析（如SEC、离子交换、Octet、DLS）；",
+        "Familiarity with automation and high-throughput techniques for protein expression and purification.",
+        "3.熟练掌握混凝土及耐久性优化设计方法 2.熟练使用origin等软件 3."
+      ]
+    },
+    {
+      "feature_name": "生物信息学分析",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "精通肿瘤多组学数据分析流程，熟悉肿瘤免疫治疗核心指标（PD-L1、TIL、TMB等）及新生抗原预测原理；熟练掌握Python/R语言，熟悉GATK、STAR、ANNOVAR等生信工具，熟悉TCGA/ICGC等公共数据库；",
+        "a.有基因组工程学、遗传学、细胞生物学、生物信息学、合成生物学、外泌体等研究背景者；"
+      ]
+    },
+    {
+      "feature_name": "英语科研能力",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "（4）具备流利的英语读写和日常交流能力，能够使用英文撰写论文。",
+        "熟悉GSI及WRFDA的使用，有自主编译、安装、调试、应用同化系统经验，了解数值模式WRF、MPAS、CESM等运行流程3.熟悉三维变分、集合同化等资料同化算法，并对卫星资料同化方法有一定的了解4."
+      ]
+    },
+    {
+      "feature_name": "高通量实验技术",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "Familiarity with automation and high-throughput techniques for protein expression and purification.",
+        "自动化和高通量技术"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 114,
+    "valid_features": 15,
+    "filtered_noise_count": 32,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的条目及无效文本，合并了'蛋白质纯化'相关特征，消除'Origin'等不相关标签"
+  }
+}

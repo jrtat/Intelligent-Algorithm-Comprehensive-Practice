@@ -1,0 +1,136 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，包含法定福利与特色补充福利。薪酬结构以底薪为基础，包含绩效奖金、提成及年终奖，部分岗位提供股权激励。法定福利涵盖五险一金、带薪年假、法定节假日休假及产假。补充福利包括住房补贴、餐补、交通补贴、年度体检及节日福利。特色福利方面，提供弹性工作制、团队旅游、定期团建、带薪培训及晋升机会。部分岗位享有出国学习、高管带教、住宿补贴及丰富的员工关怀措施（如生日会、下午茶、零食供应等）。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "年终奖",
+    "住房补贴",
+    "弹性工作",
+    "团队旅游",
+    "带薪培训",
+    "晋升机会",
+    "节日福利",
+    "餐补",
+    "年度体检",
+    "团建活动"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "购买五险一金",
+        "入职即享受买五险一金",
+        "按规定缴纳五险"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "依法享受带薪年假",
+        "带薪年假、年底双薪",
+        "带薪年假、旅游活动"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "绩效奖金",
+        "绩效奖金、全勤奖",
+        "绩效奖金、团队奖"
+      ]
+    },
+    {
+      "feature_name": "年终奖",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "丰厚的年终奖",
+        "年底双薪",
+        "年终奖、核心员工跟投创新业务计划股权激励"
+      ]
+    },
+    {
+      "feature_name": "住房补贴",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "免费提供住宿",
+        "公司免费提供住宿",
+        "提供住宿"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "弹性工作",
+        "弹性工作制",
+        "工作时间灵活"
+      ]
+    },
+    {
+      "feature_name": "团队旅游",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "员工国内外旅游",
+        "每年国内旅游1次",
+        "组织2次以上内部员工度假旅游"
+      ]
+    },
+    {
+      "feature_name": "带薪培训",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "带薪培训",
+        "带薪学习",
+        "带薪拓展培训"
+      ]
+    },
+    {
+      "feature_name": "晋升机会",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "多次晋升机会",
+        "晋升通道完善",
+        "晋升路径明确"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "节日福利",
+        "节日限定丰厚礼盒",
+        "春节、妇女节等节日礼品"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 39,
+    "valid_features": 10,
+    "filtered_noise_count": 5,
+    "processing_notes": "过滤掉5条无效招聘信息及纯标点文本，合并同类福利项目，确保所有特征均有原文支撑"
+  }
+}

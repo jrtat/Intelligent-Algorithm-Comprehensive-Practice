@@ -1,0 +1,122 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的福利体系，涵盖薪酬激励、法定保障、补充支持及特色关怀。薪酬结构包含基本工资、绩效奖金（如新秀津贴1w-6w）、年终奖、股权激励及购房贷款贴息等长期激励。法定福利包括五险一金、带薪年假（10-20天）、法定节假日三倍工资及补充医疗保险。补充福利涵盖交通、生日、高温、团建、书籍等补贴，以及应届生专属的0息租房‘贝’用金、家属专属意外医疗保障（格林互助金）等。特色福利包括晋升路径（业务主任/组经理/部经理/区域总监、餐厅经理年薪10万以上）、多元化收入渠道（保险、银行、证券等）、培训机会（国际RFP、MBA课程等）及自选福利（旅游、学习、休假、汽车消费）。工作安排包含弹性工作、定期团建、出国游及项目奖金等。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "绩效奖金",
+    "股权激励",
+    "补充医疗保险",
+    "培训津贴",
+    "购房补贴",
+    "家属保险",
+    "弹性工作",
+    "团建旅游",
+    "自选福利",
+    "晋升通道",
+    "多元化收入",
+    "商业医疗保险"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "入职首月享受5险1金+雇主责任险+商业医疗保险+全家保险计划+免费年度体检",
+        "职位福利：五险一金、绩效奖金、带薪年假、补充医疗保险、节日福利、双休、晋升快、平台大"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "10-20天带薪年假、5-10天全薪病假",
+        "提供带薪年假（10天起）"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "新秀津贴1w-6w",
+        "展业佣金、月度销售奖金等"
+      ]
+    },
+    {
+      "feature_name": "股权激励",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "晋升满1年享股权激励"
+      ]
+    },
+    {
+      "feature_name": "补充医疗保险",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "补充医疗保险",
+        "全家保险计划+免费年度体检"
+      ]
+    },
+    {
+      "feature_name": "培训津贴",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "培训津贴3k"
+      ]
+    },
+    {
+      "feature_name": "购房补贴",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "应届生（入职3个月以内）8000元0息租房‘贝’用金"
+      ]
+    },
+    {
+      "feature_name": "家属保险",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "格林互助金，员工本人和家属的专属意外、医疗保障基金"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "弹性工作、定期团建"
+      ]
+    },
+    {
+      "feature_name": "团建旅游",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "月度聚餐及周边游",
+        "国内精品游、国外豪华游"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 50,
+    "valid_features": 10,
+    "filtered_noise_count": 20,
+    "processing_notes": "部分特征因原文信息不足（如‘家属保险’）置信度较低，且过滤了20条无效招聘信息及噪声数据"
+  }
+}

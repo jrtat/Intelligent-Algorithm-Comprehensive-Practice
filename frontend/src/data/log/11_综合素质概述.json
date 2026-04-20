@@ -1,0 +1,84 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备高度的适应能力和抗压能力，能够接受频繁出差及高强度工作节奏。核心素质包括优秀的沟通协调能力，需能与内外部人员有效协作，维护公司形象；具备主动性和责任心，能独立完成任务并推动工作落地。工作态度方面强调严谨细致和执行力，需适应商务接待、应酬等场景。问题解决能力方面，要求逻辑清晰、分析能力强，能处理临时事件并提出优化建议。加分项包括驾驶技能、跨文化沟通能力及组织策划经验。",
+  "综合素质概述_tags": [
+    "跨部门沟通",
+    "适应出差",
+    "抗压能力",
+    "商务接待",
+    "执行力",
+    "逻辑分析",
+    "团队协作",
+    "组织策划",
+    "驾驶技能",
+    "客户维护"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "跨部门沟通",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "与内外部人员进行协调、联络和沟通，维护公司良好形象",
+        "促进跨部门沟通协作，提升团队工作效率与凝聚力"
+      ]
+    },
+    {
+      "feature_name": "适应出差",
+      "confidence": "high",
+      "frequency": 28,
+      "evidence_count": 28,
+      "sample_evidence": [
+        "能接受长期出差",
+        "需独立驾驶接送重要客户或陪同出差",
+        "预计转正每年出差时间超过4个月"
+      ]
+    },
+    {
+      "feature_name": "抗压能力",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "抗压能力强，能适应一定程度的出差",
+        "能适应高频出差、高强度工作节奏"
+      ]
+    },
+    {
+      "feature_name": "商务接待",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "接待客户及来访者，维护公司形象",
+        "协助董事长进行客户接待和商务应酬"
+      ]
+    },
+    {
+      "feature_name": "执行力",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "具备良好的沟通协调能力和执行力",
+        "确保各项指令高效落地"
+      ]
+    },
+    {
+      "feature_name": "逻辑分析",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "精准汇报公司业务运营情况，提供数据支持并给出建议",
+        "逻辑思维清晰"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 57,
+    "valid_features": 6,
+    "filtered_noise_count": 19,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的无效条目及无关内容，合并了'沟通协调能力'等相似特征，未强行提取缺乏原文依据的素质"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "工作内容概述_description": "岗位核心职责涵盖旅游板块经营与管理、医疗器械生产质量管理、政府端人才梯队搭建、营销全流程主导、生产会议组织与车间管理等。常规工作包括客户开发维护、生产流程监督、数据收集分析；专项工作涉及无人工厂改造、品牌咨询项目管理、健康管理产品需求收集。需具备跨部门协作能力，主导营销方案制定与执行，参与战略目标分解与落地，同时需学习管理工具与生产流程知识。",
+  "工作内容概述_tags": [
+    "旅游板块经营与管理",
+    "医疗器械生产质量管理",
+    "政府端人才梯队搭建",
+    "营销全流程主导",
+    "生产会议组织",
+    "车间管理监督",
+    "跨部门协作",
+    "战略目标分解",
+    "管理工具学习",
+    "健康管理产品需求收集"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "主持旅游板块的经营与管理工作",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "兼职文旅营销总监，主持旅游板块的经营与管理工作，包括住宿、餐饮、团建、露营、垂钓、研学等。职责涵盖从客户开发到客户接待的完整流程。"
+      ]
+    },
+    {
+      "feature_name": "组织制造中心生产会议",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "组织制造中心生产会议，督查各车间生产，成本，制度的落实。"
+      ]
+    },
+    {
+      "feature_name": "主导营销全流程",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "主导营销全流程，如前期拜访、合作方案推介、项目进展跟进等。"
+      ]
+    },
+    {
+      "feature_name": "搭建政府端人才梯队",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "搭建政府端人才梯队，培养具备政策解读与政企协作能力的专业团队。"
+      ]
+    },
+    {
+      "feature_name": "学习车间管理者应掌握的管理工具",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "学习车间管理者应掌握的管理工具"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 23,
+    "valid_features": 5,
+    "filtered_noise_count": 18,
+    "processing_notes": "大量原文包含'这是一个招聘信息'等无效内容，已全部过滤。部分特征因有效原文不足被标记为low置信度。"
+  }
+}

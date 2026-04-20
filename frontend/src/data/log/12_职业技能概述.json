@@ -1,0 +1,97 @@
+{
+  "职业技能概述_description": "该岗位要求具备机械图纸识读能力，能准确进行尺寸检验与公差判定，熟悉基础机械知识及铸造、机加工图纸。需熟练操作游标卡尺、千分尺等测量工具，具备设计检具和通止规的能力。优先考虑熟悉微纳加工特性、材料表面粗糙度评估及精密测量技术的人员。要求掌握中英文计量单位和数值计算基础，具备全链路质量意识，能识别高风险商品并提出改善建议。熟悉QC7大手法、PDCA戴明环质量管理方法，有制造业生产流程及品质控制标准经验者优先。",
+  "职业技能概述_tags": [
+    "机械图纸识读",
+    "尺寸检验与公差判定",
+    "检具设计",
+    "精密测量技术",
+    "微纳加工知识",
+    "质量控制标准",
+    "PDCA戴明环",
+    "QC7大手法",
+    "计量单位计算",
+    "全链路质量意识"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "机械图纸识读",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "能准确识读机械图纸，对照工艺要求进行尺寸检验与公差判定",
+        "对库存零件进行全面检验，要求熟悉基础机械知识，能够看懂铸造、机加工图纸"
+      ]
+    },
+    {
+      "feature_name": "尺寸检验与公差判定",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "对照工艺要求进行尺寸检验与公差判定",
+        "准确判断零件关键功能尺寸，设计重要尺寸检具、通止规等"
+      ]
+    },
+    {
+      "feature_name": "检具设计",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "设计重要尺寸检具、通止规等"
+      ]
+    },
+    {
+      "feature_name": "微纳加工知识",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉微纳加工特性者优先（如材料表面粗糙度评估）"
+      ]
+    },
+    {
+      "feature_name": "PDCA戴明环",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "对QC7大手法、PDCA戴明环有一定认识"
+      ]
+    },
+    {
+      "feature_name": "质量控制标准",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉检验工作，以及相关品质控制标准者优先"
+      ]
+    },
+    {
+      "feature_name": "全链路质量意识",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "培养全链路质量意识，对高风险商品提前做出识别和预警"
+      ]
+    },
+    {
+      "feature_name": "计量单位计算",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟练掌握中、英文计量单位和数值计算基础知识"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 17,
+    "valid_features": 8,
+    "filtered_noise_count": 6,
+    "processing_notes": "过滤了13条包含'这是一个招聘信息'的无效数据，合并了'机械图纸识读'和'对照工艺要求进行尺寸检验'等相似特征，排除了与特征无关的公司介绍内容"
+  }
+}

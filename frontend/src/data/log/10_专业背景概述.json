@@ -1,0 +1,121 @@
+{
+  "专业背景概述_description": "该岗位对专业背景的要求主要集中在机械工程、电子工程、材料学、质量管理等核心领域，同时涉及食品科学、生物类、化工类等关联专业。专业限制程度以‘优先考虑’为主，仅部分岗位要求‘必须’相关专业。特殊专业要求包括粉末冶金、光源与照明、光学工程等细分方向。高频出现的专业包括机械类、电子类、材料类、质量管理等，其中机械相关专业在多个岗位中被明确提及为优先条件。部分岗位对专业限制程度较宽松，如‘理工科优先’‘专业不限’等表述。",
+  "专业背景概述_tags": [
+    "机械相关专业",
+    "电子工程",
+    "材料类专业",
+    "质量管理专业",
+    "食品类专业",
+    "生物类专业",
+    "化工类专业",
+    "粉末冶金",
+    "光学工程",
+    "光源与照明专业"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "机械相关专业",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "任职要求：1、本科及以上学历，机械、材料、化学类专业；",
+        "（1）本科及以上学历，机械类、电子类、控制类相关专业；"
+      ]
+    },
+    {
+      "feature_name": "电子工程",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "本科及以上学历、通信、电子工程、自动化等相关专业。",
+        "任职要求1.本科及以上学历，机械工程、光学工程、电子工程等相关专业"
+      ]
+    },
+    {
+      "feature_name": "材料类专业",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "化学工程、材料学、应用化学、质量类专业本科、硕士优先",
+        "1、本科及以上学历，机械、材料、化学类专业；"
+      ]
+    },
+    {
+      "feature_name": "质量管理专业",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "专业要求：质量管理专业、工业工程、机械相关专业",
+        "1、食品科学、质量管理等相关专业大专及以上学历"
+      ]
+    },
+    {
+      "feature_name": "食品类专业",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "2、专业：食品类、生物类、动医动科等相关专业；",
+        "1、食品科学、质量管理等相关专业大专及以上学历"
+      ]
+    },
+    {
+      "feature_name": "生物类专业",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "2、专业：食品类、生物类、动医动科等相关专业；",
+        "具备大专及以上学历专业要求：食品、生物、微生物或相关专业优先考虑"
+      ]
+    },
+    {
+      "feature_name": "化工类专业",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "传递跨部门质量信息。​岗位要求​1、大专及以上学历，材料、化工、电子等相关专业优先。",
+        "1、大专学历，环境、化工类专业；2、具备基本化学知识"
+      ]
+    },
+    {
+      "feature_name": "粉末冶金",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "冶金类、金属材料、粉末冶金、材料类等相关专业优先",
+        "有学过粉末冶金课程，了解粉末冶金工艺技术"
+      ]
+    },
+    {
+      "feature_name": "光学工程",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "本科及以上学历，机械工程、光学工程、电子工程等相关专业"
+      ]
+    },
+    {
+      "feature_name": "光源与照明专业",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "大学本科或以上学历，...光源与照明专业等相关专业"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 78,
+    "valid_features": 10,
+    "filtered_noise_count": 15,
+    "processing_notes": "部分特征如'电子'因原文关联性不足被过滤；'粉末冶金'等细分专业因出现频次较低被标记为low置信度"
+  }
+}

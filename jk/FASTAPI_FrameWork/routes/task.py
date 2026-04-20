@@ -8,4 +8,6 @@ tasks = get_tasks()
 async def get_task_status(task_id: str):
     if task_id not in tasks:
         raise HTTPException(status_code=404, detail="Task not found")
-    return tasks[task_id]
+    task = tasks[task_id].copy()
+    task["taskId"] = task_id
+    return task

@@ -1,0 +1,80 @@
+{
+  "职业技能概述_description": "该岗位要求熟练掌握视频剪辑与推广技能，能够独立完成短视频从策划、拍摄到后期制作的全流程工作，熟悉主流剪辑软件（如Premiere、剪映、PR、AE、PS等）。需具备社交媒体运营能力，熟悉Facebook、LinkedIn、YouTube、Instagram等海外平台的运营规则，能策划并执行有效的推广策略，提升视频传播度与账号影响力。同时需了解短视频平台运营规则，能够制定营销计划并提升粉丝活跃度与忠诚度。基础技能包括办公软件（Word、Excel、PPT）的使用，以及基础产品上下架操作能力。",
+  "职业技能概述_tags": [
+    "PR/AE/PS软件使用",
+    "短视频全流程制作",
+    "社交媒体运营",
+    "海外平台内容策划",
+    "视频推广策略",
+    "办公软件操作",
+    "产品上下架操作",
+    "短视频平台规则",
+    "用户活跃度提升",
+    "视频剪辑技能"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "PR/AE/PS软件使用",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "拍剪方向需要熟练使用PR、AE、PS等软件",
+        "专业技能- 熟练掌握视频剪辑与推广技能，能够独立完成小视频从策划、拍摄到后期制作全流程工作，熟悉主流剪辑软件，如剪映、Premiere 等"
+      ]
+    },
+    {
+      "feature_name": "短视频全流程制作",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "能够独立完成小视频从策划、拍摄到后期制作全流程工作",
+        "专业技能- 熟练掌握视频剪辑与推广技能，能够独立完成小视频从策划、拍摄到后期制作全流程工作"
+      ]
+    },
+    {
+      "feature_name": "社交媒体运营",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "负责公司海外社交平台账号的运营维护、活动策划实施，编辑并发布有吸引力的社交内容",
+        "提高各平台粉丝活跃度和忠诚度，实现有效转化"
+      ]
+    },
+    {
+      "feature_name": "海外平台内容策划",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉facebook、linkedin、youtube、ins等海外社媒平台，负责公司海外社交平台账号的运营维护、活动策划实施"
+      ]
+    },
+    {
+      "feature_name": "办公软件操作",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "技能要求：熟练运用Word、Execl、PPT、WPS等办公软件"
+      ]
+    },
+    {
+      "feature_name": "产品上下架操作",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "任职要求：1、会基础上下架"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 13,
+    "valid_features": 6,
+    "filtered_noise_count": 34,
+    "processing_notes": "大量'这是一个招聘信息'文本已被过滤，'安排面试'特征因无效原文被丢弃，'Execl'拼写错误保留原文形式"
+  }
+}

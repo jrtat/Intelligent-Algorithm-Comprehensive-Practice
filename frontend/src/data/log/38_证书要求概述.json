@@ -1,0 +1,45 @@
+{
+  "证书要求概述_description": "该岗位要求申请者必须持有CCAA注册审核员资质，且具备QMS/EMS/OHSMS三体系审核员经验者优先。同时明确要求申请者具备本科及以上学历，且具有相关领域丰富经验者优先考虑。证书资质方面，CCAA注册审核员资质为硬性门槛，而三体系审核员资质属于加分项。学历和经验要求虽未列为强制条件，但作为优先条件被重点强调。",
+  "证书要求概述_tags": [
+    "CCAA注册审核员资质",
+    "QMS/EMS/OHSMS三体系审核员",
+    "本科及以上学历",
+    "丰富经验优先",
+    "资质优先级区分"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "CCAA注册审核员资质",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、具有CCAA注册审核员资质，经验丰富者优先，本科及以上学历者优先。"
+      ]
+    },
+    {
+      "feature_name": "QMS/EMS/OHSMS三体系审核员",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、其中有QMS/EMS/OHSMS三体系审核员优先。"
+      ]
+    },
+    {
+      "feature_name": "本科及以上学历",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、具有CCAA注册审核员资质，经验丰富者优先，本科及以上学历者优先。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 2,
+    "valid_features": 3,
+    "filtered_noise_count": 0,
+    "processing_notes": "所有特征均来自原始文本，未发现矛盾信息，学历要求虽未明确列为强制条件但被标注为优先项"
+  }
+}

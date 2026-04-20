@@ -1,0 +1,70 @@
+{
+  "晋升路径概述_description": "该岗位所在的公司建立了完善的晋升与调薪机制，为员工提供了明确的职业发展通道。通过年度绩效考核，员工可获得调岗、调薪及绩效奖金。公司支持员工每半年至一年申请薪资和岗位晋升，体现了灵活的晋升节奏。同时，公司注重人才培养，提供培训计划和良好的发展平台，鼓励员工在内部转岗及跨部门发展。对于表现优秀的员工，公司设有多次调薪和晋升机会，且薪资结构包含无责底薪与项目奖金，进一步强化了激励机制。",
+  "晋升路径概述_tags": [
+    "晋升机制",
+    "调薪机会",
+    "培训计划",
+    "年度考核",
+    "发展平台",
+    "内部转岗",
+    "绩效奖金"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升机制",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "完善的培训和晋升机制，优秀员工每年多次调薪、多次晋升机会。",
+        "每半年至一年可以申请上调薪资和岗位晋升",
+        "成熟的晋升机制，调薪机制等。",
+        "公司提供良好的发展平台和合理的晋升途径。"
+      ]
+    },
+    {
+      "feature_name": "调薪机会",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "优秀员工每年多次调薪、多次晋升机会。",
+        "每半年至一年可以申请上调薪资和岗位晋升",
+        "成熟的晋升机制，调薪机制等。"
+      ]
+    },
+    {
+      "feature_name": "年度考核",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "年度绩效考核（根据考核结果调岗调薪及发放绩效奖金）"
+      ]
+    },
+    {
+      "feature_name": "发展平台",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "公司提供良好的发展平台和合理的晋升途径。"
+      ]
+    },
+    {
+      "feature_name": "培训计划",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "完善的培训和晋升机制，优秀员工每年多次调薪、多次晋升机会。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 8,
+    "valid_features": 5,
+    "filtered_noise_count": 0,
+    "processing_notes": "所有原文均与晋升路径相关，未发现无效内容。未提取具体职级名称，符合'宁缺毋滥'原则。"
+  }
+}

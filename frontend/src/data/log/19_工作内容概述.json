@@ -1,0 +1,74 @@
+{
+  "工作内容概述_description": "该岗位主要涉及绿色建筑、健康建筑、零碳城市等领域的技术咨询与规划编制工作，包括参与相关认证（如WELL、LEED、超低能耗建筑）的技术实施，以及生态城市、零碳城市规划咨询。工作内容涵盖数据出境合规方案制定、碳排放管理数据填报、行业研究分析、企业财税政策解读等专项任务。需具备跨领域协作能力，与产品、设计、后端团队配合完成项目需求，并能够将理论方法与实践相结合，形成可落地的解决方案。日常开发任务包括系统数据填报、数据库维护、行业/主题研究、标杆企业分析等，同时需参与客户沟通、需求挖掘及方案优化。",
+  "工作内容概述_tags": [
+    "绿色建筑认证技术",
+    "零碳城市规划咨询",
+    "碳排放管理数据填报",
+    "行业研究分析",
+    "数据出境合规咨询",
+    "企业财税政策解读",
+    "数据库维护",
+    "标杆企业分析",
+    "跨部门协作",
+    "客户需求挖掘"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "绿色建筑认证技术",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "参与国标绿色建筑、健康建筑、超低能耗建筑认证或LEED、WELL认证的技术工作",
+        "参与生态城市、零碳城市相关规划咨询技术工作",
+        "参与绿色、节能、低碳相关标准编制及科研课题研究"
+      ]
+    },
+    {
+      "feature_name": "碳排放管理数据填报",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "依据行业指南为企业开展碳排放管理工作数据填报",
+        "对客户提供的数据进行分析整理并进行系统填报碳管理规划"
+      ]
+    },
+    {
+      "feature_name": "行业研究分析",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "Industry / thematic research",
+        "Benchmarking exercises for companies, industries and markets",
+        "Background research on companies and sectors",
+        "News / research summaries"
+      ]
+    },
+    {
+      "feature_name": "数据出境合规咨询",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "制定数据出境合规的解决方案"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "协助项目经理进行数据分析、行业分析等任务，分析并提出解决客户需求或项目需求的方案建议"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 33,
+    "valid_features": 5,
+    "filtered_noise_count": 26,
+    "processing_notes": "大量原文包含'这是一个招聘信息'等噪声数据，已过滤。部分特征如'精准定位俄语教育行业人才'等因缺乏明确工作职责描述被排除。"
+  }
+}

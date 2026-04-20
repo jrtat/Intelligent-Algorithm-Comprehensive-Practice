@@ -1,0 +1,90 @@
+{
+  "专业背景概述_description": "该岗位主要面向英语相关专业背景的求职者，要求具备扎实的英语语言能力，优先考虑英语专业、翻译专业或国际贸易相关专业背景。核心专业包括英语、翻译、国际贸易等，相关专业涵盖科技英语、商务英语、医学/药学相关专业等。部分岗位对专业英语等级（如专八、TEM-8、CATTI）有明确要求，且对跨领域知识（如医学、工程、机电等）有优先考虑倾向。专业背景要求以本科及以上学历为主，部分岗位接受应届毕业生或非专业背景但具备突出英语能力者。",
+  "专业背景概述_tags": [
+    "英语专业",
+    "翻译专业",
+    "国际贸易专业",
+    "科技英语",
+    "商务英语",
+    "医学/药学专业",
+    "机电专业",
+    "工程类专业",
+    "专业英语等级要求",
+    "跨领域知识优先"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "英语专业",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "1.本科及以上学历，英语专业四级或非专业六级及以上水平，英语专业或国际贸易专业优先；",
+        "岗位要求：1、本科及以上学历，英语专业，二外选修德语/法语/葡萄牙语专业；"
+      ]
+    },
+    {
+      "feature_name": "翻译专业",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "英语、翻译(英语方向)专业优先。2、语言能力:英语专业八级 (TEM-8)证书、雅思7.",
+        "1.大学本科以上学历，英语翻译类相关专业；"
+      ]
+    },
+    {
+      "feature_name": "国际贸易专业",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "1、大专以上学历，国际贸易或英语专业；",
+        "有国际贸易翻译经验者，或国际贸易专业的学生优先考虑；"
+      ]
+    },
+    {
+      "feature_name": "科技英语",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "4.科技英语、英语、计算机、通信网络、电子、自动化、物联网等相关专业大专及以上学历；"
+      ]
+    },
+    {
+      "feature_name": "医学/药学专业",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "眼科、药学、临床、生物制药专业（英语六级），或者医学院外国语专业（专八或者Catti）。"
+      ]
+    },
+    {
+      "feature_name": "专业英语等级要求",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "英语专业八级或雅思托福英语水平",
+        "英语专业八级 (TEM-8)证书、雅思7."
+      ]
+    },
+    {
+      "feature_name": "跨领域知识优先",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "机电、英语专业本科及以上学历，有机电相关专业（大学英语六级）"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 35,
+    "valid_features": 7,
+    "filtered_noise_count": 10,
+    "processing_notes": "过滤了10条无效原文（含'这是一个招聘信息'、纯标点、无关内容等），合并了'英语相关专业'与'英语类相关专业'等近义特征"
+  }
+}

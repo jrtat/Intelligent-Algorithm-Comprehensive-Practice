@@ -1,0 +1,90 @@
+{
+  "工作内容概述_description": "该岗位主要负责在线客服支持、翻译服务及系统维护工作。核心职责包括：1.通过在线平台为海外用户提供酒店咨询、业务办理及投诉处理等全流程服务；2.进行技术文件、法律文件及电商平台内容的翻译与本地化处理；3.维护ERP系统、云存储平台及在线教育系统，确保数据准确性和系统稳定性；4.参与人才服务业务模型构建，完成校企合作资源库搭建及用工输送；5.根据SOP进行用户反馈分类标注，协助产品优化。常规工作包含客服响应、翻译校对及系统日常维护，专项工作涉及业务模型构建、跨文化本地化处理及复杂文件翻译。",
+  "工作内容概述_tags": [
+    "在线客服支持",
+    "技术文件翻译",
+    "ERP系统维护",
+    "电商平台运营",
+    "本地化处理",
+    "人才服务模型构建",
+    "用户反馈分析",
+    "云存储管理",
+    "在线教育系统维护",
+    "法律文件翻译"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "在线客服支持",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "通过在线方式，解决外国友人旅行用户使用旅行APP中的酒店相关方向的全流程咨询、业务办理服务",
+        "负责某知名潮流玩具品牌在官网、亚马逊、TIKTOK、 SHOPEE、 Lazada、速卖通等电商平台上的在线服务"
+      ]
+    },
+    {
+      "feature_name": "技术文件翻译",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "准确翻译建筑/工程相关的技术文件",
+        "质量部相关文件翻译：质量体系、技术资料、认证文件",
+        "翻译公司移民和跨境电商 Amazon 英文资料"
+      ]
+    },
+    {
+      "feature_name": "ERP系统维护",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "根据技术部门领导要求及时在ERP进行BOM录入"
+      ]
+    },
+    {
+      "feature_name": "本地化处理",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "本地化处理  根据目标语言文化习惯调整翻译内容，确保符合本地化需求",
+        "Canvas系统日常使用维护，例如-课程视频中英文脚本的汉化、中文字幕校准和表达方式优化"
+      ]
+    },
+    {
+      "feature_name": "人才服务模型构建",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "人才服务：整理校企合作人才资源库及对接用人单位招聘需求，打造人才服务业务模型"
+      ]
+    },
+    {
+      "feature_name": "用户反馈分析",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "根据SOP将用户反馈原声进行业务分类标注，并需要监控和分析短视频产品的用户反馈原声"
+      ]
+    },
+    {
+      "feature_name": "云存储管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "腾讯云视频存储和日常维护"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 37,
+    "valid_features": 7,
+    "filtered_noise_count": 24,
+    "processing_notes": "已过滤包含'这是一个招聘信息'的条目及与核心职责无关的描述（如工作条件、薪资福利等）。部分特征因原文支持不足被标记为低置信度。"
+  }
+}

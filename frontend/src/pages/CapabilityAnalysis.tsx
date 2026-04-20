@@ -227,7 +227,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
   "projectExperience": ["项目A：负责前端架构...", "项目B：实现核心业务..."],
   "internshipExperience": ["公司A：前端实习生..."],
   "practicalExperience": ["活动A：组织策划..."],
-  "hobbies": "兴趣爱好",
+  "hobbies": ["爱好A", "爱好B"],
   "summary": "个人总结（总结性的话语）",
   "other": "其他提取出的杂项信息",
   "targetRole": "主攻路径（如：前端开发工程师、产品经理等，根据简历内容推断最匹配的岗位）",

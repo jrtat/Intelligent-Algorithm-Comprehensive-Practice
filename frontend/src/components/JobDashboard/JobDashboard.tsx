@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import jobsData from '../../data/jobs.json';
 import citiesData from '../../data/cities.json';
 import industriesData from '../../data/industries.json';
@@ -19,6 +19,7 @@ const getCityInfo = (address: string) => (citiesData as unknown as Record<string
 const getIndustryInfo = (industry: string) => (industriesData as unknown as Record<string, Industry>)[industry];
 
 export function JobDashboard() {
+  const [searchParams] = useSearchParams();
   const [filter, setFilter] = useState<FilterState>({
     keyword: '',
     城市: '',
@@ -57,18 +58,30 @@ export function JobDashboard() {
   const paginatedJobs = filteredJobs.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
   const selectedJob = useMemo(() => filteredJobs.find(j => j.岗位编码 === selectedJobId), [filteredJobs, selectedJobId]);
 
+  // Handle job selection from URL params - only on initial mount
+  useEffect(() => {
+    const jobIdFromUrl = searchParams.get('job');
+    if (jobIdFromUrl) {
+      setSelectedJobId(jobIdFromUrl);
+      setFilter({ keyword: '', 城市: '', 城市水平: '', 行业: '', 学历: '' });
+      setCurrentPage(1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // 只在挂载时执行一次
+
   // Auto-select first job when filter changes or when paginated jobs change
   useEffect(() => {
+    if (searchParams.get('job')) return; // 如果有 URL job 参数，跳过自动选择
+
     if (paginatedJobs.length > 0) {
       const firstJobId = paginatedJobs[0].岗位编码;
-      // Select first job if no job is selected or current selection is not in current page
       if (!selectedJobId || !paginatedJobs.some(j => j.岗位编码 === selectedJobId)) {
         setSelectedJobId(firstJobId);
       }
     } else {
       setSelectedJobId(null);
     }
-  }, [paginatedJobs, selectedJobId]);
+  }, [paginatedJobs, selectedJobId, searchParams]);
 
   // Reset to first page and select first job when filter changes
   const handleFilterChange = useCallback((key: keyof FilterState, value: string) => {

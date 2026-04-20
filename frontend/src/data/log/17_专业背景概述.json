@@ -1,0 +1,46 @@
+{
+  "专业背景概述_description": "该岗位优先考虑市场营销、商务管理等相关专业背景人员，未明确要求必须具备特定核心专业。专业限制程度为优先考虑，未设置硬性专业门槛。相关专业领域包括市场营销和商务管理，且两者均被明确列为优先选项。岗位对特殊专业细分领域无具体要求，专业背景要求整体较为宽松，以相关专业优先为原则。",
+  "专业背景概述_tags": [
+    "市场营销专业",
+    "商务管理专业",
+    "相关专业优先",
+    "专业背景宽松",
+    "优先考虑"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "市场营销",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.大专及以上学历，市场营销、商务管理等相关专业优先；"
+      ]
+    },
+    {
+      "feature_name": "商务管理",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "大专及以上学历，市场营销、商务管理等相关专业优先；2."
+      ]
+    },
+    {
+      "feature_name": "相关专业优先",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "1.大专及以上学历，市场营销、商务管理等相关专业优先；",
+        "大专及以上学历，市场营销、商务管理等相关专业优先；2."
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 2,
+    "valid_features": 3,
+    "filtered_noise_count": 0,
+    "processing_notes": "两个原始条目内容高度相似，经去重处理后保留核心特征。未发现无效数据或矛盾信息。"
+  }
+}

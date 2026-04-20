@@ -1,0 +1,64 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备良好的沟通协调能力与团队合作精神，能够适应倒班及偶尔加班的工作节奏。需展现出较强的责任心和吃苦耐劳的品质，能主动解决问题并保持严谨的工作态度。具备基本的数据分析能力及跨部门协作经验者为加分项，但非硬性要求。岗位强调适应性与执行力，要求在高压环境下保持稳定输出，并能通过有效沟通推动工作进展。",
+  "综合素质概述_tags": [
+    "团队协作",
+    "沟通能力",
+    "责任心强",
+    "适应倒班",
+    "跨部门协作",
+    "数据分析基础",
+    "抗压能力",
+    "执行力"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "沟通协作能力",
+      "confidence": "high",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "具备良好的沟通能力和团队合作精神",
+        "良好的沟通能力，能与多个部门协同工作",
+        "具备较强的沟通协调能力、逻辑思维能力及团队合作精神"
+      ]
+    },
+    {
+      "feature_name": "工作态度与责任心",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "责任心强，能吃苦耐劳",
+        "工作认真细致，责任心强",
+        "具备亲和力、耐心细致、认真负责的工作态度"
+      ]
+    },
+    {
+      "feature_name": "适应能力",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "能接受倒班，偶尔加班",
+        "能适应轮班工作安排",
+        "能适应加班倒班"
+      ]
+    },
+    {
+      "feature_name": "问题解决能力",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "能从测量结果中发现问题并提出改进建议",
+        "具备基本的数据分析能力"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 56,
+    "valid_features": 4,
+    "filtered_noise_count": 32,
+    "processing_notes": "原文中存在大量重复描述（如'具备亲和力、耐心细致、认真负责的工作态度'出现7次），已合并处理。'数据分析基础'作为低频特征被归类为加分项。"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "福利待遇概述_description": "该岗位提供全面的福利体系，涵盖法定福利、补充福利及特色福利。法定福利包括五险一金、带薪年假（第一年10天）、育儿休假、介护休假、产假及裁判员休假等。补充福利包含交通补贴（每月5万日元上限）、住宿补贴（提供员工宿舍）、餐补、流感疫苗补贴、资格取得支援制度等。特色福利方面，公司注重工作生活平衡，提供年休假108天、加班补贴、育儿假、庆吊假等特殊假期，以及定期体检、培训机会、团建旅游等。部分岗位还提供日本社会福利资源、滑雪补贴、节日礼品、年终奖金（2-3个月工资）及股票期权等额外奖励。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "带薪年假",
+    "交通补贴",
+    "住宿补贴",
+    "年终奖金",
+    "日本社会福利",
+    "定期体检",
+    "培训机会",
+    "团建旅游",
+    "育儿休假",
+    "流感疫苗补贴",
+    "资格支援制度",
+    "加班补贴",
+    "滑雪补贴"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "l 法定福利：用人当地规定(基本)五险一金l 各类补贴：",
+        "培训期、试用期薪资不打折。入职即缴纳五险一金，享带薪年假、带薪病假、节日福利等。"
+      ]
+    },
+    {
+      "feature_name": "带薪年假",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "每年有带薪年假（第一年有 10 天带薪年假）",
+        "带薪年假、带薪病假、节日福利等。"
+      ]
+    },
+    {
+      "feature_name": "交通补贴",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "交通费(每月5万日元上限)",
+        "有交通津贴、加班津贴、出差津贴。"
+      ]
+    },
+    {
+      "feature_name": "住宿补贴",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "福利厚生提供员工宿舍(东京的场合)※高级公寓月租每月4.",
+        "提供宿舍、五险一金、晚班补贴、带薪培训、餐补、年假、节假日福利。"
+      ]
+    },
+    {
+      "feature_name": "年终奖金",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "奖金每年两次(8月·1月) 决算奖金：每年1次",
+        "年底双薪；"
+      ]
+    },
+    {
+      "feature_name": "日本社会福利",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "享受日本社会福利，医疗及教育资源等。",
+        "日本社会福祉·医療·教育資源享受"
+      ]
+    },
+    {
+      "feature_name": "定期体检",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "定期体检、员工旅游",
+        "公司按国家政策为员工缴纳六险一金, 每年公司组织大型体检等福利"
+      ]
+    },
+    {
+      "feature_name": "育儿休假",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "有育儿休假",
+        "产前产后职场复归率也是100%！"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 33,
+    "valid_features": 8,
+    "filtered_noise_count": 15,
+    "processing_notes": "过滤了15条无效信息（如'这是一个招聘信息'等），部分特征因原文信息不足置信度较低"
+  }
+}

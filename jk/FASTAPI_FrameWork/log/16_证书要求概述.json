@@ -1,0 +1,19 @@
+{
+  "证书要求概述_description": "该岗位未明确提及任何具体的证书或资质要求。原文中仅提到学历要求（大专及以上）和专业偏好（市场营销类优先），但未涉及职业资格证书、职称、行业特定证书或语言证书等要求。",
+  "证书要求概述_tags": [],
+  "证书要求概述_features": [
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 0,
+      "sample_evidence": []
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 2,
+    "valid_features": 0,
+    "filtered_noise_count": 2,
+    "processing_notes": "所有原始文本均被判定为无效内容（第一条为引导性语句，第二条仅提及学历要求，未涉及证书或资质要求）"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "证书要求概述_description": "该岗位类别对证书和资质要求涵盖教育、技术、健康等多个领域。核心要求包括普通话等级证书（语文教师需二级甲等）、教师资格证、计算机等级考试合格证书等基础资质。优先考虑条件包含高级教师/特级教师资格、CISP/CISI等信息安全认证、眼视光师资格、放射技师证、健康管理师资格证等专业证书。部分岗位要求持有中（高）级国家营养师、健康管理咨询师等健康管理类证书。值得注意的是，部分岗位对职称有明确要求，如初级职称及以上资格，且高级职称可放宽学历限制。",
+  "证书要求概述_tags": [
+    "普通话等级证书",
+    "教师资格证",
+    "计算机等级考试合格证书",
+    "高级教师资格",
+    "CISP认证",
+    "CISI认证",
+    "眼视光师资格证",
+    "放射技师证",
+    "健康管理师资格证",
+    "中（高）级国家营养师",
+    "初级职称及以上资格"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "普通话等级证书",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "具有相应教师资格证、普通话等级证书、计算机等级考试合格证书等。",
+        "语文教师要求有二级甲等普通话证"
+      ]
+    },
+    {
+      "feature_name": "教师资格证",
+      "confidence": "high",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "具有相应学科、学段的教师资格证",
+        "有高中或中职教师资格证者优先考虑",
+        "须具有相应学科、学段的教师资格证"
+      ]
+    },
+    {
+      "feature_name": "计算机等级考试合格证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具有相应教师资格证、普通话等级证书、计算机等级考试合格证书等。"
+      ]
+    },
+    {
+      "feature_name": "高级教师资格",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有高级教师，特级教师资格的教师优先"
+      ]
+    },
+    {
+      "feature_name": "CISP认证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "拥有注册信息安全专业人员（CISP）"
+      ]
+    },
+    {
+      "feature_name": "CISI认证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "拥有注册信息安全讲师（CISI）"
+      ]
+    },
+    {
+      "feature_name": "眼视光师资格证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "持有眼视光师相关资格证书"
+      ]
+    },
+    {
+      "feature_name": "放射技师证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有执业医师资格证、放射技师证，有证的优先考虑"
+      ]
+    },
+    {
+      "feature_name": "健康管理师资格证",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有营养师、育婴师、健康管理师资格证优先"
+      ]
+    },
+    {
+      "feature_name": "中（高）级国家营养师",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "中（高）级国家营养师等相关执业证书"
+      ]
+    },
+    {
+      "feature_name": "初级职称及以上资格",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "初级职称或以上专业资格",
+        "高级职称可放宽至本科",
+        "具有中级及以上职称优先考虑"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 21,
+    "valid_features": 11,
+    "filtered_noise_count": 3,
+    "processing_notes": "部分特征（如'计算机二级证书'）原文未明确提及证书名称，已按'计算机等级考试合格证书'归类。'中（高）级健康管理咨询师'因原文未提证书要求，已排除。"
+  }
+}

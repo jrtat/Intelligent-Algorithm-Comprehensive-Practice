@@ -1,0 +1,94 @@
+{
+  "职业技能概述_description": "该岗位要求具备基础的数据分析能力与货物仓储管理软件操作技能，能够处理海量数据并进行有效分析。同时需要具备良好的客户服务意识，能够通过电话解答客户疑问、收集建议，并执行合规性回访及满意度调研。打字能力是基础要求，需达到50字/分钟的盲打速度，且能熟练使用办公软件。岗位对沟通能力有较高要求，需具备服务意识与同理心，能够理解客户需求并换位思考。此外，需熟悉电话客服流程，包括增值业务办理、投诉处理等，并能适应远程办公模式。行业特定技能包括对抖音平台内容形式的了解及基础操作能力。",
+  "职业技能概述_tags": [
+    "数据分析能力",
+    "货物仓储管理软件",
+    "电话客服技能",
+    "盲打打字",
+    "客户服务意识",
+    "办公软件使用",
+    "抖音内容理解",
+    "远程办公能力"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "数据分析能力",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.能够熟练运用多种工具，货物仓储管理软件，处理海量数据，具备数据分析能力；"
+      ]
+    },
+    {
+      "feature_name": "货物仓储管理软件",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.能够熟练运用多种工具，货物仓储管理软件，处理海量数据，具备数据分析能力；"
+      ]
+    },
+    {
+      "feature_name": "电话客服技能",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "负责公司全国统一服务热线95565电话接听工作，在线解答客户疑问，收集客户建议",
+        "负责接听 10086 人工服务热线，为客户提供专业性的业务咨询解答、生活资讯查询、 增值业务办理、投诉处理等业务。"
+      ]
+    },
+    {
+      "feature_name": "盲打打字",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、会盲打且愿意学习可接受应届毕业生；"
+      ]
+    },
+    {
+      "feature_name": "客户服务意识",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、服务意识与同理心 ：具备强烈的服务意识和客户导向思维，能够换位思考，理解玩家情绪和需求；"
+      ]
+    },
+    {
+      "feature_name": "办公软件使用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、熟练使用电脑及常用办公软件；"
+      ]
+    },
+    {
+      "feature_name": "抖音内容理解",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解抖音形式内容，会简单操作电脑使用。"
+      ]
+    },
+    {
+      "feature_name": "远程办公能力",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "不含销售的工作 线上聊天员远程办公 接受居家办公职位介绍:1.认真负责，有手机即可办公，接受小白"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 14,
+    "valid_features": 8,
+    "filtered_noise_count": 33,
+    "processing_notes": "大量噪声数据（'这是一个招聘信息'）已被过滤，部分特征因原文信息不足置信度较低"
+  }
+}

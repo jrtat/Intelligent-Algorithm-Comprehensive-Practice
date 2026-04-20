@@ -1,0 +1,94 @@
+{
+  "福利待遇概述_description": "该岗位提供多元化的薪酬结构与福利体系。薪酬包括基本工资、绩效奖金、年终奖及项目提成，部分岗位提供股票期权。法定福利涵盖五险一金、带薪年假及法定节假日。补充福利包含餐补、交通补贴、住房补贴及定期体检。特色福利包括弹性工作制、团建旅游、培训机会、节日福利（如中秋博饼）、员工旅游及生日礼金。部分岗位提供实习期间转正后的晋升机会，以及优秀实习生转执业后的优先聘用政策。薪酬水平根据岗位不同，范围在2000元至12000元/月，部分岗位提供半年一次的涨薪机会。",
+  "福利待遇概述_tags": [
+    "五险一金",
+    "绩效奖金",
+    "年终奖",
+    "弹性工作",
+    "带薪年假",
+    "节日福利",
+    "员工旅游",
+    "培训机会",
+    "餐补",
+    "交通补助",
+    "住房补贴",
+    "定期体检",
+    "晋升机会",
+    "实习转正",
+    "股票期权"
+  ],
+  "福利待遇概述_features": [
+    {
+      "feature_name": "薪酬结构",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "（三）薪酬福利待遇1.除月级别工资外，另有案源奖金、年中奖金、年终奖金",
+        "薪资待遇：固定工资+奖金，工作能力突出者可以提高 底薪。",
+        "1．工作薪酬：固定薪酬+津贴+提成+报销+年终奖，具体面议"
+      ]
+    },
+    {
+      "feature_name": "五险一金",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "公司提供五险一金",
+        "入职购买五险一金",
+        "缴纳社会保险"
+      ]
+    },
+    {
+      "feature_name": "绩效奖金",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "底薪保障+丰厚的福利及绩效奖金+五险",
+        "绩效奖金",
+        "提成、餐补、油补、年终奖"
+      ]
+    },
+    {
+      "feature_name": "弹性工作",
+      "confidence": "medium",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "弹性工作",
+        "周末双休、弹性工作",
+        "每天工作不超过7."
+      ]
+    },
+    {
+      "feature_name": "员工旅游",
+      "confidence": "medium",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "提供每季度一次优秀员工的外出旅游及行业学习",
+        "员工旅游",
+        "主题年会、团队内部团建"
+      ]
+    },
+    {
+      "feature_name": "节日福利",
+      "confidence": "low",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "节日福利",
+        "中秋博饼",
+        "节日礼品"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 12,
+    "valid_features": 6,
+    "filtered_noise_count": 4,
+    "processing_notes": "过滤掉4条无效原文（如'这是一个招聘信息'、空字符串等），合并同类福利特征（如'弹性工作'与'周末双休'合并为'弹性工作'）"
+  }
+}

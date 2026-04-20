@@ -1,0 +1,63 @@
+{
+  "证书要求概述_description": "该岗位对专业资质和语言能力有明确要求，其中英语专八证书为优先考虑条件，注册会计师及税务师考试部分科目通过者亦为加分项。岗位未明确要求必须持有初级职称或以上专业资格，但提及注册咨询工程师等执业资质优先。语言能力方面，英语六级/专八及二外小语种（如俄语、西语）为优先考虑方向。整体来看，岗位更重视特定证书的持有情况及语言能力，而非强制性职称要求。",
+  "证书要求概述_tags": [
+    "英语专八优先",
+    "注册会计师部分科目优先",
+    "税务师部分科目优先",
+    "二外小语种优先",
+    "注册咨询工程师资质优先"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "英语专八优先考虑",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、土木、建筑工程类专业或英语专业，本科及以上学历；2、英语口语流利、书写能力较强，英语专八优先考虑；"
+      ]
+    },
+    {
+      "feature_name": "税务师考试部分科目者优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、会计、审计、财务等相关专业；（通过注册会计师、税务师考试部分科目者优先）。"
+      ]
+    },
+    {
+      "feature_name": "通过注册会计师",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、会计、审计、财务等相关专业；（通过注册会计师、税务师考试部分科目者优先）。"
+      ]
+    },
+    {
+      "feature_name": "二外小语种优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "二、岗位要求：1、英语六级/专八，二外小语种者优先，如俄语、西语。"
+      ]
+    },
+    {
+      "feature_name": "注册咨询工程师资质优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "硕士及以上学历，经济学、管理学、规划、工程等专业背景者优先考虑。具备注册咨询工程师资格等执业资质优先。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 5,
+    "valid_features": 5,
+    "filtered_noise_count": 3,
+    "processing_notes": "原始数据中存在3条无效信息（含重复空描述、与特征无关内容），已过滤。'初级职称或以上专业资格'相关原文未明确提及职称等级要求，故未作为有效特征提取。"
+  }
+}

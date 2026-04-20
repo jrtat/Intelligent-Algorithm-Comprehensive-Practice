@@ -1,0 +1,76 @@
+{
+  "专业背景概述_description": "该岗位对专业背景的要求以人文社科类和养老服务相关领域为主，优先考虑心理学、医疗健康、养老护理等专业方向。核心专业包括心理学、社会工作、工商管理、文科类及养老相关专业，相关专业如医疗、护理等也具有优先性。岗位对专业限制程度为‘优先考虑’，未明确要求必须专业。特殊专业要求聚焦在养老服务、心理健康及社会服务领域，但未提及具体细分方向。整体来看，岗位更看重应聘者的专业背景与养老服务行业的契合度，而非严格的学术专业门槛。",
+  "专业背景概述_tags": [
+    "心理学专业优先",
+    "社会工作专业优先",
+    "养老相关专业优先",
+    "工商管理专业优先",
+    "文科类专业优先",
+    "医疗健康背景优先",
+    "护理专业优先"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "心理专业优先",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "初中及以上学历（社会服务工作、心理、医疗、市场营销、养老、护理专业优先）2.",
+        "社会服务工作、心理、医疗、市场营销、养老、护理专业优先3."
+      ]
+    },
+    {
+      "feature_name": "养老相关专业优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、专业要求：工商管理、社会工作、文科类、养老相关专业优先。"
+      ]
+    },
+    {
+      "feature_name": "工商管理专业优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、专业要求：工商管理、社会工作、文科类、养老相关专业优先。"
+      ]
+    },
+    {
+      "feature_name": "文科类专业优先",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、专业要求：工商管理、社会工作、文科类、养老相关专业优先。"
+      ]
+    },
+    {
+      "feature_name": "医疗健康背景优先",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "热爱养老、医疗、健康行业，对老人有足够的耐心和爱心4.",
+        "有干劲的应届学生亦可4.热爱养老、医疗、健康行业，对老人有足够的耐心和爱心5."
+      ]
+    },
+    {
+      "feature_name": "护理专业优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "日用百货销售；家政服务；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 11,
+    "valid_features": 6,
+    "filtered_noise_count": 3,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的文本、与专业无关的销售类描述及重复内容。医疗健康背景优先的证据存在语义模糊性，需结合岗位职责进一步确认。"
+  }
+}

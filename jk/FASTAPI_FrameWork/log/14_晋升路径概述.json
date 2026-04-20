@@ -1,0 +1,75 @@
+{
+  "晋升路径概述_description": "该岗位提供明确的双通道晋升路径（技术/管理），职级体系涵盖从职员到分公司负责人的多级发展。公司设有系统化实习平台和导师制培养机制，提供法律培训、诉前沟通技巧培训等专业成长支持。具备项目独立工作能力后可获得调薪晋升机会，且存在内部转岗、跨部门发展的可能性。职业发展强调长期规划，包含实习律师—授薪律师—授薪合伙人—合伙人的晋升通道，同时注重团队协作与个人能力提升。",
+  "晋升路径概述_tags": [
+    "双通道晋升",
+    "系统化实习平台",
+    "法律培训",
+    "导师制培养",
+    "职级体系",
+    "调薪晋升机会",
+    "跨部门发展",
+    "长期职业规划"
+  ],
+  "晋升路径概述_features": [
+    {
+      "feature_name": "晋升通道",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "职员--组长--主管--经理--分公司负责人",
+        "实习律师 — 授薪律师 — 授薪合伙人 — 合伙人",
+        "半年一次的涨薪晋升机会"
+      ]
+    },
+    {
+      "feature_name": "职级体系",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "职员--组长--主管--经理--分公司负责人",
+        "实习律师 — 授薪律师 — 授薪合伙人 — 合伙人"
+      ]
+    },
+    {
+      "feature_name": "培养机制",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "提供系统化实习平台，指导老师经验丰富",
+        "完善的晋升机制",
+        "有催收经验四、晋升渠道...",
+        "所有培训均带全薪"
+      ]
+    },
+    {
+      "feature_name": "发展支持",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "提供法律培训、诉前沟通技巧培训",
+        "享受季度年度调薪",
+        "优质的培训体系、快速的成长空间"
+      ]
+    },
+    {
+      "feature_name": "职业规划",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "入职可长期规划职业生涯",
+        "具有长期发展主义价值观"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 20,
+    "valid_features": 5,
+    "filtered_noise_count": 4,
+    "processing_notes": "过滤了4条包含'这是一个招聘信息'的无效文本，合并了'法律培训'等相似特征"
+  }
+}

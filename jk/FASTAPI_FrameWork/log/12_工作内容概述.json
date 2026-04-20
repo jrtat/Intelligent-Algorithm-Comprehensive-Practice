@@ -1,0 +1,115 @@
+{
+  "工作内容概述_description": "该岗位主要负责产品质量检验与过程控制，核心职责包括：1.使用专业量检具（如CMM坐标测量机、卡尺等）对零部件、包材进行精确测量与抽样检测，确保符合技术规范；2.执行生产过程中的IPQC巡检、末道检验及包装检验，记录并分析质量数据；3.依据检验标准处理不合格品，出具质检合格证并完成质量报告；4.参与质量改进活动，提出优化原材料质检流程与标准的可行性建议；5.协同相关部门处理质量投诉与问题跟踪。工作需适应无尘车间环境，部分岗位需接受倒班及流水线作业。",
+  "工作内容概述_tags": [
+    "坐标测量机使用",
+    "过程检验（IPQC）",
+    "来料抽样检测",
+    "质量数据分析",
+    "不合格品处理",
+    "检验报告编制",
+    "质量改进建议",
+    "无尘车间作业",
+    "量检具操作",
+    "包装检验"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "坐标测量机使用",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "使用坐标测量机（CMM）对零部件进行精确测量，确保产品质量符合标准"
+      ]
+    },
+    {
+      "feature_name": "过程检验（IPQC）",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "生产过程巡检IPQC",
+        "过程检验（含末道检验、初包装、外包装）相关工作及记录"
+      ]
+    },
+    {
+      "feature_name": "来料抽样检测",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "包材的来料抽样监测，内容包含文字、颜色、尺寸、图案、材质、密封性等",
+        "拒收来料中的不合格材料和物件"
+      ]
+    },
+    {
+      "feature_name": "质量数据分析",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "参与质量数据分析，挖掘潜在质量问题，为质量改进提供数据支撑"
+      ]
+    },
+    {
+      "feature_name": "不合格品处理",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "拒收来料中的不合格材料和物件"
+      ]
+    },
+    {
+      "feature_name": "检验报告编制",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "出具产品合格证和检验报告"
+      ]
+    },
+    {
+      "feature_name": "质量改进建议",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "提出优化原材料质检流程与标准的可行性建议"
+      ]
+    },
+    {
+      "feature_name": "无尘车间作业",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "无尘车间"
+      ]
+    },
+    {
+      "feature_name": "量检具操作",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "掌握量检具使用"
+      ]
+    },
+    {
+      "feature_name": "包装检验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "成品出荷检"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 53,
+    "valid_features": 10,
+    "filtered_noise_count": 35,
+    "processing_notes": "过滤了35条无效信息（含'这是一个招聘信息'、空值、纯标点等），合并了'过程检验'相关特征，剔除了与工作内容无关的福利条款"
+  }
+}

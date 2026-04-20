@@ -1,0 +1,86 @@
+{
+  "职业技能概述_description": "该岗位要求具备多领域的专业技能，核心包括翻译与语言处理能力、外贸业务知识、辅助工具使用等。翻译方向需精通中英文语言功底，能够适应不同文体的语言风格，具备快速审校和高质量翻译能力，优先掌握SDL Trados等辅助翻译工具。外贸方向需熟悉合同起草、信用证使用、税务处理及国际物流等业务流程。此外，具备视音频技术及解决方案相关经验者优先，可作为加分项。岗位职责涉及招聘支持、行政事务处理及跨语言沟通，需具备良好的团队协作能力与任务执行效率。",
+  "职业技能概述_tags": [
+    "翻译审校",
+    "SDL Trados使用",
+    "外贸业务知识",
+    "实时英语口译",
+    "跨语言沟通能力",
+    "合同与信用证处理",
+    "国际物流运作",
+    "视音频技术应用",
+    "AI辅助翻译工具",
+    "多文体语言适应"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "翻译审校速度快且质量高",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "翻译审校速度快且质量高；文字敏感度高；"
+      ]
+    },
+    {
+      "feature_name": "适应不同文体的语言风格要求",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "任职要求：1、优秀的跨语言理解能力和扎实的中英文语言功底，能够准确、流畅、规范地表达出原文含义，并且能够适应不同文体的语言风格要求；"
+      ]
+    },
+    {
+      "feature_name": "掌握 SDL Trados 等辅助翻译工具",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、具备通信、科技领域翻译经验者优先（需提供案例说明）；5、掌握 SDL Trados 等辅助翻译工具者优先。"
+      ]
+    },
+    {
+      "feature_name": "外贸工作拥有丰富的知识面",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "外贸工作拥有丰富的知识面，如合同的起草，信用证的使用，税务的处理，国际物流的运用等"
+      ]
+    },
+    {
+      "feature_name": "精通院校申请、签证申请等业务知识",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "精通香港 新加坡、澳洲 英国等地区/国家院校申请、签证申请等业务知识"
+      ]
+    },
+    {
+      "feature_name": "掌握视音频技术及解决方案",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "掌握视音频技术及解决方案，熟悉主流产品和应用者优先。"
+      ]
+    },
+    {
+      "feature_name": "居家为海外华人提供实时英语在线口译",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "居家为海外华人提供实时英语在线口译"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 17,
+    "valid_features": 7,
+    "filtered_noise_count": 38,
+    "processing_notes": "大量原始数据为无效招聘提示信息，已全部过滤。视音频技术、院校申请等特征因出现次数较少，置信度标记为中/低。"
+  }
+}

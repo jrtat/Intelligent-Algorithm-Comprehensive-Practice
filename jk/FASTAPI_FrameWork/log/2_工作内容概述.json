@@ -1,0 +1,354 @@
+{
+  "工作内容概述_description": "该岗位主要从事航空航天军工结构件研制、射线成像探测技术研究、大气环境治理、合成生物学方法制备蛋白质、电磁成像与感知、深度学习在气象预报中的应用、纳米多探针多物性测试系统开发、数据库内核技术研究、热控设计、材料科学与工程、生物信息学、基因编辑、量子计算与通信、人工智能在医疗领域的应用、新能源材料研发、智能制造、环境治理、人工智能算法开发、工业污染治理、智能农机装备研发、生物材料与组织工程、高分子材料合成、纳米材料功能化、工业固废资源化利用、智能检测技术、人工智能与通信融合、大数据分析、智能制造工艺优化、人工智能在教育领域的应用、智能机器人开发、新能源电池技术研究、人工智能在金融领域的应用、智能制造系统开发、人工智能在交通领域的应用、智能制造设备研发、人工智能在医疗设备中的应用、智能制造工艺优化、智能制造系统集成、智能制造设备维护、智能制造工艺改进、智能制造系统测试、智能制造设备调试、智能制造工艺优化、智能制造系统集成、智能制造设备维护、智能制造工艺改进、智能制造系统测试、智能制造设备调试",
+  "工作内容概述_tags": [
+    "航空航天军工结构件研制",
+    "射线成像探测技术研究",
+    "大气环境治理",
+    "合成生物学方法制备蛋白质",
+    "电磁成像与感知",
+    "深度学习在气象预报中的应用",
+    "纳米多探针多物性测试系统开发",
+    "数据库内核技术研究",
+    "热控设计",
+    "材料科学与工程",
+    "生物信息学",
+    "基因编辑",
+    "量子计算与通信",
+    "人工智能在医疗领域的应用",
+    "新能源材料研发",
+    "智能制造",
+    "环境治理",
+    "人工智能算法开发",
+    "工业污染治理",
+    "生物材料与组织工程",
+    "高分子材料合成",
+    "纳米材料功能化",
+    "工业固废资源化利用",
+    "智能检测技术",
+    "人工智能在教育领域的应用",
+    "智能机器人开发",
+    "新能源电池技术研究",
+    "人工智能在金融领域的应用",
+    "智能制造系统开发",
+    "智能制造设备研发",
+    "智能制造工艺优化",
+    "智能制造系统集成",
+    "智能制造设备维护",
+    "智能制造工艺改进",
+    "智能制造系统测试",
+    "智能制造设备调试"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "航空航天军工结构件研制",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.工作内容 航空航天军工结构件研制，主要从事金属热成形加工，包括热压，超塑，特种焊接，管成形，复合材料成型等相关岗位；"
+      ]
+    },
+    {
+      "feature_name": "射线成像探测技术研究",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.射线成像探测技术研究；"
+      ]
+    },
+    {
+      "feature_name": "大气环境治理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "大气环境治理、余热利用、清洁生产以及热能工程等绿色低碳节能环保技术研究。"
+      ]
+    },
+    {
+      "feature_name": "合成生物学方法制备蛋白质",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "利用合成生物学方法制备蛋白质、发酵等；"
+      ]
+    },
+    {
+      "feature_name": "电磁成像与感知",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "根据PI指导开展电磁成像与感知、微波无损检测、电磁兼容、及AI驱动的应用电磁技术等方向相关研究；"
+      ]
+    },
+    {
+      "feature_name": "深度学习在气象预报中的应用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "参与基于深度学习（例如物理信息神经网络PINN）、大型语言模型等人工智能技术在气象预报及洪涝预警中的应用研究。"
+      ]
+    },
+    {
+      "feature_name": "纳米多探针多物性测试系统开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "纳米多探针多物性测试系统开发多探针原子力显微镜。主要研究内容包括共聚焦光路设计、多探针独立控制与布局设计、探针切换与集成技术、电学和力学多点同步测量等。"
+      ]
+    },
+    {
+      "feature_name": "数据库内核技术研究",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（1）数据库内核技术方向：新型数据库访问语言技术，高性能精确数值计算方法，面向数据库的资源隔离研究，原生多模存储技术研究，图-关系混合查询优化技术研究，自适应数据压缩技术研究等；"
+      ]
+    },
+    {
+      "feature_name": "热控设计",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        ".】推力器设计工程师 / 电推进系统工程师 / 贮供设计工程师 / 阀门工程师姿轨控软件工程师 / 姿轨控测试工程师 / 姿轨控系统工程师 / 可靠性工程师软件工程师 / 电气软件工程师 / 通信测试工程师 / 通信工程师 / 测控总体工程师模拟电路工程师 / 数字电路工程师 / 供配电工程师 / 硬件工程师 / FPGA工程师 热控工程师 / 结构工程师 / 机构工程师 / 总装工艺工程师 / 总装工程师综测软件工程师 / 综合测试工程师 / 测试工程师 / 电装工程师 / 试验工程师质量工程师 / 采购工程师 / 生产计划 / 物料计划 / 来料检验 / 库房管理 等30余种研发、运营类岗位."
+      ]
+    },
+    {
+      "feature_name": "材料科学与工程",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "该岗位的详细职责和要求（包含了该岗位对技术能力的要求）如下： 分子生物学、材料学、免疫学 博士"
+      ]
+    },
+    {
+      "feature_name": "生物信息学",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "医学影像人工智能研究，有大规模研究经历者优先；多组学研究；"
+      ]
+    },
+    {
+      "feature_name": "基因编辑",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（1）参与工程菌的设计、构建和优化工作，进行基因编辑和克隆实验，构建工程菌株，研究工程菌在特定应用中的性能表现等。"
+      ]
+    },
+    {
+      "feature_name": "量子计算与通信",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "岗位职责:1、从事量子计算、量子通信、量子精密测量三大领域的技术产业研究，政府支撑，国际国内标准研制，数据平台能力建设，技术产品测试等科研工作。"
+      ]
+    },
+    {
+      "feature_name": "人工智能在医疗领域的应用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "开展基于人工智能算法进行食品配方设计，开发智能化的生产工艺设计调控平台，建立基于AI的关键生产条件对产品品质的大数据模型，应用于香料调香品控体系开发、微生物的定向筛选、生产工艺优化以及功能材料开发等。"
+      ]
+    },
+    {
+      "feature_name": "新能源材料研发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "研究方向：硫化物/卤化物全固态电池"
+      ]
+    },
+    {
+      "feature_name": "环境治理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.核心定位:聚焦工业污染治理场景，开展高性能环保材料研发，设备研发，工艺优化，流程再造，推动实验室技术向规模化工程应用转化，为钢铁、化工、能源等行业提供绿色解决方案。"
+      ]
+    },
+    {
+      "feature_name": "人工智能算法开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "基于机器学习、深度学习等技术开发智能优化、智能预警和生产管理决策系统；"
+      ]
+    },
+    {
+      "feature_name": "生物材料与组织工程",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（4）生物材料与组织工程、生物3D打印、细胞转染、体外诊断、微流控芯片、凝血分析与检测、细胞分选、类器官/器官芯片、单细胞分析、光谱医学分析与诊断。"
+      ]
+    },
+    {
+      "feature_name": "高分子材料合成",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1）有机合成和复杂分子合成；2）高分子合成和组装。"
+      ]
+    },
+    {
+      "feature_name": "纳米材料功能化",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（3）纳米材料的生物功能化方法；"
+      ]
+    },
+    {
+      "feature_name": "工业固废资源化利用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "开展大宗工业固废全链条污染控制与规模化利用综合解决方案、大宗工业固废无害化资源化技术清单与标准分析；"
+      ]
+    },
+    {
+      "feature_name": "智能检测技术",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "缺陷检测视觉识别算法、工件高精度视觉定位算法、视觉自主标定算法。其他要求："
+      ]
+    },
+    {
+      "feature_name": "人工智能在教育领域的应用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "结合医学与人工智能前沿进展，开发创新课程内容，更新教学案例，如引入最新的智能诊断算法、智能手术机器人应用实例设计并优化实践教学环节，提升学生动手能力与解决实际问题的能力。"
+      ]
+    },
+    {
+      "feature_name": "智能机器人开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "大模型、3D视觉智能成像与检测、动态网络智能路由算法、智能机器人等应用智能技术研究。"
+      ]
+    },
+    {
+      "feature_name": "新能源电池技术研究",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "开展高能量密度锂金属电池体系用电解液开发及性能评估；"
+      ]
+    },
+    {
+      "feature_name": "人工智能在金融领域的应用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "基于未来显示技术研究院的“Micro LED技术创新平台”，重点开展Micro-LED材料外延与芯片制备、Micro-LED巨量转移与检测修复等研究。"
+      ]
+    },
+    {
+      "feature_name": "智能制造系统开发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "搭建数字孪生平台，并完成交互接口、数据管理、微服务划分与实现等设计与开发；"
+      ]
+    },
+    {
+      "feature_name": "智能制造设备研发",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "专业方向：新能源领域高频大功率电子变压器的开发大功率变流器方向大功率高密度储能电源模块研发大功率户外储充一体化设备的研发任职要求："
+      ]
+    },
+    {
+      "feature_name": "智能制造工艺优化",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "产品创新（基于空气动力学的家电流体优化技术研究）项目课题二：工艺提升（家电产品焊接、材料等工艺研究）项目课题三："
+      ]
+    },
+    {
+      "feature_name": "智能制造系统集成",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、搭建数字孪生平台，并完成交互接口、数据管理、微服务划分与实现等设计与开发；4、基于平台开发数字孪生工厂系统，根据实际需求完成应用功能开发；"
+      ]
+    },
+    {
+      "feature_name": "智能制造设备维护",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "工作岗位：负责公司飞控计算机、数字放大器、赐福控制系统、电传飞控等相关产品的研发设计工作。"
+      ]
+    },
+    {
+      "feature_name": "智能制造工艺改进",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "火电厂燃烧优化、自动化控制；5."
+      ]
+    },
+    {
+      "feature_name": "智能制造系统测试",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、开展基于光热光谱显微的前沿课题研究，包括但不限于中红外光谱、超灵敏分子探测、非荧光超分辨成像、AI辅助测量算法等；2、针对团队半导体测量方向的关键目标探索解决方案；"
+      ]
+    },
+    {
+      "feature_name": "智能制造设备调试",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "高速原子力显微镜设备开发开发能够在液体环境下超快速动态成像且分辨率为纳米水平的原子力显微镜。主要研究内容包括高速响应电压放大器、高谐振频率扫描器等核心部件的设计与优化。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_filtered_entries": 15,
+    "total_valid_entries": 30,
+    "processing_time_seconds": 0.45
+  }
+}

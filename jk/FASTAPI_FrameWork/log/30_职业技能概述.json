@@ -1,0 +1,70 @@
+{
+  "职业技能概述_description": "该岗位要求具备工程管理、项目成本分析、行政系统搭建等核心能力。必备技能包括工程档案整理、CAD软件使用、项目成本统计分析等；加分项包括农业类咨询项目经验、教育行业项目管理经验、职业教育政策理解等。需熟练使用办公软件进行数据统计与表格处理，具备良好的沟通协调能力和外勤工作适应性。优先考虑有工程类、工程管理、工程造价等专业背景，或具备会展/外贸/客服工作经验的候选人。",
+  "职业技能概述_tags": [
+    "CAD软件使用",
+    "工程档案整理",
+    "项目成本分析",
+    "办公软件应用",
+    "行政系统搭建",
+    "农业咨询项目经验",
+    "教育行业项目管理",
+    "职业教育政策理解",
+    "工程造价专业背景",
+    "外勤工作适应性"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "工程档案整理",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "可跑施工现场，可熟练使用CAD软件大量出图，可做工程开竣工手续档案，各类工程档案整理归档。",
+        "各类工程档案整理归档"
+      ]
+    },
+    {
+      "feature_name": "CAD软件使用",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "可跑施工现场，可熟练使用CAD软件大量出图",
+        "可跑施工现场，可熟练使用CAD软件大量出图"
+      ]
+    },
+    {
+      "feature_name": "项目成本统计分析",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "5.掌握项目成本的支出、收入统计汇总分析；"
+      ]
+    },
+    {
+      "feature_name": "办公软件应用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（3）熟悉办公操作软件，特别是表格工作统计、筛选、引用等应用优秀；"
+      ]
+    },
+    {
+      "feature_name": "农业咨询项目经验",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（3）对农业类咨询项目有了解，参与过农业类咨询项目的优先"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 39,
+    "valid_features": 5,
+    "filtered_noise_count": 34,
+    "processing_notes": "大量条目包含'这是一个招聘信息'等无效文本，已过滤。'教育行业项目管理及从业经验'与'主导过教育咨询项目'合并为'教育行业项目管理'。'隐患的判断'等低频特征未纳入核心标签。"
+  }
+}

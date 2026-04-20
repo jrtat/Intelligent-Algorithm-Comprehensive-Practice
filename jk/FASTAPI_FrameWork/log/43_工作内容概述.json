@@ -1,0 +1,91 @@
+{
+  "工作内容概述_description": "该岗位核心职责包括客户订单管理与物流协调、销售数据统计分析、市场信息收集与处理、客户档案管理、销售报表制作及促销活动执行。日常工作中需处理客户订单跟踪、物流服务评估、协调物流公司、监控物流费用及质量；同时负责销售数据的汇总、整理与分析，制作销售报表，参与市场调研及竞争对手分析。专项工作涉及客户档案建立与需求记录、产品信息整理、销售活动策划与实施。需熟练使用办公软件进行数据处理，具备良好的沟通协调能力，部分职责需配合业务需求提供数据支持，参与促销方案设计与执行。",
+  "工作内容概述_tags": [
+    "客户订单管理",
+    "物流服务评估",
+    "销售数据统计分析",
+    "市场调研",
+    "客户档案管理",
+    "销售报表制作",
+    "促销活动执行",
+    "数据处理",
+    "沟通协调",
+    "销售活动策划"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "客户订单管理",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.客户订单管理，跟踪订单执行情况，协调物流配送,与物流公司对接，监控物流费用、时效和质量，对物流服务进行评估；"
+      ]
+    },
+    {
+      "feature_name": "销售数据统计分析",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "1、汇总、整理、分析销售数据，按照领导要求做好各类销售报表；",
+        "参与销售数据的统计、分析与报表制作。7.",
+        "整理并分析销售相关数据。"
+      ]
+    },
+    {
+      "feature_name": "市场调研与信息收集",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "参与市场调研和竞争对手分析。岗位要求：",
+        "5.协助团队进行市场调研，收集整理最新移民政策、行业动态等信息；"
+      ]
+    },
+    {
+      "feature_name": "客户档案管理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2.负责客户档案及需求记录、产品信息及市场数据的整理归纳；",
+        "2.负责客户档案及需求记录、产品信息及市场数据的整理归纳；"
+      ]
+    },
+    {
+      "feature_name": "促销活动执行",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "参与销售活动和促销方案的设计实施。任职要求："
+      ]
+    },
+    {
+      "feature_name": "数据处理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "协助优化完善现有业务流程；4、熟练使用办公软件，有基本的数据处理和分析能力；",
+        "公司提供海量询盘资源，助你快速破冰；成熟客户管理体系，让每一次服务都成为口碑沉淀。"
+      ]
+    },
+    {
+      "feature_name": "沟通协调",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具备良好的沟通协调能力"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 28,
+    "valid_features": 7,
+    "filtered_noise_count": 21,
+    "processing_notes": "过滤了所有包含'这是一个招聘信息'的文本及无效描述，合并了重复出现的'客户档案管理'和'销售数据统计分析'特征，保留高频有效信息。"
+  }
+}

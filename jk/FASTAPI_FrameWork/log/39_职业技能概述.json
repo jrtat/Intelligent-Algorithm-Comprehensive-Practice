@@ -1,0 +1,95 @@
+{
+  "职业技能概述_description": "该岗位要求具备地理信息系统相关专业背景，熟练使用ArcGIS、MapGIS、AutoCAD等专业设计软件，能够处理土地资源管理、城乡规划等领域的工程资料编订工作。需掌握SPSS、Visio、甘特图等办公及分析工具，具备工程项目的维护维修及售后系统集成能力。对变电站相关手续办理流程、照明/小家电/IOT行业有一定了解，优先考虑具备低代码开发经验及Tableau数据分析能力的候选人。核心技能包括工程资料管理、地理信息系统应用、项目管理工具使用及跨领域业务理解能力。",
+  "职业技能概述_tags": [
+    "ArcGIS应用",
+    "工程资料编订",
+    "SPSS使用",
+    "Visio工具",
+    "甘特图使用",
+    "变电站流程管理",
+    "IOT行业熟悉",
+    "系统集成能力",
+    "低代码开发",
+    "Tableau分析"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "Arcgis等）",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（1）土地资源管理、城乡规划、资源环境、地理信息系统、农田水利等相关专业，本科以上学历；（2）能熟练应用设计软件（AUTOcad、Mapgis、Arcgis等），有较强的文字功底；"
+      ]
+    },
+    {
+      "feature_name": "SPSS",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、熟练使用ArcGIS、SPSS、Office等软件；3、具有农村土地承包经营权确权项目调查或第三次全国土壤普查成果汇总相关工作经验的优先；"
+      ]
+    },
+    {
+      "feature_name": "甘特图等工具",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "5.熟练使用Microsoft Office、Visio、甘特图等工具；"
+      ]
+    },
+    {
+      "feature_name": "VISIO",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "5.熟练使用Microsoft Office、Visio、甘特图等工具；"
+      ]
+    },
+    {
+      "feature_name": "组织工程项目维护维修和售后服务",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "组织工程项目维护维修和售后服务，系统集成能力。"
+      ]
+    },
+    {
+      "feature_name": "对照明/小家电/IOT领域熟悉",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、较为熟悉欧洲、北美市场；对照明/小家电/IOT领域熟悉，具备3年以上大客户服务\\项目管理经验，熟悉ODM\\OEM模式、有大型制造型企业海外从业经验优先；"
+      ]
+    },
+    {
+      "feature_name": "了解低代码开发",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、熟悉SQL操作；4、了解低代码开发优先；"
+      ]
+    },
+    {
+      "feature_name": "熟悉Tableau工具",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、协助完成产研效能指标数据收集与分析，针对团队协作中发现的问题进行归纳总结和改进。【岗位要求】 1、认真、负责、细心、耐心，对数据敏感，有较强的逻辑思维、学习能力和数据分析能力，熟悉Tableau工具优先；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 13,
+    "valid_features": 8,
+    "filtered_noise_count": 3,
+    "processing_notes": "已过滤所有包含'这是一个招聘信息'的无效条目，'MapGIS'特征因原文无效被剔除，'蛋白质相关技术背景'因与工程领域关联性不足被排除"
+  }
+}

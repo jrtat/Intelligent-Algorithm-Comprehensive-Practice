@@ -1,0 +1,55 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质的要求主要集中在特定行业证书和职称优先级方面。必须持有退伍军人证书，属于硬性门槛要求。对于职称资质，明确要求具备初级职称或以上专业资格作为优先条件。其他证书如ORACLE、SQLServer等IT资格认证以及ISTQB等软件测试相关证书属于加分项，但未明确列为必备条件。值得注意的是，岗位鼓励员工报考咨询工程师（投资）资格考试并提供补贴奖励，但该证书并非入职前提条件。整体来看，证书要求呈现'硬性门槛+优先条件+鼓励发展'的多层次结构。",
+  "证书要求概述_tags": [
+    "退伍军人证书",
+    "初级职称优先",
+    "ORACLE认证",
+    "ISTQB证书",
+    "咨询工程师（投资）资格",
+    "IT行业证书"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "持退伍军人证书",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（四）其他要求1.持退伍军人证书。"
+      ]
+    },
+    {
+      "feature_name": "初级职称或以上专业资格",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.统招本科及以上学历，财经类专业优先，初级职称或以上专业资格优先；"
+      ]
+    },
+    {
+      "feature_name": "ORACLE、SQLServer等IT资格认证",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有考研、考公、学历提升、建工、计算机行业经验优先考虑！【岗位职责】1."
+      ]
+    },
+    {
+      "feature_name": "咨询工程师（投资）资格考试",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、鼓励员工报考专业考试，对通过咨询工程师（投资）资格考试人员结予补贴和奖励；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 7,
+    "valid_features": 4,
+    "filtered_noise_count": 3,
+    "processing_notes": "原文中'无具体证书要求'条目未提及任何证书信息，'如ORACLE'条目与证书无关，'相关证书（如ISTQB）'条目未明确证书要求，均被过滤"
+  }
+}

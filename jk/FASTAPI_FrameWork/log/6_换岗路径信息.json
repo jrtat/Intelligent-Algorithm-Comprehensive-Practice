@@ -1,0 +1,8 @@
+{
+  "Java": {
+    "source_job": "C/C++",
+    "target_job": "Java",
+    "description": "转岗难度为中等偏上，C/C++开发者具备扎实的编程基础、算法能力及多线程经验，可迁移至Java开发，但需补充分布式系统设计、Spring框架及云技术能力。建议系统学习Java全栈开发（Spring Boot/Cloud）、参与微服务项目实践，并考取AWS/Azure认证。风险提示：Java生态与C/C++差异较大，需适应新的开发工具链（如Docker/Kubernetes）及大数据处理框架（Hadoop/Spark），建议通过开源项目或在线课程强化实践能力，同时利用已有技术文档阅读能力快速掌握Java技术栈。",
+    "similarity": 0.6829415702288651
+  }
+}

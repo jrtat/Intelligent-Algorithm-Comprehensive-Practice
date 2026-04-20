@@ -1,0 +1,106 @@
+{
+  "工作内容概述_description": "该岗位核心职责包括：1.执行来料抽样检验及异常处理，主导供应商质量改善；2.负责IQC/IPQC/FQC/OQC全流程质量管控，协调跨部门工作；3.组织分析质量异常并制定改进措施，跟踪验证效果；4.监控生产过程质量，处理客户投诉及质量数据反馈；5.参与质量体系管理，推动质量工具应用及流程优化。必备技能包含质量检验标准执行、质量异常闭环管理、跨部门协作能力，加分项包括质量管理工具应用及体系认证经验。",
+  "工作内容概述_tags": [
+    "质量异常闭环管理",
+    "IQC/IPQC/FQC/OQC质量管控",
+    "供应商质量改善",
+    "客户投诉处理",
+    "质量数据统计分析",
+    "质量体系管理",
+    "跨部门协作",
+    "质量工具应用",
+    "生产过程质量监控"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "质量异常闭环管理",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "建立不合格品管理机制，组织分析质量异常，制定纠正与预防措施并跟踪验证效果。",
+        "抛光生产过程中异常发现，做好属性标识并及时上报质量问题到车间主管/班组长，督促车间处理并做闭环验证。",
+        "组织分析质量异常，制定纠正与预防措施并跟踪验证效果。"
+      ]
+    },
+    {
+      "feature_name": "IQC/IPQC/FQC/OQC质量管控",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "IQC/IPQC/FQC/OQC工作安排，人员管理，各部门工作协调等",
+        "工作流程和内容涵盖IQC、IPQC、FQC/OQC"
+      ]
+    },
+    {
+      "feature_name": "供应商质量改善",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "执行来料抽样频次2.跟进供应商改善追溯3."
+      ]
+    },
+    {
+      "feature_name": "客户投诉处理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "客服QE  2.負責處理客訴"
+      ]
+    },
+    {
+      "feature_name": "质量数据统计分析",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "收集生产及售后质量数据，运用统计工具进行分析，定期输出质量报告"
+      ]
+    },
+    {
+      "feature_name": "质量体系管理",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "质量管理体系认证执行"
+      ]
+    },
+    {
+      "feature_name": "跨部门协作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "与相关部门的工作协调与沟通"
+      ]
+    },
+    {
+      "feature_name": "质量工具应用",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉常用的质量工具和手法"
+      ]
+    },
+    {
+      "feature_name": "生产过程质量监控",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "按照作业指导书各工序检验标准，每日对抛光流水线生产质量确认"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 65,
+    "valid_features": 9,
+    "filtered_noise_count": 56,
+    "processing_notes": "过滤掉所有包含'这是一个招聘信息'的文本及无关岗位信息，合并'质量异常处理'等重复特征，剔除'分拣'等无效标签"
+  }
+}

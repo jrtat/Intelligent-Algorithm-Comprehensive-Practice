@@ -1,0 +1,118 @@
+{
+  "专业背景概述_description": "该岗位对专业背景的要求呈现多元化特征，核心专业以房地产开发与经营、管理类相关专业为主，同时涵盖市场营销、电子商务、信息管理等多领域。专业限制程度呈现差异化，部分岗位明确要求特定专业背景（如房地产开发与经营、针灸推拿等），部分岗位对专业限制较宽松（如专业不限）。优先考虑的专业包括财务、统计、物流管理、商务管理等，部分岗位对专业背景无硬性要求但强调技能适配性。特殊专业要求涉及中医药相关领域（如针灸推拿、中药学）和数字媒体等新兴领域。",
+  "专业背景概述_tags": [
+    "房地产开发与经营",
+    "管理类相关专业",
+    "市场营销",
+    "电子商务",
+    "信息管理相关专业",
+    "财务统计优先",
+    "物流管理",
+    "商务管理",
+    "针灸推拿",
+    "数字媒体优先"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "房地产开发与经营",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1、2024级或2025级毕业生，房地产开发与经营、管理类相关专业本科及以上学历；"
+      ]
+    },
+    {
+      "feature_name": "管理类相关专业",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "1、2024级或2025级毕业生，房地产开发与经营、管理类相关专业本科及以上学历；",
+        "1、管理类专业背景，财务、统计专业优先，本科学历及以上、研究生优先。"
+      ]
+    },
+    {
+      "feature_name": "市场营销",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "大专及以上学历，教育学、心理学、市场营销等相关专业优先，但非必要条件，企业提供培训平台。2、沟通能力：",
+        "1、性别不限，专科及以上学历，市场营销、经济管理等相关专业；岗位职责：",
+        "（3）专业要求：电子商务、市场营销、信息管理相关专业。"
+      ]
+    },
+    {
+      "feature_name": "电子商务",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "任职资格1、专科以上学历，电子商务、药学等相关专业优先录用；",
+        "（3）专业要求：电子商务、市场营销、信息管理相关专业。"
+      ]
+    },
+    {
+      "feature_name": "信息管理相关专业",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "（3）专业要求：电子商务、市场营销、信息管理相关专业。"
+      ]
+    },
+    {
+      "feature_name": "财务、统计专业优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "1、管理类专业背景，财务、统计专业优先，本科学历及以上、研究生优先。",
+        "1、本科大三在读及以上，专业不限，会计学、财务管理等专业优先"
+      ]
+    },
+    {
+      "feature_name": "物流管理",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "任职资格1、专科以上学历，物流管理、商务管理专业优先；"
+      ]
+    },
+    {
+      "feature_name": "商务管理",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "任职资格1、专科以上学历，物流管理、商务管理专业优先；"
+      ]
+    },
+    {
+      "feature_name": "针灸推拿等相关专业",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.中医、中药学、针灸推拿等相关专业优先，熟悉中药材特性；"
+      ]
+    },
+    {
+      "feature_name": "数字媒体",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.学历不限，市场营销，数字媒体专业优先考虑；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 44,
+    "valid_features": 10,
+    "filtered_noise_count": 11,
+    "processing_notes": "过滤掉包含'这是一个招聘信息'的条目（会计、数学、经济等字段），剔除无效文本及与专业背景无关的内容"
+  }
+}

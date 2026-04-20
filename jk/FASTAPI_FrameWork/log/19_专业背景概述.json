@@ -1,0 +1,112 @@
+{
+  "专业背景概述_description": "该岗位对专业背景的要求涵盖多个工程与技术领域，核心专业包括建筑、电气、能源、生态、智能化、暖通等，相关专业涉及市政公用工程、环境工程、给排水、道路、景观设计等。专业限制程度以优先考虑为主，部分岗位对专业背景无明确限制。特殊专业要求包括绿色建筑、超低能耗建筑、生态城市等细分领域，以及具备理工+经济类复合专业背景者优先。岗位对工程设计、咨询、研发等方向有明确需求，部分职位要求具备特定行业经验（如医药、生物、汽车、化工新材料等）。",
+  "专业背景概述_tags": [
+    "建筑",
+    "电气",
+    "能源",
+    "生态",
+    "暖通专业",
+    "环境工程",
+    "给排水",
+    "景观设计",
+    "绿色建筑",
+    "复合专业背景",
+    "工程设计",
+    "咨询",
+    "研发",
+    "化工新材料",
+    "智能化"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "建筑",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "了解绿色建筑、健康建筑、超低能耗建筑、绿色城区或生态城市，参与过相关项目的优先",
+        "工程咨询甲级（市政公用工程）；建筑工程设计乙级、风景园林工程设计乙级",
+        "部门业务方面包含了给排水、环境、道路、建筑、景观等工程设计、咨询、研发等"
+      ]
+    },
+    {
+      "feature_name": "电气",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "硕士及以上学历，专业不限，建筑、电气、能源、生态、智能化、暖通专业优先"
+      ]
+    },
+    {
+      "feature_name": "能源",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "硕士及以上学历，专业不限，建筑、电气、能源、生态、智能化、暖通专业优先",
+        "1.本科及以上，能源管理、环境工程等专业优先"
+      ]
+    },
+    {
+      "feature_name": "生态",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.了解绿色建筑、健康建筑、超低能耗建筑、绿色城区或生态城市，参与过相关项目的优先"
+      ]
+    },
+    {
+      "feature_name": "暖通专业",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "硕士及以上学历，专业不限，建筑、电气、能源、生态、智能化、暖通专业优先"
+      ]
+    },
+    {
+      "feature_name": "环境工程",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.本科及以上，能源管理、环境工程等专业优先"
+      ]
+    },
+    {
+      "feature_name": "给排水",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "部门业务方面包含了给排水、环境、道路、建筑、景观等工程设计、咨询、研发等"
+      ]
+    },
+    {
+      "feature_name": "复合专业背景",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "硕士以上学历，专业要求：经济类、管理类、理工类、工程类相关专业，具备理工+经济类复合专业背景者优先"
+      ]
+    },
+    {
+      "feature_name": "化工新材料",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、理工科专业或背景的：在医药、生物、汽车、电子、计算机、化工新材料、机械制造等工作过等优先考虑"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 54,
+    "valid_features": 9,
+    "filtered_noise_count": 33,
+    "processing_notes": "部分条目因包含'这是一个招聘信息'等无效信息被过滤，'法律知识'等条目因缺乏明确专业背景描述未被纳入有效特征"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "职业技能概述_description": "该岗位要求候选人具备网络通信测试、嵌入式开发、自动化测试等核心技能。必备技能包括熟悉2G/4G/5G基站测试、DOCSIS协议、Router/Wi-Fi/PON相关测试，以及掌握SPICE仿真工具和LDRA Testbed工具的使用。加分项包括等保安全评估经验、安全设计能力、管路应力分析软件使用经验。候选人需具备缺陷跟踪与解决能力，能通过日志分析独立定位问题，并熟悉自动化测试工具QTP和性能测试工具LoadRunner。同时要求了解运维工程师/网络工程师工作内容，具备基本的IT质量管理能力。",
+  "职业技能概述_tags": [
+    "网络通信测试",
+    "SPICE仿真工具使用",
+    "LDRA Testbed工具使用",
+    "2G/4G/5G基站测试",
+    "DOCSIS协议应用",
+    "缺陷跟踪与解决",
+    "日志分析能力",
+    "自动化测试工具QTP",
+    "性能测试工具LoadRunner",
+    "IT质量管理"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "网络通信测试技能",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "5.熟悉DOCSIS，Router，Wi-Fi，PON相关测试者优先；",
+        "2、熟悉2G/4G/5G基站，具备相关测试经验；对核心网产品有相关测试经验者优先；",
+        "3、全方面参与测试流程...熟悉OTA升级"
+      ]
+    },
+    {
+      "feature_name": "SPICE仿真工具使用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4.熟悉SPICE仿真工具，有K库经验者优先；"
+      ]
+    },
+    {
+      "feature_name": "缺陷跟踪与解决",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "对产品质量进行实时监控;4.推动缺陷bug的解决;",
+        "3、能够结合灰盒测试方法，通过日志分析，独立定位问题；"
+      ]
+    },
+    {
+      "feature_name": "自动化测试工具使用",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、了解自动化测试工具QTP、性能测试工具LoadRunner；"
+      ]
+    },
+    {
+      "feature_name": "IT质量管理能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.了解运维工程师、网络工程师的工作内容，能进行基本的IT质量管理。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 31,
+    "valid_features": 5,
+    "filtered_noise_count": 26,
+    "processing_notes": "过滤掉所有'这是一个招聘信息'及无效重复条目，合并了网络通信相关测试技能条目，保留高频出现的核心技能特征"
+  }
+}

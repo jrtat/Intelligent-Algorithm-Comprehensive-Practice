@@ -1,0 +1,94 @@
+{
+  "工作内容概述_description": "岗位核心职责包括线下推广、客户关系维护及市场拓展。主要负责通过陌拜、摆点、散推等方式向餐饮商户、实体商家及潜在用户推广平台产品与服务，建立合作关系并达成销售目标。需维护客户关系，确保客户满意度，同时参与团队协作完成推广任务。工作过程中需接受系统培训，掌握推广流程及产品知识，部分岗位提供带薪培训。具备晋升通道，如充分了解市场后可申请晋升BD经理。工作形式以外勤为主，无需回公司办公，部分岗位需配合线上运营策略制定及用户转化工作。",
+  "工作内容概述_tags": [
+    "线下推广",
+    "客户关系维护",
+    "市场拓展",
+    "团队协作",
+    "商家入驻推广",
+    "推广培训",
+    "销售目标达成",
+    "用户拉新",
+    "平台产品推广",
+    "外勤工作"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "线下推广",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "1、负责线下推广app，拉新并维护复购2、摆点，散推，扫楼扫店，地面推广形式不限",
+        "采用点位和散推等拉新方式",
+        "2、摆点，散推，扫楼扫店，地面推广形式不限"
+      ]
+    },
+    {
+      "feature_name": "客户关系维护",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "维护客户关系，确保客户满意度和忠诚度",
+        "维护客户关系，确保客户满意度"
+      ]
+    },
+    {
+      "feature_name": "市场拓展",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "通过陌拜等方式积极开展业务拓展，达成销售任务目标",
+        "邀请实体商家入驻省团生活平台，与商家一起赚取长期管道收益"
+      ]
+    },
+    {
+      "feature_name": "团队协作",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "每日参加团队管理会议，小组一起执行并完成上级主管安排的推广任务及指标",
+        "每日参加服务内容会议，明确需求目标以及拉新的流程"
+      ]
+    },
+    {
+      "feature_name": "商家入驻推广",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "地推销售，邀请实体商家入驻省团生活平台",
+        "告知入驻平台流程，培训周期4天"
+      ]
+    },
+    {
+      "feature_name": "推广培训",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "培训周期4天，带薪培训（每天补助40）",
+        "入职既有专人带训，帮助快速进入角色"
+      ]
+    },
+    {
+      "feature_name": "外勤工作",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "工作地点按照居住片区进行网格划分，上下班外勤打卡无需回公司",
+        "无需回公司办公"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 42,
+    "valid_features": 7,
+    "filtered_noise_count": 16,
+    "processing_notes": "已过滤包含'这是一个招聘信息'的无效条目及与岗位职责无关的描述"
+  }
+}

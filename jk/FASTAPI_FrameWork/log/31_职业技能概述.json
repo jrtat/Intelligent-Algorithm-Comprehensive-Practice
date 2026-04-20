@@ -1,0 +1,102 @@
+{
+  "职业技能概述_description": "该岗位要求具备电力行业相关证书（如高低压电工证、登高作业证），熟悉风电机组维护、电气设备巡检及运维管理流程。核心职责包括风电机组的定期巡检、维护、故障处理及性能优化，需掌握电气设备台账管理、工作票执行监督、备件物资管理等技能。需具备现场安装督导能力，能独立完成叶片维修监护、叶轮锁定解锁等高处作业。优先熟悉避雷器、电缆拆装等专项技术，具备风电、光伏、储能等多领域设备维护经验。需参与运行规程编制、安全生产制度执行及人员培训计划制定，具备数据分析和改进建议能力。",
+  "职业技能概述_tags": [
+    "高低压电工证",
+    "登高作业证",
+    "风电机组维护",
+    "电气设备巡检",
+    "工作票管理",
+    "备件物资管理",
+    "高处作业监护",
+    "电缆拆装技术",
+    "运维规程编制",
+    "设备性能优化"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "高低压电工证",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "上岗须持有安监局发放的高低压电工证、登高作业证",
+        "持有安监局下发的特种电工证、登高作业证"
+      ]
+    },
+    {
+      "feature_name": "登高作业证",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "上岗须持有安监局发放的高低压电工证、登高作业证",
+        "持有安监局下发的特种电工证、登高作业证"
+      ]
+    },
+    {
+      "feature_name": "风电机组维护",
+      "confidence": "high",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "保障风电机组安全稳定运行",
+        "定期巡检、维护、定期检修、故障消除"
+      ]
+    },
+    {
+      "feature_name": "电气设备巡检",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "监督检查电气设备台帐记录完整、有效",
+        "场内及升压站设备的维护管理"
+      ]
+    },
+    {
+      "feature_name": "工作票管理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "监督各类工作票管理、执行",
+        "监督检查电气设备台帐记录完整、有效、监督各类工作票管理、执行"
+      ]
+    },
+    {
+      "feature_name": "备件物资管理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "负责项目现场物资的备件管理",
+        "拟订检修工作计划、备品备件计划和耗品采购计划"
+      ]
+    },
+    {
+      "feature_name": "高处作业监护",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "协助外部叶片维修人员作业，全程安全监护",
+        "负责机组停机、起机、叶轮锁定、叶轮解锁作业过程全程安全监护"
+      ]
+    },
+    {
+      "feature_name": "电缆拆装技术",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟悉避雷器、电缆拆装等日常工作"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 24,
+    "valid_features": 8,
+    "filtered_noise_count": 21,
+    "processing_notes": "过滤了所有包含'这是一个招聘信息'的文本及无效描述，合并了重复出现的职责描述，保留了与岗位核心技能直接相关的特征"
+  }
+}

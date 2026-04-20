@@ -1,0 +1,127 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质要求主要集中在技术认证、职称资质及语言能力方面。优先考虑持有思科、微软等网络认证证书，具备CCNA、RHCE、OCP等技术认证者。PMP、Scrum Master等项目管理类资质以及职称证书（如软考）为加分项。语言方面要求英语四级及以上，部分岗位需葡萄牙语B2等级。行业特定证书如ISO/IEC27001体系内审员资格、海康HCA/HCT/HCP等也受青睐。公司为考取职称证书提供培训及报销支持，但无强制要求。",
+  "证书要求概述_tags": [
+    "思科认证",
+    "微软认证",
+    "PMP认证",
+    "Scrum Master认证",
+    "职称证书",
+    "英语四级",
+    "葡萄牙语B2",
+    "ISO/IEC27001内审员资格",
+    "海康HCA",
+    "海康HCT",
+    "海康HCP",
+    "CCNA认证",
+    "RHCE认证",
+    "OCP认证"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "思科认证",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、熟悉计算机网络相关知识，有思科, 微软等网络认证证书优先；"
+      ]
+    },
+    {
+      "feature_name": "PMP认证",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "• 熟悉Oracle，MS SQL server, MySQL数据库，认证资质PMP、Scrum Master，高项"
+      ]
+    },
+    {
+      "feature_name": "Scrum Master认证",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "• 熟悉Oracle，MS SQL server, MySQL数据库，认证资质PMP、Scrum Master，高项"
+      ]
+    },
+    {
+      "feature_name": "职称证书",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "专业知识：提供职称证书考试培训机会，考取证书后公司报销所有费用并提供额外奖励3."
+      ]
+    },
+    {
+      "feature_name": "英语四级",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "1.英语 听说读写 中等，至少CET42."
+      ]
+    },
+    {
+      "feature_name": "葡萄牙语B2",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "本科及以上学历，理工科专业2.葡萄牙语B2等级3."
+      ]
+    },
+    {
+      "feature_name": "ISO/IEC27001内审员资格",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3.优先条件拥有 PM、DBA 或系统集成资质，熟悉 RS232/RS485 通讯协议，或具备 ISO/IEC27001 体系内审员资格。"
+      ]
+    },
+    {
+      "feature_name": "海康HCA/HCT/HCP",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "4、有海康机器人项目经验及海康HCA，HCT证书的优先考虑 薪资待遇：",
+        "6、有以下证书者优先：HCT/HCA/HCP等；"
+      ]
+    },
+    {
+      "feature_name": "CCNA认证",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "6、具有相关的技术认证（如 CCNA、RHCE、OCP 等）者优先考虑。"
+      ]
+    },
+    {
+      "feature_name": "RHCE认证",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "6、具有相关的技术认证（如 CCNA、RHCE、OCP 等）者优先考虑。"
+      ]
+    },
+    {
+      "feature_name": "OCP认证",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "6、具有相关的技术认证（如 CCNA、RHCE、OCP 等）者优先考虑。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 26,
+    "valid_features": 11,
+    "filtered_noise_count": 6,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的无效条目，合并了海康相关证书为统一标签"
+  }
+}

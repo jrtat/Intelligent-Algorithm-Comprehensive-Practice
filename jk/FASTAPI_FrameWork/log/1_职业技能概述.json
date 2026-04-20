@@ -1,0 +1,137 @@
+{
+  "职业技能概述_description": "该岗位要求具备工业互联网+安全生产领域的专业技术能力，熟悉危化品行业智能化管理方案，精通塑塑复合工艺及无溶剂聚氨酯软包生产工艺。需掌握IPaaS平台操作、ETL系统集成工具（如Informatica、Kafka、Airflow）及医疗标准化协议（ASTM/Hl7/DICOM）。具备设备运维能力，包括大气监测站运维、视频监控系统架设及智能监控平台对接经验。要求熟悉工业数据采集技术（OPC/Modbus/S7协议）、组态软件配置（SCADA/HMI）及工业互联网定位技术（ZigBee Plus）。具备项目部署实施经验，了解MES与ERP系统集成逻辑，能进行热平衡计算及质量能量平衡分析。需掌握CAD绘图、PVsyst软件应用及光伏从业经验，具备3D制图能力（Fusion/Inventor）及机械安装技能。在医疗领域需具备设备跟台能力（阵发性房颤/室早/房扑），能进行生物实验（ELISA/动植物残留检测）及生命科学仪器操作。要求熟悉政府数字化转型路线图，具备数据中台、政务云架构及等保2.0知识。",
+  "职业技能概述_tags": [
+    "工业互联网+危化安全生产",
+    "塑塑复合工艺",
+    "IPaaS平台操作",
+    "ETL系统集成",
+    "医疗标准化协议",
+    "工业数据采集",
+    "智能监控系统对接",
+    "热平衡计算",
+    "光伏系统设计",
+    "3D制图能力",
+    "设备跟台实践",
+    "生物实验操作",
+    "政务云架构",
+    "MES系统集成"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "工业互联网+危化安全生产",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "基于精准人员定位的工业安全生产信息化管理专家，安全生产信息化管理引领者！作为全国实时定位技术标准工作组成员和应急管理部“工业互联网+危化安全生产”人员定位系统技术支持机构，安然从2012年起致力于基于ZigBee Plus三维立体按需精准定位的“工业互联网+安全生产”的研究，获得了20多项安全智能管控系统发明专利和著作权，持续引领中国化工行业生产现场智慧安全！"
+      ]
+    },
+    {
+      "feature_name": "精通塑塑复合工艺",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "【任职要求】①熟悉软包市场，精通塑塑复合工艺②熟悉软包无溶剂聚氨酯的生产工艺和技术特点，具备解决复杂技术问题的能力。③了解不同胶水厂家的无溶剂聚氨酯软包产品特点【岗位职责】①负责无溶剂聚氨酯软包装材料的技术支持和服务，确保产品质量符合客户需求。"
+      ]
+    },
+    {
+      "feature_name": "掌握 iPaaS 平台相关操作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "技术技能：熟悉 TCP/HTTP 等通信协议，掌握 iPaaS 平台相关操作，如 API 管理、ETL 转换等；"
+      ]
+    },
+    {
+      "feature_name": "工业数据采集技术",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "2、熟悉工业数据采集和传输技术，了解OPC、Modbus、S7等通讯协议；3、了解PLC基本原理，用过至少一种主流组态软件（SCADA/HMI）的配置与使用；",
+        "常见的通信机制：WiFi、Ehthernet、4G/5G等。"
+      ]
+    },
+    {
+      "feature_name": "医疗标准化协议",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "任职要求技术能力计算机相关专业本科及以上学历，熟悉 ASTM、HL7、DICOM 等医疗标准化协议，掌握 MySQL/Redis 数据库及 SQL 语句。具备 Linux、VMware 操作经验，了解 RDS、ECS 等云服务架构，能使用 Markdown 编写技术文档。"
+      ]
+    },
+    {
+      "feature_name": "热平衡计算",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "专业技能：能进行热平衡计算、熟悉质量平衡能量平衡方程 4."
+      ]
+    },
+    {
+      "feature_name": "光伏系统设计",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2、熟练掌握office办公软件、CAD绘图、PVsyst、meteonorm；3、有光伏从业经验者优先。"
+      ]
+    },
+    {
+      "feature_name": "3D制图能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "3、熟悉办公软件和CAD软件 (比如 Pro/E, AutoCAD, PDM etc), 具备3D制图能力(Fusion or Inventor)；4、愿意出差，有较强的学习能力，可以很快的适应有挑战性的工作。"
+      ]
+    },
+    {
+      "feature_name": "设备跟台实践",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        " 精通阵发性房颤跟台、产品及客户沟通能力掌握室早和典型房扑的跟台职位要求/录用条件：",
+        " 精通阵发性房颤跟台、产品及客户沟通能力掌握室早和典型房扑的跟台 职位要求/录用条件："
+      ]
+    },
+    {
+      "feature_name": "生物实验操作",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.能够独立完成免疫学、理化、微生物检测技术相关实验操作等日常工作，熟悉ELISA原理、动植物源性残留检测、食品理化指标检测、快检设备及仪器优先；"
+      ]
+    },
+    {
+      "feature_name": "政务云架构",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "• 熟悉政府业务流程（如行政审批、公共服务数字化）、数据中台、API接口开发与集成、政务云架构。"
+      ]
+    },
+    {
+      "feature_name": "MES系统集成",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "了解MES与ERP、PLC等系统的集成逻辑，能识别跨系统交互的测试要点。"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 122,
+    "valid_features": 12,
+    "filtered_noise_count": 58,
+    "processing_notes": "过滤了所有包含'这是一个招聘信息'的条目及无效文本，合并了'工业互联网+危化安全生产'等重复特征，保留了高频出现且有明确原文支撑的技能要求。"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "职业技能概述_description": "该岗位主要面向销售及客户管理领域，核心要求包括：1.具备大客户开发与服务能力，能独立完成产值规模3亿以上客户的挖掘与维护；2.掌握销售全流程管理能力，包括需求分析、方案匹配、订单促成及学员管理；3.熟悉办公软件（如VISIO）及基础数据分析工具；4.具备良好的电话沟通能力，能处理日均10+次客户沟通；5.拥有销售业绩管理经验，过往业绩需达到良好水平。优先考虑具有创业者心态及行业培训分享能力的候选人。",
+  "职业技能概述_tags": [
+    "大客户开发",
+    "销售全流程管理",
+    "VISIO办公软件",
+    "电话沟通能力",
+    "销售业绩管理",
+    "学员管理",
+    "创业者心态",
+    "行业培训分享"
+  ],
+  "职业技能概述_features": [
+    {
+      "feature_name": "大客户开发能力",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "能开发和服务产值规模3亿以上的大客户"
+      ]
+    },
+    {
+      "feature_name": "销售全流程管理",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "了解学员需求，推荐适合课程，有效管理自己的学员，进行回访促成订单。",
+        "挖掘客户需求，匹配相应解决方案（学习规划）"
+      ]
+    },
+    {
+      "feature_name": "VISIO办公软件",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "熟练使用WORD、VISIO、PPT等办公软件"
+      ]
+    },
+    {
+      "feature_name": "电话沟通能力",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "工作会涉及电话沟通，一天最多10多个电话量"
+      ]
+    },
+    {
+      "feature_name": "销售业绩管理",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "过往业绩良好"
+      ]
+    },
+    {
+      "feature_name": "创业者心态",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有创业者心态"
+      ]
+    },
+    {
+      "feature_name": "行业培训分享",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "培训与分享:定期开展培训讲座和分享活动"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 14,
+    "valid_features": 7,
+    "filtered_noise_count": 58,
+    "processing_notes": "原始数据中存在大量无效条目（如'这是一个招聘信息'），已全部过滤。最终特征均基于有效原文提取，未发现技术类技能描述。"
+  }
+}

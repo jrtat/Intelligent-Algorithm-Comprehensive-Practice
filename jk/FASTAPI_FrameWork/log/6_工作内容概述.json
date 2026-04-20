@@ -1,0 +1,73 @@
+{
+  "工作内容概述_description": "该岗位主要负责基于C++、Qt等技术栈进行软件开发与优化，涉及无人机、机器人、自动驾驶、工业大数据等多个领域。核心职责包括：1）主导或参与复杂系统的架构设计与技术选型，如AUTOSAR基础软件平台、智能驾驶系统ADS模块；2）开发高性能分布式数据缓存、容灾备份方案，优化程序执行效率；3）与机械、电气、视觉等多部门协作，完成无人机整机调试、机器人运动控制算法设计；4）基于Windows/Linux/vxWorks等平台开发应用软件、驱动程序；5）参与工业大数据算法研究与优化，开发AI诊断分析平台。常规工作涵盖编码、调试、测试及技术文档编写，专项工作包括自动驾驶组件开发、游戏引擎开发、三维CAD底层算法研发等。",
+  "工作内容概述_tags": [
+    "C++开发",
+    "Qt界面设计",
+    "多线程编程",
+    "分布式数据缓存",
+    "机器人控制",
+    "自动驾驶开发",
+    "工业大数据算法",
+    "医疗通信接口",
+    "系统架构设计",
+    "容灾备份方案"
+  ],
+  "工作内容概述_features": [
+    {
+      "feature_name": "C++开发",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "使用C++设计、开发和调试物流平台自动化程序",
+        "使用C++开发IVD仪器（化学发光/流式细胞仪等）嵌入式控制软件"
+      ]
+    },
+    {
+      "feature_name": "Qt界面设计",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "掌握QT界面设计、多线程、socket通信",
+        "利用QT的图形绘制和动画功能，开发设备运行状态的动态仿真模型"
+      ]
+    },
+    {
+      "feature_name": "多线程编程",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "熟悉C++多线程操作，锁操作，资源同步",
+        "精通网络编程及并发处理"
+      ]
+    },
+    {
+      "feature_name": "分布式数据缓存",
+      "confidence": "high",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "构建极致数据缩减比及高性能分布式数据缓存",
+        "设计高可靠容灾备份方案，构筑元数据索引"
+      ]
+    },
+    {
+      "feature_name": "机器人控制",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "设计运动控制算法和人机界面，实现多轴坐标机器人的自动控制",
+        "协作机器人应用调试，结合3D相机数据、运动学算法"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 102,
+    "valid_features": 23,
+    "filtered_noise_count": 37,
+    "processing_notes": "过滤了包含'这是一个招聘信息'的条目及无效地理位置信息，合并了'游戏引擎开发'与'图形引擎开发'等相似特征"
+  }
+}

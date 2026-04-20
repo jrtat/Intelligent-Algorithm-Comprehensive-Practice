@@ -1,0 +1,33 @@
+{
+  "证书要求概述_description": "该岗位对证书和资质要求较为明确，其中普通话证书二乙以上属于优先考虑条件。其他如实习证明、计算机操作能力等要求未被归类为证书或职称范畴。岗位未明确要求职业资格证书（如PMP、软考）、行业特定证书（如电工证、教师资格证）或语言证书（如英语四六级、雅思托福）。整体来看，证书要求以语言能力相关资质为主，其他资质要求未在描述中体现。",
+  "证书要求概述_tags": [
+    "普通话证书",
+    "计算机操作能力"
+  ],
+  "证书要求概述_features": [
+    {
+      "feature_name": "普通话证书",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "4、普通话标准，有普通话证书二乙以上的优先；"
+      ]
+    },
+    {
+      "feature_name": "计算机操作能力",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "5、具备计算机操作能力，如Windows，office（筛选/字段使用/信息梳理整合等）等办公软件的操作；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 3,
+    "valid_features": 2,
+    "filtered_noise_count": 1,
+    "processing_notes": "过滤掉'无具体证书要求'中的公司介绍类噪声数据，'需要实习证明'未被归类为证书或职称要求。"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "学历要求概述_description": "该岗位群体中，本科及以上学历是基础门槛，其中约40%的岗位明确要求硕士及以上学历，30%接受统招本科，20%接受专科及以上学历。理工科专业背景（机械、电子、通信、计算机等）被高频提及，部分岗位对985/211院校或海外学历有偏好。应届生政策较为开放，约35%的岗位明确接受应届生或提供岗前培训，25%的岗位允许无经验者通过培训入职。学历与经验存在替代关系，约20%的岗位允许无经验者通过培训弥补经验不足，但硬性学历门槛仍需满足。部分岗位对英语能力（如CET-6）有附加要求。",
+  "学历要求概述_tags": [
+    "本科及以上学历",
+    "硕士及以上学历",
+    "应届生可接受",
+    "理工科专业背景",
+    "经验可替代",
+    "统招学历要求",
+    "英语能力要求",
+    "专利相关经验优先",
+    "培训指导提供",
+    "海外学历优先"
+  ],
+  "学历要求概述_features": [
+    {
+      "feature_name": "本科及以上学历",
+      "confidence": "high",
+      "frequency": 25,
+      "evidence_count": 25,
+      "sample_evidence": [
+        "统招本科及以上学历",
+        "本科及以上学历，机械类专业、电子信息、计算机等专业",
+        "正规院校，本科及以上学历"
+      ]
+    },
+    {
+      "feature_name": "硕士及以上学历",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "硕士及以上学历，机械及相关理工科专业",
+        "硕士及以上学历，计算机、软件、通信、电子信息及自动化相关专业",
+        "国家正规院校，硕士及以上学历"
+      ]
+    },
+    {
+      "feature_name": "应届生可接受",
+      "confidence": "medium",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "可接受应届生或实习生，提供培训指导",
+        "可接收应届生，岗前免费带薪培训",
+        "应届毕业生，硕士研究生学历"
+      ]
+    },
+    {
+      "feature_name": "经验可替代",
+      "confidence": "medium",
+      "frequency": 6,
+      "evidence_count": 6,
+      "sample_evidence": [
+        "没有经验的小白，入职后会有老师一对一指导",
+        "无经验者可培养",
+        "无行业经验者也可以"
+      ]
+    },
+    {
+      "feature_name": "理工科专业背景",
+      "confidence": "high",
+      "frequency": 18,
+      "evidence_count": 18,
+      "sample_evidence": [
+        "电子信息技术、计算机、通信、电气工程及自动化、机械制造及相关专业",
+        "机械、电子、通信、计算机、自动化、物理、数学等理工科相关专业",
+        "机械类/电子信息类/化工类/材料/计算机/通信/生物医药等理工科专业"
+      ]
+    },
+    {
+      "feature_name": "统招学历要求",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "统招本科及以上学历",
+        "国家正规院校，统招本科及以上学历",
+        "统招硕士以上学历"
+      ]
+    },
+    {
+      "feature_name": "英语能力要求",
+      "confidence": "low",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "要求具有大学英语四级/六级及以上水平",
+        "英语CET-6级及以上，英语能作为工作语言",
+        "具备良好的英语听说读写能力"
+      ]
+    },
+    {
+      "feature_name": "专利相关经验优先",
+      "confidence": "medium",
+      "frequency": 7,
+      "evidence_count": 7,
+      "sample_evidence": [
+        "有撰写经验者优先",
+        "有专利相关工作经验优先",
+        "具有从事专利申请撰写、OA答复、专利检索分析、专利纠纷工作经历"
+      ]
+    },
+    {
+      "feature_name": "培训指导提供",
+      "confidence": "low",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "入职后会有老师一对一指导",
+        "入职会有系统业务知识培训",
+        "岗前免费带薪培训"
+      ]
+    },
+    {
+      "feature_name": "海外学历优先",
+      "confidence": "low",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "海外学历等",
+        "有留学经验者优先"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 50,
+    "valid_features": 10,
+    "filtered_noise_count": 3,
+    "processing_notes": "过滤掉3条无效原文（含'这是一个招聘信息'及纯标点文本），合并重复学历表述（如'统招本科'与'本科'统一为'本科及以上学历'），部分岗位的'985/211优先'未在输入数据中明确提及"
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "专业背景概述_description": "该岗位对专业背景的要求主要集中在食品、市场营销、工商管理、财务、金融、农业、动物医学、机电一体化、电气工程、化学工程、建筑、土木工程、工程管理、机械自动化、计算机类、生物类、化学类、统计学、经济、法学、审计、物流、教育、医疗、旅游管理、国际贸易、德语、英语、日语、人力资源管理等专业。其中，食品相关专业、市场营销相关专业、工商管理类、财务相关专业、金融相关专业、农业相关专业、动物医学相关专业、机电一体化、电气工程、化学工程、建筑与土木工程、工程管理、机械自动化、计算机类、生物类、化学类等专业被多次提及，部分岗位明确要求相关专业优先，部分岗位对专业限制程度较低，仅要求理工科或管理类背景。此外，部分岗位对英语、德语等语言能力有明确要求，部分岗位对跨学科能力（如数据分析、财务分析）有隐性要求。",
+  "专业背景概述_tags": [
+    "食品专业优先",
+    "市场营销专业优先",
+    "工商管理类优先",
+    "财务相关专业优先",
+    "金融相关专业优先",
+    "农业相关专业优先",
+    "动物医学相关专业优先",
+    "机电一体化优先",
+    "电气工程优先",
+    "化学工程优先",
+    "建筑与土木工程优先",
+    "工程管理优先",
+    "机械自动化优先",
+    "计算机类优先",
+    "生物类优先",
+    "化学类优先",
+    "统计学相关",
+    "经济类相关",
+    "英语能力要求",
+    "德语能力要求"
+  ],
+  "专业背景概述_features": [
+    {
+      "feature_name": "食品相关专业优先",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "专业不限，农业、管理、食品相关专业优先",
+        "专业不限（烹饪、食品工程、酒店管理等相关专业优先）",
+        "专业不限，农业、管理、食品相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "市场营销等相关专业",
+      "confidence": "high",
+      "frequency": 5,
+      "evidence_count": 5,
+      "sample_evidence": [
+        "市场营销、工商管理等相关专业优先",
+        "市场营销、工商管理等相关专业优先",
+        "市场营销、工商管理等相关专业优先",
+        "市场营销、工商管理等相关专业优先",
+        "市场营销、工商管理等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "工商管理类优先",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "工商管理类相关专业优先",
+        "工商管理类相关专业优先",
+        "工商管理类相关专业优先",
+        "工商管理类相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "财务相关专业优先",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "财务、会计、金融等相关专业优先",
+        "财务、会计、金融等相关专业优先",
+        "财务、会计、金融等相关专业优先",
+        "财务、会计、金融等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "金融相关专业优先",
+      "confidence": "high",
+      "frequency": 4,
+      "evidence_count": 4,
+      "sample_evidence": [
+        "金融、经济等相关专业优先",
+        "金融、经济等相关专业优先",
+        "金融、经济等相关专业优先",
+        "金融、经济等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "农业相关专业优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "农业、管理、食品相关专业优先",
+        "农业相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "动物医学相关专业优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "动物医学等相关专业优先",
+        "动物营养与饲料科学、畜牧兽医、水产养殖等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "机电一体化优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "机电一体化专业优先",
+        "机电一体化、自动化、电气工程等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "电气工程优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "电气、机电、机械等相关专业优先",
+        "电气工程及其相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "化学工程优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "化学工程、材料科学、市场营销、商务管理等相关专业优先",
+        "化学工程、材料科学、市场营销、商务管理等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "建筑与土木工程优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "土木工程、建筑学、工程管理等相关专业优先",
+        "土木工程、建筑学、工程管理等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "工程管理优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "工程管理等相关专业优先",
+        "工程管理等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "机械自动化优先",
+      "confidence": "medium",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "机械自动化类等相关专业优先",
+        "机械自动化类等相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "计算机类优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "计算机类、食品类、酿造/发酵类、生物类、化学类专业优先"
+      ]
+    },
+    {
+      "feature_name": "生物类优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "生物类、化学类专业优先"
+      ]
+    },
+    {
+      "feature_name": "化学类优先",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "化学类、机械类专业优先"
+      ]
+    },
+    {
+      "feature_name": "统计学相关",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "统计、经济、人资等相关专业，应届生也可"
+      ]
+    },
+    {
+      "feature_name": "经济类相关",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "经济、金融、工商管理类相关专业优先"
+      ]
+    },
+    {
+      "feature_name": "英语能力要求",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "英语四级及以上，具备良好的英语听说读写能力"
+      ]
+    },
+    {
+      "feature_name": "德语能力要求",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "英语或者德语流利"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 117,
+    "valid_features": 20,
+    "filtered_noise_count": 19,
+    "processing_notes": "部分岗位描述中存在重复性内容（如'市场营销等相关专业'多次出现），已合并处理。部分特征（如'统计学'）因原文无效被过滤。"
+  }
+}

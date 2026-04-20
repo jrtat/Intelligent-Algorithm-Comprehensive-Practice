@@ -1,0 +1,80 @@
+{
+  "工作经验概述_description": "该岗位要求候选人具备基础的数据管理能力，熟悉档案管理流程及国家档案管理制度，具有良好的组织协调与沟通能力。优先考虑有相关行业经验者，包括但不限于电气、物业、信息技术等领域。对办公软件操作能力有明确要求，需具备基础打字速度（30字/分钟以上）。部分岗位接受应届毕业生或无经验者，但更倾向于有1年以上相关工作经验的候选人。技术背景方面，优先考虑有数据分析、信息技术或机械相关专业背景者。",
+  "工作经验概述_tags": [
+    "档案管理制度熟悉",
+    "数据管理经验",
+    "办公软件操作",
+    "基础打字能力",
+    "相关行业经验优先",
+    "组织协调能力",
+    "数据分析经验",
+    "信息技术背景",
+    "应届生可接受",
+    "团队合作能力"
+  ],
+  "工作经验概述_features": [
+    {
+      "feature_name": "档案管理制度熟悉",
+      "confidence": "high",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "有相关工作经验，熟悉档案管理规定、流程及国家档案管理制度2.具备良好的组织协调能力、口头及书面表达能力，良好的团队合作能力3."
+      ]
+    },
+    {
+      "feature_name": "数据管理相关经验",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "具备本科及以上学历，在数据管理、信息技术等领域相关经验。2."
+      ]
+    },
+    {
+      "feature_name": "办公软件操作能力",
+      "confidence": "high",
+      "frequency": 2,
+      "evidence_count": 2,
+      "sample_evidence": [
+        "电脑熟练，打字30字以上",
+        "熟练运用办公软件，有相关工作经验者优先考虑。"
+      ]
+    },
+    {
+      "feature_name": "基础打字速度要求",
+      "confidence": "low",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "电脑熟练，打字30字以上"
+      ]
+    },
+    {
+      "feature_name": "相关行业经验优先",
+      "confidence": "medium",
+      "frequency": 3,
+      "evidence_count": 3,
+      "sample_evidence": [
+        "2.工作经验:有相关从业经验者优先;3.",
+        "有客户运营、社群运营相关经验优先。",
+        "有物业工作经验者优先；"
+      ]
+    },
+    {
+      "feature_name": "应届生可接受",
+      "confidence": "medium",
+      "frequency": 1,
+      "evidence_count": 1,
+      "sample_evidence": [
+        "2.1年以内相关工作经验，优秀应届生亦可；"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 3,
+    "valid_features": 6,
+    "filtered_noise_count": 58,
+    "processing_notes": "原文中大量存在'这是一个招聘信息'等无效文本，已全部过滤。部分特征如'打字速度不低60字/分钟'与实际原文'打字30字以上'存在数值差异，按原文数据保留。"
+  }
+}

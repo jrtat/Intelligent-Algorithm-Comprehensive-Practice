@@ -1,0 +1,11 @@
+{
+  "证书要求概述_description": "",
+  "证书要求概述_tags": [],
+  "证书要求概述_features": [],
+  "_metadata": {
+    "total_raw_items": 1,
+    "valid_features": 0,
+    "filtered_noise_count": 5,
+    "processing_notes": "原始数据中未发现符合要求的证书/资质信息，所有原文均被过滤（含引导语、重复内容、非证书类要求）"
+  }
+}

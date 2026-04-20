@@ -1,0 +1,78 @@
+{
+  "综合素质概述_description": "该岗位要求候选人具备较强的跨文化沟通与协作能力，能够适应高强度工作节奏及海外驻外环境。核心素质包括：1）优秀的中英文双语沟通能力，能胜任国际客户接待、商务谈判及文件翻译工作；2）高度的适应能力与抗压能力，可接受海外常驻、轮班制及跨时差沟通；3）严谨的工作态度与责任心，需具备客户服务意识及团队协作精神；4）学习能力与问题解决能力，能快速掌握业务流程并独立处理突发状况。加分项包括国际贸易/跨境电商经验、留学咨询背景及海外工作经历。",
+  "综合素质概述_tags": [
+    "跨文化沟通",
+    "抗压能力",
+    "客户服务意识",
+    "双语能力",
+    "海外适应力",
+    "团队协作",
+    "商务谈判",
+    "文件翻译",
+    "轮班适应",
+    "学习能力"
+  ],
+  "综合素质概述_features": [
+    {
+      "feature_name": "跨文化沟通能力",
+      "confidence": "high",
+      "frequency": 15,
+      "evidence_count": 15,
+      "sample_evidence": [
+        "具备与客户电话、视频等方式沟通无障碍的能力",
+        "负责公司市场推广文案、海报的翻译工作",
+        "Act as a liaison to address and coordinate overseas client requirements"
+      ]
+    },
+    {
+      "feature_name": "抗压能力",
+      "confidence": "high",
+      "frequency": 12,
+      "evidence_count": 12,
+      "sample_evidence": [
+        "抗压能力强，能适应海外工作环境及跨时差沟通",
+        "能适应高强度工作节奏",
+        "具备较强的学习能力，适应能力，良好的沟通能力"
+      ]
+    },
+    {
+      "feature_name": "客户服务意识",
+      "confidence": "medium",
+      "frequency": 8,
+      "evidence_count": 8,
+      "sample_evidence": [
+        "具有服务意识，时间观念强",
+        "有客户服务意识",
+        "需具备客户服务意识及团队协作精神"
+      ]
+    },
+    {
+      "feature_name": "双语能力",
+      "confidence": "high",
+      "frequency": 10,
+      "evidence_count": 10,
+      "sample_evidence": [
+        "英语专业四级或大学六级以上水平",
+        "具有良好的中英互译语言能力",
+        "流利的英语口语及书面表达"
+      ]
+    },
+    {
+      "feature_name": "海外适应力",
+      "confidence": "high",
+      "frequency": 9,
+      "evidence_count": 9,
+      "sample_evidence": [
+        "需外派到纳米比亚工作",
+        "能接受驻外（每年回国1次）",
+        "需驻外（津巴布韦）"
+      ]
+    }
+  ],
+  "_metadata": {
+    "total_raw_items": 60,
+    "valid_features": 5,
+    "filtered_noise_count": 18,
+    "processing_notes": "过滤了18条含'这是一个招聘信息'或无效内容的文本，合并了'沟通能力'等语义相近特征"
+  }
+}

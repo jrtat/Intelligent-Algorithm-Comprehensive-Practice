@@ -163,6 +163,7 @@ export function EditableField({
             minHeight: '80px',
             resize: 'vertical',
             borderColor: error ? '#DC2626' : '#2E86AB',
+            paddingRight: onAIPolish ? 60 : 12,
           }}
         />
       ) : (
@@ -177,6 +178,7 @@ export function EditableField({
           style={{
             width: '100%',
             borderColor: error ? '#DC2626' : '#2E86AB',
+            paddingRight: onAIPolish ? 60 : 12,
           }}
         />
       )}
@@ -198,7 +200,7 @@ export function EditableField({
           {error}
         </div>
       )}
-      {isEditing && (
+      {isEditing && onAIPolish && (
         <div
           style={{
             position: 'absolute',
@@ -208,20 +210,18 @@ export function EditableField({
             gap: 4,
           }}
         >
-          {onAIPolish && (
-            <button
-              className="btn-icon"
-              onClick={(e) => {
-                e.stopPropagation();
-                onAIPolish();
-              }}
-              title="AI润色"
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#FF9F43' }}>
-                auto_fix_high
-              </span>
-            </button>
-          )}
+          <button
+            className="btn-icon"
+            onClick={(e) => {
+              e.stopPropagation();
+              onAIPolish();
+            }}
+            title="AI润色"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#FF9F43' }}>
+              auto_fix_high
+            </span>
+          </button>
         </div>
       )}
     </div>

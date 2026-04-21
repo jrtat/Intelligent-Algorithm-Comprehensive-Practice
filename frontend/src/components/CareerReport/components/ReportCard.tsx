@@ -6,11 +6,12 @@ interface ReportCardProps {
   icon?: string;
   children: ReactNode;
   onEdit?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
   onSave?: () => void;
   onCancel?: () => void;
   isLoading?: boolean;
   isEditing?: boolean;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
   className?: string;
 }
@@ -21,14 +22,17 @@ export function ReportCard({
   icon,
   children,
   onEdit,
-  onAIPolish,
+  onAIPolishModule,
   onSave,
   onCancel,
   isLoading,
   isEditing = false,
+  isPolishing = false,
   saveStatus = 'idle',
   className = '',
 }: ReportCardProps) {
+  const moduleId = id;
+
   return (
     <section
       id={`section-${id}`}
@@ -67,6 +71,13 @@ export function ReportCard({
                   </span>
                   保存失败
                 </span>
+              )}
+
+              {/* Polishing indicator */}
+              {isPolishing && (
+                <div className="polishing-indicator">
+                  <div className="loading-spinner small" />
+                </div>
               )}
 
               {/* Action buttons */}
@@ -114,11 +125,12 @@ export function ReportCard({
                       <span style={{ fontSize: 13 }}>编辑</span>
                     </button>
                   )}
-                  {onAIPolish && (
+                  {onAIPolishModule && (
                     <button
-                      className="btn-icon"
-                      onClick={onAIPolish}
+                      className="btn-icon btn-ai-polish-module"
+                      onClick={() => onAIPolishModule(moduleId)}
                       title="AI润色"
+                      disabled={isPolishing}
                     >
                       <span className="material-symbols-outlined" style={{ fontSize: 18, color: '#FF9F43' }}>
                         auto_fix_high

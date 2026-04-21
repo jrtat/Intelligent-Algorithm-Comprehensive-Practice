@@ -8,7 +8,9 @@ interface CandidateSummaryCardProps {
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
+  onAIPolishField?: (fieldPath: string) => void;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
@@ -17,10 +19,12 @@ export function CandidateSummaryCard({
   onEdit,
   onSave,
   onCancel,
-  onAIPolish,
+  onAIPolishModule,
+  onAIPolishField,
+  isPolishing = false,
   saveStatus = 'idle',
 }: CandidateSummaryCardProps) {
-  const { state, updateReport, updateNestedField } = useReport();
+  const { state, updateNestedField } = useReport();
   const { report } = state;
 
   if (!report?.candidate_summary) return null;
@@ -40,7 +44,8 @@ export function CandidateSummaryCard({
       onEdit={onEdit}
       onSave={onSave}
       onCancel={onCancel}
-      onAIPolish={onAIPolish}
+      onAIPolishModule={onAIPolishModule}
+      isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
       {/* 当前背景 */}
@@ -50,6 +55,8 @@ export function CandidateSummaryCard({
           <EditableField
             value={current_background}
             onChange={(val) => handleFieldChange('current_background', val)}
+            onSave={onSave}
+            onAIPolish={() => onAIPolishField?.('candidate_summary.current_background')}
             multiline
             placeholder="请输入当前背景"
             maxLength={2000}
@@ -76,9 +83,10 @@ export function CandidateSummaryCard({
         <EditableList
           items={core_strengths}
           onChange={(items) => handleFieldChange('core_strengths', items)}
-          onAIPolish={onAIPolish}
+          onAIPolishItem={(index) => onAIPolishField?.(`candidate_summary.core_strengths[${index}]`)}
           label="核心优势"
           addLabel="添加优势"
+          disabled={isPolishing}
         />
       </div>
 
@@ -87,9 +95,10 @@ export function CandidateSummaryCard({
         <EditableList
           items={areas_for_improvement}
           onChange={(items) => handleFieldChange('areas_for_improvement', items)}
-          onAIPolish={onAIPolish}
+          onAIPolishItem={(index) => onAIPolishField?.(`candidate_summary.areas_for_improvement[${index}]`)}
           label="待提升领域"
           addLabel="添加领域"
+          disabled={isPolishing}
         />
       </div>
     </ReportCard>

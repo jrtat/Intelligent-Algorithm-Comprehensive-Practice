@@ -10,7 +10,9 @@ interface ActionPlanCardProps {
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
+  onAIPolishField?: (fieldPath: string) => void;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
@@ -19,7 +21,9 @@ export function ActionPlanCard({
   onEdit,
   onSave,
   onCancel,
-  onAIPolish,
+  onAIPolishModule,
+  onAIPolishField,
+  isPolishing = false,
   saveStatus = 'idle',
 }: ActionPlanCardProps) {
   const { state, updateReport } = useReport();
@@ -67,7 +71,8 @@ export function ActionPlanCard({
       onEdit={onEdit}
       onSave={onSave}
       onCancel={onCancel}
-      onAIPolish={onAIPolish}
+      onAIPolishModule={onAIPolishModule}
+      isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
       {/* 短期计划 */}
@@ -76,7 +81,7 @@ export function ActionPlanCard({
           title="短期计划"
           subtitle={`（${short_term_plan.duration || ''}）`}
           onEdit={isEditing ? () => setEditingSection('short_term') : undefined}
-          onAIPolish={onAIPolish}
+          onAIPolish={() => onAIPolishField?.('action_plan.short_term_plan')}
         >
           {isEditing && editingSection === 'short_term' ? (
             <div>
@@ -84,6 +89,7 @@ export function ActionPlanCard({
                 <EditableField
                   value={short_term_plan.duration || ''}
                   onChange={(val) => handleTopLevelFieldChange('short_term_plan', 'duration', val)}
+                  onSave={onSave}
                   label="计划时长"
                   placeholder="如：1-6个月"
                 />
@@ -97,8 +103,10 @@ export function ActionPlanCard({
                   <EditableList
                     items={short_term_plan.learning_path.courses || []}
                     onChange={(items) => handleFieldChange('short_term_plan', 'learning_path', 'courses', items)}
+                    onAIPolishItem={(i) => onAIPolishField?.(`action_plan.short_term_plan.learning_path.courses[${i}]`)}
                     label="课程"
                     addLabel="添加课程"
+                    disabled={isPolishing}
                   />
                 </div>
               )}
@@ -108,8 +116,10 @@ export function ActionPlanCard({
                   <EditableList
                     items={short_term_plan.certifications}
                     onChange={(items) => handleTopLevelFieldChange('short_term_plan', 'certifications', items)}
+                    onAIPolishItem={(i) => onAIPolishField?.(`action_plan.short_term_plan.certifications[${i}]`)}
                     label="获取证书"
                     addLabel="添加证书"
+                    disabled={isPolishing}
                   />
                 </div>
               )}
@@ -193,7 +203,7 @@ export function ActionPlanCard({
           title="中期计划"
           subtitle={`（${mid_term_plan.duration || ''}）`}
           onEdit={isEditing ? () => setEditingSection('mid_term') : undefined}
-          onAIPolish={onAIPolish}
+          onAIPolish={() => onAIPolishField?.('action_plan.mid_term_plan')}
         >
           {isEditing && editingSection === 'mid_term' ? (
             <div>
@@ -201,6 +211,7 @@ export function ActionPlanCard({
                 <EditableField
                   value={mid_term_plan.duration || ''}
                   onChange={(val) => handleTopLevelFieldChange('mid_term_plan', 'duration', val)}
+                  onSave={onSave}
                   label="计划时长"
                   placeholder="如：6-12个月"
                 />
@@ -261,7 +272,7 @@ export function ActionPlanCard({
         <CollapsiblePanel
           title="评估框架"
           onEdit={isEditing ? () => setEditingSection('evaluation') : undefined}
-          onAIPolish={onAIPolish}
+          onAIPolish={() => onAIPolishField?.('action_plan.evaluation_framework')}
         >
           {isEditing && editingSection === 'evaluation' ? (
             <div>
@@ -274,6 +285,7 @@ export function ActionPlanCard({
                       self_assessment: val,
                     })
                   }
+                  onSave={onSave}
                   label="自评周期"
                   multiline
                   placeholder="请输入自评周期说明"
@@ -331,8 +343,8 @@ export function ActionPlanCard({
                       >
                         <strong>{metric.metric_name}:</strong>
                         <div style={{ color: '#666' }}>
-                          {metric.scale && <span>范围: {metric.scale}</span>}
-                          {metric.unit && <span>单位: {metric.unit}</span>}
+                          {'scale' in metric && metric.scale && <span>范围: {metric.scale}</span>}
+                          {'unit' in metric && metric.unit && <span>单位: {metric.unit}</span>}
                           {' | '}
                           <span style={{ color: '#2E86AB' }}>目标: {metric.target_progression}</span>
                         </div>

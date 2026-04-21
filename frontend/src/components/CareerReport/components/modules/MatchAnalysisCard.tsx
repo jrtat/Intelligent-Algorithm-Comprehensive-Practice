@@ -8,7 +8,9 @@ interface MatchAnalysisCardProps {
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
+  onAIPolishField?: (fieldPath: string) => void;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
@@ -17,7 +19,9 @@ export function MatchAnalysisCard({
   onEdit,
   onSave,
   onCancel,
-  onAIPolish,
+  onAIPolishModule,
+  onAIPolishField,
+  isPolishing = false,
   saveStatus = 'idle',
 }: MatchAnalysisCardProps) {
   const { state, updateReport } = useReport();
@@ -58,7 +62,8 @@ export function MatchAnalysisCard({
       onEdit={onEdit}
       onSave={onSave}
       onCancel={onCancel}
-      onAIPolish={onAIPolish}
+      onAIPolishModule={onAIPolishModule}
+      isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
       {/* 评分区域 */}
@@ -109,6 +114,8 @@ export function MatchAnalysisCard({
           <EditableField
             value={education_fit}
             onChange={(val) => handleFieldChange('education_fit', val)}
+            onSave={onSave}
+            onAIPolish={() => onAIPolishField?.('match_analysis.education_fit')}
             multiline
             placeholder="请输入学历适配说明"
             maxLength={500}

@@ -7,7 +7,9 @@ interface FinalRecommendationCardProps {
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
+  onAIPolishField?: (fieldPath: string) => void;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
@@ -16,7 +18,9 @@ export function FinalRecommendationCard({
   onEdit,
   onSave,
   onCancel,
-  onAIPolish,
+  onAIPolishModule,
+  onAIPolishField,
+  isPolishing = false,
   saveStatus = 'idle',
 }: FinalRecommendationCardProps) {
   const { state, updateReport } = useReport();
@@ -37,7 +41,8 @@ export function FinalRecommendationCard({
       onEdit={onEdit}
       onSave={onSave}
       onCancel={onCancel}
-      onAIPolish={onAIPolish}
+      onAIPolishModule={onAIPolishModule}
+      isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
       <div className="final-recommendation">
@@ -45,6 +50,8 @@ export function FinalRecommendationCard({
           <EditableField
             value={report.final_recommendation}
             onChange={handleChange}
+            onSave={onSave}
+            onAIPolish={() => onAIPolishField?.('final_recommendation')}
             multiline
             placeholder="请输入最终建议"
             maxLength={2000}

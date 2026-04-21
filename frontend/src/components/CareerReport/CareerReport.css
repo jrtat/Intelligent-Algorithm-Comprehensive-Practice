@@ -945,7 +945,13 @@
   .modal-overlay,
   .btn-add,
   .save-status,
-  .editable-field-display .edit-icon-overlay {
+  .editable-field-display .edit-icon-overlay,
+  .btn-ai-polish-module,
+  .btn-ai-polish-inline,
+  .polish-notification,
+  .polish-progress-bar,
+  .ai-polish-compare-overlay,
+  .ai-polish-compare-panel {
     display: none !important;
   }
 
@@ -958,4 +964,302 @@
     border: none;
     padding: 0;
   }
+}
+
+/* ==================== AI POLISH STYLES ==================== */
+
+/* AI Polish button inline (inside lists) */
+.btn-ai-polish-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid #FF9F43;
+  color: #FF9F43;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ai-polish-inline:hover {
+  background: rgba(255, 159, 67, 0.1);
+}
+
+.btn-ai-polish-module:disabled,
+.btn-ai-polish-inline:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Polishing indicator */
+.polishing-indicator {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.polishing-indicator .loading-spinner {
+  width: 16px;
+  height: 16px;
+}
+
+.polishing-indicator .loading-spinner.small {
+  width: 14px;
+  height: 14px;
+}
+
+/* Polish notifications */
+.polish-notification {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.polish-notification.success {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.polish-notification.error {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.polish-notification.info {
+  background: #E8F4F8;
+  color: #2E86AB;
+}
+
+/* Polish progress bar */
+.polish-progress-bar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #E8F4F8;
+  z-index: 101;
+}
+
+.polish-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF9F43, #FFD700);
+  transition: width 0.3s ease;
+}
+
+/* AI Polish Compare Panel */
+.ai-polish-compare-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: modalFadeIn 0.2s ease;
+}
+
+.ai-polish-compare-panel {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: modalSlideIn 0.2s ease;
+}
+
+.compare-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #E8E4E4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F5F7FA;
+}
+
+.compare-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.compare-title-row h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.changes-count {
+  font-size: 12px;
+  color: #FF9F43;
+  background: rgba(255, 159, 67, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.compare-view-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.compare-view-toggle .toggle-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid #DCDCDC;
+  background: white;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.compare-view-toggle .toggle-btn.active {
+  background: #2E86AB;
+  color: white;
+  border-color: #2E86AB;
+}
+
+.compare-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.compare-item {
+  margin-bottom: 20px;
+  border: 1px solid #E8E4E4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.compare-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #F5F7FA;
+  border-bottom: 1px solid #E8E4E4;
+}
+
+.compare-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.compare-checkbox input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.compare-item-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.btn-apply-single {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  background: #FF9F43;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-apply-single:hover {
+  background: #E8891F;
+}
+
+.compare-body {
+  display: flex;
+}
+
+.compare-body.split {
+  flex-direction: row;
+}
+
+.compare-body.vertical {
+  flex-direction: column;
+}
+
+.compare-before,
+.compare-after {
+  flex: 1;
+  padding: 12px 16px;
+}
+
+.compare-body.split .compare-before {
+  border-right: 1px solid #E8E4E4;
+}
+
+.compare-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.compare-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.compare-text.original {
+  color: #666;
+}
+
+.compare-text .text-changed {
+  background: rgba(255, 159, 67, 0.15);
+  text-decoration: line-through;
+  color: #DC2626;
+}
+
+.compare-text .text-highlight {
+  background: rgba(255, 159, 67, 0.2);
+  color: #E8891F;
+  font-weight: 500;
+}
+
+.compare-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #E8E4E4;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #F5F7FA;
+}
+
+/* Draggable modal cursor */
+.modal-header[style*="cursor: move"] {
+  cursor: grab;
+}
+
+.modal-header[style*="cursor: move"]:active {
+  cursor: grabbing;
 }

@@ -10,7 +10,9 @@ interface GapAnalysisCardProps {
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
+  onAIPolishField?: (fieldPath: string) => void;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
@@ -66,7 +68,7 @@ const gapFields: FormField[] = [
   },
 ];
 
-function renderGapCard(gap: Gap, index: number, onEdit?: () => void, onDelete?: () => void, onAIPolish?: () => void) {
+function renderGapCard(gap: Gap, _index: number, onEdit?: () => void, onDelete?: () => void, onAIPolish?: () => void) {
   return (
     <GapCard
       gap={gap}
@@ -83,7 +85,8 @@ export function GapAnalysisCard({
   onEdit,
   onSave,
   onCancel,
-  onAIPolish,
+  onAIPolishModule,
+  isPolishing = false,
   saveStatus = 'idle',
 }: GapAnalysisCardProps) {
   const { state, updateReport } = useReport();
@@ -111,7 +114,8 @@ export function GapAnalysisCard({
       onEdit={onEdit}
       onSave={onSave}
       onCancel={onCancel}
-      onAIPolish={onAIPolish}
+      onAIPolishModule={onAIPolishModule}
+      isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
       {/* 硬技能差距 */}

@@ -14,7 +14,9 @@ interface CareerPathCardProps {
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
+  onAIPolishField?: (fieldPath: string) => void;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
@@ -61,7 +63,9 @@ export function CareerPathCard({
   onEdit,
   onSave,
   onCancel,
-  onAIPolish,
+  onAIPolishModule,
+  onAIPolishField,
+  isPolishing = false,
   saveStatus = 'idle',
 }: CareerPathCardProps) {
   const { state, updateReport, updateNestedField } = useReport();
@@ -102,7 +106,7 @@ export function CareerPathCard({
     });
   };
 
-  const renderStageCard = (stage: Record<string, any>, index: number) => (
+  const renderStageCard = (stage: Record<string, any>, _index: number) => (
     <div
       style={{
         padding: 12,
@@ -140,7 +144,8 @@ export function CareerPathCard({
       onEdit={onEdit}
       onSave={onSave}
       onCancel={onCancel}
-      onAIPolish={onAIPolish}
+      onAIPolishModule={onAIPolishModule}
+      isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
       {/* 进度概览 */}
@@ -158,7 +163,7 @@ export function CareerPathCard({
           title="短期目标"
           subtitle={`（${career_goals?.short_term?.duration || ''}）`}
           onEdit={isEditing ? () => setEditingGoal('short_term') : undefined}
-          onAIPolish={onAIPolish}
+          onAIPolish={() => onAIPolishField?.('career_path_planning.career_goals.short_term.goal_description')}
         >
           {isEditing && editingGoal === 'short_term' ? (
             <div>
@@ -186,8 +191,10 @@ export function CareerPathCard({
               <EditableList
                 items={career_goals?.short_term?.key_milestones || []}
                 onChange={(items) => handleGoalFieldChange('short_term', 'key_milestones', items)}
+                onAIPolishItem={(i) => onAIPolishField?.(`career_path_planning.career_goals.short_term.key_milestones[${i}]`)}
                 label="关键里程碑"
                 addLabel="添加里程碑"
+                disabled={isPolishing}
               />
               <div style={{ marginTop: 12 }}>
                 <button
@@ -218,7 +225,7 @@ export function CareerPathCard({
           title="中期目标"
           subtitle={`（${career_goals?.mid_term?.duration || ''}）`}
           onEdit={isEditing ? () => setEditingGoal('mid_term') : undefined}
-          onAIPolish={onAIPolish}
+          onAIPolish={() => onAIPolishField?.('career_path_planning.career_goals.mid_term.goal_description')}
         >
           {isEditing && editingGoal === 'mid_term' ? (
             <div>
@@ -246,8 +253,10 @@ export function CareerPathCard({
               <EditableList
                 items={career_goals?.mid_term?.key_milestones || []}
                 onChange={(items) => handleGoalFieldChange('mid_term', 'key_milestones', items)}
+                onAIPolishItem={(i) => onAIPolishField?.(`career_path_planning.career_goals.mid_term.key_milestones[${i}]`)}
                 label="关键里程碑"
                 addLabel="添加里程碑"
+                disabled={isPolishing}
               />
               <div style={{ marginTop: 12 }}>
                 <button
@@ -278,7 +287,7 @@ export function CareerPathCard({
           title="长期目标"
           subtitle={`（${career_goals?.long_term?.duration || ''}）`}
           onEdit={isEditing ? () => setEditingGoal('long_term') : undefined}
-          onAIPolish={onAIPolish}
+          onAIPolish={() => onAIPolishField?.('career_path_planning.career_goals.long_term.goal_description')}
         >
           {isEditing && editingGoal === 'long_term' ? (
             <div>
@@ -306,8 +315,10 @@ export function CareerPathCard({
               <EditableList
                 items={career_goals?.long_term?.key_milestones || []}
                 onChange={(items) => handleGoalFieldChange('long_term', 'key_milestones', items)}
+                onAIPolishItem={(i) => onAIPolishField?.(`career_path_planning.career_goals.long_term.key_milestones[${i}]`)}
                 label="关键里程碑"
                 addLabel="添加里程碑"
+                disabled={isPolishing}
               />
               <div style={{ marginTop: 12 }}>
                 <button
@@ -357,6 +368,8 @@ export function CareerPathCard({
                   <EditableField
                     value={industry_trends.social_demand}
                     onChange={(val) => handleIndustryTrendChange('social_demand', val)}
+                    onSave={onSave}
+                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.social_demand')}
                     label="市场需求"
                     multiline
                     placeholder="请输入市场需求"
@@ -368,6 +381,8 @@ export function CareerPathCard({
                   <EditableField
                     value={industry_trends.technology_trends}
                     onChange={(val) => handleIndustryTrendChange('technology_trends', val)}
+                    onSave={onSave}
+                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.technology_trends')}
                     label="技术趋势"
                     multiline
                     placeholder="请输入技术趋势"
@@ -379,6 +394,8 @@ export function CareerPathCard({
                   <EditableField
                     value={industry_trends.market_changes}
                     onChange={(val) => handleIndustryTrendChange('market_changes', val)}
+                    onSave={onSave}
+                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.market_changes')}
                     label="市场变化"
                     multiline
                     placeholder="请输入市场变化"
@@ -390,6 +407,8 @@ export function CareerPathCard({
                   <EditableField
                     value={industry_trends.salary_trends}
                     onChange={(val) => handleIndustryTrendChange('salary_trends', val)}
+                    onSave={onSave}
+                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.salary_trends')}
                     label="薪资趋势"
                     multiline
                     placeholder="请输入薪资趋势"

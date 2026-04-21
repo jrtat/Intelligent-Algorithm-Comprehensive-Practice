@@ -9,7 +9,9 @@ interface DevelopmentPlanCardProps {
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
-  onAIPolish?: () => void;
+  onAIPolishModule?: (moduleId: string) => void;
+  onAIPolishField?: (fieldPath: string) => void;
+  isPolishing?: boolean;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
@@ -18,7 +20,9 @@ export function DevelopmentPlanCard({
   onEdit,
   onSave,
   onCancel,
-  onAIPolish,
+  onAIPolishModule,
+  onAIPolishField,
+  isPolishing = false,
   saveStatus = 'idle',
 }: DevelopmentPlanCardProps) {
   const { state, updateReport } = useReport();
@@ -61,7 +65,8 @@ export function DevelopmentPlanCard({
       onEdit={onEdit}
       onSave={onSave}
       onCancel={onCancel}
-      onAIPolish={onAIPolish}
+      onAIPolishModule={onAIPolishModule}
+      isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
       {/* 进度概览 */}
@@ -84,7 +89,7 @@ export function DevelopmentPlanCard({
             title={phaseLabels[phaseKey]}
             subtitle={`（${phase.duration || ''}）`}
             onEdit={isEditing ? () => setEditingPhase(phaseKey) : undefined}
-            onAIPolish={onAIPolish}
+            onAIPolish={() => onAIPolishField?.(`development_plan.${phaseKey}`)}
           >
             {isEditing && editingPhase === phaseKey ? (
               <div>
@@ -106,8 +111,10 @@ export function DevelopmentPlanCard({
                   <EditableList
                     items={phase.goals || []}
                     onChange={(items) => handlePhaseFieldChange(phaseKey, 'goals', items)}
+                    onAIPolishItem={(i) => onAIPolishField?.(`development_plan.${phaseKey}.goals[${i}]`)}
                     label="目标"
                     addLabel="添加目标"
+                    disabled={isPolishing}
                   />
                 </div>
 
@@ -115,8 +122,10 @@ export function DevelopmentPlanCard({
                   <EditableList
                     items={phase.actions || []}
                     onChange={(items) => handlePhaseFieldChange(phaseKey, 'actions', items)}
+                    onAIPolishItem={(i) => onAIPolishField?.(`development_plan.${phaseKey}.actions[${i}]`)}
                     label="行动"
                     addLabel="添加行动"
+                    disabled={isPolishing}
                   />
                 </div>
 
@@ -124,8 +133,10 @@ export function DevelopmentPlanCard({
                   <EditableList
                     items={phase.milestones || []}
                     onChange={(items) => handlePhaseFieldChange(phaseKey, 'milestones', items)}
+                    onAIPolishItem={(i) => onAIPolishField?.(`development_plan.${phaseKey}.milestones[${i}]`)}
                     label="里程碑"
                     addLabel="添加里程碑"
+                    disabled={isPolishing}
                   />
                 </div>
 

@@ -47,7 +47,7 @@ const POLL_CONFIG = {
 
 export interface ReportPollCallbacks {
   onProgress?: (progress: number) => void;
-  onCompleted?: (result: Report) => void;
+  onCompleted?: (result: Report, taskId?: string) => void;
   onFailed?: (error: string) => void;
   onTimeout?: () => void;
 }
@@ -109,7 +109,7 @@ export const processReport = async (
 
     if (status === 'completed') {
       callbacks?.onProgress?.(100);
-      callbacks?.onCompleted?.(result as unknown as Report);
+      callbacks?.onCompleted?.(result as unknown as Report, taskId);
       return result as unknown as Report;
     }
 
@@ -123,6 +123,15 @@ export const processReport = async (
 
   callbacks?.onTimeout?.();
   throw new Error('达到最大轮询次数，任务处理未完成');
+};
+
+/**
+ * 获取已生成的报告
+ * GET /api/report/{task_id}
+ */
+export const getReport = async (taskId: string): Promise<Report> => {
+  const response = await api.get<Report>(`/report/${taskId}`);
+  return response.data;
 };
 
 /**

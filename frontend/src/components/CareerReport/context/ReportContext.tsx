@@ -1,11 +1,15 @@
 import { createContext, useContext, useReducer, useEffect, useCallback, useState, useRef } from 'react';
 import type { Dispatch, ReactNode } from 'react';
 import type { Report } from '../../../types/job';
-import mockReportData from '../../../data/mockReport.json';
+import type { PolishResult } from '../components/ui/AIPolishUtils';
+import { getReport } from '../../../api/reportApi';
+
+export type NoDataReason = 'no_resume' | 'no_job_matched' | 'no_report';
 
 interface ReportState {
   report: Report | null;
   isLoading: boolean;
+  noDataReason: NoDataReason | null;
   sidebarCollapsed: boolean;
   activeSection: string;
   editingModule: string | null;
@@ -14,6 +18,12 @@ interface ReportState {
   hasUnsavedChanges: boolean;
   validationErrors: Record<string, string>;
   showCacheRestored: boolean;
+  // AI Polish state
+  isPolishing: boolean;
+  polishResult: PolishResult | null;
+  showPolishCompare: boolean;
+  polishError: string | null;
+  polishSuccess: string | null;
 }
 
 type ReportAction =
@@ -29,11 +39,19 @@ type ReportAction =
   | { type: 'SET_UNSAVED_CHANGES'; payload: boolean }
   | { type: 'SET_VALIDATION_ERRORS'; payload: Record<string, string> }
   | { type: 'CLEAR_VALIDATION_ERROR'; payload: string }
-  | { type: 'SHOW_CACHE_RESTORED'; payload: boolean };
+  | { type: 'SHOW_CACHE_RESTORED'; payload: boolean }
+  | { type: 'SET_POLISHING'; payload: boolean }
+  | { type: 'SET_POLISH_RESULT'; payload: PolishResult | null }
+  | { type: 'SET_SHOW_POLISH_COMPARE'; payload: boolean }
+  | { type: 'SET_POLISH_ERROR'; payload: string | null }
+  | { type: 'SET_POLISH_SUCCESS'; payload: string | null }
+  | { type: 'CLEAR_POLISH_STATE' }
+  | { type: 'SET_NO_DATA_REASON'; payload: NoDataReason | null };
 
 const initialState: ReportState = {
   report: null,
   isLoading: true,
+  noDataReason: null,
   sidebarCollapsed: false,
   activeSection: 'basic-info',
   editingModule: null,
@@ -42,6 +60,11 @@ const initialState: ReportState = {
   hasUnsavedChanges: false,
   validationErrors: {},
   showCacheRestored: false,
+  isPolishing: false,
+  polishResult: null,
+  showPolishCompare: false,
+  polishError: null,
+  polishSuccess: null,
 };
 
 function reportReducer(state: ReportState, action: ReportAction): ReportState {
@@ -85,6 +108,20 @@ function reportReducer(state: ReportState, action: ReportAction): ReportState {
     }
     case 'SHOW_CACHE_RESTORED':
       return { ...state, showCacheRestored: action.payload };
+    case 'SET_POLISHING':
+      return { ...state, isPolishing: action.payload };
+    case 'SET_POLISH_RESULT':
+      return { ...state, polishResult: action.payload };
+    case 'SET_SHOW_POLISH_COMPARE':
+      return { ...state, showPolishCompare: action.payload };
+    case 'SET_POLISH_ERROR':
+      return { ...state, polishError: action.payload };
+    case 'SET_POLISH_SUCCESS':
+      return { ...state, polishSuccess: action.payload };
+    case 'CLEAR_POLISH_STATE':
+      return { ...state, isPolishing: false, polishResult: null, showPolishCompare: false, polishError: null, polishSuccess: null };
+    case 'SET_NO_DATA_REASON':
+      return { ...state, noDataReason: action.payload, isLoading: false };
     default:
       return state;
   }
@@ -180,6 +217,14 @@ interface ReportContextType {
   validateAll: (fields: { path: string; value: any }[]) => boolean;
   clearCache: () => void;
   getCacheRecords: () => EditRecord[];
+  // AI Polish methods
+  setPolishing: (polishing: boolean) => void;
+  setPolishResult: (result: PolishResult | null) => void;
+  setShowPolishCompare: (show: boolean) => void;
+  setPolishError: (error: string | null) => void;
+  setPolishSuccess: (message: string | null) => void;
+  clearPolishState: () => void;
+  applyPolishResult: (pathsToApply?: string[]) => void;
 }
 
 const ReportContext = createContext<ReportContextType | null>(null);
@@ -193,7 +238,7 @@ export function ReportProvider({ children }: { children: ReactNode }) {
   const [initialized, setInitialized] = useState(false);
   const originalDataRef = useRef<Partial<Report>>({});
 
-  const loadReport = useCallback(() => {
+  const loadReport = useCallback(async () => {
     dispatch({ type: 'SET_LOADING', payload: true });
 
     const cached = localStorage.getItem(STORAGE_KEY);
@@ -219,7 +264,41 @@ export function ReportProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    dispatch({ type: 'SET_REPORT', payload: mockReportData as unknown as Report });
+    // 尝试从后端获取报告
+    const taskId = localStorage.getItem('reportTaskId');
+    if (taskId) {
+      try {
+        const report = await getReport(taskId);
+        dispatch({ type: 'SET_REPORT', payload: report });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(report));
+        setInitialized(true);
+        // 清除历史缓存，避免旧报告影响
+        localStorage.removeItem(CACHE_HISTORY_KEY);
+        return;
+      } catch (error) {
+        console.error('从后端获取报告失败:', error);
+        // 后端获取失败，设置无数据原因
+      }
+    }
+
+    // 检查简历数据
+    const resumeData = localStorage.getItem('resumeData');
+    if (!resumeData) {
+      dispatch({ type: 'SET_NO_DATA_REASON', payload: 'no_resume' });
+      setInitialized(true);
+      return;
+    }
+
+    // 有简历但没有岗位匹配结果
+    const matchResult = localStorage.getItem('matchResult');
+    if (!matchResult) {
+      dispatch({ type: 'SET_NO_DATA_REASON', payload: 'no_job_matched' });
+      setInitialized(true);
+      return;
+    }
+
+    // 有简历和匹配结果但没有报告
+    dispatch({ type: 'SET_NO_DATA_REASON', payload: 'no_report' });
     setInitialized(true);
   }, []);
 
@@ -326,6 +405,84 @@ export function ReportProvider({ children }: { children: ReactNode }) {
     return historyStr ? JSON.parse(historyStr) : [];
   }, []);
 
+  // AI Polish methods
+  const setPolishing = useCallback((polishing: boolean) => {
+    dispatch({ type: 'SET_POLISHING', payload: polishing });
+  }, []);
+
+  const setPolishResult = useCallback((result: PolishResult | null) => {
+    dispatch({ type: 'SET_POLISH_RESULT', payload: result });
+  }, []);
+
+  const setShowPolishCompare = useCallback((show: boolean) => {
+    dispatch({ type: 'SET_SHOW_POLISH_COMPARE', payload: show });
+  }, []);
+
+  const setPolishError = useCallback((error: string | null) => {
+    dispatch({ type: 'SET_POLISH_ERROR', payload: error });
+    if (error) {
+      setTimeout(() => {
+        dispatch({ type: 'SET_POLISH_ERROR', payload: null });
+      }, 3000);
+    }
+  }, []);
+
+  const setPolishSuccess = useCallback((message: string | null) => {
+    dispatch({ type: 'SET_POLISH_SUCCESS', payload: message });
+    if (message) {
+      setTimeout(() => {
+        dispatch({ type: 'SET_POLISH_SUCCESS', payload: null });
+      }, 3000);
+    }
+  }, []);
+
+  const clearPolishState = useCallback(() => {
+    dispatch({ type: 'CLEAR_POLISH_STATE' });
+  }, []);
+
+  const applyPolishResult = useCallback((pathsToApply?: string[]) => {
+    if (!state.polishResult || !state.report) return;
+
+    const { polished } = state.polishResult;
+
+    if (pathsToApply && pathsToApply.length > 0) {
+      // Apply only selected paths
+      const pathSet = new Set(pathsToApply);
+      const result = JSON.parse(JSON.stringify(state.report)) as Report;
+
+      function applyPath(obj: any, polishedObj: any, pathParts: string[]) {
+        if (pathParts.length === 0) return;
+        const currentKey = pathParts[0];
+
+        if (pathParts.length === 1) {
+          if (pathSet.has(pathParts.join('.'))) {
+            obj[currentKey] = polishedObj[currentKey];
+          }
+          return;
+        }
+
+        if (obj[currentKey] !== undefined && polishedObj[currentKey] !== undefined) {
+          applyPath(obj[currentKey], polishedObj[currentKey], pathParts.slice(1));
+        }
+      }
+
+      const polishedJson = polished as any;
+      for (const path of pathSet) {
+        const pathParts = path.split('.');
+        applyPath(result, polishedJson, pathParts);
+      }
+
+      dispatch({ type: 'UPDATE_REPORT', payload: result });
+    } else {
+      // Apply all
+      dispatch({ type: 'UPDATE_REPORT', payload: polished });
+    }
+
+    dispatch({ type: 'SET_UNSAVED_CHANGES', payload: true });
+    dispatch({ type: 'SET_SAVE_STATUS', payload: 'saving' });
+    dispatch({ type: 'CLEAR_POLISH_STATE' });
+  }, [state.polishResult, state.report]);
+
   // Auto-save on changes (debounced)
   useEffect(() => {
     if (!initialized || !state.report) return;
@@ -378,7 +535,7 @@ export function ReportProvider({ children }: { children: ReactNode }) {
 
   // Initial load
   useEffect(() => {
-    loadReport();
+    loadReport().catch(console.error);
   }, [loadReport]);
 
   return (
@@ -397,6 +554,13 @@ export function ReportProvider({ children }: { children: ReactNode }) {
         validateAll,
         clearCache,
         getCacheRecords,
+        setPolishing,
+        setPolishResult,
+        setShowPolishCompare,
+        setPolishError,
+        setPolishSuccess,
+        clearPolishState,
+        applyPolishResult,
       }}
     >
       {children}

@@ -72,71 +72,6 @@ function RecommendedJobs({ jobType, onSelectJob }: RecommendedJobsProps) {
   );
 }
 
-const mockJobs: JobData[] = [
-  ["AI产品经理(校招)", 82.1, {
-    professional_skill: {
-      score: 75,
-      benchmark_score: 95,
-      matched_reason: "具备计算机专业背景，熟悉基础机器学习算法。",
-      missing_reason: "缺乏大型语言模型（LLM）的实际调优经验，对Transformer架构理解不够深入。"
-    },
-    innovation_ability: {
-      score: 90,
-      benchmark_score: 85,
-      matched_reason: "在校期间发表过一篇顶会论文，提出过创新的数据清洗算法。",
-      missing_reason: "无明显缺失，建议继续保持发散性思维。"
-    },
-    learning_ability: {
-      score: 95,
-      benchmark_score: 90,
-      matched_reason: "自主考取了多项AI证书，并快速掌握了最新的提示词工程技术。",
-      missing_reason: "无明显缺失。"
-    },
-    stress_resistance: {
-      score: 80,
-      benchmark_score: 85,
-      matched_reason: "有在创业团队高强度工作的经历。",
-      missing_reason: "面对复杂业务波动时的情绪管理经验相对较少。"
-    },
-    communication_ability: {
-      score: 85,
-      benchmark_score: 80,
-      matched_reason: "表达清晰，能够将复杂算法逻辑通俗易懂地讲解给非技术人员。",
-      missing_reason: "在跨团队冲突协调方面的经验尚浅。"
-    },
-    internship_experience: {
-      score: 70,
-      benchmark_score: 90,
-      matched_reason: "有一段中型科技公司的算法实习经历。",
-      missing_reason: "缺乏在一线大厂参与核心AI产品上线闭环的完整实习经历。"
-    },
-    teamwork_ability: {
-      score: 80,
-      benchmark_score: 85,
-      matched_reason: "熟练使用协作工具，在校赛团队中担任核心开发者。",
-      missing_reason: "对大型异地团队的协作流程（如Agile/Scrum）了解不够。"
-    }
-  }],
-  ["助理建筑设计师", 79.5, {
-    professional_skill: { score: 80, benchmark_score: 85, matched_reason: "熟练掌握CAD/Rhino", missing_reason: "缺乏大型公建项目经验" },
-    innovation_ability: { score: 85, benchmark_score: 80, matched_reason: "有多个先锋设计竞赛获奖", missing_reason: "落地性需加强" },
-    learning_ability: { score: 90, benchmark_score: 85, matched_reason: "快速学习新技术", missing_reason: "无" },
-    stress_resistance: { score: 75, benchmark_score: 85, matched_reason: "能适应一定加班", missing_reason: "抗压能力待验证" },
-    communication_ability: { score: 80, benchmark_score: 80, matched_reason: "沟通顺畅", missing_reason: "汇报经验较少" },
-    internship_experience: { score: 75, benchmark_score: 80, matched_reason: "有甲级院实习经历", missing_reason: "实习时间较短" },
-    teamwork_ability: { score: 85, benchmark_score: 85, matched_reason: "团队协作良好", missing_reason: "无" }
-  }],
-  ["BIM研发工程师", 76.8, {
-    professional_skill: { score: 70, benchmark_score: 90, matched_reason: "了解BIM基础", missing_reason: "缺乏二次开发经验" },
-    innovation_ability: { score: 80, benchmark_score: 80, matched_reason: "思维活跃", missing_reason: "无" },
-    learning_ability: { score: 85, benchmark_score: 85, matched_reason: "学习能力强", missing_reason: "无" },
-    stress_resistance: { score: 75, benchmark_score: 80, matched_reason: "抗压一般", missing_reason: "无" },
-    communication_ability: { score: 80, benchmark_score: 80, matched_reason: "沟通良好", missing_reason: "无" },
-    internship_experience: { score: 70, benchmark_score: 80, matched_reason: "有相关实习", missing_reason: "非核心研发岗" },
-    teamwork_ability: { score: 80, benchmark_score: 80, matched_reason: "团队协作良好", missing_reason: "无" }
-  }]
-];
-
 export default function JobMatch() {
   const navigate = useNavigate();
   const [selectedJob, setSelectedJob] = useState<JobData | null>(null);
@@ -168,8 +103,9 @@ export default function JobMatch() {
   }, []);
 
   const filteredAndSortedJobs = useMemo(() => {
-    // 如果有真实数据，使用它；否则使用 mockJobs
-    let result: JobData[] = jobList.length > 0 ? jobList : [...mockJobs];
+    // 如果没有真实数据，返回空数组
+    if (jobList.length === 0) return [];
+    let result: JobData[] = jobList;
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -228,8 +164,11 @@ export default function JobMatch() {
       { resume: resumeData, job: selectedJob },
       {
         onProgress: () => {},
-        onCompleted: (result: Report) => {
+        onCompleted: (result: Report, taskId?: string) => {
           localStorage.setItem('careerReport', JSON.stringify(result));
+          if (taskId) {
+            localStorage.setItem('reportTaskId', taskId);
+          }
           showToast({
             message: '专项提升报告已生成，点击立即查看！',
             onClick: () => navigate('/career-report'),
@@ -620,11 +559,56 @@ export default function JobMatch() {
           </button>
         </div>
       </div>
+      </div>
 
       {/* Job List Table */}
-      <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[600px]">
+      {jobList.length === 0 ? (
+        <div className="bg-surface-container-lowest rounded-xl p-12 text-center">
+          <div style={{
+            width: 64,
+            height: 64,
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 16px',
+          }}>
+            <span className="material-symbols-outlined" style={{ fontSize: 32, color: 'white' }}>
+              work
+            </span>
+          </div>
+          <h3 style={{ fontSize: 18, fontWeight: 'bold', color: '#333', marginBottom: 8 }}>
+            暂无匹配的岗位
+          </h3>
+          <p style={{ fontSize: 14, color: '#666', marginBottom: 24 }}>
+            请先在能力分析页面填写简历信息，系统将为您推荐合适的岗位
+          </p>
+          <a
+            href="/capability-analysis"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '10px 24px',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white',
+              borderRadius: 8,
+              textDecoration: 'none',
+              fontWeight: 'bold',
+              fontSize: 14,
+            }}
+          >
+            前往能力分析
+            <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
+              arrow_forward
+            </span>
+          </a>
+        </div>
+      ) : (
+        <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
             <thead>
               <tr className="bg-surface-container-low">
                 <th className="px-6 py-4 text-sm font-bold text-on-surface-variant">岗位类型</th>
@@ -690,7 +674,7 @@ export default function JobMatch() {
           </div>
         </div>
       </div>
-      </div>
+      )}
     </div>
     </PageDashboard>
 

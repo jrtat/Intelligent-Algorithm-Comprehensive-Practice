@@ -81,7 +81,7 @@ const detailEditFields: FormField[] = [
   },
 ];
 
-const batchEditFields: FormField[] = [
+export const batchEditFields: FormField[] = [
   {
     key: 'status',
     label: '状态',

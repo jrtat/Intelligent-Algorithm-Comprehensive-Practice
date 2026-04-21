@@ -261,8 +261,6 @@ def batch_extract_info_report(source, target, resume_info):
     '''
 
     # 调用LLM进行个性化分析
-    from processor.utils.LLMInvoker import LLMInvoker
-    model = LLMInvoker()
     raw_response = model.call_ollama(prompt)
 
     if not raw_response:
@@ -270,27 +268,23 @@ def batch_extract_info_report(source, target, resume_info):
         return None
 
     # 保存个性化报告
-    fp_report = FileProcessor(result_filename)
     fp_report.save(raw_response)
 
     # 同时保存到总报告文件
-    if os.path.exists("results/report.json"):
-        fp_total_report = FileProcessor("results/report.json")
-        dic_report = fp_total_report.read()
-    else:
-        dic_report = {}
-
-    report_key = f"{candidate_name}_{source}_to_{target}"
-    dic_report[report_key] = raw_response
-
-    fp_total = FileProcessor("results/report.json")
-    fp_total.save(dic_report)
+    # if os.path.exists("results/report.json"):
+    #     fp_total_report = FileProcessor("results/report.json")
+    #     dic_report = fp_total_report.read()
+    # else:
+    #     dic_report = {}
+    #
+    # report_key = f"{candidate_name}_{source}_to_{target}"
+    # dic_report[report_key] = raw_response
+    #
+    # fp_total = FileProcessor("results/report.json")
+    # fp_total.save(dic_report)
 
     print(f"{candidate_name} 的 {source} -> {target} 换岗报告已完成")
     return raw_response
-
-
-# ... existing code ...
 
 if __name__ == '__main__':
 

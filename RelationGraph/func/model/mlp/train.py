@@ -19,7 +19,7 @@ class JobDataset(Dataset):
         return self.X[idx], self.y[idx]
 
 class MLPClassifier(nn.Module):
-    def __init__(self, input_dim, num_classes, hidden_dim=1024):
+    def __init__(self, input_dim, num_classes, hidden_dim=512):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
@@ -36,10 +36,10 @@ class MLPClassifier(nn.Module):
 
 def get_mlp(device,
             x_train, y_train,
-            num_epochs=100,
+            num_epochs=150,
             batch_size=64,
-            learning_rate=1e-3,
-            hidden_dim=1024):
+            learning_rate=2e-4,
+            hidden_dim=512):
     """
     训练 MLP 模型（无验证集，无早停，训练全部 epoch 后返回最终模型）。
 
@@ -85,14 +85,14 @@ def get_mlp(device,
     print("训练完成，返回最终模型。")
     return model
 
-def get_mlp_advance(device,
+def get_mlp_cross(device,
                     x_train, y_train,
                     x_val, y_val,
-                    num_epochs=100,
+                    num_epochs=150,
                     batch_size=64,
-                    learning_rate=1e-3,
-                    hidden_dim=1024,
-                    patience=10):
+                    learning_rate=2e-4,
+                    hidden_dim=512,
+                    patience=5):
     """
     训练 MLP 模型，使用验证集监控并返回最佳模型。
     """

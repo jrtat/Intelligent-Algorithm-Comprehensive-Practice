@@ -19,7 +19,7 @@ id2label = {
 
 # 配置路径
 BASE_MODEL_NAME = "hfl/chinese-macbert-large"
-ADAPTER_PATH = "./func/train/lora/model_ver1/lora_job_classifier"
+ADAPTER_PATH = "./func/model/lora/model_ver1/lora_job_classifier"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载 tokenizer

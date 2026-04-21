@@ -1,28 +1,5 @@
 import numpy as np
-import torch
 import json
-from sklearn.model_selection import cross_val_predict
-
-def mlp_calc_proba(mlp_model, device, x_fused, y, class_names):
-
-    mlp_model.eval()
-    with torch.no_grad():
-        x_tensor = torch.tensor(x_fused, dtype=torch.float32).to(device)
-        logits = mlp_model(x_tensor)
-        proba = torch.softmax(logits, dim=1).cpu().numpy()
-
-    return build_matrix(proba, y, class_names, "affinity_matrix.json")
-
-def rf_calc_proba(rf_clf, x_fused, y, class_names):
-    proba = cross_val_predict(
-        rf_clf,
-        x_fused,
-        y,
-        cv=5,
-        method='predict_proba',
-        n_jobs=-1
-    ) # 使用 cross_val_predict 获取每个样本的预测概率
-    return build_matrix(proba, y, class_names)
 
 def build_matrix(proba, y, class_names, save_path=None):
     n_classes = len(class_names)  # 类别数（或者叫节点数）

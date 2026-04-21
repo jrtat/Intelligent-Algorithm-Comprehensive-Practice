@@ -27,15 +27,18 @@ class LLMInvoker:
         self.api_url = f"{self.base_url}/api/generate"
         self.embeddings_url = f"{self.base_url}/api/embeddings"
         self.headers = {"Content-Type": "application/json"} # 指定发送格式是json，对输入输出的格式没有要求
+        self.retry = 3
 
-    def call_ollama(self, prompt, format="string", stream=False):
+    def call_ollama(self, prompt, stream=False):
         """
         底层调用Ollama API的方法
         :param prompt: 提示词
-        :param format: 输出格式
         :param stream: 是否流式返回
         :return: 模型响应文本
         """
+        if self.retry <= 0:
+            self.retry = 3
+            return None
         payload = {
             "model": self.model_name,
             "prompt": prompt,
@@ -70,11 +73,14 @@ class LLMInvoker:
 
         except requests.exceptions.RequestException as e:
             tqdm.write(f"调用Ollama模型失败: {e}")
-            return None
+            # return None
 
         except Exception as e: # 可能出现输出不是json的情况，暂时跳过
             tqdm.write(f"未知错误: {e}")
-            return None
+            # return None
+
+        self.retry -= 1
+        return self.call_ollama(prompt, stream)
 
     def call_ollama_embedding(self, prompt):
         """

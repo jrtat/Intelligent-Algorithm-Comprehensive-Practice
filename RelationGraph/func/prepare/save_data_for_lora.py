@@ -176,9 +176,9 @@ def save_data(
 
     # --- 步骤5: 转换为 HuggingFace Dataset 并保存---
     dataset = DatasetDict({
-        'train': Dataset.from_pandas(train_df[['text', 'label_id']]),
+        'model': Dataset.from_pandas(train_df[['text', 'label_id']]),
         'validation': Dataset.from_pandas(val_df[['text', 'label_id']]),
         'test': Dataset.from_pandas(test_df[['text', 'label_id']])
     })
 
-    dataset.save_to_disk("./func/train/lora/job_classify_dataset_aug")
+    dataset.save_to_disk("./func/model/lora/job_classify_dataset_aug")

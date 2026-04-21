@@ -5,6 +5,7 @@ import datetime
 
 from KnowledgeGraph.func.build_vec import get_vector
 from KnowledgeGraph.func.utils.get_models import get_local_embedding
+from RelationGraph.func.use.use_lora_model import predict_probabilities
 from processor.utils.FileProcessor import FileProcessor
 from processor.utils.LLMInvoker import LLMInvoker
 
@@ -18,10 +19,6 @@ from processor.utils.LLMInvoker import LLMInvoker
 # hobbies --> 福利待遇概述
 # summary -->
 
-model = LLMInvoker()
-
-
-
 match_map = { # 岗位的什么信息要看简历的什么
     "综合素质": ["summary", "scoreExplanations"],
     "职业技能": ["skills"],
@@ -33,6 +30,7 @@ match_map = { # 岗位的什么信息要看简历的什么
 
 class Matcher:
     def __init__(self, resume_info):
+        self.model = LLMInvoker()
         self.scores = []
         self.resume_info = resume_info
         self.jobs = [] # 得分和对应岗位名称
@@ -46,60 +44,11 @@ class Matcher:
             "teamwork_ability": 0.1
         }
         #
-        # fp_map = FileProcessor("maps/num2jt.json")
-        self.dic_map = {
-          "0": "前端开发",
-          "1": "实施工程师",
-          "2": "科研人员",
-          "3": "技术支持工程师",
-          "4": "Java",
-          "5": "软件测试",
-          "6": "C/C++",
-          "7": "硬件测试",
-          "8": "测试工程师",
-          "9": "销售运营",
-          "10": "质量管理/测试",
-          "11": "总助/Ceo助理/董事长助理",
-          "12": "质检员",
-          "13": "运营助理/专员",
-          "14": "律师助理",
-          "15": "网络销售",
-          "16": "Bd经理",
-          "17": "App推广",
-          "18": "资料管理",
-          "19": "猎头顾问",
-          "20": "档案管理",
-          "21": "律师",
-          "22": "招聘专员/助理",
-          "23": "储备经理人",
-          "24": "培训师",
-          "25": "咨询顾问",
-          "26": "统计员",
-          "27": "销售工程师",
-          "28": "售后客服",
-          "29": "广告销售",
-          "30": "项目专员/助理",
-          "31": "风电工程师",
-          "32": "英语翻译",
-          "33": "游戏推广",
-          "34": "项目招投标",
-          "35": "电话客服",
-          "36": "网络客服",
-          "37": "大客户代表",
-          "38": "内容审核",
-          "39": "项目经理/主管",
-          "40": "知识产权/专利代理",
-          "41": "管培生/储备干部",
-          "42": "社区运营",
-          "43": "销售助理",
-          "44": "储备干部",
-          "45": "电话销售",
-          "46": "游戏运营",
-          "47": "产品专员/助理",
-          "48": "法务专员/助理",
-          "49": "日语翻译",
-          "50": "商务专员"
-        }
+        fp_map = FileProcessor("maps/num2jt.json")
+        self.dic_map = fp_map.read()
+        self.jt2num = {}
+        for i in self.dic_map:
+            self.jt2num[self.dic_map[i]] = i
 
     def match(self, resume_keys, job_num, job_keys, prompt):
         """
@@ -198,7 +147,7 @@ class Matcher:
 
         # Step 3: 调用 LLM 进行评估
         try:
-            raw_response = model.call_ollama(p)
+            raw_response = self.model.call_ollama(p)
 
             if not raw_response:
                 return {
@@ -712,7 +661,7 @@ class Matcher:
 
         # Step 4: 调用 LLM 进行一次性的综合评估
         try:
-            raw_response = model.call_ollama(p)
+            raw_response = self.model.call_ollama(p)
 
             if not raw_response:
                 default_result = {
@@ -787,8 +736,16 @@ class Matcher:
     def get_result(self):
         # 输出当前时间
         print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        for i in range(51): # [6,15,30,39,50]
-            self.scores.append(self.cal_score_simple(str(i)))
+
+        dic_pre = predict_probabilities(json.dumps(self.resume_info, ensure_ascii=False, indent=2))
+        lst_rank = []
+        for i in dic_pre:
+            lst_rank.append((i, dic_pre[i]))
+
+        lst_rank.sort(key=lambda x: x[1], reverse=True)
+
+        for i in lst_rank[:5]: # [6,15,30,39,50]
+            self.scores.append(self.cal_score_simple(self.jt2num[i[0]]))
             print(i, datetime.datetime.now().strftime(" %Y-%m-%d %H:%M:%S"))
         self.scores.sort(key=lambda x: x[1], reverse=True)
         return self.scores

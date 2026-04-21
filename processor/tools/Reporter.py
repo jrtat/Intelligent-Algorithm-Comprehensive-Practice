@@ -191,19 +191,21 @@ class Reporter:
 
         # 构建个性化分析的提示词
         prompt = f'''
-        你是一位资深的职业发展顾问。请基于我的简历信息、匹配信息和目标岗位，分析岗位的需求，为我定制一份个性化的职业规划评估报告。语气要专业、和蔼。
+        你是一位资深的职业发展顾问。请基于我的目标岗位、简历信息、匹配信息，分析岗位的需求，为我定制一份个性化的职业规划评估报告。语气要专业、和蔼。
 
         # 核心原则（必须严格遵守）：
         1. **个性化定制**：所有建议必须严格按照规定的目标岗位的信息设立前提与目标，结合我的具体背景，避免泛泛而谈
         2. **实事求是**：客观评估我的优势和不足，不夸大也不贬低
-        3. **可执行性**：提供的建议必须具体、可执行、有时间节点
+        3. **可执行性**：提供的建议必须具体、详细、可执行、有时间节点
         4. **鼓励性语言**：在指出不足的同时，给予我积极的改进方向
 
         # 输入数据：
+        ## 目标岗位名称：{target}
+        
         ## 目标岗位信息：
         {json.dumps(dic_jobs[target], ensure_ascii=False, indent=2)}
 
-        ## 我的基本信息：
+        ## 我的简历信息：
         {json.dumps(self.resume_info, ensure_ascii=False, indent=2)}
 
         ## 人岗匹配信息：
@@ -548,7 +550,7 @@ class Reporter:
 
         现在请开始分析，严格按照上述要求输出 JSON 结果：
         '''
-
+        print("开始生成报告")
         # 调用LLM进行个性化分析
         raw_response = self.model.call_ollama(prompt)
 
@@ -557,6 +559,7 @@ class Reporter:
             return None
 
         print(f"{candidate_name} 的 {target} 职业规划报告已完成")
+        print(raw_response)
         return raw_response
 
     # def batch_extract_info_report(self, source, target): # 有必要吗🤔

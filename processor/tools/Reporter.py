@@ -5,13 +5,14 @@ import json
 
 from processor.utils.FileProcessor import FileProcessor
 from processor.utils.LLMInvoker import LLMInvoker
-model = LLMInvoker()
+
 
 fp_jobs = FileProcessor("log/result.json")
 dic_jobs = fp_jobs.read()
 
 class Reporter:
     def __init__(self, resume_info):
+        self.model = LLMInvoker()
         self.resume_info = resume_info
 
     def job_report(self, target):  # 职业规划
@@ -170,7 +171,7 @@ class Reporter:
         '''
 
         # 调用LLM进行个性化分析
-        raw_response = model.call_ollama(prompt)
+        raw_response = self.model.call_ollama(prompt)
 
         if not raw_response:
             print(f"{candidate_name} 的职业规划报告生成失败")
@@ -463,7 +464,7 @@ class Reporter:
                   "metric": "指标名称",
                   "target_value": "目标值",
                   "measurement_method": "测量方法"
-                }}
+                }}, ...
               ]
             }},
             "evaluation_framework": {{
@@ -549,7 +550,7 @@ class Reporter:
         '''
 
         # 调用LLM进行个性化分析
-        raw_response = model.call_ollama(prompt)
+        raw_response = self.model.call_ollama(prompt)
 
         if not raw_response:
             print(f"{candidate_name} 的职业规划报告生成失败")

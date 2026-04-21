@@ -1,7 +1,7 @@
 from RelationGraph.func.prepare.get_data import get_data_raw
 from RelationGraph.func.prepare.init_data import init_data_raw
 from RelationGraph.func.train.rf.train import get_rf, rf_evaluate, rf_predict_proba
-from RelationGraph.func.train.mpl.train import get_mlp,mlp_evaluate,mlp_predict_proba
+from RelationGraph.func.train.mpl.train import get_mlp, mlp_evaluate, mlp_predict_proba
 from RelationGraph.func.use.get_result import mlp_calc_proba, rf_calc_proba
 
 import torch
@@ -34,17 +34,17 @@ X_val, X_test, y_val, y_test = train_test_split(
 # Step 2： 训练模型并评估
 
 #--- rf ---#
-
+'''
 rf_clf = get_rf(X_train, y_train)
 rf_proba = rf_predict_proba(rf_clf, X_test)
 rf_evaluate(rf_proba, y_test)
 
 rf_calc_proba(rf_clf, X_fused, y, class_names)
-
+'''
 #--- mlp ---#
 
 mlp_clf = get_mlp(device, X_train, y_train, X_val, y_val)
-mlp_proba = mlp_predict_proba(mlp_clf, device, X_test)
+mlp_proba = mlp_predict_proba(mlp_clf, X_test, device)
 mlp_evaluate(mlp_proba, y_test)
 
 mlp_calc_proba(mlp_clf, device, X_fused, y, class_names)

@@ -61,7 +61,8 @@ export function JobMapPage() {
   const [currentLevel, setCurrentLevel] = useState<'country' | 'province'>('country');
   const [currentProvince, setCurrentProvince] = useState<{ adcode: number; name: string; center: [number, number] } | null>(null);
   const [provinceGeo, setProvinceGeo] = useState<any>(null);
-  const [loadError, setLoadError] = useState<string | null>(null);
+    const [loadError, setLoadError] = useState<string | null>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const chartRef = useRef<ReactECharts | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -129,6 +130,7 @@ export function JobMapPage() {
       .then(data => {
         echarts.registerMap('china', data);
         setChinaGeo(data);
+        setMapLoaded(true);
       })
       .catch(err => console.error('加载中国地图失败:', err));
   }, []);
@@ -582,7 +584,7 @@ export function JobMapPage() {
 
             {/* 地图容器 */}
             <div className="map-wrapper" style={{ flex: 1, minHeight: 0, position: 'relative' }}>
-              {loading && (
+              {(loading || !mapLoaded) && (
                 <div className="map-loading" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', zIndex: 10 }}>
                   <div className="spinner"></div>
                   <p>加载地图中...</p>
@@ -611,7 +613,7 @@ export function JobMapPage() {
                 </div>
               )}
 
-              {!loadError && selectedJobName && totalJobs > 0 && (
+              {!loadError && selectedJobName && totalJobs > 0 && mapLoaded && (
                 <ReactECharts
                   key={mapKey}
                   ref={(e) => { if (e) chartRef.current = e; }}

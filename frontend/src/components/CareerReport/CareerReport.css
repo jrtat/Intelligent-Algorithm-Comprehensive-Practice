@@ -66,8 +66,11 @@
   width: 240px;
   background-color: var(--report-surface);
   border-right: 1px solid var(--report-border);
-  overflow-y: auto;
   transition: width 0.3s ease, transform 0.3s ease;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .report-sidebar.collapsed {

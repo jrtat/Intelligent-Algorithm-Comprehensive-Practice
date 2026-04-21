@@ -584,8 +584,8 @@ export default function JobMatch() {
           <p style={{ fontSize: 14, color: '#666', marginBottom: 24 }}>
             请先在能力分析页面填写简历信息，系统将为您推荐合适的岗位
           </p>
-          <a
-            href="/capability-analysis"
+          <button
+            onClick={() => navigate('/capability-analysis')}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -594,16 +594,17 @@ export default function JobMatch() {
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               color: 'white',
               borderRadius: 8,
-              textDecoration: 'none',
+              border: 'none',
               fontWeight: 'bold',
               fontSize: 14,
+              cursor: 'pointer',
             }}
           >
             前往能力分析
             <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
               arrow_forward
             </span>
-          </a>
+          </button>
         </div>
       ) : (
         <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10">

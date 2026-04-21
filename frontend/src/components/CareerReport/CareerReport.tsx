@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ReportProvider, useReport } from './context/ReportContext';
 import { ReportHeader } from './components/ReportHeader';
 import { ReportSidebar } from './components/ReportSidebar';
@@ -16,6 +17,7 @@ import { polishReport } from './components/ui/AIPolishUtils';
 import './CareerReport.css';
 
 function ReportContent() {
+  const navigate = useNavigate();
   const { state, saveReport, setPolishing, setPolishResult, setShowPolishCompare, setPolishError, setPolishSuccess, clearPolishState, applyPolishResult } = useReport();
 
   const [showAIPolishModal, setShowAIPolishModal] = useState(false);
@@ -185,8 +187,8 @@ function ReportContent() {
           <p style={{ fontSize: 16, color: '#666', marginBottom: 32, maxWidth: 400 }}>
             {msg.description}
           </p>
-          <a
-            href={msg.buttonLink}
+          <button
+            onClick={() => navigate(msg.buttonLink)}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -195,16 +197,17 @@ function ReportContent() {
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               color: 'white',
               borderRadius: 8,
-              textDecoration: 'none',
+              border: 'none',
               fontWeight: 'bold',
               fontSize: 14,
+              cursor: 'pointer',
             }}
           >
             {msg.buttonText}
             <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
               arrow_forward
             </span>
-          </a>
+          </button>
         </div>
       </div>
     );

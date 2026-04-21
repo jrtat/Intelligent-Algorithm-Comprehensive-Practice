@@ -47,19 +47,6 @@ export function ReportSidebar() {
             </div>
           ))}
         </nav>
-
-        <div className="sidebar-footer">
-          <div
-            className="sidebar-nav-item"
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && alert('AI润色记录功能开发中')}
-            onClick={() => alert('AI润色记录功能开发中')}
-          >
-            <span className="material-symbols-outlined">history</span>
-            <span>AI润色记录</span>
-          </div>
-        </div>
       </aside>
 
       <button

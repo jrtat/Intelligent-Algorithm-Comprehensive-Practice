@@ -17,8 +17,8 @@ def train_and_evaluate_lora():
     os.environ["HF_HUB_OFFLINE"] = "1"
 
     # 1. 加载数据
-    dataset = load_from_disk("./func/train/lora/job_classify_dataset")
-    num_labels = len(set(dataset["train"]["label_id"]))
+    dataset = load_from_disk("./func/model/lora/job_classify_dataset")
+    num_labels = len(set(dataset["model"]["label_id"]))
 
     print(num_labels)
 
@@ -54,7 +54,7 @@ def train_and_evaluate_lora():
 
     # 4. 配置 Trainer
     training_args = TrainingArguments(
-        output_dir="./func/train/lora/results", # 模型和日志保存路径
+        output_dir="./func/model/lora/results", # 模型和日志保存路径
         learning_rate=3e-4,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=128,
@@ -83,7 +83,7 @@ def train_and_evaluate_lora():
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=tokenized_datasets["train"],
+        train_dataset=tokenized_datasets["model"],
         eval_dataset=tokenized_datasets["validation"],
         processing_class=tokenizer,
         data_collator=DataCollatorWithPadding(tokenizer=tokenizer),
@@ -95,4 +95,4 @@ def train_and_evaluate_lora():
     test_results = trainer.predict(tokenized_datasets["test"])
     print("Test F1:", test_results.metrics["test_f1_macro"])
 
-    model.save_pretrained("./func/train/lora/lora_job_classifier")
+    model.save_pretrained("./func/model/lora/model_ver1/lora_job_classifier")

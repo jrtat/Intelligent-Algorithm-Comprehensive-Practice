@@ -1,17 +1,14 @@
-import os
-
 import torch
 import torch.nn.functional as F
-from pydantic_settings.sources.providers import dotenv
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from peft import PeftModel
 
 # 预存标签
 id2label = {
-    0: "App推广", 1: "Bd经理", 2: "C/C++", 3: "Java", 4: "产品专员/助理", 5: "储备干部",
+    0: "APP推广", 1: "BD经理", 2: "C/C++", 3: "Java", 4: "产品专员/助理", 5: "储备干部",
     6: "储备经理人", 7: "内容审核", 8: "前端开发", 9: "咨询顾问", 10: "售后客服",
     11: "商务专员", 12: "培训师", 13: "大客户代表", 14: "实施工程师", 15: "广告销售",
-    16: "律师", 17: "律师助理", 18: "总助/Ceo助理/董事长助理", 19: "技术支持工程师", 20: "招聘专员/助理",
+    16: "律师", 17: "律师助理", 18: "总助/CEO助理/董事长助理", 19: "技术支持工程师", 20: "招聘专员/助理",
     21: "日语翻译", 22: "档案管理", 23: "法务专员/助理", 24: "测试工程师", 25: "游戏推广",
     26: "游戏运营", 27: "猎头顾问", 28: "电话客服", 29: "电话销售", 30: "知识产权/专利代理",
     31: "硬件测试", 32: "社区运营", 33: "科研人员", 34: "管培生/储备干部", 35: "统计员",
@@ -21,23 +18,23 @@ id2label = {
 }
 
 # 配置路径
-# BASE_MODEL_NAME = "hfl/chinese-macbert-large"
-# ADAPTER_PATH = "./func/train/lora/model_ver1/lora_job_classifier"
+BASE_MODEL_NAME = "hfl/chinese-macbert-large"
+ADAPTER_PATH = "./func/model/lora/model_ver1/lora_job_classifier"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载 tokenizer
-tokenizer = AutoTokenizer.from_pretrained(os.getenv("BASE_MODEL_NAME"))
+tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL_NAME)
 
 # 加载基础模型
 base_model = AutoModelForSequenceClassification.from_pretrained(
-    os.getenv("BASE_MODEL_NAME"),
+    BASE_MODEL_NAME,
     num_labels=51,
     torch_dtype=torch.bfloat16,
     ignore_mismatched_sizes=True
 )
 
 # 加载 LoRA 适配器
-model = PeftModel.from_pretrained(base_model, os.getenv("ADAPTER_PATH"))
+model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
 model.to(DEVICE)
 model.eval()
 

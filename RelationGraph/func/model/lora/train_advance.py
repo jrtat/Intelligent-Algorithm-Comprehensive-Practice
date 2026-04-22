@@ -65,8 +65,8 @@ class AdvancedTrainer(Trainer): # 继承自Trainer
 def train_and_evaluate_lora():
 
     # Step 1：读入数据集
-    dataset = load_from_disk("./func/train/lora/dataset_raw_aug/job_classify_dataset")
-    num_labels = len(set(dataset["train"]["label_id"]))
+    dataset = load_from_disk("./func/model/lora/dataset_raw_aug/job_classify_dataset")
+    num_labels = len(set(dataset["model"]["label_id"]))
 
     print(f"训练集分类数：{num_labels}")
 
@@ -103,7 +103,7 @@ def train_and_evaluate_lora():
     model = get_peft_model(model, lora_config) # 用 PEFT 包装模型，注入 LoRA 适配器，此时只有 LoRA 参数和分类头参数是可训练的
 
     training_args = TrainingArguments(
-        output_dir="./func/train/lora/results", # 模型检查点、日志和最终模型的保存目录。训练过程中每个 epoch 保存的模型会存放在此
+        output_dir="./func/model/lora/results", # 模型检查点、日志和最终模型的保存目录。训练过程中每个 epoch 保存的模型会存放在此
         learning_rate=2e-4,  # AdamW 优化器的初始学习率。所有可训练参数（LoRA + 分类头）使用此学习率
         per_device_train_batch_size=4, # 每张 GPU 上每次前向传播的样本数。由于使用了 gradient_accumulation_steps，实际逻辑批次大小会相乘
         per_device_eval_batch_size=32, # 评估时每张 GPU 的批次大小。评估不需梯度，可设较大值以加速
@@ -133,7 +133,7 @@ def train_and_evaluate_lora():
     trainer = AdvancedTrainer(
         model=model, # 要训练的模型（已注入 LoRA 适配器）
         args=training_args, # 之前定义的 TrainingArguments 对象
-        train_dataset=tokenized_datasets["train"], # 数据集
+        train_dataset=tokenized_datasets["model"], # 数据集
         eval_dataset=tokenized_datasets["validation"], # 验证集
         processing_class=tokenizer, # Trainer 在保存模型时会自动保存 tokenizer，方便后续推理时加载
         data_collator=DataCollatorWithPadding(tokenizer=tokenizer), # 数据整理器，负责将同一批次的样本动态填充到相同长度，形成模型可接受的张量输入
@@ -149,4 +149,4 @@ def train_and_evaluate_lora():
     test_results = trainer.predict(tokenized_datasets["test"])
     print("Test F1:", test_results.metrics["test_f1_macro"])
 
-    model.save_pretrained("./func/train/lora/lora_job_classifier")
+    model.save_pretrained("./func/model/lora/model_ver2/lora_job_classifier")

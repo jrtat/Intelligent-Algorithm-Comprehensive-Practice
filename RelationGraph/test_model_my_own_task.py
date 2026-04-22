@@ -1,9 +1,51 @@
-from RelationGraph.func.use.use_lora_model import predict_probabilities
+from RelationGraph.func.utils.get_model import get_embedding_temp
+from RelationGraph.func.prepare.get_data import get_data_raw
+# from RelationGraph.func.prepare.init_data import init_data_raw
+from RelationGraph.func.model.rf.train import get_rf
+from RelationGraph.func.model.rf.evaluate import rf_predict_and_evaluate
+from RelationGraph.func.model.mlp.train import MLPClassifier
+from RelationGraph.func.model.mlp.evaluate import mlp_predict_and_evaluate, predict_proba_dict
 
+import joblib
+import torch
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
 
-if __name__ == "__main__":
-    result = predict_probabilities("""
-  {
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') # 检测是否有gpu，如果有就用cuda
+
+# Step 0：读取分类数据
+df = get_data_raw()
+le = LabelEncoder()
+y = le.fit_transform(df['职业类别'])
+class_names = le.classes_ # 保存编码器中的类别列表 class_names，用于后续映射
+
+# Step 1：读取模型
+#--- mlp ---#
+checkpoint1 = torch.load("./func/model/mlp/model_ver1/mlp_model.pt", map_location=device) # 加载保存的字典
+mlp_clf = MLPClassifier(
+    input_dim=checkpoint1['input_dim'],
+    num_classes=checkpoint1['num_classes'],
+    hidden_dim=checkpoint1['hidden_dim']
+).to(device) # 使用保存的超参数重新创建模型结构
+mlp_clf.load_state_dict(checkpoint1['model_state_dict']) # 加载权重
+mlp_clf.eval()  # 切换到评估模式
+
+#--- mlp-all ---#
+
+checkpoint2 = torch.load("./func/model/mlp/model_ver2/mlp_model.pt", map_location=device) # 加载保存的字典
+mlp_all_clf = MLPClassifier(
+    input_dim=checkpoint2['input_dim'],
+    num_classes=checkpoint2['num_classes'],
+    hidden_dim=checkpoint2['hidden_dim']
+).to(device) # 使用保存的超参数重新创建模型结构
+mlp_all_clf.load_state_dict(checkpoint2['model_state_dict']) # 加载权重
+mlp_all_clf.eval()  # 切换到评估模式
+
+# Step 3：用具体的例子测试
+embedder = get_embedding_temp()
+text = """
+ {
   "name": "Mike",
   "age": "25",
   "education": "硕士",
@@ -52,8 +94,18 @@ if __name__ == "__main__":
     "competitiveness": "具备标杆企业全周期HR相关经验、全球化视野与体系化能力，匹配人力资源主管岗位，竞争力较强，建议补强组织发展（OD）与HRBP实操案例。"
   }
 }
-    """)
-    # 按概率降序查看前5个最可能的职业
-    top5 = sorted(result.items(), key=lambda x: x[1], reverse=True)[:10]
-    for job, prob in top5:
-        print(f"{job}: {prob:.4f}")
+"""
+embedding = embedder.embed_query(text)
+
+result1 = predict_proba_dict(mlp_clf, embedding, device, class_names=class_names)
+print("=== MLP Top 预测 ===")
+result1_sorted = dict(sorted(result1.items(), key=lambda x: x[1], reverse=True))
+for cls, prob in result1_sorted.items():
+    print(f"{cls:10} : {prob:.4f}")
+
+
+result2 = predict_proba_dict(mlp_all_clf, embedding, device, class_names=class_names)
+print("=== MLP Top 预测 ===")
+result2_sorted = dict(sorted(result2.items(), key=lambda x: x[1], reverse=True))
+for cls, prob in result2_sorted.items():
+    print(f"{cls:10} : {prob:.4f}")

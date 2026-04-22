@@ -83,9 +83,7 @@ export default function JobMatch() {
   const { showToast } = useToast();
 
   // 从 localStorage 读取匹配结果
-  useEffect(() => {
-    if (jobList.length > 0) return;
-
+  const loadMatchResult = () => {
     const savedResult = localStorage.getItem('matchResult');
     if (savedResult) {
       try {
@@ -100,6 +98,29 @@ export default function JobMatch() {
         console.error('解析匹配结果失败:', e);
       }
     }
+  };
+
+  useEffect(() => {
+    // 初始加载
+    if (jobList.length > 0) return;
+    loadMatchResult();
+
+    // 监听 localStorage 变化（跨页面通知）
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'matchResult') {
+        loadMatchResult();
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+
+    // 监听自定义事件（同一页面内通知）
+    const handleMatchResultUpdate = () => loadMatchResult();
+    window.addEventListener('matchResultUpdated', handleMatchResultUpdate);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('matchResultUpdated', handleMatchResultUpdate);
+    };
   }, []);
 
   const filteredAndSortedJobs = useMemo(() => {

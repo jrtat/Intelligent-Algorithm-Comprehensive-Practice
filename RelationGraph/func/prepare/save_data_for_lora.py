@@ -125,10 +125,6 @@ def apply_augmentation_to_train(train_df, aug_times=1):
     combined_df = augment_texts_simbert(texts, labels, label_ids, aug_times)
     return combined_df
 
-# ============================================
-# 修改后的 init_data_lora 函数（集成增强）
-# ============================================
-
 def save_data(
         df,
         use_augmentation=True,
@@ -149,17 +145,6 @@ def save_data(
     le = LabelEncoder()
     df['label_id'] = le.fit_transform(df['label'])
 
-    # ========== 新增：打印 label_id -> 职业名称的映射字典 ==========
-    print("\n" + "=" * 50)
-    print("请将以下字典复制到推理代码的 id2label 变量中：")
-    print("=" * 50)
-    id2label_dict = {idx: label for idx, label in enumerate(le.classes_)}
-    print("id2label = {")
-    for idx, label in id2label_dict.items():
-        print(f"    {idx}: \"{label}\",")
-    print("}")
-    print("=" * 50 + "\n")
-
     # --- 步骤3: 划分原始训练/验证/测试集 ---
     train_df, temp_df = train_test_split(
         df, test_size=0.1, random_state=42, stratify=df['label_id']
@@ -176,7 +161,7 @@ def save_data(
 
     # --- 步骤5: 转换为 HuggingFace Dataset 并保存---
     dataset = DatasetDict({
-        'model': Dataset.from_pandas(train_df[['text', 'label_id']]),
+        'train': Dataset.from_pandas(train_df[['text', 'label_id']]),
         'validation': Dataset.from_pandas(val_df[['text', 'label_id']]),
         'test': Dataset.from_pandas(test_df[['text', 'label_id']])
     })

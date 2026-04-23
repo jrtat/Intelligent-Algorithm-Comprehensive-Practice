@@ -17,8 +17,8 @@ def train_and_evaluate_lora():
     os.environ["HF_HUB_OFFLINE"] = "1"
 
     # 1. 加载数据
-    dataset = load_from_disk("./func/model/lora/job_classify_dataset")
-    num_labels = len(set(dataset["model"]["label_id"]))
+    dataset = load_from_disk("./func/model/lora/dataset_raw/job_classify_dataset")
+    num_labels = len(set(dataset["train"]["label_id"]))
 
     print(num_labels)
 
@@ -83,7 +83,7 @@ def train_and_evaluate_lora():
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=tokenized_datasets["model"],
+        train_dataset=tokenized_datasets["train"],
         eval_dataset=tokenized_datasets["validation"],
         processing_class=tokenizer,
         data_collator=DataCollatorWithPadding(tokenizer=tokenizer),

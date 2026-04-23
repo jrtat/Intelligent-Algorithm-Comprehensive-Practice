@@ -73,7 +73,7 @@ def get_data_raw():
     """
     不作任何多余处理， 只将 “岗位名称” 改名为 “职业类别”
     """
-    file_path = "processed.xlsx"  # 请替换为实际文件路径
+    file_path = "processed.xlsx"
     df = pd.read_excel(file_path, header=0)
     df.rename(columns={'岗位名称': '职业类别'}, inplace=True)
     return df

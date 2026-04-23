@@ -1,4 +1,3 @@
-import os
 import torch
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings

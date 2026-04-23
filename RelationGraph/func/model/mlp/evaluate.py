@@ -6,7 +6,6 @@ import torch
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, f1_score
 
-
 # 增强版 MLP 预测评估函数
 def mlp_predict_and_evaluate(model, device, x_test, y_test=None, verbose=True, batch_size=32, top_k_list=None):
     """

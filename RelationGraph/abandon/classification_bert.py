@@ -12,7 +12,8 @@ from transformers import (
 )
 from sklearn.model_selection import StratifiedKFold
 from tqdm import tqdm
-from RelationGraph.func.utils import config
+from RelationGraph.abandon import config
+
 
 class TextDataset(Dataset):
     """用于 BERT 微调的 PyTorch Dataset"""

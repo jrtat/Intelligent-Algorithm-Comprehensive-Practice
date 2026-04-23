@@ -1,4 +1,5 @@
 from sklearn.model_selection import cross_val_predict
+from RelationGraph.func.utils.calc_matrix import build_matrix
 
 def rf_calc_proba(rf_clf, x_fused, y, class_names):
     proba = cross_val_predict(

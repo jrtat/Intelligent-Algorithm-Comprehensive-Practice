@@ -41,7 +41,7 @@ export const getReportTaskStatus = async (
 const POLL_CONFIG = {
   initialDelay: 2000,
   maxDelay: 5000,
-  maxAttempts: 120,
+  maxAttempts: 1440,
   timeoutMs: 7200000,
 };
 

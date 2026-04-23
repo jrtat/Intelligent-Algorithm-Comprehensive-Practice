@@ -382,6 +382,8 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
       },
       onCompleted: (result) => {
         localStorage.setItem('matchResult', JSON.stringify(result));
+        // 通知 JobMatch 页面更新
+        window.dispatchEvent(new Event('matchResultUpdated'));
         showToast({
           message: '职业匹配已完成，点击查看匹配结果！',
           onClick: () => navigate('/job-match'),

@@ -38,7 +38,7 @@ export const getTaskStatus = async (
 const POLL_CONFIG = {
   initialDelay: 2000,    // 初始间隔 2 秒
   maxDelay: 5000,        // 最大间隔 5 秒
-  maxAttempts: 120,      // 最大轮询次数（120 分钟）
+  maxAttempts: 1440,      // 最大轮询次数（120 分钟）
   timeoutMs: 7200000,     // 120 分钟超时
 };
 

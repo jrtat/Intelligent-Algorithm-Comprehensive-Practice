@@ -3,14 +3,14 @@ from RelationGraph.func.utils.conn_neo4j import connect_neo4j
 import pandas as pd
 
 def get_data_graph():
+
     """
     "职业类别", "公司" 为 str
     "晋升路径", "学历要求", "综合素质", "职业技能", "证书", "工作内容", "专业", "工作经验", "行业" 为列表
     """
+
     def ensure_list(value):
-        """
-        将任意值转换为列表，None 转为空列表
-        """
+
         if value is None:
             return []
         if isinstance(value, list):
@@ -73,7 +73,7 @@ def get_data_raw():
     """
     不作任何多余处理， 只将 “岗位名称” 改名为 “职业类别”
     """
-    file_path = "processed.xlsx"  # 请替换为实际文件路径
+    file_path = "processed.xlsx"
     df = pd.read_excel(file_path, header=0)
     df.rename(columns={'岗位名称': '职业类别'}, inplace=True)
     return df

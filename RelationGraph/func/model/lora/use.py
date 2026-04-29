@@ -1,6 +1,10 @@
-import torch
+from RelationGraph.func.utils.config import model_name, model_path
+from RelationGraph.func.utils.calc_matrix import build_matrix   # 假设路径可访问
+
 import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+import numpy as np
 from peft import PeftModel
 
 # 预存标签
@@ -18,27 +22,25 @@ id2label = {
 }
 
 # 配置路径
-BASE_MODEL_NAME = "hfl/chinese-macbert-large"
-ADAPTER_PATH = "./func/model/lora/model_ver1/lora_job_classifier"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载 tokenizer
-tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # 加载基础模型
 base_model = AutoModelForSequenceClassification.from_pretrained(
-    BASE_MODEL_NAME,
+    model_name,
     num_labels=51,
     torch_dtype=torch.bfloat16,
     ignore_mismatched_sizes=True
 )
 
 # 加载 LoRA 适配器
-model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
+model = PeftModel.from_pretrained(base_model, model_path)
 model.to(DEVICE)
 model.eval()
 
-def predict_probabilities(text: str) -> dict:
+def predict_probabilities(text):
     """
     对单个文本进行分类，返回类别名称到概率的字典。
     """
@@ -55,3 +57,37 @@ def predict_probabilities(text: str) -> dict:
         probs = F.softmax(logits, dim=-1).squeeze(0).cpu().float().numpy()
 
     return {id2label[idx]: float(prob) for idx, prob in enumerate(probs)}
+
+def lora_calc_proba(texts, y, batch_size = 32):
+    """
+    使用 LoRA 微调模型计算文本集合的预测概率，并构建类别间亲缘矩阵
+    """
+    global tokenizer, model, id2label
+    model.eval()
+    n_samples = len(texts)
+    n_classes = len(id2label)
+
+    # 按索引顺序生成类别名称列表
+    class_names = [id2label[i] for i in range(n_classes)]
+
+    all_probs = []
+    with torch.no_grad():
+        for i in range(0, n_samples, batch_size):
+            batch_texts = texts[i:i+batch_size]
+            inputs = tokenizer(
+                batch_texts,
+                truncation=True,
+                padding=True,
+                max_length=512,
+                return_tensors="pt"
+            ).to(DEVICE)
+
+            logits = model(**inputs).logits
+            probs = torch.softmax(logits, dim=-1).cpu().float().numpy()
+            all_probs.append(probs)
+
+    proba = np.concatenate(all_probs, axis=0)          # shape: (n_samples, n_classes)
+    y = np.asarray(y)                                  # 确保为 numpy 数组
+
+    # 直接复用已有的 build_matrix 函数
+    return build_matrix(proba, y, class_names, save_path="affinity_matrix_lora.json")

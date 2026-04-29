@@ -1,3 +1,5 @@
+from RelationGraph.func.utils.config import model_path, dataset_path, model_name
+
 import torch
 import torch.nn.functional as F
 from transformers import (
@@ -65,17 +67,12 @@ class AdvancedTrainer(Trainer): # 继承自Trainer
 def train_and_evaluate_lora():
 
     # Step 1：读入数据集
-    dataset = load_from_disk("./func/model/lora/dataset_raw_aug/job_classify_dataset")
-    num_labels = len(set(dataset["model"]["label_id"]))
+    dataset = load_from_disk(dataset_path)
+    num_labels = len(set(dataset["train"]["label_id"]))
 
     print(f"训练集分类数：{num_labels}")
 
-    # Step 2：被微调的模型 | 选择tokenizer
-    model_name = "hfl/chinese-macbert-large"
-    # google-bert/bert-base-chinese
-    # hfl/chinese-macbert-large
-    # hfl/chinese-roberta-wwm-ext
-
+    # Step 2：选择tokenizer
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     def tokenize_function(examples):
@@ -133,7 +130,7 @@ def train_and_evaluate_lora():
     trainer = AdvancedTrainer(
         model=model, # 要训练的模型（已注入 LoRA 适配器）
         args=training_args, # 之前定义的 TrainingArguments 对象
-        train_dataset=tokenized_datasets["model"], # 数据集
+        train_dataset=tokenized_datasets["train"], # 数据集
         eval_dataset=tokenized_datasets["validation"], # 验证集
         processing_class=tokenizer, # Trainer 在保存模型时会自动保存 tokenizer，方便后续推理时加载
         data_collator=DataCollatorWithPadding(tokenizer=tokenizer), # 数据整理器，负责将同一批次的样本动态填充到相同长度，形成模型可接受的张量输入
@@ -145,8 +142,9 @@ def train_and_evaluate_lora():
 
     trainer.train() # 执行训练
 
-    # Step 4：在测试集上执行
+    # Step 4：在测试集上执行，并保存模型到本地
     test_results = trainer.predict(tokenized_datasets["test"])
     print("Test F1:", test_results.metrics["test_f1_macro"])
+    print("Test Accuracy:", test_results.metrics["test_accuracy"])
 
-    model.save_pretrained("./func/model/lora/model_ver2/lora_job_classifier")
+    model.save_pretrained(model_path)

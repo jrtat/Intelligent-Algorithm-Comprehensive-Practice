@@ -2,15 +2,7 @@ import numpy as np
 
 def top_k_accuracy(proba, y_true, k_list=(1, 3, 5)):
     """
-    计算 Top-k 准确率：只要真实类别出现在预测概率最高的 k 个类别中即视为正确。
-
-    参数:
-        proba (np.ndarray): 预测概率矩阵，形状 (n_samples, n_classes)
-        y_true (np.ndarray): 真实标签，形状 (n_samples,)
-        k_list (tuple or list): 需要计算的 k 值序列
-
-    返回:
-        dict: 键为 k，值为对应的 Top-k 准确率
+    计算 Top-k 准确率：只要真实类别出现在预测概率最高的 k 个类别中即视为正确
     """
     proba = np.asarray(proba)
     y_true = np.asarray(y_true)

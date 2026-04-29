@@ -1,3 +1,5 @@
+from RelationGraph.func.utils.config import model_path, dataset_path, model_name
+
 import os
 import torch
 from transformers import (
@@ -14,18 +16,14 @@ from sklearn.metrics import accuracy_score, f1_score
 
 def train_and_evaluate_lora():
 
-    os.environ["HF_HUB_OFFLINE"] = "1"
-
-    # 1. 加载数据
-    dataset = load_from_disk("./func/model/lora/job_classify_dataset")
-    num_labels = len(set(dataset["model"]["label_id"]))
+    # Step 1：加载数据
+    dataset = load_from_disk(dataset_path)
+    num_labels = len(set(dataset["train"]["label_id"]))
 
     print(num_labels)
 
-    # 2. 加载模型和分词器
-    model_name = "hfl/chinese-macbert-large"
-    # hfl/chinese-macbert-large
-    # hfl/chinese-macbert-base
+    # Step 2：加载模型和分词器
+
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     def tokenize_function(examples):
@@ -34,7 +32,7 @@ def train_and_evaluate_lora():
     tokenized_datasets = dataset.map(tokenize_function, batched=True)
     tokenized_datasets = tokenized_datasets.rename_column("label_id", "labels")
 
-    # 3. 配置 LoRA
+    # Step 3：配置 LoRA
     lora_config = LoraConfig(
         task_type=TaskType.SEQ_CLS, # 任务类型，SEQ_CLS 表示序列分类，决定 LoRA 层的插入位置和输出结构
         inference_mode=False, # 设为 False 表示训练模式，启用 LoRA 参数更新
@@ -52,9 +50,9 @@ def train_and_evaluate_lora():
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
 
-    # 4. 配置 Trainer
+    # Step 4：配置 TrainingArguments
     training_args = TrainingArguments(
-        output_dir="./func/model/lora/results", # 模型和日志保存路径
+        output_dir= model_path + "/results", # 模型和日志保存路径
         learning_rate=3e-4,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=128,
@@ -73,7 +71,8 @@ def train_and_evaluate_lora():
         optim="adamw_torch", # 指定优化器类型，adamw_torch 为 PyTorch 原生 AdamW
     )
 
-    def compute_metrics(eval_pred):
+    # Step 5：配置Trainer
+    def compute_metrics(eval_pred): # 验证集计算两个指标的函数
         predictions, labels = eval_pred
         predictions = np.argmax(predictions, axis=1)
         acc = accuracy_score(labels, predictions)
@@ -83,16 +82,18 @@ def train_and_evaluate_lora():
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=tokenized_datasets["model"],
-        eval_dataset=tokenized_datasets["validation"],
-        processing_class=tokenizer,
+        train_dataset=tokenized_datasets["train"], # 训练集
+        eval_dataset=tokenized_datasets["validation"], # 验证集
+        processing_class=tokenizer, # 分词器
         data_collator=DataCollatorWithPadding(tokenizer=tokenizer),
-        compute_metrics=compute_metrics,
+        compute_metrics=compute_metrics, # 上面定义的评估函数
     )
 
-    trainer.train()
+    # Step 6：训练并保存模型
+    trainer.train() # 训练模型
 
-    test_results = trainer.predict(tokenized_datasets["test"])
+    test_results = trainer.predict(tokenized_datasets["test"]) # 在测试集上运行模型
     print("Test F1:", test_results.metrics["test_f1_macro"])
+    print("Test Accuracy:", test_results.metrics["test_accuracy"])
 
-    model.save_pretrained("./func/model/lora/model_ver1/lora_job_classifier")
+    model.save_pretrained(model_path) # 保存模型到本地

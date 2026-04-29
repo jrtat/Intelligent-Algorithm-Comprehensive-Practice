@@ -51,31 +51,8 @@ def lora_predict_and_evaluate(
 ):
     """
     使用 LoRA 微调后的 Transformers 模型对测试集文本进行概率预测。
-    支持多种调用方式：
-
-    方式1：直接传入已加载的 model、tokenizer、device 以及 texts 和 y_test。
-    方式2：提供 model_path、base_model_name、num_labels 从本地加载模型。
-    方式3：提供 dataset_path 从 HuggingFace Dataset 自动加载测试集文本和标签（此时 texts 和 y_test 参数将被忽略）。
-
-    参数:
-        model (PreTrainedModel, optional): 已加载的 PEFT 模型（已调用 model.eval()）
-        tokenizer (PreTrainedTokenizer, optional): 对应的分词器
-        device (torch.device, optional): 计算设备
-        texts (list of str, optional): 测试文本列表
-        y_test (np.ndarray, optional): 测试标签
-        verbose (bool): 是否打印评估结果
-        batch_size (int): 推理时的批次大小
-        max_length (int): 分词时的最大长度
-        top_k_list (tuple or list, optional): 如 (1, 3, 5)，计算对应 Top-k 准确率
-        model_path (str, optional): 保存 LoRA 适配器权重的本地路径
-        base_model_name (str, optional): 基础模型名称
-        num_labels (int, optional): 分类类别数
-        dataset_path (str, optional): HuggingFace Dataset 保存路径（如 "./func/model/lora/job_classify_dataset_aug"）
-
-    返回:
-        若 y_test 不为 None 且 top_k_list 不为 None，返回 (proba, topk_dict)
-        否则返回 proba (np.ndarray)
     """
+
     # ----- 从本地路径加载模型与分词器 -----
     if model_path is not None and base_model_name is not None and num_labels is not None:
         if device is None:

@@ -1,5 +1,5 @@
 import torch
-
+from RelationGraph.func.utils.calc_matrix import build_matrix
 
 def mlp_calc_proba(mlp_model, device, x_fused, y, class_names):
 

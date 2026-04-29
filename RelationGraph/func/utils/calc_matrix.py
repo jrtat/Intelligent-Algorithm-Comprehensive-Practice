@@ -39,18 +39,6 @@ def save_affinity_to_json(affinity_matrix, class_names, file_path):
 def load_affinity_matrix(file_path):
     """
     从 JSON 文件加载亲和矩阵与类别名。
-
-    Parameters
-    ----------
-    file_path : str
-        JSON 文件路径
-
-    Returns
-    -------
-    affinity_matrix : np.ndarray
-        加载后的亲和矩阵
-    class_names : list of str
-        类别名称列表
     """
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)

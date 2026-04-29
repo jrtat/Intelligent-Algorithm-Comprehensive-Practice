@@ -62,29 +62,45 @@
 
 /* ========== 侧边栏基础样式（PC端） ========== */
 .report-sidebar {
-  grid-area: sidebar;
+  position: fixed;
+  top: 108px;
+  left: 0;
   width: 240px;
+  height: calc(100vh - 60px);
   background-color: var(--report-surface);
   border-right: 1px solid var(--report-border);
-  transition: width 0.3s ease;
-  position: sticky;
-  top: 108px;
-  height: calc(100vh - 60px);
+  transition: left 0.3s ease, width 0.3s ease;
   overflow-y: auto;
+  z-index: 90;
 }
 
+/* 折叠状态：向左移出视口 */
 .report-sidebar.collapsed {
+  left: -240px;
   width: 0;
-  overflow: hidden;
 }
 
-/* PC端 toggle 按钮 — 固定在侧边栏右侧，垂直居中 */
+/* 主内容区：为侧边栏留出左边距 */
+.report-main {
+  margin-left: 240px;
+  padding: 30px;
+  transition: margin-left 0.3s ease;
+  overflow-y: auto;
+  height: calc(100vh - 60px);
+}
+
+/* 侧边栏折叠时，主内容区左边距归零 */
+.report-sidebar.collapsed ~ .report-main {
+  margin-left: 0;
+}
+
+/* PC端 toggle 按钮：跟随侧边栏位置，垂直居中 */
 .sidebar-toggle {
   position: fixed;
-  left: 240px;             /* 默认与侧边栏宽度相同 */
-  top: 50%;                /* 垂直居中 */
+  left: 240px;
+  top: 50%;
   transform: translateY(-50%);
-  z-index: 101;            /* 高于 header (z-index: 100) */
+  z-index: 101;
   width: 24px;
   height: 40px;
   background-color: var(--report-surface);
@@ -99,14 +115,9 @@
   box-shadow: 1px 0 4px rgba(0, 0, 0, 0.05);
 }
 
-.sidebar-toggle:hover {
-  background-color: var(--report-bg);
-}
-
 .sidebar-toggle.collapsed {
-  left: 0;                /* 侧边栏收起时，按钮贴左边缘 */
+  left: 0;
 }
-
 /* ========== 移动端样式 ========== */
 @media (max-width: 768px) {
   .report-sidebar {

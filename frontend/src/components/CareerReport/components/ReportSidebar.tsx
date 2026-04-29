@@ -43,21 +43,8 @@ export function ReportSidebar() {
     }
   };
 
-  const handleOverlayClick = () => {
-    if (isMobile && !sidebarCollapsed) {
-      dispatch({ type: 'TOGGLE_SIDEBAR' });
-    }
-  };
-
-  // 渲染遮罩层（仅移动端且侧边栏展开时显示）
-  const renderOverlay = () => {
-    if (!isMobile || sidebarCollapsed) return null;
-    return <div className="sidebar-overlay" onClick={handleOverlayClick} />;
-  };
-
   return (
     <>
-      {renderOverlay()}
       <aside
         className={`report-sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile' : ''}`}
       >

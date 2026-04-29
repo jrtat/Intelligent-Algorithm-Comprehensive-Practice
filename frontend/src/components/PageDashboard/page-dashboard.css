@@ -1,19 +1,19 @@
 /* ===== Page Dashboard Container ===== */
 .page-dashboard {
   min-height: 100vh;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
 
 /* ===== Breadcrumb ===== */
 .dashboard-breadcrumb {
-  height: 36px;
+  height: 48px;
   background: #fff;
   display: flex;
   align-items: center;
   padding: 0 24px;
-  font-size: 14px;
+  font-size: 16px;
   border-bottom: 1px solid #E5E6EB;
   flex-shrink: 0;
 }
@@ -47,10 +47,10 @@
 /* ===== Main Content ===== */
 .dashboard-content {
   flex: 1;
-  padding: 24px;
+  padding: 25px; 
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 24px; 
 }
 
 /* ===== Page Header ===== */
@@ -62,7 +62,7 @@
   border-bottom: 1px solid #E5E6EB;
 }
 
-.page-header-text {
+.page-header-text { 
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -101,13 +101,13 @@
 /* ===== Responsive ===== */
 @media (max-width: 1200px) {
   .dashboard-content {
-    padding: 16px;
+    padding:20px 70px;
   }
 }
 
 @media (max-width: 768px) {
   .dashboard-content {
-    padding: 12px;
+    padding: 25px 24px;
   }
 
   .page-title {

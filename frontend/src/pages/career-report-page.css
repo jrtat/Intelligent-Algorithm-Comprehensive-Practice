@@ -1,0 +1,51 @@
+/* ===== Career Report Page Layout ===== */
+.career-report-page {
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.career-report-breadcrumb {
+  height: 48px;
+  background: var(--color-surface-card);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 16px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.career-report-breadcrumb .breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.career-report-breadcrumb .breadcrumb-link {
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.career-report-breadcrumb .breadcrumb-link:hover {
+  color: var(--color-link);
+}
+
+.career-report-breadcrumb .breadcrumb-sep {
+  color: var(--color-text-disabled);
+  margin: 0 4px;
+}
+
+.career-report-breadcrumb .breadcrumb-current {
+  color: var(--color-link);
+  font-weight: 600;
+}
+
+.career-report-content {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}

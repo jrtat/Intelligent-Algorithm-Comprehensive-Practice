@@ -19,7 +19,7 @@
 }
 
 .subtitle {
-  color: #666;
+  color: var(--color-text-light);
   margin: 6px 0 0;
   font-size: 14px;
 }
@@ -35,7 +35,7 @@
 .filter-input {
   flex: 1 1 100%;
   padding: 10px 14px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border-light);
   border-radius: 8px;
   font-size: 15px;
   outline: none;
@@ -44,31 +44,31 @@
 }
 
 .filter-input:focus {
-  border-color: #4a90d9;
+  border-color: var(--color-link);
 }
 
 .filter-select {
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border-light);
   border-radius: 8px;
   font-size: 14px;
-  background: #fff;
+  background: var(--color-surface-input);
   cursor: pointer;
   min-width: 140px;
 }
 
 .reset-btn {
   padding: 8px 16px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border-light);
   border-radius: 8px;
-  background: #f5f5f5;
+  background: var(--color-surface-secondary);
   cursor: pointer;
   font-size: 14px;
   transition: background 0.2s;
 }
 
 .reset-btn:hover {
-  background: #e8e8e8;
+  background: var(--color-surface-secondary);
 }
 
 /* ===== 岗位列表 ===== */
@@ -80,24 +80,24 @@
 
 .empty {
   text-align: center;
-  color: #999;
+  color: var(--color-text-disabled);
   font-size: 16px;
   padding: 60px 0;
 }
 
 /* ===== 岗位卡片 ===== */
 .job-card {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 16px 20px;
-  background: #fff;
+  background: var(--color-surface-card);
   cursor: pointer;
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .job-card:hover {
-  border-color: #4a90d9;
-  box-shadow: 0 2px 12px rgba(74, 144, 217, 0.1);
+  border-color: var(--color-link);
+  box-shadow: 0 2px 12px rgba(0, 91, 191, 0.1);
 }
 
 .job-header {
@@ -110,11 +110,11 @@
 .job-title {
   margin: 0;
   font-size: 17px;
-  color: #1a1a1a;
+  color: var(--color-text-primary);
 }
 
 .job-salary {
-  color: #e74c3c;
+  color: var(--color-salary);
   font-weight: 600;
   font-size: 15px;
   white-space: nowrap;
@@ -125,15 +125,15 @@
   gap: 16px;
   margin-bottom: 8px;
   font-size: 14px;
-  color: #555;
+  color: var(--color-text-muted);
 }
 
 .company {
-  color: #333;
+  color: var(--color-text-body);
 }
 
 .location {
-  color: #888;
+  color: var(--color-text-placeholder);
 }
 
 /* ===== 标签 ===== */
@@ -151,20 +151,20 @@
 }
 
 .tag-edu {
-  background: #f0f7ff;
-  color: #2b6cb0;
+  background: var(--color-tag-edu-bg);
+  color: var(--color-tag-edu-text);
 }
 
 .tag-skill {
-  background: #f0fff4;
-  color: #276749;
+  background: var(--color-tag-skill-bg);
+  color: var(--color-tag-skill-text);
 }
 
 /* ===== 展开详情 ===== */
 .job-detail {
   margin-top: 14px;
   padding-top: 14px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-divider);
   animation: fadeIn 0.2s ease;
 }
 
@@ -176,7 +176,7 @@
 .job-detail h4 {
   margin: 0 0 8px;
   font-size: 14px;
-  color: #444;
+  color: var(--color-text-secondary);
 }
 
 .skill-list {
@@ -188,23 +188,23 @@
 
 .skill-tag {
   padding: 3px 10px;
-  background: #eef3ff;
+  background: var(--color-tag-skill-tag-bg);
   border-radius: 6px;
   font-size: 13px;
-  color: #3b5bdb;
+  color: var(--color-tag-skill-tag-text);
 }
 
 .job-desc {
   font-size: 14px;
   line-height: 1.7;
-  color: #444;
+  color: var(--color-text-secondary);
   white-space: pre-wrap;
   margin: 0 0 12px;
 }
 
 .job-link {
   display: inline-block;
-  color: #4a90d9;
+  color: var(--color-link);
   text-decoration: none;
   font-size: 14px;
 }
@@ -230,30 +230,30 @@
   display: inline-block;
   padding: 8px 16px;
   margin: 20px 0 24px;
-  color: #4a90d9;
+  color: var(--color-link);
   text-decoration: none;
-  border: 1px solid #4a90d9;
+  border: 1px solid var(--color-link);
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
 }
 
 .back-btn:hover {
-  background: #f0f7ff;
+  background: var(--color-surface-hover);
 }
 
 .job-detail-full {
   margin-top: 24px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-surface-card);
 }
 
 .job-detail-full h2 {
   margin: 0 0 16px;
   font-size: 18px;
-  color: #333;
+  color: var(--color-text-body);
 }
 
 .job-section {
@@ -263,20 +263,20 @@
 .job-section h3 {
   margin: 0 0 8px;
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 /* ===== 能力条样式 ===== */
 .ability-section {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-divider);
 }
 
 .ability-section h4 {
   margin: 0 0 12px;
   font-size: 14px;
-  color: #444;
+  color: var(--color-text-secondary);
 }
 
 .ability-item {
@@ -289,7 +289,7 @@
 .ability-label {
   width: 80px;
   font-size: 13px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 .ability-bar {
@@ -302,18 +302,18 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #e5e7eb;
+  background: var(--color-border);
   transition: background 0.2s;
 }
 
 .ability-dot.active {
-  background: #4a90d9;
+  background: var(--color-link);
 }
 
 .ability-value {
   width: 40px;
   font-size: 12px;
-  color: #999;
+  color: var(--color-text-disabled);
   text-align: right;
 }
 
@@ -327,20 +327,20 @@
 .action-btn {
   flex: 1;
   padding: 8px 12px;
-  background: #f5f5f5;
-  color: #333;
+  background: var(--color-surface-secondary);
+  color: var(--color-text-body);
   text-decoration: none;
   border-radius: 6px;
   font-size: 13px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border-light);
   transition: all 0.2s;
 }
 
 .action-btn:hover {
-  background: #4a90d9;
-  color: #fff;
-  border-color: #4a90d9;
+  background: var(--color-link);
+  color: var(--color-surface-card);
+  border-color: var(--color-link);
 }
 
 /* ===== 画像分析页样式 ===== */
@@ -352,15 +352,15 @@
 .summary-card {
   margin-top: 24px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-surface-card);
 }
 
 .summary-card h3 {
   margin: 0 0 16px;
   font-size: 16px;
-  color: #333;
+  color: var(--color-text-body);
 }
 
 .summary-grid {
@@ -377,7 +377,7 @@
 
 .summary-label {
   font-size: 13px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 /* 薪资统计 */
@@ -391,25 +391,25 @@
 .salary-min, .salary-max {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: var(--color-text-body);
 }
 
 .salary-divider {
   font-size: 18px;
-  color: #999;
+  color: var(--color-text-disabled);
 }
 
 .salary-bar {
   width: 100%;
   height: 8px;
-  background: #e5e7eb;
+  background: var(--color-border);
   border-radius: 4px;
   overflow: hidden;
 }
 
 .salary-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4a90d9, #276749);
+  background: linear-gradient(90deg, var(--color-link), var(--color-tag-skill-text));
 }
 
 /* 学历分布 */
@@ -428,27 +428,27 @@
 .degree-label {
   width: 60px;
   font-size: 13px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 .degree-bar {
   flex: 1;
   height: 20px;
-  background: #e5e7eb;
+  background: var(--color-border);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .degree-fill {
   height: 100%;
-  background: #4a90d9;
+  background: var(--color-link);
   transition: width 0.5s ease;
 }
 
 .degree-value {
   width: 80px;
   font-size: 13px;
-  color: #333;
+  color: var(--color-text-body);
   text-align: right;
 }
 
@@ -460,8 +460,8 @@
 
 .company-tag {
   padding: 6px 12px;
-  background: #f0f7ff;
-  color: #2b6cb0;
+  background: var(--color-tag-edu-bg);
+  color: var(--color-tag-edu-text);
   border-radius: 12px;
   font-size: 13px;
 }
@@ -488,7 +488,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
 }
 
@@ -511,7 +511,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-surface-card);
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
@@ -520,8 +520,8 @@
   transform: translateY(4px);
   transition: all 0.2s;
   padding: 4px 8px;
-  background: #333;
-  color: #fff;
+  background: var(--color-text-body);
+  color: var(--color-surface-card);
   border-radius: 4px;
   font-size: 11px;
   white-space: nowrap;
@@ -533,16 +533,10 @@
   transform: translateY(0);
 }
 
-.map-image-wrapper:hover .marker-label,
-.map-marker:hover .marker-label {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .map-legend {
   margin-top: 12px;
   padding: 12px;
-  background: #f9f9f9;
+  background: var(--color-surface-secondary);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -554,7 +548,7 @@
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 .legend-color {
@@ -566,22 +560,22 @@
 .map-cities-list {
   margin-top: 16px;
   padding: 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
 }
 
 .map-cities-list h4 {
   margin: 0 0 12px;
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 .city-tag {
   display: inline-block;
   padding: 6px 10px;
   margin: 4px;
-  background: #f0fff4;
-  color: #276749;
+  background: var(--color-tag-skill-bg);
+  color: var(--color-tag-skill-text);
   border-radius: 6px;
   font-size: 12px;
 }

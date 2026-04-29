@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactECharts from 'echarts-for-react';
 import jobsData from '../../data/jobs.json';
 import type { Job } from '../../types/job';
+import { PageDashboard } from '../PageDashboard/PageDashboard';
 
 const JobProfile = () => {
   const { jobId } = useParams<{ jobId: string }>();
@@ -93,13 +94,16 @@ const JobProfile = () => {
   };
 
   return (
+    <PageDashboard
+      title={`${job.岗位名称} - 岗位画像`}
+      subtitle={`岗位编码: ${job.岗位编码} | 薪资范围: ${job.薪资范围.split('元')[0]}`}
+      showBreadcrumb
+      breadcrumbItems={[
+        { label: '首页', href: '/' },
+        { label: '岗位画像' },
+      ]}
+    >
     <div className="job-profile-container">
-      <div className="job-profile-header">
-        <h2>{job.岗位名称} - 岗位画像</h2>
-        <p className="job-profile-subtitle">
-          岗位编码: {job.岗位编码} | 薪资范围: {job.薪资范围.split('元')[0]}
-        </p>
-      </div>
 
       <div className="job-profile-content">
         <div className="profile-section radar-section">
@@ -161,7 +165,8 @@ const JobProfile = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </PageDashboard>
   );
 };
 

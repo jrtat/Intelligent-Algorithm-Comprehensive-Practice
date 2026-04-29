@@ -1,15 +1,15 @@
 /* CareerReport Layout Styles */
 
 .career-report {
-  --report-bg: #E8F4F8;
-  --report-primary: #2E86AB;
-  --report-accent: #FF9F43;
-  --report-dark: #333333;
-  --report-medium: #666666;
-  --report-light: #999999;
-  --report-surface: #FFFFFF;
-  --report-surface-alt: #F5F7FA;
-  --report-border: #DCDCDC;
+  --report-bg: var(--color-report-bg);
+  --report-primary: var(--color-report-primary);
+  --report-accent: var(--color-accent);
+  --report-dark: var(--color-text-body);
+  --report-medium: var(--color-text-light);
+  --report-light: var(--color-text-disabled);
+  --report-surface: var(--color-surface-card);
+  --report-surface-alt: var(--color-report-surface-alt);
+  --report-border: var(--color-report-border);
 
   display: grid;
   grid-template-columns: auto 1fr;
@@ -374,7 +374,7 @@
 }
 
 .collapsible-content {
-  padding: 16px;
+  padding: 16px 8px;
   background-color: var(--report-surface);
 }
 
@@ -640,22 +640,22 @@
   padding: 6px 12px;
   border-radius: 8px;
   background: transparent;
-  border: 1px solid #2E86AB;
-  color: #2E86AB;
+  border: 1px solid var(--report-primary);
+  color: var(--report-primary);
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .edit-entry:hover {
-  background: #2E86AB;
+  background: var(--report-primary);
   color: white;
   transform: scale(1.05);
 }
 
 /* Editing state */
 .report-card.editing {
-  border: 1px solid #2E86AB;
+  border: 1px solid var(--report-primary);
   box-shadow: 0 4px 16px rgba(46, 134, 171, 0.15);
 }
 
@@ -663,17 +663,17 @@
 .form-input {
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid #DCDCDC;
+  border: 1px solid var(--report-border);
   border-radius: 6px;
   font-size: 14px;
-  color: #333;
+  color: var(--color-text-body);
   background: white;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #2E86AB;
+  border-color: var(--report-primary);
   box-shadow: 0 0 0 2px rgba(46, 134, 171, 0.1);
 }
 
@@ -720,8 +720,8 @@
 }
 
 .save-status.saving {
-  background-color: #E8F4F8;
-  color: #2E86AB;
+  background-color: var(--report-bg);
+  color: var(--report-primary);
 }
 
 .save-status.saved {
@@ -770,7 +770,7 @@
   border-radius: 4px;
   background: transparent;
   border: none;
-  color: #FF9F43;
+  color: var(--report-accent);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -811,8 +811,8 @@
 
 /* Editable field hover */
 .editable-field-display:hover {
-  background: #F5F7FA;
-  border-color: #E8F4F8;
+  background: var(--report-surface-alt);
+  border-color: var(--report-bg);
 }
 
 .editable-field-display:hover .edit-icon-overlay {
@@ -830,7 +830,7 @@
   gap: 4px;
   padding: 8px 16px;
   border-radius: 8px;
-  background: #2E86AB;
+  background: var(--report-primary);
   color: white;
   border: none;
   font-size: 14px;
@@ -850,7 +850,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  border: 1px solid #2E86AB;
+  border: 1px solid var(--report-primary);
   border-radius: 8px;
   padding: 16px;
   width: 320px;
@@ -863,7 +863,7 @@
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: #2E86AB;
+  accent-color: var(--report-primary);
 }
 
 /* Status tag in editing */
@@ -876,8 +876,8 @@
 }
 
 .status-tag.pending {
-  background: #F5F7FA;
-  color: #999;
+  background: var(--report-surface-alt);
+  color: var(--report-light);
 }
 
 .status-tag.in-progress,
@@ -906,7 +906,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #FF9F43;
+  background: var(--report-accent);
   display: inline-block;
   margin-left: 8px;
 }
@@ -940,6 +940,9 @@
 
 /* Print/Export hidden elements */
 @media print {
+  .report-header,
+  .report-sidebar,
+  .sidebar-toggle,
   .edit-entry,
   .btn-icon,
   .item-actions,
@@ -954,7 +957,8 @@
   .polish-notification,
   .polish-progress-bar,
   .ai-polish-compare-overlay,
-  .ai-polish-compare-panel {
+  .ai-polish-compare-panel,
+  .collapsible-header .material-symbols-outlined {
     display: none !important;
   }
 
@@ -966,6 +970,32 @@
   .form-textarea {
     border: none;
     padding: 0;
+  }
+
+  .career-report {
+    display: block;
+    min-height: auto;
+  }
+
+  .report-main {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .collapsible-panel {
+    border: 1px solid #e8e4e4;
+    margin-bottom: 12px;
+    break-inside: avoid;
+  }
+
+  .collapsible-content {
+    display: block !important;
+    padding: 12px 16px;
+  }
+
+  .collapsible-header {
+    background-color: var(--report-surface-alt);
+    cursor: default;
   }
 }
 
@@ -979,8 +1009,8 @@
   padding: 4px 8px;
   border-radius: 4px;
   background: transparent;
-  border: 1px solid #FF9F43;
-  color: #FF9F43;
+  border: 1px solid var(--report-accent);
+  color: var(--report-accent);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1040,8 +1070,8 @@
 }
 
 .polish-notification.info {
-  background: #E8F4F8;
-  color: #2E86AB;
+  background: var(--report-bg);
+  color: var(--report-primary);
 }
 
 /* Polish progress bar */
@@ -1051,13 +1081,13 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: #E8F4F8;
+  background: var(--report-bg);
   z-index: 101;
 }
 
 .polish-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #FF9F43, #FFD700);
+  background: linear-gradient(90deg, var(--report-accent), #FFD700);
   transition: width 0.3s ease;
 }
 
@@ -1091,11 +1121,11 @@
 
 .compare-header {
   padding: 16px 20px;
-  border-bottom: 1px solid #E8E4E4;
+  border-bottom: 1px solid var(--report-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #F5F7FA;
+  background: var(--report-surface-alt);
 }
 
 .compare-title-row {
@@ -1108,12 +1138,12 @@
   margin: 0;
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: var(--report-dark);
 }
 
 .changes-count {
   font-size: 12px;
-  color: #FF9F43;
+  color: var(--report-accent);
   background: rgba(255, 159, 67, 0.1);
   padding: 4px 8px;
   border-radius: 4px;
@@ -1129,16 +1159,16 @@
   border-radius: 6px;
   font-size: 12px;
   cursor: pointer;
-  border: 1px solid #DCDCDC;
+  border: 1px solid var(--report-border);
   background: white;
-  color: #666;
+  color: var(--report-medium);
   transition: all 0.2s ease;
 }
 
 .compare-view-toggle .toggle-btn.active {
-  background: #2E86AB;
+  background: var(--report-primary);
   color: white;
-  border-color: #2E86AB;
+  border-color: var(--report-primary);
 }
 
 .compare-content {
@@ -1149,7 +1179,7 @@
 
 .compare-item {
   margin-bottom: 20px;
-  border: 1px solid #E8E4E4;
+  border: 1px solid var(--report-border);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -1159,8 +1189,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  background: #F5F7FA;
-  border-bottom: 1px solid #E8E4E4;
+  background: var(--report-surface-alt);
+  border-bottom: 1px solid var(--report-border);
 }
 
 .compare-checkbox {
@@ -1179,14 +1209,14 @@
 .compare-item-label {
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: var(--report-dark);
 }
 
 .btn-apply-single {
   padding: 4px 12px;
   border-radius: 4px;
   font-size: 12px;
-  background: #FF9F43;
+  background: var(--report-accent);
   color: white;
   border: none;
   cursor: pointer;
@@ -1216,25 +1246,25 @@
 }
 
 .compare-body.split .compare-before {
-  border-right: 1px solid #E8E4E4;
+  border-right: 1px solid var(--report-border);
 }
 
 .compare-label {
   font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
-  color: #999;
+  color: var(--report-light);
   margin-bottom: 8px;
 }
 
 .compare-text {
   font-size: 14px;
   line-height: 1.6;
-  color: #333;
+  color: var(--report-dark);
 }
 
 .compare-text.original {
-  color: #666;
+  color: var(--report-medium);
 }
 
 .compare-text .text-changed {
@@ -1251,11 +1281,11 @@
 
 .compare-footer {
   padding: 16px 20px;
-  border-top: 1px solid #E8E4E4;
+  border-top: 1px solid var(--report-border);
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  background: #F5F7FA;
+  background: var(--report-surface-alt);
 }
 
 /* Draggable modal cursor */

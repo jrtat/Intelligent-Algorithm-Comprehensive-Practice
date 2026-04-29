@@ -2,7 +2,7 @@
 
 .back-btn {
   padding: 8px 16px;
-  background: #4a90d9;
+  background: var(--color-link);
   color: white;
   border: none;
   border-radius: 6px;
@@ -12,7 +12,7 @@
 }
 
 .back-btn:hover {
-  background: #3a7bc8;
+  background: var(--color-link-hover);
 }
 
 /* 横向布局容器：图例 + 地图 */
@@ -28,7 +28,7 @@
 .map-legend-inline {
   width: 160px;
   flex-shrink: 0;
-  background: #f9fafb;
+  background: var(--color-surface-raised);
   border-radius: 8px;
   padding: 12px;
   display: flex;
@@ -40,7 +40,7 @@
 .legend-section-inline .legend-title {
   font-size: 12px;
   font-weight: 600;
-  color: #374151;
+  color: var(--color-text-ui);
   margin-bottom: 8px;
 }
 
@@ -55,7 +55,7 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 .legend-section-inline .legend-color {
@@ -69,7 +69,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #3b82f6;
+  background: var(--color-interactive);
   animation: pulseDemo 1.5s infinite;
 }
 
@@ -78,7 +78,7 @@
   position: relative;
   flex: 1;
   min-width: 0;
-  background: #f9fafb;
+  background: var(--color-surface-raised);
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
@@ -113,8 +113,8 @@
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #4a90d9;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-link);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -125,14 +125,14 @@
 
 .map-loading p {
   margin-top: 12px;
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 /* 空状态 */
 .map-empty-state {
   text-align: center;
   padding: 80px 20px;
-  background: #f9fafb;
+  background: var(--color-surface-raised);
   border-radius: 16px;
 }
 
@@ -143,7 +143,7 @@
 }
 
 .map-empty-state p {
-  color: #6b7280;
+  color: var(--color-text-muted);
   font-size: 16px;
 }
 
@@ -177,12 +177,12 @@
 }
 
 .job-name-label {
-  color: #6b7280;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 }
 
 .job-name-value {
-  color: #1f2937;
+  color: var(--color-text-primary);
   font-weight: 600;
   font-size: 1rem;
 }
@@ -191,8 +191,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+  background: var(--color-surface-hover-row);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 10px 16px;
   cursor: pointer;
@@ -200,11 +200,11 @@
 }
 
 .job-search-dropdown .search-box:hover {
-  border-color: #3b82f6;
+  border-color: var(--color-interactive);
 }
 
 .job-search-dropdown .search-box i {
-  color: #9ca3af;
+  color: var(--color-text-placeholder);
   font-size: 0.9rem;
 }
 
@@ -213,29 +213,29 @@
   border: none;
   outline: none;
   font-size: 0.95rem;
-  color: #1f2937;
+  color: var(--color-text-primary);
   background: transparent;
 }
 
 .job-search-dropdown .search-box input::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-placeholder);
 }
 
 .job-search-dropdown .clear-btn {
   background: none;
   border: none;
   cursor: pointer;
-  color: #9ca3af;
+  color: var(--color-text-placeholder);
   padding: 2px;
 }
 
 .job-search-dropdown .clear-btn:hover {
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 .job-search-dropdown .dropdown-arrow {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--color-text-muted);
   transition: transform 0.2s;
 }
 
@@ -244,8 +244,8 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   margin-top: 8px;
   max-height: 320px;
@@ -258,9 +258,9 @@
   padding: 12px 16px;
   cursor: pointer;
   transition: background 0.15s;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--color-surface-hover-row);
   font-size: 0.9rem;
-  color: #4b5563;
+  color: var(--color-text-ui-muted);
 }
 
 .job-search-dropdown .dropdown-item:last-child {
@@ -268,19 +268,19 @@
 }
 
 .job-search-dropdown .dropdown-item:hover {
-  background: #f3f4f6;
-  color: #1f2937;
+  background: var(--color-surface-hover-row);
+  color: var(--color-text-primary);
 }
 
 .job-search-dropdown .dropdown-item.active {
-  background: #eef4ff;
-  color: #3b82f6;
+  background: var(--color-dropdown-active-bg);
+  color: var(--color-interactive);
   font-weight: 500;
 }
 
 .job-search-dropdown .dropdown-empty {
   padding: 20px;
   text-align: center;
-  color: #9ca3af;
+  color: var(--color-text-placeholder);
   font-size: 0.9rem;
 }

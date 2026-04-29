@@ -60,13 +60,13 @@
   align-items: center;
 }
 
-/* Sidebar */
+/* ========== 侧边栏基础样式（PC端） ========== */
 .report-sidebar {
   grid-area: sidebar;
   width: 240px;
   background-color: var(--report-surface);
   border-right: 1px solid var(--report-border);
-  transition: width 0.3s ease, transform 0.3s ease;
+  transition: width 0.3s ease;
   position: sticky;
   top: 60px;
   height: calc(100vh - 60px);
@@ -75,14 +75,16 @@
 
 .report-sidebar.collapsed {
   width: 0;
-  transform: translateX(-100%);
+  overflow: hidden;
 }
 
+/* PC端 toggle 按钮 — 固定在侧边栏右侧，垂直居中 */
 .sidebar-toggle {
   position: fixed;
-  left: 240px;
-  top: 70px;
-  z-index: 99;
+  left: 240px;             /* 默认与侧边栏宽度相同 */
+  top: 50%;                /* 垂直居中 */
+  transform: translateY(-50%);
+  z-index: 101;            /* 高于 header (z-index: 100) */
   width: 24px;
   height: 40px;
   background-color: var(--report-surface);
@@ -94,10 +96,64 @@
   align-items: center;
   justify-content: center;
   transition: left 0.3s ease;
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--report-bg);
 }
 
 .sidebar-toggle.collapsed {
-  left: 0;
+  left: 0;                /* 侧边栏收起时，按钮贴左边缘 */
+}
+
+/* ========== 移动端样式 ========== */
+@media (max-width: 768px) {
+  .report-sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 280px;
+    background-color: var(--report-surface);
+    border-right: 1px solid var(--report-border);
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .report-sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+
+  /* 移动端隐藏旧的 toggle 按钮（改用遮罩关闭） */
+  .sidebar-toggle {
+    display: none;
+  }
+
+  /* 遮罩层 */
+  .sidebar-overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 .sidebar-nav {

@@ -16,8 +16,6 @@ from sklearn.metrics import accuracy_score, f1_score
 
 def train_and_evaluate_lora():
 
-    os.environ["HF_HUB_OFFLINE"] = "1"
-
     # Step 1：加载数据
     dataset = load_from_disk(dataset_path)
     num_labels = len(set(dataset["train"]["label_id"]))

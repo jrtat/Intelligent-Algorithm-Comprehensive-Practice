@@ -68,7 +68,7 @@ def train_and_evaluate_lora():
 
     # Step 1：读入数据集
     dataset = load_from_disk(dataset_path)
-    num_labels = len(set(dataset["model"]["label_id"]))
+    num_labels = len(set(dataset["train"]["label_id"]))
 
     print(f"训练集分类数：{num_labels}")
 
@@ -130,7 +130,7 @@ def train_and_evaluate_lora():
     trainer = AdvancedTrainer(
         model=model, # 要训练的模型（已注入 LoRA 适配器）
         args=training_args, # 之前定义的 TrainingArguments 对象
-        train_dataset=tokenized_datasets["model"], # 数据集
+        train_dataset=tokenized_datasets["train"], # 数据集
         eval_dataset=tokenized_datasets["validation"], # 验证集
         processing_class=tokenizer, # Trainer 在保存模型时会自动保存 tokenizer，方便后续推理时加载
         data_collator=DataCollatorWithPadding(tokenizer=tokenizer), # 数据整理器，负责将同一批次的样本动态填充到相同长度，形成模型可接受的张量输入

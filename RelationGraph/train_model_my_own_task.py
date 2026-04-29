@@ -1,5 +1,5 @@
 from RelationGraph.func.prepare.get_data import get_data_raw
-# from RelationGraph.func.prepare.init_data import init_data_raw
+from RelationGraph.func.prepare.init_data import init_data_raw
 from RelationGraph.func.model.rf.train import get_rf
 from RelationGraph.func.model.rf.evaluate import rf_predict_and_evaluate
 from RelationGraph.func.model.mlp.train import get_mlp, get_mlp_cross

@@ -1,3 +1,4 @@
+from RelationGraph.func.utils.config import model_name, model_path
 from RelationGraph.func.utils.calc_matrix import build_matrix   # 假设路径可访问
 
 import torch.nn.functional as F
@@ -5,7 +6,6 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import numpy as np
 from peft import PeftModel
-
 
 # 预存标签
 id2label = {
@@ -22,23 +22,21 @@ id2label = {
 }
 
 # 配置路径
-BASE_MODEL_NAME = "hfl/chinese-macbert-large"
-ADAPTER_PATH = "./func/model/lora/model_ver1/lora_job_classifier"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载 tokenizer
-tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # 加载基础模型
 base_model = AutoModelForSequenceClassification.from_pretrained(
-    BASE_MODEL_NAME,
+    model_name,
     num_labels=51,
     torch_dtype=torch.bfloat16,
     ignore_mismatched_sizes=True
 )
 
 # 加载 LoRA 适配器
-model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
+model = PeftModel.from_pretrained(base_model, model_path)
 model.to(DEVICE)
 model.eval()
 
@@ -62,21 +60,7 @@ def predict_probabilities(text):
 
 def lora_calc_proba(texts, y, batch_size = 32):
     """
-    使用 LoRA 微调模型计算文本集合的预测概率，并构建类别间亲和矩阵。
-
-    Parameters
-    ----------
-    texts : list of str
-        输入文本列表
-    y : list / np.ndarray
-        真实类别索引列表，长度与 texts 一致
-    batch_size : int, optional
-        批量推理大小，默认 32
-
-    Returns
-    -------
-    affinity_matrix : np.ndarray
-        对称化后的亲和矩阵，形状为 (num_classes, num_classes)
+    使用 LoRA 微调模型计算文本集合的预测概率，并构建类别间亲缘矩阵
     """
     global tokenizer, model, id2label
     model.eval()

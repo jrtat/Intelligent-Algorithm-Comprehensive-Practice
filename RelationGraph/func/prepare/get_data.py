@@ -3,14 +3,14 @@ from RelationGraph.func.utils.conn_neo4j import connect_neo4j
 import pandas as pd
 
 def get_data_graph():
+
     """
     "职业类别", "公司" 为 str
     "晋升路径", "学历要求", "综合素质", "职业技能", "证书", "工作内容", "专业", "工作经验", "行业" 为列表
     """
+
     def ensure_list(value):
-        """
-        将任意值转换为列表，None 转为空列表
-        """
+
         if value is None:
             return []
         if isinstance(value, list):

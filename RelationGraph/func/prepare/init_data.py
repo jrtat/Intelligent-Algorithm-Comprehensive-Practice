@@ -111,52 +111,41 @@ def init_data_graph(df):
 #--- 分割线 ---#
 
 def init_data_raw(df, if_lora = False):
-    """
-    将所有相关列合并为自然语言文本，直接进行嵌入计算，
-    返回纯文本嵌入矩阵 (n_samples, embedding_dim)
-    """
 
-    def format_all_fields_to_text(row):
-        """
-        将一行招聘数据的多个字段拼接成一段完整的中文描述
-        """
+    def format_all_fields_to_text(row):  # 将一行招聘数据的多个字段拼接成一段完整的中文描述
         parts = []
 
-        # 1. 薪资范围
-        salary = row.get('薪资范围', '')
+        salary = row.get('薪资范围', '')  # 薪资范围
         if pd.notna(salary) and str(salary).strip() != '':
-            parts.append(f"薪资范围为{str(salary).strip()}。")
+            parts.append(f"该岗位的薪资范围为{str(salary).strip()}。")
 
-        # 2. 公司规模
-        size = row.get('公司规模', '')
+        company = row.get('公司名称', '')  # 公司类型
+        if pd.notna(company) and str(company).strip() != '':
+            parts.append(f"所属公司为{company}。")
+
+        size = row.get('公司规模', '')  # 公司规模
         if pd.notna(size) and str(size).strip() != '':
             parts.append(f"公司规模为{str(size).strip()}。")
 
-        # 3. 所属行业（可能包含逗号分隔的多个标签）
-        industry = row.get('所属行业', '')
-        if pd.notna(industry) and str(industry).strip() != '':
-            # 将逗号替换为顿号，使其更符合中文阅读习惯
-            industry_str = str(industry).replace(',', '、')
-            parts.append(f"所属行业包括{industry_str}。")
+        industry = row.get('所属行业', '')  # 所属行业
+        if isinstance(industry, list):  # 如果 industry 是列表，先转为用顿号分隔的字符串
+            industry = '、'.join(str(item).strip() for item in industry if str(item).strip())
+        if industry:  # 二次确认非空
+            parts.append(f"所属行业包括{str(industry).strip()}。")
 
-        # 4. 公司类型（同样处理多标签）
-        company_type = row.get('公司类型', '')
+        company_type = row.get('公司类型', '')  # 公司类型
         if pd.notna(company_type) and str(company_type).strip() != '':
-            type_str = str(company_type).replace(',', '、')
-            parts.append(f"公司类型为{type_str}。")
+            parts.append(f"公司类型为{company_type}。")
 
-        # 5. 地址
-        address = row.get('地址', '')
+        address = row.get('地址', '')  # 地址
         if pd.notna(address) and str(address).strip() != '':
             parts.append(f"工作地点位于{str(address).strip()}。")
 
-        # 6. 岗位详情（原始文本）
-        detail = row.get('岗位详情', '')
+        detail = row.get('岗位详情', '')  # 岗位详情
         if pd.notna(detail) and str(detail).strip() != '':
             parts.append(f"岗位详细描述：{str(detail).strip()}")
 
-        # 用空格连接所有非空片段
-        return " ".join(parts)
+        return " ".join(parts)  # 用空格连接所有上述片段
 
     # 为每行生成融合文本
     df['combined_text'] = df.apply(format_all_fields_to_text, axis=1)

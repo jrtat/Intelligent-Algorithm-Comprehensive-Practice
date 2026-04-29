@@ -68,7 +68,7 @@
   border-right: 1px solid var(--report-border);
   transition: width 0.3s ease;
   position: sticky;
-  top: 60px;
+  top: 108px;
   height: calc(100vh - 60px);
   overflow-y: auto;
 }

@@ -4,7 +4,7 @@ import { JobDetailPage } from './components/JobDetail/JobDetail';
 import { JobSummaryPage } from './components/JobSummary/JobSummary';
 import { JobMapPage } from './components/JobMap/JobMap';
 import Home from './pages/Home';
-import JobProfile from './components/JobProfile/JobProfile';
+//import JobProfile from './components/JobProfile/JobProfile';
 import { JobProfileDetail } from './components/JobProfileList/JobProfileDetail';
 import CapabilityAnalysis from './pages/CapabilityAnalysis';
 import CareerReport from './pages/CareerReport';
@@ -32,7 +32,7 @@ function AppContent() {
         <Route path="/:jobId" element={<JobDetailPage />} />
         <Route path="/profile-list" element={<JobProfileDetail />} />
         <Route path="/profile-list/:jobName" element={<JobProfileDetail />} />
-        <Route path="/profile/:jobId" element={<JobProfile />} />
+        {/* <Route path="/profile/:jobId" element={<JobProfile />} /> */}
         <Route path="/capability-analysis" element={<CapabilityAnalysis />} />
         <Route path="/career-report" element={<CareerReport />} />
         <Route path="/job-match" element={<JobMatch />} />

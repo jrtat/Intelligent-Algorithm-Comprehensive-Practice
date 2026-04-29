@@ -532,12 +532,10 @@ export function JobProfileDetail() {
   return (
     <div className="job-profile-view">
       {/* 面包屑导航 */}
-      <div className="breadcrumb">
-        <Link to="/" className="breadcrumb-item">
-          <i className="fas fa-home"></i> 首页
-        </Link>
-        <i className="fas fa-chevron-right breadcrumb-separator"></i>
-        <span className="breadcrumb-item current">岗位画像</span>
+     <div className="dashboard-breadcrumb">
+        <Link to="/" className="breadcrumb-link">首页</Link>
+        <span className="breadcrumb-sep">/</span>
+        <span className="breadcrumb-current">岗位画像</span>
       </div>
 
       {/* 顶部导航 */}

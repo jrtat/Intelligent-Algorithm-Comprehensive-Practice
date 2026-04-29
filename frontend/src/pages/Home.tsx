@@ -182,9 +182,7 @@ const Home = () => {
             基于AI大数据，精准匹配你的能力、兴趣与岗位需求，告别迷茫，
             解锁专属职业方向——无需复杂思考，一键测评，直达适配路径。
           </p>
-          <button className="hero-cta" onClick={() => scrollToSection('eval')}>
-            立即测评
-          </button>
+          
           <p className="hero-hint">测评免费 · 报告精准 · 隐私保护</p>
         </div>
         <div className="hero-scroll-hint">

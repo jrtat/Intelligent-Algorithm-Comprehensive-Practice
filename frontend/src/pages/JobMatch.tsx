@@ -418,7 +418,7 @@ export default function JobMatch() {
               <div className="relative flex-1 sm:flex-initial">
                 <input
                   className="bg-surface-container-highest border-none rounded-lg !py-2.5 !pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/40 transition-all w-full sm:w-72 outline-none"
-                  placeholder="搜索职位名称、公司..."
+                  placeholder="搜索岗位类型名称..."
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -490,7 +490,7 @@ export default function JobMatch() {
                           onClick={() => setSelectedJob(job)}
                           className="text-xs font-bold text-primary hover:bg-primary/10 !px-4 !py-2 rounded-lg transition-colors inline-flex items-center gap-1 border border-primary/10"
                         >
-                          查看详情
+                          查看深度分析
                           <span className="material-symbols-outlined text-sm">chevron_right</span>
                         </button>
                       </td>

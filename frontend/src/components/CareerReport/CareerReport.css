@@ -1,5 +1,8 @@
 /* CareerReport Layout Styles */
-
+.career-report-page {
+  overflow: hidden;
+  height: 100vh;
+}
 .career-report {
   --report-bg: var(--color-report-bg);
   --report-primary: var(--color-report-primary);
@@ -32,7 +35,7 @@
   justify-content: space-between;
   padding: 0 24px;
   position: sticky;
-  top: 0;
+  top: 48px;
   z-index: 100;
 }
 
@@ -60,29 +63,47 @@
   align-items: center;
 }
 
-/* Sidebar */
+/* ========== 侧边栏基础样式（PC端） ========== */
 .report-sidebar {
-  grid-area: sidebar;
+  position: fixed;
+  top: 108px;
+  left: 0;
   width: 240px;
+  height: calc(100vh - 108px);
   background-color: var(--report-surface);
   border-right: 1px solid var(--report-border);
-  transition: width 0.3s ease, transform 0.3s ease;
-  position: sticky;
-  top: 60px;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
+  transition: left 0.3s ease, width 0.3s ease;
+  overflow: hidden;
+  z-index: 90;
 }
 
+/* 折叠状态：向左移出视口 */
 .report-sidebar.collapsed {
+  left: -240px;
   width: 0;
-  transform: translateX(-100%);
 }
 
+/* 主内容区：为侧边栏留出左边距 */
+.report-main {
+  margin-left: 240px;
+  padding: 30px;
+  transition: margin-left 0.3s ease;
+  overflow-y: auto;
+  height: calc(100vh - 108px);
+}
+
+/* 侧边栏折叠时，主内容区左边距归零 */
+.report-sidebar.collapsed ~ .report-main {
+  margin-left: 0;
+}
+
+/* PC端 toggle 按钮：跟随侧边栏位置，垂直居中 */
 .sidebar-toggle {
   position: fixed;
   left: 240px;
-  top: 70px;
-  z-index: 99;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 101;
   width: 24px;
   height: 40px;
   background-color: var(--report-surface);
@@ -94,10 +115,59 @@
   align-items: center;
   justify-content: center;
   transition: left 0.3s ease;
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-toggle.collapsed {
   left: 0;
+}
+/* ========== 移动端样式 ========== */
+@media (max-width: 768px) {
+  .report-sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 280px;
+    background-color: var(--report-surface);
+    border-right: 1px solid var(--report-border);
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    z-index: 1000;
+    overflow: hidden;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .report-sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+
+  /* 移动端隐藏旧的 toggle 按钮（改用遮罩关闭） */
+  .sidebar-toggle {
+    display: none;
+  }
+
+  /* 遮罩层 */
+  .sidebar-overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 .sidebar-nav {
@@ -146,6 +216,8 @@
   grid-area: main;
   padding: 30px;
   overflow-y: auto;
+  height: calc(100vh - 108px);
+  margin-left: 240px;
 }
 
 .report-content {
@@ -648,9 +720,10 @@
 }
 
 .edit-entry:hover {
-  background: var(--report-primary);
-  color: white;
-  transform: scale(1.05);
+  background: rgba(46, 134, 171, 0.1);
+  color: var(--report-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(46, 134, 171, 0.2);
 }
 
 /* Editing state */

@@ -31,7 +31,7 @@ const ArrayInput = ({ label, values, onChange, required = false }: { label: stri
             <textarea
               value={val}
               onChange={(e) => handleChange(idx, e.target.value)}
-              className="flex-1 !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all min-h-[60px]"
+              className="flex-1 !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all min-h-[60px] placeholder:text-gray-600 text-gray-600"
               placeholder={`请输入${label}`}
             />
             <button onClick={() => handleRemove(idx)} className="!p-2 text-outline hover:text-error transition-colors mt-1" title="删除">
@@ -62,7 +62,7 @@ const RadarLabel = ({ className, title, explanation, tooltipPos = 'top' }: { cla
   };
 
   return (
-    <div className={`absolute ${className} text-[10px] font-bold uppercase bg-surface/90 !px-3 !py-1.5 rounded-full shadow-[0_2px_8px_-2px_rgba(0,0,0,0.1),inset_0_1px_2px_rgba(255,255,255,0.5)] border border-outline-variant/30 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.15)] transition-all cursor-default group z-10`}>
+    <div className={`absolute ${className} text-[10px] font-bold uppercase bg-surface/90 !px-3 !py-1.5 rounded-full shadow-[0_2px_8px_-2px_rgba(0,0,0,0.1),inset_0_1px_2px_rgba(255,255,255,0.5)] border border-outline-variant/30 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.15)] transition-all cursor-default group z-60`}>
       {title}
       {explanation && (
         <div className={`absolute opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48 bg-surface-container-highest text-on-surface !p-3 rounded-xl text-xs font-normal shadow-xl border border-outline-variant/20 !z-50 pointer-events-none ${posClasses[tooltipPos]}`}>
@@ -79,11 +79,16 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
   const [isParsing, setIsParsing] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [fileName, setFileName] = useState('');
-  const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null);
+  const [lastSyncTime, setLastSyncTime] = useState<Date | null>(() => {
+    const saved = localStorage.getItem('lastSyncTime');
+    return saved ? new Date(saved) : null;
+  });
   const [rawText, setRawText] = useState('');
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [showTextInputModal, setShowTextInputModal] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { showToast } = useToast();
   const [resumeData, setResumeData] = useState<ResumeData>(() => {
     const saved = localStorage.getItem('resumeData');
@@ -155,12 +160,58 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
     return result.value;
   };
 
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const files = e.dataTransfer.files;
+    if (files.length === 0) return;
+
+    const file = files[0];
+    const validTypes = ['.pdf', '.doc', '.docx'];
+    const fileExt = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+
+    if (!validTypes.includes(fileExt)) {
+      setToastMessage('仅支持 PDF/DOC/DOCX 格式的简历文件');
+      setTimeout(() => setToastMessage(''), 3000);
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setToastMessage('文件大小不能超过 10MB');
+      setTimeout(() => setToastMessage(''), 3000);
+      return;
+    }
+
+    // Trigger upload
+    const input = document.getElementById('resume-upload') as HTMLInputElement;
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    input.files = dataTransfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     
     setFileName(file.name);
-    setLastSyncTime(new Date());
+    const now = new Date();
+    localStorage.setItem('lastSyncTime', now.toISOString());
+    setLastSyncTime(now);
     setIsParsing(true);
     
     try {
@@ -413,7 +464,9 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
       return;
     }
     setFileName('手动输入文本');
-    setLastSyncTime(new Date());
+    const now = new Date();
+    localStorage.setItem('lastSyncTime', now.toISOString());
+    setLastSyncTime(now);
     setIsParsing(true);
     setShowTextInputModal(false);
     await parseWithLLM(rawText);
@@ -482,13 +535,13 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
             <div className="flex justify-end gap-4">
               <button 
                 onClick={() => setShowClearConfirm(false)}
-                className="px-6 py-2.5 rounded-xl font-bold text-on-surface border border-outline-variant hover:bg-surface-container transition-colors"
+                className="!px-6 !py-2.5 rounded-xl font-bold text-on-surface border border-outline-variant hover:bg-surface-container transition-colors"
               >
                 取消
               </button>
               <button 
                 onClick={confirmClearData}
-                className="px-6 py-2.5 rounded-xl font-bold bg-error text-white shadow-md shadow-error/20 hover:opacity-90 active:scale-95 transition-all"
+                className="!px-6 !py-2.5 rounded-xl font-bold bg-error text-white shadow-md shadow-error/20 hover:opacity-90 active:scale-95 transition-all"
               >
                 确定清空
               </button>
@@ -549,11 +602,22 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
             </div>
             <p className="text-sm text-on-surface-variant mb-6">上传您最新的简历或作品集以完善个人资料。</p>
             <input type="file" accept=".pdf,.doc,.docx" className="hidden" id="resume-upload" onChange={handleFileUpload} />
-            <label htmlFor="resume-upload" className="border-2 border-dashed border-outline-variant rounded-xl !p-10 flex flex-col items-center justify-center group hover:bg-white/50 transition-all cursor-pointer relative overflow-hidden">
+            <label
+              htmlFor="resume-upload"
+              className={`border-2 border-dashed rounded-xl !p-10 flex flex-col items-center justify-center group transition-all cursor-pointer relative overflow-hidden ${isDragging ? 'border-primary bg-primary/10' : 'border-outline-variant hover:bg-white/50'}`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
               {isParsing ? (
                 <div className="flex flex-col items-center">
                   <span className="material-symbols-outlined text-4xl text-primary mb-4 animate-spin">sync</span>
                   <p className="text-sm font-semibold">正在解析简历...</p>
+                </div>
+              ) : isDragging ? (
+                <div className="flex flex-col items-center">
+                  <span className="material-symbols-outlined text-4xl text-primary mb-4">upload_file</span>
+                  <p className="text-sm font-semibold text-primary">松开以上传简历</p>
                 </div>
               ) : (
                 <>
@@ -591,7 +655,7 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
         </div>
 
         {/* 2. Large Radar Chart */}
-        <div className="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl !p-8 justify-self-end">
+        <div className="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl !p-8 justify-self-center">
           <div className="flex flex-col items-start mb-8">
             <div className="flex items-center gap-4 mb-2">
               <h3 className="text-xl font-bold">维度掌控力</h3>
@@ -599,8 +663,10 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
             </div>
             <p className="text-sm text-on-surface-variant">跨核心能力分布。</p>
           </div>
-          <div className="relative aspect-square max-h-[400px] mx-auto flex items-center justify-center">
-            <svg className="w-full h-full max-w-[350px]" viewBox="0 0 400 400">
+          <div className="relative aspect-square max-h-[500px] mx-auto flex items-center justify-center">
+            <svg className="w-full h-full max-w-[450px]" viewBox="0 0 400 400" onMouseMove={(e) => {
+                  setMousePos({ x: e.clientX, y: e.clientY });
+                }}>
               {/* Radar Grid */}
               {[20, 40, 60, 80, 100].map(level => {
                 const points = [0, 72, 144, 216, 288].map(angle => {
@@ -672,7 +738,6 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
 
             {/* Hover Tooltip Overlay */}
             {hoveredPoint !== null && (() => {
-              const angle = [0, 72, 144, 216, 288][hoveredPoint];
               const scores = [
                 resumeData.scores?.technicalDepth || 0,
                 resumeData.scores?.adaptability || 0,
@@ -681,26 +746,19 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
                 resumeData.scores?.innovation || 0
               ];
               const labels = ['技术深度', '适应能力', '沟通表达能力', '抗压能力', '创新能力'];
-              const angleRad = (angle - 90) * (Math.PI / 180);
-              const r = 150 * (scores[hoveredPoint] / 100);
-              const cx = 200 + r * Math.cos(angleRad);
-              const cy = 200 + r * Math.sin(angleRad);
-              const leftPct = (cx / 400) * 100;
-              const topPct = (cy / 400) * 100;
 
               return (
-                <div 
-                  className="absolute z-30 pointer-events-none flex flex-col items-center animate-in fade-in zoom-in-95 duration-200"
-                  style={{ 
-                    left: `${leftPct}%`, 
-                    top: `${topPct}%`,
-                    transform: 'translate(-50%, -100%)',
-                    marginTop: '-12px'
+                <div
+                  className="fixed z-[100] pointer-events-none flex flex-col items-center animate-in fade-in zoom-in-95 duration-200"
+                  style={{
+                    left: `${mousePos.x}px`,
+                    top: `${mousePos.y - 16}px`,
+                    transform: 'translate(-50%, -100%)'
                   }}
                 >
                   <div className="bg-surface-container-highest text-on-surface !px-3 !py-1.5 rounded-lg shadow-xl border border-outline-variant/20 flex flex-col items-center gap-0.5">
                     <span className="text-[10px] text-on-surface-variant font-bold uppercase">{labels[hoveredPoint]}</span>
-                    <span className="text-primary font-black text-sm">{scores[hoveredPoint]}<span className="text-[10px] text-on-surface ml-0.5">分</span></span>
+                    <span className="text-primary font-black text-sm">{scores[hoveredPoint]}<span className="text-[!10px] text-on-surface ml-0.5">分</span></span>
                   </div>
                   <div className="!w-0 !h-0 border-l-[!6px] border-l-transparent border-r-[!6px] border-r-transparent border-t-[!6px] border-t-surface-container-highest"></div>
                 </div>
@@ -708,11 +766,11 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
             })()}
 
             {/* Labels */}
-            <RadarLabel className="top-[8%] left-1/2 -translate-x-1/2" title="技术深度" explanation={resumeData.scoreExplanations?.technicalDepth || ''} tooltipPos="bottom" />
-            <RadarLabel className="top-[35%] right-[8%]" title="适应能力" explanation={resumeData.scoreExplanations?.adaptability || ''} tooltipPos="left" />
-            <RadarLabel className="bottom-[15%] right-[18%]" title="沟通表达能力" explanation={resumeData.scoreExplanations?.communication || ''} tooltipPos="top" />
-            <RadarLabel className="bottom-[15%] left-[18%]" title="抗压能力" explanation={resumeData.scoreExplanations?.stressTolerance || ''} tooltipPos="top" />
-            <RadarLabel className="top-[35%] left-[8%]" title="创新能力" explanation={resumeData.scoreExplanations?.innovation || ''} tooltipPos="right" />
+            <RadarLabel className="top-[3%] left-1/2 -translate-x-1/2" title="技术深度" explanation={resumeData.scoreExplanations?.technicalDepth || ''} tooltipPos="top" />
+            <RadarLabel className="top-[25%] left-[78%]" title="适应能力" explanation={resumeData.scoreExplanations?.adaptability || ''} tooltipPos="right" />
+            <RadarLabel className="bottom-[9%] right-[10%]" title="沟通表达能力" explanation={resumeData.scoreExplanations?.communication || ''} tooltipPos="bottom" />
+            <RadarLabel className="bottom-[9%] left-[8%]" title="抗压能力" explanation={resumeData.scoreExplanations?.stressTolerance || ''} tooltipPos="bottom" />
+            <RadarLabel className="top-[25%] left-[0%]" title="创新能力" explanation={resumeData.scoreExplanations?.innovation || ''} tooltipPos="left" />
           </div>
         </div>
 
@@ -757,19 +815,19 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-bold mb-2">姓名 <span className="text-error">*</span></label>
-            <input value={resumeData.name || ''} onChange={e => setResumeData({...resumeData, name: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入姓名" />
+            <input value={resumeData.name || ''} onChange={e => setResumeData({...resumeData, name: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-600 text-gray-600" placeholder="请输入姓名" />
           </div>
           <div>
             <label className="block text-sm font-bold mb-2">年龄 <span className="text-error">*</span></label>
-            <input value={resumeData.age || ''} onChange={e => setResumeData({...resumeData, age: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入年龄" />
+            <input value={resumeData.age || ''} onChange={e => setResumeData({...resumeData, age: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-600 text-gray-600" placeholder="请输入年龄" />
           </div>
           <div>
             <label className="block text-sm font-bold mb-2">学历 <span className="text-error">*</span></label>
-            <input value={resumeData.education || ''} onChange={e => setResumeData({...resumeData, education: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入学历" />
+            <input value={resumeData.education || ''} onChange={e => setResumeData({...resumeData, education: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-600 text-gray-600" placeholder="请输入学历" />
           </div>
           <div>
             <label className="block text-sm font-bold mb-2">就读专业 <span className="text-error">*</span></label>
-            <input value={resumeData.major || ''} onChange={e => setResumeData({...resumeData, major: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入就读专业" />
+            <input value={resumeData.major || ''} onChange={e => setResumeData({...resumeData, major: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-600 text-gray-600" placeholder="请输入就读专业" />
           </div>
           <ArrayInput 
             label="掌握的专业技能" 
@@ -804,16 +862,16 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
           />
           <div className="md:col-span-2">
             <label className="block text-sm font-bold mb-2">个人总结</label>
-            <textarea value={resumeData.summary || ''} onChange={e => setResumeData({...resumeData, summary: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface !h-32 focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="请输入个人总结" />
+            <textarea value={resumeData.summary || ''} onChange={e => setResumeData({...resumeData, summary: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface !h-32 focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-600 text-gray-600" placeholder="请输入个人总结" />
           </div>
           <div className="md:col-span-2">
             <label className="block text-sm font-bold mb-2">其他（杂项）</label>
-            <textarea value={resumeData.other || ''} onChange={e => setResumeData({...resumeData, other: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface !h-24 focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="其他提取出的杂项信息" />
+            <textarea value={resumeData.other || ''} onChange={e => setResumeData({...resumeData, other: e.target.value})} className="w-full !p-3 rounded-lg border border-outline-variant bg-surface !h-24 focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-600 text-gray-600" placeholder="其他提取出的杂项信息" />
           </div>
         </div>
         <div className="mt-8 flex justify-end">
           <button onClick={handleSubmit} className="!px-8 !py-3 bg-primary text-white font-bold rounded-xl shadow-md shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">
-            生成职业匹配
+            一键匹配岗位
           </button>
         </div>
       </div>

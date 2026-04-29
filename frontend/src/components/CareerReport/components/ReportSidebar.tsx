@@ -1,4 +1,5 @@
 import { useReport } from '../context/ReportContext';
+import { useEffect, useState } from 'react';
 
 interface SidebarItem {
   id: string;
@@ -20,6 +21,15 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
 export function ReportSidebar() {
   const { state, dispatch, scrollToSection } = useReport();
   const { sidebarCollapsed, activeSection } = state;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleToggle = () => {
     dispatch({ type: 'TOGGLE_SIDEBAR' });
@@ -27,11 +37,17 @@ export function ReportSidebar() {
 
   const handleNavClick = (id: string) => {
     scrollToSection(id);
+    if (isMobile && !sidebarCollapsed) {
+      // 移动端点击导航后自动关闭侧边栏
+      dispatch({ type: 'TOGGLE_SIDEBAR' });
+    }
   };
 
   return (
     <>
-      <aside className={`report-sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      <aside
+        className={`report-sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile' : ''}`}
+      >
         <nav className="sidebar-nav">
           {SIDEBAR_ITEMS.map((item) => (
             <div
@@ -48,16 +64,18 @@ export function ReportSidebar() {
           ))}
         </nav>
       </aside>
-
-      <button
-        className={`sidebar-toggle ${sidebarCollapsed ? 'collapsed' : ''}`}
-        onClick={handleToggle}
-        aria-label={sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'}
-      >
-        <span className="material-symbols-outlined">
-          {sidebarCollapsed ? 'chevron_right' : 'chevron_left'}
-        </span>
-      </button>
+      {/* PC 端的 toggle 按钮 */}
+      {!isMobile && (
+        <button
+          className={`sidebar-toggle ${sidebarCollapsed ? 'collapsed' : ''}`}
+          onClick={handleToggle}
+          aria-label={sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'}
+        >
+          <span className="material-symbols-outlined">
+            {sidebarCollapsed ? 'chevron_right' : 'chevron_left'}
+          </span>
+        </button>
+      )}
     </>
   );
 }

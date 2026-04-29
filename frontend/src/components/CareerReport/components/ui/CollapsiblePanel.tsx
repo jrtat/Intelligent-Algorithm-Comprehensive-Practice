@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
 interface CollapsiblePanelProps {
   title: string;
   subtitle?: string;
   defaultExpanded?: boolean;
+  forceExpanded?: boolean;
   children: ReactNode;
   onEdit?: () => void;
   onAIPolish?: () => void;
@@ -14,11 +15,23 @@ export function CollapsiblePanel({
   title,
   subtitle,
   defaultExpanded = false,
+  forceExpanded = false,
   children,
   onEdit,
   onAIPolish,
 }: CollapsiblePanelProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
+  const [isPrinting, setIsPrinting] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('print');
+    const handleChange = () => setIsPrinting(mediaQuery.matches);
+    setIsPrinting(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  const isExpanded = forceExpanded || isPrinting || expanded;
 
   return (
     <div className="collapsible-panel">
@@ -38,7 +51,7 @@ export function CollapsiblePanel({
           )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          {expanded && (onEdit || onAIPolish) && (
+          {isExpanded && (onEdit || onAIPolish) && (
             <div
               style={{ display: 'flex', gap: 4 }}
               onClick={(e) => e.stopPropagation()}
@@ -56,12 +69,12 @@ export function CollapsiblePanel({
             </div>
           )}
           <span className="material-symbols-outlined" style={{ fontSize: 20 }}>
-            {expanded ? 'expand_less' : 'expand_more'}
+            {isExpanded ? 'expand_less' : 'expand_more'}
           </span>
         </div>
       </div>
 
-      {expanded && <div className="collapsible-content">{children}</div>}
+      {isExpanded && <div className="collapsible-content">{children}</div>}
     </div>
   );
 }

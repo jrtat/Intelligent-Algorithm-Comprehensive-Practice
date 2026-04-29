@@ -41,7 +41,7 @@ export default function TopToast({
       onClick={onClick}
       style={{ pointerEvents: visible ? 'auto' : 'none' }}
     >
-      <div className="bg-primary text-white px-6 py-3 rounded-lg shadow-lg shadow-primary/30 font-bold flex items-center gap-3">
+      <div className="bg-primary text-white !px-6 !py-3 rounded-lg shadow-lg shadow-primary/30 font-bold flex items-center gap-3">
         <span className="material-symbols-outlined text-xl">auto_awesome</span>
         <span>{message}</span>
         {onClick && (

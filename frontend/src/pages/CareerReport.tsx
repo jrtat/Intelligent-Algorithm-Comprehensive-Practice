@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import CareerReportComponent from '../components/CareerReport/CareerReport';
-import '../components/PageDashboard/page-dashboard.css';
+import './career-report-page.css';
 
 export default function CareerReport() {
   return (
-    <div className="page-dashboard">
+    <div className="career-report-page">
       {/* Breadcrumb */}
-      <div className="dashboard-breadcrumb">
+      <div className="career-report-breadcrumb">
         <span className="breadcrumb-item">
           <Link to="/" className="breadcrumb-link">首页</Link>
           <span className="breadcrumb-sep">/</span>
@@ -15,7 +15,7 @@ export default function CareerReport() {
       </div>
 
       {/* Main Content */}
-      <div className="dashboard-content">
+      <div className="career-report-content">
         <CareerReportComponent />
       </div>
     </div>

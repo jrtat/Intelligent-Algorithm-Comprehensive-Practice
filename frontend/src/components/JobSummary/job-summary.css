@@ -8,30 +8,30 @@
   display: inline-block;
   padding: 8px 16px;
   margin: 20px 0 24px;
-  color: #4a90d9;
+  color: var(--color-link);
   text-decoration: none;
-  border: 1px solid #4a90d9;
+  border: 1px solid var(--color-link);
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
 }
 
 .back-btn:hover {
-  background: #f0f7ff;
+  background: var(--color-surface-hover);
 }
 
 .summary-card {
   margin-top: 24px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-surface-card);
 }
 
 .summary-card h3 {
   margin: 0 0 16px;
   font-size: 16px;
-  color: #333;
+  color: var(--color-text-body);
 }
 
 .summary-grid {
@@ -48,7 +48,7 @@
 
 .summary-label {
   font-size: 13px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 /* 薪资统计 */
@@ -62,25 +62,25 @@
 .salary-min, .salary-max {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: var(--color-text-body);
 }
 
 .salary-divider {
   font-size: 18px;
-  color: #999;
+  color: var(--color-text-disabled);
 }
 
 .salary-bar {
   width: 100%;
   height: 8px;
-  background: #e5e7eb;
+  background: var(--color-border);
   border-radius: 4px;
   overflow: hidden;
 }
 
 .salary-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4a90d9, #276749);
+  background: linear-gradient(90deg, var(--color-link), var(--color-tag-skill-text));
 }
 
 /* 学历分布 */
@@ -99,27 +99,27 @@
 .degree-label {
   width: 60px;
   font-size: 13px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 .degree-bar {
   flex: 1;
   height: 20px;
-  background: #e5e7eb;
+  background: var(--color-border);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .degree-fill {
   height: 100%;
-  background: #4a90d9;
+  background: var(--color-link);
   transition: width 0.5s ease;
 }
 
 .degree-value {
   width: 80px;
   font-size: 13px;
-  color: #333;
+  color: var(--color-text-body);
   text-align: right;
 }
 
@@ -131,8 +131,8 @@
 
 .company-tag {
   padding: 6px 12px;
-  background: #f0f7ff;
-  color: #2b6cb0;
+  background: var(--color-tag-edu-bg);
+  color: var(--color-tag-edu-text);
   border-radius: 12px;
   font-size: 13px;
 }

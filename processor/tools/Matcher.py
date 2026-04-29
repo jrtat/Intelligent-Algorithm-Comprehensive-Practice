@@ -744,7 +744,7 @@ class Matcher:
 
         lst_rank.sort(key=lambda x: x[1], reverse=True)
 
-        for i in lst_rank[:5]: # [6,15,30,39,50]
+        for i in lst_rank[:3]: # [6,15,30,39,50]
             self.scores.append(self.cal_score_simple(self.jt2num[i[0]]))
             print(i, datetime.datetime.now().strftime(" %Y-%m-%d %H:%M:%S"))
         self.scores.sort(key=lambda x: x[1], reverse=True)

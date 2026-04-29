@@ -1,5 +1,8 @@
 /* CareerReport Layout Styles */
-
+.career-report-page {
+  overflow: hidden;
+  height: 100vh;
+}
 .career-report {
   --report-bg: var(--color-report-bg);
   --report-primary: var(--color-report-primary);
@@ -66,11 +69,11 @@
   top: 108px;
   left: 0;
   width: 240px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 108px);
   background-color: var(--report-surface);
   border-right: 1px solid var(--report-border);
   transition: left 0.3s ease, width 0.3s ease;
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 90;
 }
 
@@ -86,7 +89,7 @@
   padding: 30px;
   transition: margin-left 0.3s ease;
   overflow-y: auto;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 108px);
 }
 
 /* 侧边栏折叠时，主内容区左边距归零 */
@@ -132,7 +135,7 @@
     transition: transform 0.3s ease;
     transform: translateX(-100%);
     z-index: 1000;
-    overflow-y: auto;
+    overflow: hidden;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   }
 
@@ -213,6 +216,8 @@
   grid-area: main;
   padding: 30px;
   overflow-y: auto;
+  height: calc(100vh - 108px);
+  margin-left: 240px;
 }
 
 .report-content {
@@ -715,9 +720,10 @@
 }
 
 .edit-entry:hover {
-  background: var(--report-primary);
-  color: white;
-  transform: scale(1.05);
+  background: rgba(46, 134, 171, 0.1);
+  color: var(--report-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(46, 134, 171, 0.2);
 }
 
 /* Editing state */

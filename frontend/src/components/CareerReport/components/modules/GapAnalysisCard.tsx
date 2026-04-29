@@ -145,8 +145,8 @@ export function GapAnalysisCard({
           ) : (
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                display: 'flex',
+                flexDirection: 'column',
                 gap: 12,
               }}
             >
@@ -185,9 +185,10 @@ export function GapAnalysisCard({
           ) : (
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                display: 'flex',
+                flexDirection: 'column',
                 gap: 12,
+                width: 'calc(100% + 48px)',
               }}
             >
               {soft_skills_gaps.map((gap, index) => (
@@ -225,9 +226,10 @@ export function GapAnalysisCard({
           ) : (
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                display: 'flex',
+                flexDirection: 'column',
                 gap: 12,
+                width: 'calc(100% + 48px)',
               }}
             >
               {experience_gaps.map((gap, index) => (

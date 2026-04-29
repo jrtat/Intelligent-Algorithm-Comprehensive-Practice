@@ -1,6 +1,7 @@
 /* CareerReport Layout Styles */
 .career-report-page {
   overflow: hidden;
+  position: relative;
   height: 100vh;
 }
 .career-report {

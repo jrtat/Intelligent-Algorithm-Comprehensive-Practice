@@ -86,7 +86,7 @@ export function CandidateSummaryCard({
           onAIPolishItem={(index) => onAIPolishField?.(`candidate_summary.core_strengths[${index}]`)}
           label="核心优势"
           addLabel="添加优势"
-          disabled={isPolishing}
+          disabled={isPolishing || !isEditing}
         />
       </div>
 
@@ -98,7 +98,7 @@ export function CandidateSummaryCard({
           onAIPolishItem={(index) => onAIPolishField?.(`candidate_summary.areas_for_improvement[${index}]`)}
           label="待提升领域"
           addLabel="添加领域"
-          disabled={isPolishing}
+          disabled={isPolishing || !isEditing}
         />
       </div>
     </ReportCard>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BarChart3, IdCard, Map, FlaskConical, Target, ClipboardList, Lightbulb, ClipboardCheck, FileText, ArrowRight } from 'lucide-react';
 import './Home.css';
 
 const scrollToSection = (id: string) => {
@@ -209,7 +210,7 @@ const Home = () => {
 
           <div className="insight-grid">
             <div className="feature-card" onClick={() => navigate('/dashboard')}>
-              <div className="feature-icon">📊</div>
+              <div className="feature-icon"><BarChart3 size={48} /></div>
               <h3 className="feature-title">岗位看板</h3>
               <p className="feature-desc">
                 实时更新全行业AI相关岗位动态、薪资波动、招聘热度，一目了然
@@ -217,7 +218,7 @@ const Home = () => {
               <span className="feature-link">进入 →</span>
             </div>
             <div className="feature-card" onClick={() => navigate('/profile-list')}>
-              <div className="feature-icon">👤</div>
+              <div className="feature-icon"><IdCard size={48} /></div>
               <h3 className="feature-title">岗位画像</h3>
               <p className="feature-desc">
                 拆解岗位核心职责、技能要求、任职门槛，精准呈现岗位核心特质
@@ -225,7 +226,7 @@ const Home = () => {
               <span className="feature-link">进入 →</span>
             </div>
             <div className="feature-card" onClick={() => navigate('/map')}>
-              <div className="feature-icon">🗺️</div>
+              <div className="feature-icon"><Map size={48} /></div>
               <h3 className="feature-title">岗位地图</h3>
               <p className="feature-desc">
                 可视化展现岗位全国分布，清晰了解职业地区差异与机会
@@ -252,7 +253,7 @@ const Home = () => {
             {/* 左侧功能区 */}
             <div className="eval-text">
               <div className="eval-card" onClick={() => navigate('/capability-analysis')}>
-                <h3>🔬 能力测评</h3>
+                <h3><FlaskConical size={20} /> 能力测评</h3>
                 <p>
                   多维度拆解个人能力，涵盖专业技能、通用能力、潜力特质三大核心维度，
                   通过科学题库与AI分析，精准量化个人能力短板与优势，拒绝模糊判断。
@@ -261,7 +262,7 @@ const Home = () => {
               </div>
 
               <div className="eval-card" onClick={() => navigate('/job-match')}>
-                <h3>🎯 岗位匹配</h3>
+                <h3><Target size={20} /> 岗位匹配</h3>
                 <p>
                   基于能力测评结果，结合千万级岗位数据库，AI智能匹配岗位适配度，
                   生成适配排名，标注适配亮点与改进方向，帮你快速锁定最适合的岗位。
@@ -270,10 +271,23 @@ const Home = () => {
               </div>
             </div>
 
-            {/* 右侧图片区域（占位） */}
+            {/* 右侧流程图 */}
             <div className="eval-visual">
-              <div className="eval-visual-placeholder">
-                <span>测评流程示意图位置</span>
+              <div className="flow-chart">
+                <div className="flow-step">
+                  <div className="flow-icon"><ClipboardCheck size={24} /></div>
+                  <div className="flow-label">完成能力测评</div>
+                </div>
+                <div className="flow-arrow"><ArrowRight size={20} /></div>
+                <div className="flow-step">
+                  <div className="flow-icon"><Target size={24} /></div>
+                  <div className="flow-label">AI 智能匹配</div>
+                </div>
+                <div className="flow-arrow"><ArrowRight size={20} /></div>
+                <div className="flow-step">
+                  <div className="flow-icon"><FileText size={24} /></div>
+                  <div className="flow-label">生成专属报告</div>
+                </div>
               </div>
             </div>
           </div>
@@ -299,15 +313,15 @@ const Home = () => {
           <div className="report-card-inner">
             <div className="report-modules">
               <div className="report-module">
-                <div className="report-module-icon">📋</div>
+                <div className="report-module-icon"><ClipboardList size={28} /></div>
                 <div className="report-module-title">能力测评总结</div>
               </div>
               <div className="report-module">
-                <div className="report-module-icon">🎯</div>
+                <div className="report-module-icon"><Target size={28} /></div>
                 <div className="report-module-title">岗位适配分析</div>
               </div>
               <div className="report-module">
-                <div className="report-module-icon">💡</div>
+                <div className="report-module-icon"><Lightbulb size={28} /></div>
                 <div className="report-module-title">专属改进建议</div>
               </div>
             </div>

@@ -479,6 +479,10 @@ section {
 .feature-icon {
   font-size: 48px;
   margin-bottom: 20px;
+  color: #1677ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .feature-title {
@@ -546,6 +550,9 @@ section {
   font-weight: 500;
   color: #1677ff;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .eval-card p {
@@ -586,6 +593,56 @@ section {
   border: 2px dashed rgba(22, 119, 255, 0.2);
 }
 
+/* ===== 科学测评流程图 ===== */
+.eval-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flow-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 40px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e6f7ff 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(22, 119, 255, 0.1);
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.flow-icon {
+  width: 56px;
+  height: 56px;
+  background: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1677ff;
+  box-shadow: 0 4px 12px rgba(22, 119, 255, 0.1);
+}
+
+.flow-label {
+  font-size: 13px;
+  color: #333333;
+  font-weight: 500;
+  text-align: center;
+}
+
+.flow-arrow {
+  color: #1677ff;
+  opacity: 0.6;
+  transform: rotate(90deg);
+}
+
 /* ===== 板块四：专属报告 ===== */
 .report-section {
   background: #e6f7ff;
@@ -624,6 +681,10 @@ section {
 .report-module-icon {
   font-size: 28px;
   margin-bottom: 12px;
+  color: #1677ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .report-module-title {

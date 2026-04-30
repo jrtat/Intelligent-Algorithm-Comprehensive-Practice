@@ -45,8 +45,9 @@ export function FinalRecommendationCard({
       isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
-      <div className="final-recommendation">
+      <div className="rounded-r-lg border-l-4 !p-2" style={{ backgroundColor: 'rgba(22, 119, 255, 0.1)', borderLeftColor: '#1677ff' }}>
         {isEditing ? (
+          
           <EditableField
             value={report.final_recommendation}
             onChange={handleChange}
@@ -58,7 +59,7 @@ export function FinalRecommendationCard({
             showCharCount
           />
         ) : (
-          <p>{report.final_recommendation}</p>
+          <p className="leading-relaxed !p-3 text-[#333]">{report.final_recommendation}</p>
         )}
       </div>
     </ReportCard>

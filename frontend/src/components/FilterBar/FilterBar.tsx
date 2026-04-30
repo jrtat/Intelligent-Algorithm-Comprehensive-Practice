@@ -1,5 +1,6 @@
 import './filter-bar.css';
 
+
 interface FilterBarProps {
   filter: {
     keyword: string;

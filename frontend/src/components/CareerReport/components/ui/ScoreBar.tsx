@@ -16,18 +16,20 @@ export function ScoreBar({
   const percentage = Math.min((score / maxScore) * 100, 100);
 
   return (
-    <div className="score-bar-container">
+    <div className="mb-3 flex items-center gap-3">
       {showLabel && (
-        <span className="score-bar-label">{label}</span>
+        <span className="w-[120px] text-[14px] text-[#333]">{label}</span>
       )}
-      <div className="score-bar-track">
+      <div className="flex-1 rounded bg-[#F5F7FA]">
         <div
-          className="score-bar-fill"
-          style={{ width: `${percentage}%` }}
+          className="h-2 rounded transition-all"
+          style={{ width: `${percentage}%`, backgroundColor: '#1677ff' }}
         />
       </div>
       {showValue && (
-        <span className="score-bar-value">{score}</span>
+        <span className="w-[50px] text-right text-[16px] font-bold" style={{ color: '#1677ff' }}>
+          {score}
+        </span>
       )}
     </div>
   );

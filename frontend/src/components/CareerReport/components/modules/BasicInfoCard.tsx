@@ -44,15 +44,9 @@ export function BasicInfoCard({
       isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-        <div
-          style={{
-            backgroundColor: '#F5F7FA',
-            padding: '16px 20px',
-            borderRadius: 8,
-          }}
-        >
-          <div style={{ fontSize: 13, color: '#999', marginBottom: 4 }}>候选人姓名</div>
+      <div className="grid grid-cols-2 !gap-32 !p-4">
+        <div className="rounded-lg bg-[#F5F7FA] !p-4">
+          <div className="mb-1 !text-[16px] text-[#999]">候选人姓名</div>
           {isEditing ? (
             <EditableField
               value={report.candidate_name}
@@ -61,20 +55,14 @@ export function BasicInfoCard({
               maxLength={50}
             />
           ) : (
-            <div style={{ fontSize: 16, fontWeight: 500, color: '#333' }}>
+            <div className="text-[16px] font-medium text-[#333]">
               {report.candidate_name}
             </div>
           )}
         </div>
 
-        <div
-          style={{
-            backgroundColor: '#F5F7FA',
-            padding: '16px 20px',
-            borderRadius: 8,
-          }}
-        >
-          <div style={{ fontSize: 13, color: '#999', marginBottom: 4 }}>目标岗位</div>
+        <div className="rounded-lg bg-[#F5F7FA] !p-4">
+          <div className="mb-1 !text-[16px] text-[#999]">目标岗位</div>
           {isEditing ? (
             <EditableField
               value={report.target_job}
@@ -83,7 +71,7 @@ export function BasicInfoCard({
               maxLength={100}
             />
           ) : (
-            <div style={{ fontSize: 16, fontWeight: 500, color: '#333' }}>
+            <div className="text-![16px] font-medium text-[#333]">
               {report.target_job}
             </div>
           )}

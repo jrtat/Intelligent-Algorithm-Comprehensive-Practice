@@ -36,47 +36,42 @@ export function ReportCard({
   return (
     <section
       id={`section-${id}`}
-      className={`report-card ${className} ${isEditing ? 'editing' : ''}`}
-      style={{
-        border: isEditing ? '1px solid #2E86AB' : undefined,
-      }}
+      className={`group relative rounded-xl bg-white !p-6 shadow-md transition-all hover:shadow-lg ${isEditing ? 'ring-2 ring-[#1677ff] shadow-lg' : ''} ${className}`}
     >
-      <div className="report-card-header">
-        <h2 className="report-card-title">
+      <div className="!mb-4 items-center justify-between">
+        <h2 className="m-0 items-center gap-2 text-[24px] font-bold" style={{ color: '#1677ff' }}>
           {icon && <span className="material-symbols-outlined">{icon}</span>}
           {title}
         </h2>
 
-        <div className="report-card-actions">
+        <div className="report-card-actions !gap-2 opacity-0 transition-opacity group-hover:opacity-100">
           {isLoading ? (
-            <div className="loading-spinner" />
+            <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#DCDCDC] border-t-[#1677ff]" />
           ) : (
             <>
               {/* Save status feedback */}
               {saveStatus === 'saving' && (
-                <span className="save-status saving">保存中...</span>
+                <span className="inline-flex items-center rounded bg-[#E8F4F8] !px-3 !py-1 text-[12px]" style={{ color: '#1677ff' }}>
+                  保存中...
+                </span>
               )}
               {saveStatus === 'saved' && (
-                <span className="save-status saved">
-                  <span className="material-symbols-outlined" style={{ fontSize: 14, marginRight: 4 }}>
-                    check_circle
-                  </span>
+                <span className="inline-flex items-center rounded bg-green-100 !px-3 !py-1 text-[12px] text-green-600">
+                  <span className="material-symbols-outlined mr-1 text-[14px]">check_circle</span>
                   保存成功
                 </span>
               )}
               {saveStatus === 'error' && (
-                <span className="save-status error">
-                  <span className="material-symbols-outlined" style={{ fontSize: 14, marginRight: 4 }}>
-                    error
-                  </span>
+                <span className="inline-flex items-center rounded bg-red-100 !px-3 !py-1 text-[12px] text-red-600">
+                  <span className="material-symbols-outlined mr-1 text-[14px]">error</span>
                   保存失败
                 </span>
               )}
 
               {/* Polishing indicator */}
               {isPolishing && (
-                <div className="polishing-indicator">
-                  <div className="loading-spinner small" />
+                <div className="polishing-indicator items-center">
+                  <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-[#DCDCDC] border-t-[#FF9F43]" />
                 </div>
               )}
 
@@ -84,21 +79,15 @@ export function ReportCard({
               {isEditing ? (
                 <>
                   <button
-                    className="btn btn-outline"
+                    className="rounded-lg border border-[#DCDCDC] !px-3 !py-1.5 text-[13px] font-medium text-[#666] transition-colors hover:bg-gray-50"
                     onClick={onCancel}
-                    style={{ padding: '6px 12px', fontSize: 13 }}
                   >
                     取消
                   </button>
                   <button
-                    className="btn btn-primary"
+                    className="rounded-lg bg-[#1677ff] !px-3 !py-1.5 text-[13px] font-medium text-white transition-all hover:scale-105 disabled:opacity-50"
                     onClick={onSave}
                     disabled={saveStatus === 'saving'}
-                    style={{
-                      padding: '6px 12px',
-                      fontSize: 13,
-                      opacity: saveStatus === 'saving' ? 0.5 : 1,
-                    }}
                   >
                     保存
                   </button>
@@ -107,32 +96,23 @@ export function ReportCard({
                 <>
                   {onEdit && (
                     <button
-                      className="btn-icon edit-entry"
+                      className="edit-entry inline-flex items-center gap-1 rounded-lg border border-[#1677ff] !px-3 !py-1.5 text-[13px] transition-all hover:bg-[#1677ff]/10 hover:shadow"
                       onClick={onEdit}
                       title="编辑"
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 4,
-                        padding: '6px 12px',
-                        borderRadius: 8,
-                        color: '#2E86AB',
-                      }}
+                      style={{ color: '#1677ff' }}
                     >
-                      <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
-                        edit
-                      </span>
-                      <span style={{ fontSize: 13 }}>编辑</span>
+                      <span className="material-symbols-outlined text-[18px]">edit</span>
+                      <span>编辑</span>
                     </button>
                   )}
                   {onAIPolishModule && (
                     <button
-                      className="btn-icon btn-ai-polish-module"
+                      className="btn-ai-polish-module h-9 w-9 items-center justify-center rounded-lg hover:bg-[#FF9F43]/10 disabled:opacity-50"
                       onClick={() => onAIPolishModule(moduleId)}
                       title="AI润色"
                       disabled={isPolishing}
                     >
-                      <span className="material-symbols-outlined" style={{ fontSize: 18, color: '#FF9F43' }}>
+                      <span className="material-symbols-outlined text-[18px]" style={{ color: '#FF9F43' }}>
                         auto_fix_high
                       </span>
                     </button>

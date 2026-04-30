@@ -11,6 +11,7 @@ interface EditableObjectArrayProps {
   label?: string;
   addLabel?: string;
   addInitialValues?: Record<string, any>;
+  containerClassName?: string;
 }
 
 export function EditableObjectArray({
@@ -21,6 +22,7 @@ export function EditableObjectArray({
   label,
   addLabel = '添加',
   addInitialValues = {},
+  containerClassName = '',
 }: EditableObjectArrayProps) {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [isAdding, setIsAdding] = useState(false);
@@ -61,73 +63,38 @@ export function EditableObjectArray({
   return (
     <div className="editable-object-array">
       {label && (
-        <h4
-          style={{
-            fontSize: 14,
-            fontWeight: 500,
-            color: '#333',
-            marginBottom: 12,
-            paddingBottom: 8,
-            borderBottom: '1px solid #E8F4F8',
-          }}
-        >
+        <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[16px] font-medium text-[#333]">
           {label}
         </h4>
       )}
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 12,
-        }}
-      >
+      <div className={`grid !gap-3 !grid-cols-1 sm:!grid-cols-1 lg:!grid-cols-1 ${containerClassName}`}>
         {items.map((item, index) => (
           <div
             key={index}
-            className="object-card-wrapper"
-            style={{ position: 'relative' }}
+            className="object-card-wrapper group relative"
           >
             {renderItem(item, index)}
 
             {/* Action buttons on hover */}
             <div
-              className="object-card-actions"
-              style={{
-                position: 'absolute',
-                top: 8,
-                right: 8,
-                display: 'flex',
-                gap: 4,
-                opacity: 0,
-                transition: 'opacity 0.2s ease',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = '0')}
+              className="object-card-actions absolute !right-2 !top-2 flex !gap-1 !opacity-0 transition-opacity group-hover:opacity-100"
             >
               <button
-                className="btn-icon"
+                className="flex !h-8 !w-8 items-center justify-center rounded-md bg-white shadow-sm hover:bg-[#1677ff]/10"
                 onClick={() => handleEdit(index)}
                 title="编辑"
-                style={{
-                  background: 'white',
-                  boxShadow: '0 1px 4px rgba(0,0,0,0.1)',
-                }}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#666' }}>
+                <span className="material-symbols-outlined text-[16px]" style={{ color: '#666' }}>
                   edit
                 </span>
               </button>
               <button
-                className="btn-icon"
+                className="flex !h-8 !w-8 items-center justify-center rounded-md bg-white shadow-sm hover:bg-red-50"
                 onClick={() => handleDelete(index)}
                 title="删除"
-                style={{
-                  background: 'white',
-                  boxShadow: '0 1px 4px rgba(0,0,0,0.1)',
-                }}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#DC2626' }}>
+                <span className="material-symbols-outlined text-[16px]" style={{ color: '#DC2626' }}>
                   delete
                 </span>
               </button>
@@ -137,19 +104,12 @@ export function EditableObjectArray({
       </div>
 
       {/* Add button */}
-      <div style={{ marginTop: 16, textAlign: 'center' }}>
+      <div className="!mt-4 text-center">
         <button
-          className="btn btn-primary"
+          className="inline-flex items-center !gap-1 rounded-lg bg-[#1677ff] !px-4 !py-2 text-[16px] font-medium text-white transition-transform hover:scale-105"
           onClick={handleAdd}
-          style={{
-            padding: '8px 16px',
-            fontSize: 14,
-            borderRadius: 8,
-          }}
         >
-          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
-            add
-          </span>
+          <span className="material-symbols-outlined text-[18px]">add</span>
           {addLabel}
         </button>
       </div>

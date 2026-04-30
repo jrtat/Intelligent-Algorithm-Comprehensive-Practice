@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import { ReportCard } from '../ReportCard';
 import { GapCard } from '../ui/GapCard';
-import { EditableObjectArray } from '../ui/EditableObjectArray';
+import { EditableList } from '../ui/EditableList';
 import type { FormField } from '../ui/EditModal';
+import { EditableObjectArray } from '../ui/EditableObjectArray';
 import { useReport } from '../../context/ReportContext';
 import type { Gap } from '../../../../types/job';
+import { CollapsiblePanel } from '../ui/CollapsiblePanel';
+import { EditableField } from '../ui/EditableField';
+import { EditModal } from '../ui/EditModal';
 
 interface GapAnalysisCardProps {
   isEditing?: boolean;
@@ -86,6 +91,7 @@ export function GapAnalysisCard({
   onSave,
   onCancel,
   onAIPolishModule,
+  onAIPolishField,
   isPolishing = false,
   saveStatus = 'idle',
 }: GapAnalysisCardProps) {
@@ -105,6 +111,15 @@ export function GapAnalysisCard({
     });
   };
 
+  const handleCertChange = (items: string[]) => {
+    updateReport({
+      gap_analysis: {
+        ...report.gap_analysis,
+        certification_needs: items,
+      },
+    });
+  };
+
   return (
     <ReportCard
       id="gap-analysis"
@@ -120,17 +135,8 @@ export function GapAnalysisCard({
     >
       {/* 硬技能差距 */}
       {hard_skills_gaps && hard_skills_gaps.length > 0 && (
-        <div style={{ marginBottom: 24 }}>
-          <h4
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: '#333',
-              marginBottom: 12,
-              paddingBottom: 8,
-              borderBottom: '1px solid #E8F4F8',
-            }}
-          >
+        <>
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">
             硬技能差距
           </h4>
           {isEditing ? (
@@ -143,34 +149,19 @@ export function GapAnalysisCard({
               addInitialValues={{ skill: '', importance: '中', current_level: '无', target_level: '掌握', learning_resources: [] }}
             />
           ) : (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 12,
-              }}
-            >
+            <div className="w-full !p-4">
               {hard_skills_gaps.map((gap, index) => (
                 <GapCard key={index} gap={gap} showActions={false} />
               ))}
             </div>
           )}
-        </div>
+        </>
       )}
 
       {/* 软技能差距 */}
       {soft_skills_gaps && soft_skills_gaps.length > 0 && (
-        <div style={{ marginBottom: 24 }}>
-          <h4
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: '#333',
-              marginBottom: 12,
-              paddingBottom: 8,
-              borderBottom: '1px solid #E8F4F8',
-            }}
-          >
+        <>
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">
             软技能差距
           </h4>
           {isEditing ? (
@@ -183,35 +174,19 @@ export function GapAnalysisCard({
               addInitialValues={{ skill: '', importance: '中', current_level: '基础', target_level: '熟练', learning_resources: [] }}
             />
           ) : (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 12,
-                width: 'calc(100% + 48px)',
-              }}
-            >
+            <div className="w-full !p-3">
               {soft_skills_gaps.map((gap, index) => (
                 <GapCard key={index} gap={gap} showActions={false} />
               ))}
             </div>
           )}
-        </div>
+        </>
       )}
 
       {/* 经验差距 */}
       {experience_gaps && experience_gaps.length > 0 && (
-        <div style={{ marginBottom: 24 }}>
-          <h4
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: '#333',
-              marginBottom: 12,
-              paddingBottom: 8,
-              borderBottom: '1px solid #E8F4F8',
-            }}
-          >
+        <>
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold text-[#333]">
             经验差距
           </h4>
           {isEditing ? (
@@ -224,42 +199,38 @@ export function GapAnalysisCard({
               addInitialValues={{ skill: '', importance: '中', current_level: '无', target_level: '具备', learning_resources: [] }}
             />
           ) : (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 12,
-                width: 'calc(100% + 48px)',
-              }}
-            >
+            <div className="w-full !p-3">
               {experience_gaps.map((gap, index) => (
                 <GapCard key={index} gap={gap} showActions={false} />
               ))}
             </div>
           )}
-        </div>
+        </>
       )}
 
       {/* 证书需求 */}
       {certification_needs && certification_needs.length > 0 && (
         <div>
-          <h4
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: '#333',
-              marginBottom: 12,
-              paddingBottom: 8,
-              borderBottom: '1px solid #E8F4F8',
-            }}
-          >
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">
             证书需求
           </h4>
-          <ul className="list-with-bullets">
-            {certification_needs.map((cert, index) => (
-              <li key={index}>{cert}</li>
-            ))}
-          </ul>
+          {isEditing ? (
+            <EditableList
+              items={certification_needs}
+              onChange={handleCertChange}
+              label=""
+              addLabel="添加证书"
+              disabled={isPolishing}
+            />
+          ) : (
+            <ul className="list-none space-y-3 !p-3">
+              {certification_needs.map((cert, index) => (
+                <li key={index} className="relative !p-3 text-[16px] font-medium text-[#333] before:absolute before:left-0 before:text-[#1677ff] before:content-['-']">
+                  {cert}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </ReportCard>

@@ -86,11 +86,14 @@
   --color-accent: #FF9F43;
   --color-accent-hover: #E8891F;
 
-  /* Report-specific colors */
+  /* Report-specific colors (aligned to homepage blue #1677ff) */
+  --color-report-primary: #1677ff;
   --color-report-bg: #E8F4F8;
-  --color-report-primary: #2E86AB;
   --color-report-surface-alt: #F5F7FA;
   --color-report-border: #DCDCDC;
+  --color-report-dark: #333333;
+  --color-report-medium: #666666;
+  --color-report-light: #999999;
 
   /* Additional surface / UI colors (not in original theme) */
   --color-surface-raised: #f9fafb;
@@ -205,4 +208,38 @@ h1, h2, h3, h4, .headline { font-family: 'Manrope', 'Noto Sans SC', sans-serif; 
 
 body {
   margin: 0;
+}
+
+/* ==================== REPORT ANIMATIONS ==================== */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ==================== REPORT UTILITIES ==================== */
+.sidebar-transition { transition: left 0.3s ease, width 0.3s ease; }
+.no-print { /* Hidden during print */ }
+.print-show { /* Shown only during print */ }
+.animate-modal-fade { animation: modalFadeIn 0.2s ease; }
+.animate-modal-slide { animation: modalSlideIn 0.2s ease; }
+.animate-slide-down { animation: slideDown 0.3s ease; }
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  .no-print { display: none !important; }
+  .print-show { display: block !important; }
 }

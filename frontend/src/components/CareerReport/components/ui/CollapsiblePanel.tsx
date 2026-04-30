@@ -34,47 +34,45 @@ export function CollapsiblePanel({
   const isExpanded = forceExpanded || isPrinting || expanded;
 
   return (
-    <div className="collapsible-panel">
+    <div className="mb-3 overflow-hidden rounded-lg border border-[#DCDCDC]">
       <div
-        className="collapsible-header"
+        className="flex cursor-pointer items-center justify-between bg-[#F5F7FA] !px-4 !py-4 transition-colors hover:bg-[#E8F4F8]"
         onClick={() => setExpanded(!expanded)}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === 'Enter' && setExpanded(!expanded)}
       >
-        <div>
-          <span className="collapsible-title">{title}</span>
+        <div className="flex items-center gap-138">
+          <span className="text-[15px] font-medium text-[#333]">{title}</span>
           {subtitle && (
-            <span style={{ marginLeft: 8, fontSize: 12, color: '#999' }}>
-              {subtitle}
-            </span>
+            <span className="text-[12px] text-[#999]">{subtitle}</span>
           )}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div className="flex items-center gap-2">
           {isExpanded && (onEdit || onAIPolish) && (
             <div
-              style={{ display: 'flex', gap: 4 }}
+              className="flex gap-1"
               onClick={(e) => e.stopPropagation()}
             >
               {onEdit && (
-                <button className="btn-icon" onClick={onEdit}>
-                  <span className="material-symbols-outlined" style={{ fontSize: 16 }}>edit</span>
+                <button className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-[#1677ff]/10">
+                  <span className="material-symbols-outlined text-[15px]" style={{ color: '#666' }}>edit</span>
                 </button>
               )}
               {onAIPolish && (
-                <button className="btn-icon" onClick={onAIPolish}>
-                  <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#FF9F43' }}>auto_fix_high</span>
+                <button className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-[#FF9F43]/10">
+                  <span className="material-symbols-outlined text-[15px]" style={{ color: '#FF9F43' }}>auto_fix_high</span>
                 </button>
               )}
             </div>
           )}
-          <span className="material-symbols-outlined" style={{ fontSize: 20 }}>
+          <span className="material-symbols-outlined text-[20px]">
             {isExpanded ? 'expand_less' : 'expand_more'}
           </span>
         </div>
       </div>
 
-      {isExpanded && <div className="collapsible-content">{children}</div>}
+      {isExpanded && <div className="bg-white !px-2 !py-4">{children}</div>}
     </div>
   );
 }

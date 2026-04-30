@@ -94,44 +94,41 @@ export function EditModal({
 
   return (
     <div
-      className="modal-overlay"
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 animate-modal-fade"
       onClick={onCancel}
       onKeyDown={handleKeyDown}
       role="dialog"
       aria-modal="true"
     >
       <div
-        className="modal-content"
+        className="max-h-[80vh] w-[450px] max-w-[90%] overflow-y-auto rounded-xl bg-white p-6 shadow-2xl animate-modal-slide"
         onClick={(e) => e.stopPropagation()}
-        style={{ width, maxWidth: '90%' }}
+        style={{ width }}
       >
-        <div className="modal-header">
-          <h3 className="modal-title">{title}</h3>
-          <button className="btn-icon" onClick={onCancel}>
-            <span className="material-symbols-outlined">close</span>
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="m-0 text-[16px] font-bold text-[#333]">{title}</h3>
+          <button
+            className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-[#1677ff]/10"
+            onClick={onCancel}
+          >
+            <span className="material-symbols-outlined text-[20px]" style={{ color: '#666' }}>close</span>
           </button>
         </div>
 
-        <div className="modal-body" style={{ padding: '16px 0' }}>
+        <div className="space-y-4 py-4">
           {fields.map((field) => (
-            <div key={field.key} className="form-group">
-              <label
-                className="form-label"
-                style={{ color: '#999', fontWeight: 500 }}
-              >
+            <div key={field.key} className="mb-4">
+              <label className="mb-1.5 block text-[13px] font-medium text-[#999]">
                 {field.label}
-                {field.required && <span style={{ color: '#DC2626' }}> *</span>}
+                {field.required && <span className="text-red-500"> *</span>}
               </label>
 
               {field.type === 'select' ? (
                 <select
-                  className={`form-input ${errors[field.key] ? 'error' : ''}`}
+                  className={`w-full rounded-md border bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#DCDCDC] focus:border-[#1677ff] focus:ring-[#1677ff]/20'}`}
                   value={values[field.key] || ''}
                   onChange={(e) => handleChange(field.key, e.target.value)}
-                  style={{
-                    borderColor: errors[field.key] ? '#DC2626' : undefined,
-                    cursor: 'pointer',
-                  }}
+                  style={{ cursor: 'pointer' }}
                 >
                   <option value="">请选择</option>
                   {field.options?.map((opt) => (
@@ -141,30 +138,20 @@ export function EditModal({
                   ))}
                 </select>
               ) : field.type === 'textarea' ? (
-                <div style={{ position: 'relative' }}>
+                <div className="relative">
                   <textarea
-                    className={`form-input ${errors[field.key] ? 'error' : ''}`}
+                    className={`w-full resize-y rounded-md border bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
                     value={values[field.key] || ''}
                     onChange={(e) => handleChange(field.key, e.target.value)}
                     placeholder={field.placeholder}
                     maxLength={field.maxLength}
                     rows={4}
-                    style={{
-                      width: '100%',
-                      minHeight: '100px',
-                      resize: 'vertical',
-                      borderColor: errors[field.key] ? '#DC2626' : '#2E86AB',
-                    }}
+                    style={{ minHeight: '100px' }}
                   />
                   {field.maxLength && (
                     <div
-                      style={{
-                        position: 'absolute',
-                        right: 8,
-                        bottom: 8,
-                        fontSize: 11,
-                        color: (values[field.key]?.length || 0) > field.maxLength ? '#DC2626' : '#999',
-                      }}
+                      className="absolute bottom-2 right-2 text-[11px]"
+                      style={{ color: (values[field.key]?.length || 0) > field.maxLength ? '#DC2626' : '#999' }}
                     >
                       {(values[field.key] || '').length}/{field.maxLength}
                     </div>
@@ -173,21 +160,15 @@ export function EditModal({
               ) : (
                 <input
                   type={field.type}
-                  className={`form-input ${errors[field.key] ? 'error' : ''}`}
+                  className={`w-full rounded-md border bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
                   value={values[field.key] || ''}
                   onChange={(e) => handleChange(field.key, e.target.value)}
                   placeholder={field.placeholder}
-                  style={{
-                    borderColor: errors[field.key] ? '#DC2626' : '#2E86AB',
-                  }}
                 />
               )}
 
               {errors[field.key] && (
-                <div
-                  className="error-message"
-                  style={{ color: '#DC2626', fontSize: 12, marginTop: 4 }}
-                >
+                <div className="mt-1 text-[12px] text-red-500">
                   {errors[field.key]}
                 </div>
               )}
@@ -195,27 +176,23 @@ export function EditModal({
           ))}
         </div>
 
-        <div className="modal-footer">
+        <div className="mt-6 flex items-center justify-end gap-3">
           {showAIPolish && onAIPolish && (
-            <button className="btn btn-outline" onClick={onAIPolish}>
-              <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#FF9F43' }}>
+            <button className="inline-flex items-center gap-1 rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50">
+              <span className="material-symbols-outlined text-[16px]" style={{ color: '#FF9F43' }}>
                 auto_fix_high
               </span>
               AI润色
             </button>
           )}
-          <div style={{ flex: 1 }} />
-          <button className="btn btn-outline" onClick={onCancel}>
+          <div className="flex-1" />
+          <button className="rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50" onClick={onCancel}>
             取消
           </button>
           <button
-            className="btn btn-primary"
+            className="rounded-lg bg-[#1677ff] px-4 py-2 text-[14px] font-medium text-white transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
             onClick={handleSave}
             disabled={isSaveDisabled}
-            style={{
-              opacity: isSaveDisabled ? 0.5 : 1,
-              cursor: isSaveDisabled ? 'not-allowed' : 'pointer',
-            }}
           >
             保存
           </button>

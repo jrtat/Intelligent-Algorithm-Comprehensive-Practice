@@ -48,58 +48,56 @@ export function CandidateSummaryCard({
       isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
-      {/* 当前背景 */}
-      <div style={{ marginBottom: 20 }}>
-        <h4 style={{ fontSize: 14, color: '#666', marginBottom: 8, fontWeight: 500 }}>当前背景</h4>
-        {isEditing ? (
-          <EditableField
-            value={current_background}
-            onChange={(val) => handleFieldChange('current_background', val)}
-            onSave={onSave}
-            onAIPolish={() => onAIPolishField?.('candidate_summary.current_background')}
-            multiline
-            placeholder="请输入当前背景"
-            maxLength={2000}
-            showCharCount
+      {/* 统一的内边距与区块间距 */}
+      <div className="!p-4 sm:!p-6 space-y-6">
+        {/* 当前背景 */}
+        <div>
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">当前背景</h4>
+          {isEditing ? (
+            <EditableField
+              value={current_background}
+              onChange={(val) => handleFieldChange('current_background', val)}
+              onSave={onSave}
+              onAIPolish={() => onAIPolishField?.('candidate_summary.current_background')}
+              multiline
+              placeholder="请输入当前背景"
+              maxLength={2000}
+              showCharCount
+            />
+          ) : (
+            <p className="cursor-text rounded-lg bg-gray-50 !p-4 leading-relaxed text-gray-800">
+              {current_background}
+            </p>
+          )}
+        </div>
+
+        {/* 核心优势 */}
+        <div>
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">核心优势</h4>
+          <EditableList
+            items={core_strengths}
+            onChange={(items) => handleFieldChange('core_strengths', items)}
+            onAIPolishItem={(index) =>
+              onAIPolishField?.(`candidate_summary.core_strengths[${index}]`)
+            }
+            addLabel="添加优势"
+            disabled={isPolishing || !isEditing}
           />
-        ) : (
-          <p
-            style={{
-              lineHeight: 1.8,
-              color: '#333',
-              backgroundColor: '#F5F7FA',
-              padding: 16,
-              borderRadius: 8,
-              cursor: 'text',
-            }}
-          >
-            {current_background}
-          </p>
-        )}
-      </div>
+        </div>
 
-      {/* 核心优势 */}
-      <div style={{ marginBottom: 20 }}>
-        <EditableList
-          items={core_strengths}
-          onChange={(items) => handleFieldChange('core_strengths', items)}
-          onAIPolishItem={(index) => onAIPolishField?.(`candidate_summary.core_strengths[${index}]`)}
-          label="核心优势"
-          addLabel="添加优势"
-          disabled={isPolishing || !isEditing}
-        />
-      </div>
-
-      {/* 待提升领域 */}
-      <div>
-        <EditableList
-          items={areas_for_improvement}
-          onChange={(items) => handleFieldChange('areas_for_improvement', items)}
-          onAIPolishItem={(index) => onAIPolishField?.(`candidate_summary.areas_for_improvement[${index}]`)}
-          label="待提升领域"
-          addLabel="添加领域"
-          disabled={isPolishing || !isEditing}
-        />
+        {/* 待提升领域 */}
+        <div>
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">待提升领域</h4>
+          <EditableList
+            items={areas_for_improvement}
+            onChange={(items) => handleFieldChange('areas_for_improvement', items)}
+            onAIPolishItem={(index) =>
+              onAIPolishField?.(`candidate_summary.areas_for_improvement[${index}]`)
+            }
+            addLabel="添加领域"
+            disabled={isPolishing || !isEditing}
+          />
+        </div>
       </div>
     </ReportCard>
   );

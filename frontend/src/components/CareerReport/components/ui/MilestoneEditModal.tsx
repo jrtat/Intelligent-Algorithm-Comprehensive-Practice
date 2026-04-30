@@ -129,28 +129,33 @@ export function MilestoneBatchEditModal({
 
   return (
     <>
-      <div className="modal-overlay" onClick={onCancel}>
+      <div
+        className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 animate-modal-fade"
+        onClick={onCancel}
+      >
         <div
-          className="modal-content"
+          className="w-[500px] max-h-[80vh] max-w-[90%] overflow-y-auto rounded-xl bg-white p-6 shadow-2xl animate-modal-slide"
           onClick={(e) => e.stopPropagation()}
-          style={{ width: 500, maxWidth: '90%' }}
         >
-          <div className="modal-header">
-            <h3 className="modal-title">批量修改里程碑</h3>
-            <button className="btn-icon" onClick={onCancel}>
-              <span className="material-symbols-outlined">close</span>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="m-0 text-[16px] font-bold text-[#333]">批量修改里程碑</h3>
+            <button
+              className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-[#1677ff]/10"
+              onClick={onCancel}
+            >
+              <span className="material-symbols-outlined text-[20px]" style={{ color: '#666' }}>close</span>
             </button>
           </div>
 
-          <div style={{ padding: '16px 0' }}>
-            <p style={{ fontSize: 14, color: '#666', marginBottom: 16 }}>
+          <div className="py-4">
+            <p className="mb-4 text-[14px] text-[#666]">
               已选择 <strong>{selectedCount}</strong> 个里程碑
             </p>
 
-            <div style={{ marginBottom: 16 }}>
-              <label className="form-label">统一修改状态</label>
+            <div className="mb-4">
+              <label className="mb-1.5 block text-[13px] font-medium text-[#999]">统一修改状态</label>
               <select
-                className="form-input"
+                className="w-full rounded-md border border-[#DCDCDC] bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                 value={values.status || ''}
                 onChange={(e) => setValues({ ...values, status: e.target.value })}
                 style={{ cursor: 'pointer' }}
@@ -162,42 +167,28 @@ export function MilestoneBatchEditModal({
               </select>
             </div>
 
-            <div style={{ marginBottom: 16 }}>
-              <label className="form-label">统一修改完成时限</label>
+            <div className="mb-4">
+              <label className="mb-1.5 block text-[13px] font-medium text-[#999]">统一修改完成时限</label>
               <input
                 type="text"
-                className="form-input"
+                className="w-full rounded-md border border-[#1677ff] bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                 value={values.deadline || ''}
                 onChange={(e) => setValues({ ...values, deadline: e.target.value })}
                 placeholder="如：2026-06"
-                style={{ borderColor: '#2E86AB' }}
               />
             </div>
 
             {/* Preview selected milestones */}
-            <div
-              style={{
-                maxHeight: 200,
-                overflow: 'auto',
-                border: '1px solid #E8F4F8',
-                borderRadius: 8,
-                padding: 12,
-              }}
-            >
+            <div className="max-h-[200px] overflow-auto rounded-lg border border-[#E8F4F8] p-3">
               {milestones
                 .filter((m) => selectedIds.includes(m.id))
                 .map((m) => (
                   <div
                     key={m.id}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      padding: '8px 0',
-                      borderBottom: '1px solid #E8F4F8',
-                    }}
+                    className="flex items-center justify-between border-b border-[#E8F4F8] py-2 last:border-b-0"
                   >
-                    <span style={{ color: '#333' }}>{m.name}</span>
-                    <span style={{ color: '#999', fontSize: 12 }}>
+                    <span className="text-[#333]">{m.name}</span>
+                    <span className="text-[12px] text-[#999]">
                       {m.status === 'pending'
                         ? '未开始'
                         : m.status === 'in_progress'
@@ -209,18 +200,17 @@ export function MilestoneBatchEditModal({
             </div>
           </div>
 
-          <div className="modal-footer">
-            <button className="btn btn-outline" onClick={onCancel}>
+          <div className="mt-6 flex items-center justify-end gap-3">
+            <button
+              className="rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50"
+              onClick={onCancel}
+            >
               取消
             </button>
             <button
-              className="btn btn-primary"
+              className="rounded-lg bg-[#1677ff] px-4 py-2 text-[14px] font-medium text-white transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
               onClick={handleSave}
               disabled={!values.status && !values.deadline}
-              style={{
-                opacity: !values.status && !values.deadline ? 0.5 : 1,
-                cursor: !values.status && !values.deadline ? 'not-allowed' : 'pointer',
-              }}
             >
               确认批量修改
             </button>

@@ -85,7 +85,7 @@ export function ActionPlanCard({
         >
           {isEditing && editingSection === 'short_term' ? (
             <div>
-              <div style={{ marginBottom: 12 }}>
+              <div className="mb-3">
                 <EditableField
                   value={short_term_plan.duration || ''}
                   onChange={(val) => handleTopLevelFieldChange('short_term_plan', 'duration', val)}
@@ -94,12 +94,9 @@ export function ActionPlanCard({
                   placeholder="如：1-6个月"
                 />
               </div>
-
               {short_term_plan.learning_path && (
-                <div style={{ marginBottom: 16 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    学习路径
-                  </h5>
+                <div className="mb-4">
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">学习路径</h5>
                   <EditableList
                     items={short_term_plan.learning_path.courses || []}
                     onChange={(items) => handleFieldChange('short_term_plan', 'learning_path', 'courses', items)}
@@ -110,9 +107,8 @@ export function ActionPlanCard({
                   />
                 </div>
               )}
-
               {short_term_plan.certifications && (
-                <div style={{ marginBottom: 16 }}>
+                <div className="mb-4">
                   <EditableList
                     items={short_term_plan.certifications}
                     onChange={(items) => handleTopLevelFieldChange('short_term_plan', 'certifications', items)}
@@ -123,71 +119,43 @@ export function ActionPlanCard({
                   />
                 </div>
               )}
-
               <button
-                className="btn btn-primary"
+                className="mt-3 rounded-lg bg-[#1677ff] !px-3 !py-1.5 text-[13px] font-medium text-white transition-all hover:scale-105"
                 onClick={() => setEditingSection(null)}
-                style={{ padding: '6px 12px', fontSize: 13, marginTop: 12 }}
               >
                 完成编辑
               </button>
             </div>
           ) : (
-            <div>
-              {/* 学习路径 */}
+            <div className="space-y-4">
               {short_term_plan.learning_path && (
-                <div style={{ marginBottom: 16 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    学习路径
-                  </h5>
-                  <div style={{ fontSize: 13, color: '#333' }}>
-                    <p>
-                      <strong>课程：</strong>
-                      {short_term_plan.learning_path.courses?.join('、')}
-                    </p>
-                    <p>
-                      <strong>书籍：</strong>
-                      {short_term_plan.learning_path.books?.join('、')}
-                    </p>
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">学习路径</h5>
+                  <div className="text-[15px] text-[#333]">
+                    <p><strong>课程：</strong>{short_term_plan.learning_path.courses?.join('、')}</p>
+                    <p><strong>书籍：</strong>{short_term_plan.learning_path.books?.join('、')}</p>
                   </div>
                 </div>
               )}
-
-              {/* 证书 */}
               {short_term_plan.certifications && short_term_plan.certifications.length > 0 && (
-                <div style={{ marginBottom: 16 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    获取证书
-                  </h5>
-                  <ul className="list-with-bullets">
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">获取证书</h5>
+                  <ul className="list-none space-y-2 pl-0">
                     {short_term_plan.certifications.map((cert, i) => (
-                      <li key={i}>{cert}</li>
+                      <li key={i} className="relative !pl-5 text-[#333] before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#1677ff]">
+                        {cert}
+                      </li>
                     ))}
                   </ul>
                 </div>
               )}
-
-              {/* 量化目标 */}
               {short_term_plan.quantifiable_goals && short_term_plan.quantifiable_goals.length > 0 && (
                 <div>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    量化目标
-                  </h5>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">量化目标</h5>
                   {short_term_plan.quantifiable_goals.map((goal, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        padding: 8,
-                        backgroundColor: '#F5F7FA',
-                        borderRadius: 6,
-                        marginBottom: 8,
-                        fontSize: 13,
-                      }}
-                    >
+                    <div key={i} className="mb-2 rounded-md bg-[#F5F7FA] p-2 text-[15px]">
                       <strong>{goal.metric}:</strong> {goal.target_value}
-                      <div style={{ color: '#999', fontSize: 12 }}>
-                        衡量方式: {goal.measurement_method}
-                      </div>
+                      <div className="mt-1 text-[12px] text-[#999]">衡量方式: {goal.measurement_method}</div>
                     </div>
                   ))}
                 </div>
@@ -207,7 +175,7 @@ export function ActionPlanCard({
         >
           {isEditing && editingSection === 'mid_term' ? (
             <div>
-              <div style={{ marginBottom: 12 }}>
+              <div className="mb-3">
                 <EditableField
                   value={mid_term_plan.duration || ''}
                   onChange={(val) => handleTopLevelFieldChange('mid_term_plan', 'duration', val)}
@@ -216,49 +184,30 @@ export function ActionPlanCard({
                   placeholder="如：6-12个月"
                 />
               </div>
-
               <button
-                className="btn btn-primary"
+                className="mt-3 rounded-lg bg-[#1677ff] px-3 py-1.5 text-[13px] font-medium text-white transition-all hover:scale-105"
                 onClick={() => setEditingSection(null)}
-                style={{ padding: '6px 12px', fontSize: 13, marginTop: 12 }}
               >
                 完成编辑
               </button>
             </div>
           ) : (
-            <div>
+            <div className="space-y-4">
               {mid_term_plan.advanced_learning && (
-                <div style={{ marginBottom: 16 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    进阶学习
-                  </h5>
-                  <div style={{ fontSize: 13, color: '#333' }}>
-                    <p>
-                      <strong>高级课程：</strong>
-                      {mid_term_plan.advanced_learning.advanced_courses?.join('、')}
-                    </p>
-                    <p>
-                      <strong>专业培训：</strong>
-                      {mid_term_plan.advanced_learning.professional_training?.join('、')}
-                    </p>
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">进阶学习</h5>
+                  <div className="text-[15px] text-[#333]">
+                    <p><strong>高级课程：</strong>{mid_term_plan.advanced_learning.advanced_courses?.join('、')}</p>
+                    <p><strong>专业培训：</strong>{mid_term_plan.advanced_learning.professional_training?.join('、')}</p>
                   </div>
                 </div>
               )}
-
               {mid_term_plan.industry_engagement && (
-                <div style={{ marginBottom: 16 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    行业参与
-                  </h5>
-                  <div style={{ fontSize: 13, color: '#333' }}>
-                    <p>
-                      <strong>会议：</strong>
-                      {mid_term_plan.industry_engagement.conferences?.join('、')}
-                    </p>
-                    <p>
-                      <strong>技术沙龙：</strong>
-                      {mid_term_plan.industry_engagement.tech_meetups?.join('、')}
-                    </p>
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">行业参与</h5>
+                  <div className="text-[15px] text-[#333]">
+                    <p><strong>会议：</strong>{mid_term_plan.industry_engagement.conferences?.join('、')}</p>
+                    <p><strong>技术沙龙：</strong>{mid_term_plan.industry_engagement.tech_meetups?.join('、')}</p>
                   </div>
                 </div>
               )}
@@ -276,7 +225,7 @@ export function ActionPlanCard({
         >
           {isEditing && editingSection === 'evaluation' ? (
             <div>
-              <div style={{ marginBottom: 12 }}>
+              <div className="mb-3">
                 <EditableField
                   value={evaluation_framework.evaluation_cycles?.self_assessment || ''}
                   onChange={(val) =>
@@ -291,86 +240,48 @@ export function ActionPlanCard({
                   placeholder="请输入自评周期说明"
                 />
               </div>
-
               <button
-                className="btn btn-primary"
+                className="mt-3 rounded-lg bg-[#1677ff] px-3 py-1.5 text-[13px] font-medium text-white transition-all hover:scale-105"
                 onClick={() => setEditingSection(null)}
-                style={{ padding: '6px 12px', fontSize: 13, marginTop: 12 }}
               >
                 完成编辑
               </button>
             </div>
           ) : (
-            <div>
+            <div className="space-y-4">
               {evaluation_framework.evaluation_cycles && (
-                <div style={{ marginBottom: 16 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    评估周期
-                  </h5>
-                  <div style={{ fontSize: 13, color: '#333' }}>
-                    <p>
-                      <strong>自评：</strong>
-                      {evaluation_framework.evaluation_cycles.self_assessment}
-                    </p>
-                    <p>
-                      <strong>深度复盘：</strong>
-                      {evaluation_framework.evaluation_cycles.deep_review}
-                    </p>
-                    <p>
-                      <strong>年度总结：</strong>
-                      {evaluation_framework.evaluation_cycles.annual_review}
-                    </p>
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">评估周期</h5>
+                  <div className="text-[15px] text-[#333]">
+                    <p><strong>自评：</strong>{evaluation_framework.evaluation_cycles.self_assessment}</p>
+                    <p><strong>深度复盘：</strong>{evaluation_framework.evaluation_cycles.deep_review}</p>
+                    <p><strong>年度总结：</strong>{evaluation_framework.evaluation_cycles.annual_review}</p>
                   </div>
                 </div>
               )}
-
-              {evaluation_framework.quantitative_metrics &&
-                evaluation_framework.quantitative_metrics.length > 0 && (
-                  <div style={{ marginBottom: 16 }}>
-                    <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                      量化指标
-                    </h5>
-                    {evaluation_framework.quantitative_metrics.map((metric, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          padding: 8,
-                          backgroundColor: '#F5F7FA',
-                          borderRadius: 6,
-                          marginBottom: 8,
-                          fontSize: 13,
-                        }}
-                      >
-                        <strong>{metric.metric_name}:</strong>
-                        <div style={{ color: '#666' }}>
-                          {'scale' in metric && metric.scale && <span>范围: {metric.scale}</span>}
-                          {'unit' in metric && metric.unit && <span>单位: {metric.unit}</span>}
-                          {' | '}
-                          <span style={{ color: '#2E86AB' }}>目标: {metric.target_progression}</span>
-                        </div>
+              {evaluation_framework.quantitative_metrics && evaluation_framework.quantitative_metrics.length > 0 && (
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">量化指标</h5>
+                  {evaluation_framework.quantitative_metrics.map((metric, i) => (
+                    <div key={i} className="mb-2 rounded-md bg-[#F5F7FA] p-2 text-[15px]">
+                      <strong>{metric.metric_name}:</strong>
+                      <div className="mt-1 text-[#666]">
+                        {'scale' in metric && metric.scale && <span>范围: {metric.scale}</span>}
+                        {'unit' in metric && metric.unit && <span>单位: {metric.unit}</span>}
+                        {' | '}
+                        <span style={{ color: '#1677ff' }}>目标: {metric.target_progression}</span>
                       </div>
-                    ))}
-                  </div>
-                )}
-
+                    </div>
+                  ))}
+                </div>
+              )}
               {evaluation_framework.risk_warning && (
                 <div>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>
-                    风险预警
-                  </h5>
-                  <div style={{ fontSize: 13, color: '#333' }}>
-                    <p>
-                      <strong>潜在障碍：</strong>
-                      {evaluation_framework.risk_warning.potential_obstacles?.join('、')}
-                    </p>
-                    <p>
-                      <strong>预警信号：</strong>
-                      {evaluation_framework.risk_warning.early_warning_signs?.join('、')}
-                    </p>
-                    <p>
-                      <strong>应对方案：</strong>
-                      {evaluation_framework.risk_warning.contingency_plans?.join('、')}
-                    </p>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">风险预警</h5>
+                  <div className="text-[15px] text-[#333]">
+                    <p><strong>潜在障碍：</strong>{evaluation_framework.risk_warning.potential_obstacles?.join('、')}</p>
+                    <p><strong>预警信号：</strong>{evaluation_framework.risk_warning.early_warning_signs?.join('、')}</p>
+                    <p><strong>应对方案：</strong>{evaluation_framework.risk_warning.contingency_plans?.join('、')}</p>
                   </div>
                 </div>
               )}

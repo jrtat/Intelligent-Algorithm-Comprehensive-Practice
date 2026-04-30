@@ -21,41 +21,11 @@ interface CareerPathCardProps {
 }
 
 const stageFields: FormField[] = [
-  {
-    key: 'stage_name',
-    label: '阶段名称',
-    type: 'text',
-    placeholder: '如：初级测试工程师',
-    required: true,
-    maxLength: 50,
-  },
-  {
-    key: 'typical_duration',
-    label: '典型时长',
-    type: 'text',
-    placeholder: '如：1-2年',
-  },
-  {
-    key: 'core_requirements',
-    label: '核心要求',
-    type: 'textarea',
-    placeholder: '请输入核心要求（每行一个）',
-    maxLength: 300,
-  },
-  {
-    key: 'key_responsibilities',
-    label: '关键职责',
-    type: 'textarea',
-    placeholder: '请输入关键职责（每行一个）',
-    maxLength: 300,
-  },
-  {
-    key: 'promotion_criteria',
-    label: '晋升标准',
-    type: 'textarea',
-    placeholder: '请输入晋升标准',
-    maxLength: 200,
-  },
+  { key: 'stage_name', label: '阶段名称', type: 'text', placeholder: '如：初级测试工程师', required: true, maxLength: 50 },
+  { key: 'typical_duration', label: '典型时长', type: 'text', placeholder: '如：1-2年' },
+  { key: 'core_requirements', label: '核心要求', type: 'textarea', placeholder: '请输入核心要求（每行一个）', maxLength: 300 },
+  { key: 'key_responsibilities', label: '关键职责', type: 'textarea', placeholder: '请输入关键职责（每行一个）', maxLength: 300 },
+  { key: 'promotion_criteria', label: '晋升标准', type: 'textarea', placeholder: '请输入晋升标准', maxLength: 200 },
 ];
 
 export function CareerPathCard({
@@ -107,27 +77,17 @@ export function CareerPathCard({
   };
 
   const renderStageCard = (stage: Record<string, any>, _index: number) => (
-    <div
-      style={{
-        padding: 12,
-        backgroundColor: '#F5F7FA',
-        borderRadius: 8,
-        marginBottom: 12,
-        position: 'relative',
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-        <span style={{ fontWeight: 500, color: '#333' }}>{stage.stage_name}</span>
-        <span style={{ fontSize: 12, color: '#999' }}>{stage.typical_duration}</span>
+    <div className="relative !mb-3 rounded-lg bg-[#F5F7FA] !p-3">
+      <div className="!mb-2 flex items-center justify-between">
+        <span className="font-medium text-[#333]">{stage.stage_name}</span>
+        <span className="text-[16px] text-[#999]">{stage.typical_duration}</span>
       </div>
-      <div style={{ fontSize: 13, color: '#666' }}>
+      <div className="text-[16px] text-[#666]">
         <div>
           <strong>核心要求：</strong>
-          {Array.isArray(stage.core_requirements)
-            ? stage.core_requirements.join('、')
-            : stage.core_requirements}
+          {Array.isArray(stage.core_requirements) ? stage.core_requirements.join('、') : stage.core_requirements}
         </div>
-        <div style={{ marginTop: 4 }}>
+        <div className="mt-1">
           <strong>晋升标准：</strong>
           {stage.promotion_criteria}
         </div>
@@ -148,17 +108,13 @@ export function CareerPathCard({
       isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
-      {/* 进度概览 */}
-      <div className="progress-tracker" style={{ marginBottom: 20 }}>
-        <span style={{ fontSize: 14, color: '#666' }}>规划进度</span>
-        <div className="progress-bar">
-          <div className="progress-fill" style={{ width: '0%' }} />
-        </div>
-        <span className="progress-text">0%</span>
-      </div>
-
-      {/* 职业目标 */}
-      <div style={{ marginBottom: 20 }}>
+    {/* 职业目标 */}
+    <div className="mb-5 !p-8">
+      <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">
+            职业目标
+          </h4>
+      <ul className="list-none space-y-3 !p-3"></ul>
+        {/* 短期目标 */}
         <CollapsiblePanel
           title="短期目标"
           subtitle={`（${career_goals?.short_term?.duration || ''}）`}
@@ -167,25 +123,24 @@ export function CareerPathCard({
         >
           {isEditing && editingGoal === 'short_term' ? (
             <div>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ fontSize: 13, color: '#999', marginBottom: 4, display: 'block' }}>时长</label>
+              <div className="!p-3">
+                <label className="!mb-1 block text-[16px] text-[#999]">时长</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="w-full rounded-md border border-[#1677ff] bg-white !px-4 !py-3 text-[16px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                   value={career_goals?.short_term?.duration || ''}
                   onChange={(e) => handleGoalFieldChange('short_term', 'duration', e.target.value)}
                   placeholder="如：1-6个月"
-                  style={{ borderColor: '#2E86AB' }}
                 />
               </div>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ fontSize: 13, color: '#999', marginBottom: 4, display: 'block' }}>目标描述</label>
+              <div className="!mb-3">
+                <label className="!mb-1 block text-[16px] text-[#999]">目标描述</label>
                 <textarea
-                  className="form-input"
+                  className="w-full rounded-md border border-[#1677ff] bg-white !px-3 !py-2 text-[16px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                   value={career_goals?.short_term?.goal_description || ''}
                   onChange={(e) => handleGoalFieldChange('short_term', 'goal_description', e.target.value)}
                   rows={3}
-                  style={{ borderColor: '#2E86AB', minHeight: '80px' }}
+                  style={{ minHeight: '80px' }}
                 />
               </div>
               <EditableList
@@ -196,31 +151,29 @@ export function CareerPathCard({
                 addLabel="添加里程碑"
                 disabled={isPolishing}
               />
-              <div style={{ marginTop: 12 }}>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => setEditingGoal(null)}
-                  style={{ padding: '6px 12px', fontSize: 13 }}
-                >
-                  完成编辑
-                </button>
-              </div>
+              <button
+              className="!mt-3 rounded-lg bg-[#1677ff] !px-3 !py-1.5 text-[16px] font-medium text-white transition-all hover:scale-105"
+                onClick={() => setEditingGoal(null)}
+              >
+                完成编辑
+              </button>
             </div>
           ) : (
             <div>
-              <p style={{ lineHeight: 1.6, color: '#333', marginBottom: 12 }}>
-                {career_goals?.short_term?.goal_description}
-              </p>
-              <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>关键里程碑</h5>
-              <ul className="list-with-bullets">
+              <p className="!mb-3 leading-relaxed text-[#333]">{career_goals?.short_term?.goal_description}</p>
+              <h5 className="!mb-2 text-[16px] font-medium text-[#666]">关键里程碑</h5>
+              <ul className="list-none space-y-3 !pl-0">
                 {career_goals?.short_term?.key_milestones?.map((m, i) => (
-                  <li key={i}>{m}</li>
+                  <li key={i} className="relative !pl-5 text-[#333] before:absolute before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#1677ff] before:top-2">
+                    {m}
+                  </li>
                 ))}
               </ul>
             </div>
           )}
         </CollapsiblePanel>
 
+        {/* 中期目标 */}
         <CollapsiblePanel
           title="中期目标"
           subtitle={`（${career_goals?.mid_term?.duration || ''}）`}
@@ -229,25 +182,24 @@ export function CareerPathCard({
         >
           {isEditing && editingGoal === 'mid_term' ? (
             <div>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ fontSize: 13, color: '#999', marginBottom: 4, display: 'block' }}>时长</label>
+              <div className="!mb-3">
+                <label className="!mb-1 block text-[16px] text-[#999]">时长</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="w-full rounded-md border border-[#1677ff] bg-white !px-3 !py-2 text-[16px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                   value={career_goals?.mid_term?.duration || ''}
                   onChange={(e) => handleGoalFieldChange('mid_term', 'duration', e.target.value)}
                   placeholder="如：6-12个月"
-                  style={{ borderColor: '#2E86AB' }}
                 />
               </div>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ fontSize: 13, color: '#999', marginBottom: 4, display: 'block' }}>目标描述</label>
+              <div className="!mb-3">
+                <label className="!mb-1 block text-[16px] text-[#999]">目标描述</label>
                 <textarea
-                  className="form-input"
+                  className="w-full rounded-md border border-[#1677ff] bg-white !px-3 !py-2 text-[16px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                   value={career_goals?.mid_term?.goal_description || ''}
                   onChange={(e) => handleGoalFieldChange('mid_term', 'goal_description', e.target.value)}
                   rows={3}
-                  style={{ borderColor: '#2E86AB', minHeight: '80px' }}
+                  style={{ minHeight: '80px' }}
                 />
               </div>
               <EditableList
@@ -258,31 +210,29 @@ export function CareerPathCard({
                 addLabel="添加里程碑"
                 disabled={isPolishing}
               />
-              <div style={{ marginTop: 12 }}>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => setEditingGoal(null)}
-                  style={{ padding: '6px 12px', fontSize: 13 }}
-                >
-                  完成编辑
-                </button>
-              </div>
+              <button
+                className="!mt-3 rounded-lg bg-[#1677ff] !px-3 !py-1.5 text-[16px] font-medium text-white transition-all hover:scale-105"
+                onClick={() => setEditingGoal(null)}
+              >
+                完成编辑
+              </button>
             </div>
           ) : (
             <div>
-              <p style={{ lineHeight: 1.6, color: '#333', marginBottom: 12 }}>
-                {career_goals?.mid_term?.goal_description}
-              </p>
-              <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>关键里程碑</h5>
-              <ul className="list-with-bullets">
+              <p className="!mb-3 leading-relaxed text-[#333]">{career_goals?.mid_term?.goal_description}</p>
+              <h5 className="!mb-2 text-[16px] font-medium text-[#666]">关键里程碑</h5>
+              <ul className="list-none space-y-3 !pl-0">
                 {career_goals?.mid_term?.key_milestones?.map((m, i) => (
-                  <li key={i}>{m}</li>
+                  <li key={i} className="relative !pl-5 text-[#333] before:absolute before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#1677ff] before:top-2">
+                    {m}
+                  </li>
                 ))}
               </ul>
             </div>
           )}
         </CollapsiblePanel>
 
+        {/* 长期目标 */}
         <CollapsiblePanel
           title="长期目标"
           subtitle={`（${career_goals?.long_term?.duration || ''}）`}
@@ -291,25 +241,24 @@ export function CareerPathCard({
         >
           {isEditing && editingGoal === 'long_term' ? (
             <div>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ fontSize: 13, color: '#999', marginBottom: 4, display: 'block' }}>时长</label>
+              <div className="!mb-3">
+                <label className="!mb-1 block text-[16px] text-[#999]">时长</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="w-full rounded-md border border-[#1677ff] bg-white !px-3 !py-2 text-[16px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                   value={career_goals?.long_term?.duration || ''}
                   onChange={(e) => handleGoalFieldChange('long_term', 'duration', e.target.value)}
                   placeholder="如：1年以上"
-                  style={{ borderColor: '#2E86AB' }}
                 />
               </div>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ fontSize: 13, color: '#999', marginBottom: 4, display: 'block' }}>目标描述</label>
+              <div className="!mb-3">
+                <label className="!mb-1 block text-[16px] text-[#999]">目标描述</label>
                 <textarea
-                  className="form-input"
+                  className="w-full rounded-md border border-[#1677ff] bg-white !px-3 !py-2 text-[16px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                   value={career_goals?.long_term?.goal_description || ''}
                   onChange={(e) => handleGoalFieldChange('long_term', 'goal_description', e.target.value)}
                   rows={3}
-                  style={{ borderColor: '#2E86AB', minHeight: '80px' }}
+                  style={{ minHeight: '80px' }}
                 />
               </div>
               <EditableList
@@ -320,25 +269,22 @@ export function CareerPathCard({
                 addLabel="添加里程碑"
                 disabled={isPolishing}
               />
-              <div style={{ marginTop: 12 }}>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => setEditingGoal(null)}
-                  style={{ padding: '6px 12px', fontSize: 13 }}
-                >
-                  完成编辑
-                </button>
-              </div>
+              <button
+                className="!mt-3 rounded-lg bg-[#1677ff] !px-3 !py-1.5 text-[16px] font-medium text-white transition-all hover:scale-105"
+                onClick={() => setEditingGoal(null)}
+              >
+                完成编辑
+              </button>
             </div>
           ) : (
             <div>
-              <p style={{ lineHeight: 1.6, color: '#333', marginBottom: 12 }}>
-                {career_goals?.long_term?.goal_description}
-              </p>
-              <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>关键里程碑</h5>
-              <ul className="list-with-bullets">
+              <p className="!mb-3 leading-relaxed text-[#333]">{career_goals?.long_term?.goal_description}</p>
+              <h5 className="!mb-2 text-[16px] font-medium text-[#666]">关键里程碑</h5>
+              <ul className="list-none space-y-3 !pl-0">
                 {career_goals?.long_term?.key_milestones?.map((m, i) => (
-                  <li key={i}>{m}</li>
+                  <li key={i} className="relative !pl-5 text-[#333] before:absolute before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[#1677ff] before:top-2">
+                    {m}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -348,93 +294,64 @@ export function CareerPathCard({
 
       {/* 行业趋势 */}
       {industry_trends && (
-        <div style={{ marginBottom: 20 }}>
-          <h4
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: '#333',
-              marginBottom: 12,
-              paddingBottom: 8,
-              borderBottom: '1px solid #E8F4F8',
-            }}
-          >
+        <div className="mb-5 !p-8">
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">
             行业趋势
           </h4>
-          <div style={{ fontSize: 13, color: '#666', lineHeight: 1.8 }}>
+          <div className="space-y-3 !p-3 text-[16px] leading-relaxed text-[#666]">
             {isEditing ? (
               <>
-                <div style={{ marginBottom: 12 }}>
-                  <EditableField
-                    value={industry_trends.social_demand}
-                    onChange={(val) => handleIndustryTrendChange('social_demand', val)}
-                    onSave={onSave}
-                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.social_demand')}
-                    label="市场需求"
-                    multiline
-                    placeholder="请输入市场需求"
-                    maxLength={500}
-                    showCharCount
-                  />
-                </div>
-                <div style={{ marginBottom: 12 }}>
-                  <EditableField
-                    value={industry_trends.technology_trends}
-                    onChange={(val) => handleIndustryTrendChange('technology_trends', val)}
-                    onSave={onSave}
-                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.technology_trends')}
-                    label="技术趋势"
-                    multiline
-                    placeholder="请输入技术趋势"
-                    maxLength={500}
-                    showCharCount
-                  />
-                </div>
-                <div style={{ marginBottom: 12 }}>
-                  <EditableField
-                    value={industry_trends.market_changes}
-                    onChange={(val) => handleIndustryTrendChange('market_changes', val)}
-                    onSave={onSave}
-                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.market_changes')}
-                    label="市场变化"
-                    multiline
-                    placeholder="请输入市场变化"
-                    maxLength={500}
-                    showCharCount
-                  />
-                </div>
-                <div>
-                  <EditableField
-                    value={industry_trends.salary_trends}
-                    onChange={(val) => handleIndustryTrendChange('salary_trends', val)}
-                    onSave={onSave}
-                    onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.salary_trends')}
-                    label="薪资趋势"
-                    multiline
-                    placeholder="请输入薪资趋势"
-                    maxLength={500}
-                    showCharCount
-                  />
-                </div>
+                <EditableField
+                  value={industry_trends.social_demand}
+                  onChange={(val) => handleIndustryTrendChange('social_demand', val)}
+                  onSave={onSave}
+                  onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.social_demand')}
+                  label="市场需求"
+                  multiline
+                  placeholder="请输入市场需求"
+                  maxLength={500}
+                  showCharCount
+                />
+                <EditableField
+                  value={industry_trends.technology_trends}
+                  onChange={(val) => handleIndustryTrendChange('technology_trends', val)}
+                  onSave={onSave}
+                  onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.technology_trends')}
+                  label="技术趋势"
+                  multiline
+                  placeholder="请输入技术趋势"
+                  maxLength={500}
+                  showCharCount
+                />
+                <EditableField
+                  value={industry_trends.market_changes}
+                  onChange={(val) => handleIndustryTrendChange('market_changes', val)}
+                  onSave={onSave}
+                  onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.market_changes')}
+                  label="市场变化"
+                  multiline
+                  placeholder="请输入市场变化"
+                  maxLength={500}
+                  showCharCount
+                />
+                <EditableField
+                  value={industry_trends.salary_trends}
+                  onChange={(val) => handleIndustryTrendChange('salary_trends', val)}
+                  onSave={onSave}
+                  onAIPolish={() => onAIPolishField?.('career_path_planning.industry_trends.salary_trends')}
+                  label="薪资趋势"
+                  multiline
+                  placeholder="请输入薪资趋势"
+                  maxLength={500}
+                  showCharCount
+                />
               </>
             ) : (
               <>
-                <p>
-                  <strong>市场需求：</strong>
-                  {industry_trends.social_demand}
-                </p>
-                <p>
-                  <strong>技术趋势：</strong>
-                  {industry_trends.technology_trends}
-                </p>
-                <p>
-                  <strong>市场变化：</strong>
-                  {industry_trends.market_changes}
-                </p>
-                <p>
-                  <strong>薪资趋势：</strong>
-                  {industry_trends.salary_trends}
-                </p>
+                <p><strong>市场需求：</strong>{industry_trends.social_demand}</p>
+                <p><strong>技术趋势：</strong>{industry_trends.technology_trends}</p>
+                <p><strong>市场变化：</strong>{industry_trends.market_changes}</p>
+                <p><strong>薪资趋势：</strong>{industry_trends.salary_trends}</p>
               </>
             )}
           </div>
@@ -443,19 +360,11 @@ export function CareerPathCard({
 
       {/* 发展路径 */}
       {development_path?.path_stages && development_path.path_stages.length > 0 && (
-        <div>
-          <h4
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: '#333',
-              marginBottom: 12,
-              paddingBottom: 8,
-              borderBottom: '1px solid #E8F4F8',
-            }}
-          >
-            发展阶段
+        <div className="mb-5 !p-8">
+          <h4 className="!mb-3 border-b border-[#E8F4F8] !pb-2 text-[18px] !font-bold  text-[#333]">
+            发展路径
           </h4>
+          <div className="space-y-3 !p-2 text-[16px] leading-relaxed text-[#666]"></div>
           {isEditing ? (
             <EditableObjectArray
               items={development_path.path_stages}
@@ -463,38 +372,21 @@ export function CareerPathCard({
               fields={stageFields}
               renderItem={renderStageCard}
               addLabel="添加阶段"
-              addInitialValues={{
-                stage_name: '',
-                level: 1,
-                typical_duration: '',
-                core_requirements: [],
-                key_responsibilities: [],
-                promotion_criteria: '',
-              }}
+              addInitialValues={{ stage_name: '', level: 1, typical_duration: '', core_requirements: [], key_responsibilities: [], promotion_criteria: '' }}
             />
           ) : (
             development_path.path_stages.map((stage, index) => (
-              <div
-                key={index}
-                style={{
-                  padding: 12,
-                  backgroundColor: '#F5F7FA',
-                  borderRadius: 8,
-                  marginBottom: 12,
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontWeight: 500, color: '#333' }}>{stage.stage_name}</span>
-                  <span style={{ fontSize: 12, color: '#999' }}>{stage.typical_duration}</span>
+              <div key={index} className="mb-3 rounded-lg bg-[#F5F7FA] !p-3">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="font-medium text-[#333]">{stage.stage_name}</span>
+                  <span className="text-[16px] text-[#999]">{stage.typical_duration}</span>
                 </div>
-                <div style={{ fontSize: 13, color: '#666' }}>
+                <div className="text-[16px] text-[#666]">
                   <div>
                     <strong>核心要求：</strong>
-                    {Array.isArray(stage.core_requirements)
-                      ? stage.core_requirements.join('、')
-                      : stage.core_requirements}
+                    {Array.isArray(stage.core_requirements) ? stage.core_requirements.join('、') : stage.core_requirements}
                   </div>
-                  <div style={{ marginTop: 4 }}>
+                  <div className="mt-1">
                     <strong>晋升标准：</strong>
                     {stage.promotion_criteria}
                   </div>

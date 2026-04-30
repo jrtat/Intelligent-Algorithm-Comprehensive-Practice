@@ -77,46 +77,30 @@ export function EditableList({
   return (
     <div className="editable-list">
       {label && (
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: 8,
-        }}>
-          <h4 style={{
-            fontSize: 14,
-            fontWeight: 500,
-            color: '#666',
-            margin: 0,
-          }}>
-            {label}
-          </h4>
+        <div className="!mb-2 flex items-center justify-between">
+          <h4 className="m-0 text-[16px] font-medium text-[#666]">{label}</h4>
           {onAIPolishAll && !disabled && (
             <button
-              className="btn-ai-polish-inline"
+              className="inline-flex items-center !gap-1 rounded-md border border-[#FF9F43] !px-2 !py-1 text-[12px] text-[#FF9F43] transition-colors hover:bg-[rgba(255,159,67,0.1)]"
               onClick={onAIPolishAll}
               title="AI润色"
             >
-              <span className="material-symbols-outlined" style={{ fontSize: 14 }}>auto_fix_high</span>
+              <span className="material-symbols-outlined text-[16px]">auto_fix_high</span>
               AI润色
             </button>
           )}
         </div>
       )}
 
-      <ul className="list-with-bullets" style={{ position: 'relative' }}>
+      <ul className="list-none !pl-0" style={{ position: 'relative' }}>
         {items.map((item, index) => (
           <li
             key={index}
-            style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
-              paddingRight: editingIndex === index ? 0 : 80,
-            }}
+            className="group relative !mb-3 flex items-start justify-between"
+            style={{ paddingRight: editingIndex === index ? 0 : '80px' }}
           >
             {editingIndex === index ? (
-              <div style={{ flex: 1, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+              <div className="flex !flex-1 !gap-2">
                 <input
                   type="text"
                   value={editValue}
@@ -126,81 +110,56 @@ export function EditableList({
                     if (e.key === 'Escape') handleEditCancel();
                   }}
                   autoFocus
-                  className="form-input"
-                  style={{
-                    flex: 1,
-                    borderColor: '#2E86AB',
-                  }}
+                  className="flex-1 rounded-md border border-[#1677ff] bg-white !px-3 !py-2 text-[14px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                 />
                 <button
-                  className="btn btn-primary"
+                  className="rounded-md bg-[#1677ff] !px-3 !py-1.5 text-[13px] font-medium text-white transition-transform hover:scale-105"
                   onClick={handleEditSave}
-                  style={{ padding: '6px 12px', fontSize: 13 }}
                 >
                   保存
                 </button>
                 <button
-                  className="btn btn-outline"
+                  className="rounded-md border border-[#DCDCDC] !px-3 !py-1.5 text-[13px] font-medium text-[#666] transition-colors hover:bg-gray-50"
                   onClick={handleEditCancel}
-                  style={{ padding: '6px 12px', fontSize: 13 }}
                 >
                   取消
                 </button>
               </div>
             ) : (
               <>
-                <span
-                  style={{
-                    color: '#333',
-                    flex: 1,
-                    cursor: disabled ? 'default' : 'text',
-                  }}
-                >
-                  {item}
+                <span className={`flex-1 ${disabled ? 'cursor-default' : 'cursor-text'} text-[#333]`}>
+                  · {item}
                 </span>
                 {!disabled && (
                   <div
-                    className="item-actions"
-                    style={{
-                      display: 'flex',
-                      gap: 4,
-                      opacity: 0,
-                      transition: 'opacity 0.2s ease',
-                      position: 'absolute',
-                      right: 0,
-                      top: 0,
-                      background: 'white',
-                      paddingLeft: 8,
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '0')}
+                    className="item-actions absolute right-0 top-0 flex gap-1 bg-white !pl-2 opacity-0 transition-opacity group-hover:opacity-100"
                   >
                     <button
-                      className="btn-icon"
+                      className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-[#1677ff]/10"
                       onClick={() => handleEditStart(index)}
                       title="编辑"
                     >
-                      <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#666' }}>
+                      <span className="material-symbols-outlined text-[16px]" style={{ color: '#666' }}>
                         edit
                       </span>
                     </button>
                     {onAIPolishItem && (
                       <button
-                        className="btn-icon"
+                        className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-[#FF9F43]/10"
                         onClick={() => onAIPolishItem(index)}
                         title="AI润色"
                       >
-                        <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#FF9F43' }}>
+                        <span className="material-symbols-outlined text-[16px]" style={{ color: '#FF9F43' }}>
                           auto_fix_high
                         </span>
                       </button>
                     )}
                     <button
-                      className="btn-icon"
+                      className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-red-50"
                       onClick={() => setDeleteIndex(index)}
                       title="删除"
                     >
-                      <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#DC2626' }}>
+                      <span className="material-symbols-outlined text-[16px]" style={{ color: '#DC2626' }}>
                         delete
                       </span>
                     </button>
@@ -214,9 +173,9 @@ export function EditableList({
 
       {/* Add button / form */}
       {!disabled && (
-        <div style={{ marginTop: 12, textAlign: 'center' }}>
+        <div className="mt-3 text-center">
           {isAdding ? (
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
+            <div className="flex justify-center gap-2">
               <input
                 type="text"
                 value={addValue}
@@ -227,38 +186,28 @@ export function EditableList({
                 }}
                 placeholder={placeholder}
                 autoFocus
-                className="form-input"
-                style={{ width: 200, borderColor: '#2E86AB' }}
+                className="w-[200px] rounded-md border border-[#1677ff] bg-white !px-3 !py-2 text-[14px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
               />
               <button
-                className="btn btn-primary"
+                className="rounded-md bg-[#1677ff] !px-3 !py-1.5 text-[13px] font-medium text-white transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
                 onClick={handleAddSave}
                 disabled={!addValue.trim()}
-                style={{ padding: '6px 12px', fontSize: 13 }}
               >
                 提交
               </button>
               <button
-                className="btn btn-outline"
+                className="rounded-md border border-[#DCDCDC] !px-3 !py-1.5 text-[13px] font-medium text-[#666] transition-colors hover:bg-gray-50"
                 onClick={handleAddCancel}
-                style={{ padding: '6px 12px', fontSize: 13 }}
               >
                 取消
               </button>
             </div>
           ) : (
             <button
-              className="btn btn-primary"
+              className="inline-flex items-center gap-1 rounded-lg bg-[#1677ff] !px-4 !py-1.5 text-[13px] font-medium text-white transition-transform hover:scale-105"
               onClick={handleAddStart}
-              style={{
-                padding: '6px 16px',
-                fontSize: 13,
-                borderRadius: 8,
-              }}
             >
-              <span className="material-symbols-outlined" style={{ fontSize: 16 }}>
-                add
-              </span>
+              <span className="material-symbols-outlined text-[16px]">add</span>
               {addLabel}
             </button>
           )}

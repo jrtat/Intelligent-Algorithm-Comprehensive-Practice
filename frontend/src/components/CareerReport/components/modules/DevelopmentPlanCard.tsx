@@ -52,9 +52,7 @@ export function DevelopmentPlanCard({
     });
   };
 
-  const calculateProgress = () => {
-    return 0;
-  };
+  const calculateProgress = () => 0;
 
   return (
     <ReportCard
@@ -69,14 +67,6 @@ export function DevelopmentPlanCard({
       isPolishing={isPolishing}
       saveStatus={saveStatus}
     >
-      {/* 进度概览 */}
-      <div className="progress-tracker" style={{ marginBottom: 20 }}>
-        <span style={{ fontSize: 14, color: '#666' }}>计划进度</span>
-        <div className="progress-bar">
-          <div className="progress-fill" style={{ width: `${calculateProgress()}%` }} />
-        </div>
-        <span className="progress-text">{calculateProgress()}%</span>
-      </div>
 
       {/* 各阶段 */}
       {phases.map((phaseKey) => {
@@ -93,21 +83,17 @@ export function DevelopmentPlanCard({
           >
             {isEditing && editingPhase === phaseKey ? (
               <div>
-                <div style={{ marginBottom: 12 }}>
-                  <label style={{ fontSize: 13, color: '#999', marginBottom: 4, display: 'block' }}>
-                    阶段时长
-                  </label>
+                <div className="mb-3">
+                  <label className="mb-1 block text-[13px] text-[#999]">阶段时长</label>
                   <input
                     type="text"
-                    className="form-input"
+                    className="w-full rounded-md border border-[#1677ff] bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:border-[#1677ff] focus:outline-none focus:ring-2 focus:ring-[#1677ff]/20"
                     value={phase.duration || ''}
                     onChange={(e) => handlePhaseFieldChange(phaseKey, 'duration', e.target.value)}
                     placeholder="如：1-2个月"
-                    style={{ borderColor: '#2E86AB' }}
                   />
                 </div>
-
-                <div style={{ marginBottom: 12 }}>
+                <div className="mb-3 !p-3">
                   <EditableList
                     items={phase.goals || []}
                     onChange={(items) => handlePhaseFieldChange(phaseKey, 'goals', items)}
@@ -117,8 +103,7 @@ export function DevelopmentPlanCard({
                     disabled={isPolishing}
                   />
                 </div>
-
-                <div style={{ marginBottom: 12 }}>
+                <div className="mb-3">
                   <EditableList
                     items={phase.actions || []}
                     onChange={(items) => handlePhaseFieldChange(phaseKey, 'actions', items)}
@@ -128,8 +113,7 @@ export function DevelopmentPlanCard({
                     disabled={isPolishing}
                   />
                 </div>
-
-                <div style={{ marginBottom: 12 }}>
+                <div className="mb-3 !p-3">
                   <EditableList
                     items={phase.milestones || []}
                     onChange={(items) => handlePhaseFieldChange(phaseKey, 'milestones', items)}
@@ -139,40 +123,42 @@ export function DevelopmentPlanCard({
                     disabled={isPolishing}
                   />
                 </div>
-
                 <button
-                  className="btn btn-primary"
+                  className="mt-3 rounded-lg bg-[#1677ff] px-3 py-1.5 text-[13px] font-medium text-white transition-all hover:scale-105"
                   onClick={() => setEditingPhase(null)}
-                  style={{ padding: '6px 12px', fontSize: 13, marginTop: 12 }}
                 >
                   完成编辑
                 </button>
               </div>
             ) : (
-              <div>
-                <div style={{ marginBottom: 12 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>目标</h5>
-                  <ul className="list-with-bullets">
-                    {phase.goals?.map((goal, i) => (
-                      <li key={i}>{goal}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div style={{ marginBottom: 12 }}>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>行动</h5>
-                  <ul className="list-with-bullets">
-                    {phase.actions?.map((action, i) => (
-                      <li key={i}>{action}</li>
-                    ))}
-                  </ul>
-                </div>
-
+              <div className="space-y-4">
                 <div>
-                  <h5 style={{ fontSize: 13, fontWeight: 500, color: '#666', marginBottom: 8 }}>里程碑</h5>
-                  <ul className="list-with-bullets">
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">目标</h5>
+                  <ul className="list-none space-y-2 pl-0">
+                    {phase.goals?.map((goal, i) => (
+                      <li key={i} className="relative !pl-5 text-[15px] text-[#333] before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5  before:bg-[#1677ff]">
+                        {goal}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">行动</h5>
+                  <ul className="list-none space-y-2 pl-0">
+                    {phase.actions?.map((action, i) => (
+                      <li key={i} className="relative !pl-5 text-[15px] text-[#333] before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5  before:bg-[#1677ff]">
+                        {action}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h5 className="mb-2 text-[16px] font-medium text-[#666]">里程碑</h5>
+                  <ul className="list-none space-y-2 pl-0">
                     {phase.milestones?.map((m, i) => (
-                      <li key={i}>{m}</li>
+                      <li key={i} className="relative !pl-5 text-[15px] text-[#333] before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5  before:bg-[#1677ff]">
+                        {m}
+                      </li>
                     ))}
                   </ul>
                 </div>

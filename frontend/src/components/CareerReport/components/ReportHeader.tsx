@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useReport } from '../context/ReportContext';
 
 interface ReportHeaderProps {
@@ -20,35 +21,71 @@ export function ReportHeader({ onAIPolish, onExportPDF }: ReportHeaderProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <header className="report-header">
-      <div className="report-header-left">
-        <h1 className="report-header-title">职业报告与行动计划</h1>
-        <p className="report-header-subtitle">
+    <header
+      className="report-header sticky z-[100] flex items-center justify-between bg-white !px-6"
+      style={{
+        height: '60px',
+        borderBottom: '1px solid #DCDCDC',
+        top: '0px',
+      }}
+    >
+      {/* Left: Breadcrumb */}
+      <div className="flex items-center">
+        <span className="flex items-center !text-[16px]">
+          <Link to="/" className="text-[#666] no-underline transition-colors hover:text-[#1677ff]">首页 </Link>
+          <span className="mx-2 text-[#999]"> / </span>
+          <span className="text-[#1677ff] font-medium"> 职业报告</span>
+        </span>
+      </div>
+
+      {/* Center: Title and Subtitle */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+        <h1 className="m-0 text-[18px] font-bold text-[#333]">职业报告与行动计划</h1>
+        <p className="m-0 text-[12px] text-[#999]">
           {report?.target_job || '目标岗位'} · {currentYear} {getSeason()}策略
         </p>
       </div>
 
-      <div className="report-header-actions">
+      {/* Right: Action Buttons */}
+      <div className="flex items-center gap-3">
         {saveStatus !== 'idle' && (
-          <span className={`save-status ${saveStatus}`}>
+          <span
+            className={`save-status rounded !px-3 !py-1 text-[12px] ${
+              saveStatus === 'saving'
+                ? 'bg-[#E8F4F8] text-[#1677ff]'
+                : saveStatus === 'saved'
+                  ? 'bg-green-100 text-green-600'
+                  : 'bg-red-100 text-red-600'
+            }`}
+          >
             {saveStatus === 'saving' && '保存中...'}
             {saveStatus === 'saved' && '已保存'}
             {saveStatus === 'error' && '保存失败'}
           </span>
         )}
 
-        <button className="btn btn-accent" onClick={onAIPolish}>
-          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>auto_fix_high</span>
+        <button
+          className="inline-flex items-center gap-1 rounded-lg !px-4 !py-2 text-[14px] font-medium text-white transition-all hover:scale-105"
+          style={{ backgroundColor: '#FF9F43' }}
+          onClick={onAIPolish}
+        >
+          <span className="material-symbols-outlined text-[18px]">auto_fix_high</span>
           AI润色
         </button>
 
-        <button className="btn btn-primary" onClick={saveReport}>
-          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>save</span>
+        <button
+          className="inline-flex items-center gap-1 rounded-lg bg-[#1677ff] !px-4 !py-2 text-[14px] font-medium text-white transition-all hover:scale-105"
+          onClick={saveReport}
+        >
+          <span className="material-symbols-outlined text-[18px]">save</span>
           保存
         </button>
 
-        <button className="btn btn-outline" onClick={onExportPDF}>
-          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>picture_as_pdf</span>
+        <button
+          className="inline-flex items-center gap-1 rounded-lg border border-[#DCDCDC] !px-4 !py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50"
+          onClick={onExportPDF}
+        >
+          <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span>
           导出PDF
         </button>
       </div>

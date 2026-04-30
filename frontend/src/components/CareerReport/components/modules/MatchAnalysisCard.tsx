@@ -40,7 +40,7 @@ export function MatchAnalysisCard({
       case '低':
         return '#DC2626';
       default:
-        return '#2E86AB';
+        return '#1677ff';
     }
   };
 
@@ -67,47 +67,30 @@ export function MatchAnalysisCard({
       saveStatus={saveStatus}
     >
       {/* 评分区域 */}
-      <div style={{ marginBottom: 20 }}>
+      <div className="!mb-5">
         <ScoreBar label="技能匹配" score={skill_match_score} />
         <ScoreBar label="经验匹配" score={experience_match_score} />
         <ScoreBar label="综合评分" score={overall_match_score} />
       </div>
 
       {/* 综合等级 */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 12,
-          marginBottom: 20,
-          padding: '12px 16px',
-          backgroundColor: '#F5F7FA',
-          borderRadius: 8,
-        }}
-      >
-        <span style={{ fontSize: 14, color: '#666' }}>匹配等级：</span>
+      <div className="!mb-5 flex items-center !gap-3 rounded-lg bg-[#F5F7FA] !p-3">
+        <span className="text-[16px] text-[#666]">匹配等级：</span>
         <span
-          style={{
-            display: 'inline-block',
-            padding: '4px 16px',
-            backgroundColor: getMatchLevelColor(match_level),
-            color: 'white',
-            borderRadius: 12,
-            fontWeight: 500,
-            fontSize: 14,
-          }}
+          className="inline-block rounded-full !px-4 !py-1 text-[16px] font-medium text-white"
+          style={{ backgroundColor: getMatchLevelColor(match_level) }}
         >
           {match_level}
         </span>
-        <span style={{ fontSize: 20, fontWeight: 'bold', color: '#2E86AB' }}>
+        <span className="text-[20px] font-bold" style={{ color: '#1677ff' }}>
           {overall_match_score}
         </span>
-        <span style={{ fontSize: 13, color: '#999' }}>分</span>
+        <span className="text-[16px] text-[#999]">分</span>
       </div>
 
-      {/* 学历匹配说明 */}
+      {/* 学历适配说明 */}
       <div>
-        <h4 style={{ fontSize: 14, color: '#666', marginBottom: 8, fontWeight: 500 }}>
+        <h4 className="!mb-2 text-[16px] font-medium text-[#666]">
           学历适配说明
         </h4>
         {isEditing ? (
@@ -122,7 +105,7 @@ export function MatchAnalysisCard({
             showCharCount
           />
         ) : (
-          <p style={{ lineHeight: 1.6, color: '#333' }}>{education_fit}</p>
+          <p className="leading-relaxed text-[#333]">{education_fit}</p>
         )}
       </div>
     </ReportCard>

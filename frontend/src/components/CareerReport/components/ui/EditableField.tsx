@@ -88,44 +88,24 @@ export function EditableField({
   if (!isEditing) {
     return (
       <div
-        className={`editable-field-display ${className}`}
+        className={`group relative cursor-text rounded-md border border-transparent px-3 !py-2 transition-all hover:border-[#1677ff]/20 hover:bg-[#1677ff]/5 ${disabled ? 'cursor-default' : ''} ${className}`}
         onClick={() => !disabled && setIsEditing(true)}
-        style={{
-          cursor: disabled ? 'default' : 'text',
-          minHeight: multiline ? '40px' : undefined,
-          padding: '8px 12px',
-          border: '1px solid transparent',
-          borderRadius: '6px',
-          transition: 'all 0.2s ease',
-          position: 'relative',
-        }}
       >
-        <span style={{ color: value ? '#333' : '#999', lineHeight: 1.6 }}>
+        <span className={`leading-relaxed ${value ? 'text-[#333]' : 'text-[#999]'}`}>
           {value || placeholder}
         </span>
         {!disabled && (
-          <div
-            className="edit-icon-overlay"
-            style={{
-              position: 'absolute',
-              right: 8,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              opacity: 0,
-              transition: 'opacity 0.2s ease',
-            }}
-          >
+          <div className="edit-icon-overlay absolute right-2 top-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100">
             {onAIPolish && (
               <button
-                className="btn-icon"
+                className="flex !h-7 !w-7 items-center justify-center rounded-md hover:bg-[#1677ff]/10"
                 onClick={(e) => {
                   e.stopPropagation();
                   onAIPolish();
                 }}
                 title="AI润色"
-                style={{ marginRight: 4 }}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#FF9F43' }}>
+                <span className="material-symbols-outlined text-[16px]" style={{ color: '#FF9F43' }}>
                   auto_fix_high
                 </span>
               </button>
@@ -137,15 +117,9 @@ export function EditableField({
   }
 
   return (
-    <div className={`editable-field-edit ${className}`} style={{ position: 'relative' }}>
+    <div className={`relative ${className}`}>
       {label && (
-        <label style={{
-          display: 'block',
-          fontSize: 13,
-          color: '#999',
-          marginBottom: 6,
-          fontWeight: 500,
-        }}>
+        <label className="!mb-1.5 block text-[16px] font-medium text-[#999]">
           {label}
         </label>
       )}
@@ -157,14 +131,8 @@ export function EditableField({
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           placeholder={placeholder}
-          className={`form-input ${error ? 'error' : ''}`}
-          style={{
-            width: '100%',
-            minHeight: '80px',
-            resize: 'vertical',
-            borderColor: error ? '#DC2626' : '#2E86AB',
-            paddingRight: onAIPolish ? 60 : 12,
-          }}
+          className={`!w-full resize-none rounded-md border bg-white px-3 !py-2 text-[16px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${error ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
+          style={{ minHeight: '80px', paddingRight: onAIPolish ? '50px' : '12px' }}
         />
       ) : (
         <input
@@ -174,51 +142,34 @@ export function EditableField({
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           placeholder={placeholder}
-          className={`form-input ${error ? 'error' : ''}`}
-          style={{
-            width: '100%',
-            borderColor: error ? '#DC2626' : '#2E86AB',
-            paddingRight: onAIPolish ? 60 : 12,
-          }}
+          className={`!w-full rounded-md border bg-white px-3 !py-2 text-[16px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${error ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
+          style={{ paddingRight: onAIPolish ? '50px' : '12px' }}
         />
       )}
       {showCharCount && maxLength && (
-        <div
-          className={`char-count ${editValue.length > maxLength ? 'over-limit' : ''}`}
-          style={{
-            textAlign: 'right',
-            marginTop: 4,
-            fontSize: 11,
-            color: editValue.length > maxLength ? '#DC2626' : '#999',
-          }}
-        >
+        <div className={`!mt-1 text-right text-[11px] ${editValue.length > maxLength ? 'text-red-500' : 'text-[#999]'}`}>
           {editValue.length}/{maxLength}
         </div>
       )}
       {error && (
-        <div className="error-message" style={{ color: '#DC2626', fontSize: 12, marginTop: 4 }}>
+        <div className="!mt-1 text-[12px] text-red-500">
           {error}
         </div>
       )}
       {isEditing && onAIPolish && (
         <div
-          style={{
-            position: 'absolute',
-            right: 8,
-            top: label ? 36 : 8,
-            display: 'flex',
-            gap: 4,
-          }}
+          className="absolute !right-2 flex items-start !gap-1"
+          style={{ top: label ? '36px' : '10px' }}
         >
           <button
-            className="btn-icon"
+            className="flex h-7 w-7 items-center justify-center rounded-md hover:bg-[#FF9F43]/10"
             onClick={(e) => {
               e.stopPropagation();
               onAIPolish();
             }}
             title="AI润色"
           >
-            <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#FF9F43' }}>
+            <span className="material-symbols-outlined text-[16px]" style={{ color: '#FF9F43' }}>
               auto_fix_high
             </span>
           </button>

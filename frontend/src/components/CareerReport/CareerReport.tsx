@@ -14,7 +14,6 @@ import { FinalRecommendationCard } from './components/modules/FinalRecommendatio
 import { AIPolishModal, type PolishSettings } from './components/ui/AIPolishModal';
 import { AIPolishComparePanel } from './components/ui/AIPolishComparePanel';
 import { polishReport } from './components/ui/AIPolishUtils';
-import './CareerReport.css';
 
 function ReportContent() {
   const navigate = useNavigate();
@@ -78,7 +77,6 @@ function ReportContent() {
     setPolishing(true);
     setPolishProgress(0);
 
-    // Simulate progress for UX
     const progressInterval = setInterval(() => {
       setPolishProgress(prev => Math.min(prev + 10, 90));
     }, 500);
@@ -131,132 +129,91 @@ function ReportContent() {
 
   const isModuleEditing = (moduleId: string) => editingModuleId === moduleId;
 
-  // 无数据提示
+  // No data state
   if (state.noDataReason) {
-    const messages = {
-      no_resume: {
-        title: '请先上传简历',
-        description: '在能力分析页面填写您的简历信息，然后进行岗位匹配',
-        buttonText: '前往上传简历',
-        buttonLink: '/capability-analysis',
-      },
-      no_job_matched: {
-        title: '请先进行岗位匹配',
-        description: '在岗位匹配页面选择心仪的岗位，生成深度解析报告',
-        buttonText: '前往岗位匹配',
-        buttonLink: '/job-match',
-      },
-      no_report: {
-        title: '请生成职业报告',
-        description: '在岗位深度解析页面点击"获取专项提升报告"',
-        buttonText: '前往深度解析',
-        buttonLink: '/job-match',
-      },
+    const messages: Record<string, { title: string; description: string; buttonText: string; buttonLink: string }> = {
+      no_resume: { title: '请先上传简历', description: '在能力分析页面填写您的简历信息，然后进行岗位匹配', buttonText: '前往上传简历', buttonLink: '/capability-analysis' },
+      no_job_matched: { title: '请先进行岗位匹配', description: '在岗位匹配页面选择心仪的岗位，生成深度解析报告', buttonText: '前往岗位匹配', buttonLink: '/job-match' },
+      no_report: { title: '请生成职业报告', description: '在岗位深度解析页面点击"获取专项提升报告"', buttonText: '前往深度解析', buttonLink: '/job-match' },
     };
 
     const msg = messages[state.noDataReason];
 
     return (
-      <div className="career-report">
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '70vh',
-          padding: '40px 20px',
-          textAlign: 'center',
-        }}>
-          <div style={{
-            width: 80,
-            height: 80,
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 24,
-          }}>
-            <span className="material-symbols-outlined" style={{ fontSize: 40, color: 'white' }}>
-              description
-            </span>
-          </div>
-          <h2 style={{ fontSize: 24, fontWeight: 'bold', color: '#333', marginBottom: 12 }}>
-            {msg.title}
-          </h2>
-          <p style={{ fontSize: 16, color: '#666', marginBottom: 32, maxWidth: 400 }}>
-            {msg.description}
-          </p>
-          <button
-            onClick={() => navigate(msg.buttonLink)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              padding: '12px 32px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              borderRadius: 8,
-              border: 'none',
-              fontWeight: 'bold',
-              fontSize: 14,
-              cursor: 'pointer',
-            }}
-          >
-            {msg.buttonText}
-            <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
-              arrow_forward
-            </span>
-          </button>
+      <div className="min-h-[70vh] items-center justify-center !p-10 text-center">
+        <div
+          className="mb-6 h-20 w-20 items-center justify-center rounded-full"
+          style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
+        >
+          <span className="material-symbols-outlined text-[40px] text-white">description</span>
         </div>
+        <h2 className="mb-3 text-[24px] font-bold text-[#333]">{msg.title}</h2>
+        <p className="mb-8 max-w-[400px] text-[16px] text-[#666]">{msg.description}</p>
+        <button
+          onClick={() => navigate(msg.buttonLink)}
+          className="inline-flex cursor-pointer items-center gap-2 rounded-lg border-0 !px-8 !py-3 text-[14px] font-bold text-white transition-all hover:scale-105"
+          style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
+        >
+          {msg.buttonText}
+          <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="career-report">
+    <div className="career-report relative min-h-screen overflow-hidden" style={{ backgroundColor: '#E8F4F8' }}>
       {/* Cache restored notification */}
       {state.showCacheRestored && (
-        <div className="cache-notification">
-          <span className="material-symbols-outlined" style={{ fontSize: 16, marginRight: 8 }}>
-            restore
-          </span>
+        <div
+          className="fixed left-1/2 z-[1000] items-center rounded-lg !px-6 !py-3 text-[14px] shadow-lg animate-slide-down"
+          style={{ top: '80px', transform: 'translateX(-50%)', backgroundColor: '#D1FAE5', color: '#059669' }}
+        >
+          <span className="material-symbols-outlined mr-2 text-[16px]">restore</span>
           已加载上次编辑内容
         </div>
       )}
 
       {/* Polish success notification */}
       {state.polishSuccess && (
-        <div className="polish-notification success">
-          <span className="material-symbols-outlined" style={{ fontSize: 16, marginRight: 8 }}>
-            check_circle
-          </span>
+        <div
+          className="fixed left-1/2 z-[1000] items-center rounded-lg !px-6 !py-3 text-[14px] shadow-lg animate-slide-down"
+          style={{ top: '80px', transform: 'translateX(-50%)', backgroundColor: '#D1FAE5', color: '#059669' }}
+        >
+          <span className="material-symbols-outlined mr-2 text-[16px]">check_circle</span>
           {state.polishSuccess}
         </div>
       )}
 
       {/* Polish error notification */}
       {state.polishError && (
-        <div className="polish-notification error">
-          <span className="material-symbols-outlined" style={{ fontSize: 16, marginRight: 8 }}>
-            error
-          </span>
+        <div
+          className="fixed left-1/2 z-[1000] items-center rounded-lg !px-6 !py-3 text-[14px] shadow-lg animate-slide-down"
+          style={{ top: '80px', transform: 'translateX(-50%)', backgroundColor: '#FEE2E2', color: '#DC2626' }}
+        >
+          <span className="material-symbols-outlined mr-2 text-[16px]">error</span>
           {state.polishError}
         </div>
       )}
 
       {/* Global progress bar */}
       {state.isPolishing && (
-        <div className="polish-progress-bar">
-          <div className="polish-progress-fill" style={{ width: `${polishProgress}%` }} />
+        <div className="fixed left-0 right-0 z-[99]" style={{ top: '60px', height: '3px', backgroundColor: '#E8F4F8' }}>
+          <div
+            className="h-full transition-all duration-300"
+            style={{ width: `${polishProgress}%`, background: 'linear-gradient(90deg, #FF9F43, #FFD700)' }}
+          />
         </div>
       )}
 
       <ReportHeader onAIPolish={handleAIPolishGlobal} onExportPDF={handleExportPDF} />
       <ReportSidebar />
 
-      <main className="report-main">
-        <div className="report-content" id="report-content">
+      <main
+        className="h-[calc(100vh-60px)] overflow-y-auto transition-all duration-300"
+        style={{ marginLeft: state.sidebarCollapsed ? '0' : '240px' }}
+      >
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-5 !p-[30px]">
           <BasicInfoCard
             isEditing={isModuleEditing('basic-info')}
             onEdit={() => handleEdit('basic-info')}

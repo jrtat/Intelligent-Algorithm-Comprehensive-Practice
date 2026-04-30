@@ -20,33 +20,23 @@ export function ConfirmDialog({
   const typeColors: Record<string, { bg: string; border: string; text: string }> = {
     danger: { bg: '#FEE2E2', border: '#DC2626', text: '#DC2626' },
     warning: { bg: '#FEF3C7', border: '#D97706', text: '#D97706' },
-    info: { bg: '#E8F4F8', border: '#2E86AB', text: '#2E86AB' },
+    info: { bg: '#E8F4F8', border: '#1677ff', text: '#1677ff' },
   };
 
   const colors = typeColors[type];
 
   return (
-    <div className="modal-overlay" onClick={onCancel}>
+    <div
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 animate-modal-fade"
+      onClick={onCancel}
+    >
       <div
-        className="modal-content"
+        className="w-[360px] rounded-xl bg-white p-6 text-center shadow-2xl animate-modal-slide"
         onClick={(e) => e.stopPropagation()}
-        style={{
-          width: 360,
-          textAlign: 'center',
-          padding: '24px',
-        }}
       >
         <div
-          style={{
-            width: 48,
-            height: 48,
-            borderRadius: '50%',
-            backgroundColor: colors.bg,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 16px',
-          }}
+          className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full"
+          style={{ backgroundColor: colors.bg }}
         >
           <span
             className="material-symbols-outlined"
@@ -57,49 +47,29 @@ export function ConfirmDialog({
         </div>
 
         {title && (
-          <h3
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: '#333',
-              marginBottom: 8,
-            }}
-          >
+          <h3 className="mb-2 text-[16px] font-bold text-[#333]">
             {title}
           </h3>
         )}
 
-        <p
-          style={{
-            fontSize: 14,
-            color: '#666',
-            marginBottom: 24,
-            lineHeight: 1.6,
-          }}
-        >
+        <p className="mb-6 text-[14px] leading-relaxed text-[#666]">
           {message}
         </p>
 
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+        <div className="flex justify-center gap-3">
           <button
-            className="btn btn-outline"
+            className="min-w-[100px] rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50"
             onClick={onCancel}
-            style={{ minWidth: 100 }}
           >
             {cancelText}
           </button>
           <button
             onClick={onConfirm}
+            className="min-w-[100px] rounded-lg border py-2 text-[14px] font-medium transition-all hover:scale-105"
             style={{
-              minWidth: 100,
-              padding: '8px 16px',
-              borderRadius: 8,
-              border: `1px solid ${colors.border}`,
+              borderColor: colors.border,
               backgroundColor: colors.bg,
               color: colors.text,
-              fontWeight: 500,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
             }}
           >
             {confirmText}

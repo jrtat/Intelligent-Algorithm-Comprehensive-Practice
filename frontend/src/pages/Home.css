@@ -594,12 +594,6 @@ section {
 }
 
 /* ===== 科学测评流程图 ===== */
-.eval-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .flow-chart {
   display: flex;
   flex-direction: column;

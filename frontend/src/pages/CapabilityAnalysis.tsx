@@ -659,7 +659,6 @@ export default function CapabilityAnalysis({}: CapabilityAnalysisProps = {}) {
           <div className="flex flex-col items-start mb-8">
             <div className="flex items-center gap-4 mb-2">
               <h3 className="text-xl font-bold">维度掌控力</h3>
-              <span className="!px-3 !py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">主攻路径：{resumeData.targetRole || '暂无'}</span>
             </div>
             <p className="text-sm text-on-surface-variant">跨核心能力分布。</p>
           </div>

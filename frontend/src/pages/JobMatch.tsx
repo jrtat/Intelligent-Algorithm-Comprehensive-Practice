@@ -294,7 +294,16 @@ export default function JobMatch() {
                   <div className="h-full bg-primary rounded-full absolute left-0 top-0" style={{ width: `${selectedJob[2].learning_ability.score}%` }}></div>
                   <div className="h-full w-1 bg-on-surface-variant absolute top-0 z-10" style={{ left: `${selectedJob[2].learning_ability.benchmark_score}%` }}></div>
                 </div>
-                <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].learning_ability.matched_reason}</p>
+                <div className="space-y-3">
+                  <div className="bg-white/80 !p-3 rounded-lg border border-surface-container-high">
+                    <h4 className="text-xs font-bold text-on-surface-variant mb-2">匹配理由</h4>
+                    <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].learning_ability.matched_reason}</p>
+                  </div>
+                  <div className="bg-white/80 !p-3 rounded-lg border border-surface-container-high">
+                    <h4 className="text-xs font-bold text-primary mb-2">提升建议</h4>
+                    <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].learning_ability.missing_reason}</p>
+                  </div>
+                </div>
               </section>
 
               <section className="md:col-span-4 bg-surface-container-low !p-5 rounded-xl ring-1 ring-outline-variant/5 hover:ring-secondary/20 transition-all">
@@ -307,7 +316,16 @@ export default function JobMatch() {
                   <div className="h-full bg-secondary rounded-full absolute left-0 top-0" style={{ width: `${selectedJob[2].communication_ability.score}%` }}></div>
                   <div className="h-full w-1 bg-on-surface-variant absolute top-0 z-10" style={{ left: `${selectedJob[2].communication_ability.benchmark_score}%` }}></div>
                 </div>
-                <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].communication_ability.matched_reason}</p>
+                <div className="space-y-3">
+                  <div className="bg-white/80 !p-3 rounded-lg border border-surface-container-high">
+                    <h4 className="text-xs font-bold text-on-surface-variant mb-2">匹配理由</h4>
+                    <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].communication_ability.matched_reason}</p>
+                  </div>
+                  <div className="bg-white/80 !p-3 rounded-lg border border-surface-container-high">
+                    <h4 className="text-xs font-bold text-secondary mb-2">提升建议</h4>
+                    <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].communication_ability.missing_reason}</p>
+                  </div>
+                </div>
               </section>
 
               <section className="md:col-span-4 bg-surface-container-low !p-5 rounded-xl ring-1 ring-outline-variant/5 hover:ring-tertiary/20 transition-all">
@@ -320,7 +338,16 @@ export default function JobMatch() {
                   <div className="h-full bg-tertiary rounded-full absolute left-0 top-0" style={{ width: `${selectedJob[2].teamwork_ability.score}%` }}></div>
                   <div className="h-full w-1 bg-on-surface-variant absolute top-0 z-10" style={{ left: `${selectedJob[2].teamwork_ability.benchmark_score}%` }}></div>
                 </div>
-                <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].teamwork_ability.matched_reason}</p>
+                <div className="space-y-3">
+                  <div className="bg-white/80 !p-3 rounded-lg border border-surface-container-high">
+                    <h4 className="text-xs font-bold text-on-surface-variant mb-2">匹配理由</h4>
+                    <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].teamwork_ability.matched_reason}</p>
+                  </div>
+                  <div className="bg-white/80 !p-3 rounded-lg border border-surface-container-high">
+                    <h4 className="text-xs font-bold text-tertiary mb-2">提升建议</h4>
+                    <p className="text-xs text-on-surface-variant leading-relaxed">{selectedJob[2].teamwork_ability.missing_reason}</p>
+                  </div>
+                </div>
               </section>
 
               {/* 核心实习经历 全宽 */}

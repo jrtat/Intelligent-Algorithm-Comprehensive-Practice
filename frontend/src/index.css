@@ -242,4 +242,32 @@ body {
 @media print {
   .no-print { display: none !important; }
   .print-show { display: block !important; }
+
+  /* 打印时主内容区域不限制高度，显示全部内容 */
+  .career-report-page .career-report-content main,
+  .career-report-content main,
+  .career-report-page main {
+    height: auto !important;
+    overflow: visible !important;
+    margin-left: 0 !important;
+  }
+
+  .career-report-page,
+  .career-report-content {
+    overflow: visible !important;
+  }
+
+  /* 卡片容器允许分页 */
+  .career-report-page .career-report-content > div,
+  .career-report-content > div {
+    page-break-inside: avoid;
+  }
+
+  /* 打印时展开所有可折叠面板内容 */
+  /* CollapsiblePanel content is only rendered when isExpanded is true,
+     and isPrinting should trigger expansion. Additional CSS fallback: */
+  .career-report-content section > div > div {
+    display: block !important;
+    overflow: visible !important;
+  }
 }

@@ -119,7 +119,7 @@ export function CareerPathCard({
           title="短期目标"
           subtitle={`（${career_goals?.short_term?.duration || ''}）`}
           onEdit={isEditing ? () => setEditingGoal('short_term') : undefined}
-          onAIPolish={() => onAIPolishField?.('career_path_planning.career_goals.short_term.goal_description')}
+          onAIPolish={isEditing ? () => onAIPolishField?.('career_path_planning.career_goals.short_term.goal_description') : undefined}
         >
           {isEditing && editingGoal === 'short_term' ? (
             <div>
@@ -178,7 +178,7 @@ export function CareerPathCard({
           title="中期目标"
           subtitle={`（${career_goals?.mid_term?.duration || ''}）`}
           onEdit={isEditing ? () => setEditingGoal('mid_term') : undefined}
-          onAIPolish={() => onAIPolishField?.('career_path_planning.career_goals.mid_term.goal_description')}
+          onAIPolish={isEditing ? () => onAIPolishField?.('career_path_planning.career_goals.mid_term.goal_description') : undefined}
         >
           {isEditing && editingGoal === 'mid_term' ? (
             <div>
@@ -237,7 +237,7 @@ export function CareerPathCard({
           title="长期目标"
           subtitle={`（${career_goals?.long_term?.duration || ''}）`}
           onEdit={isEditing ? () => setEditingGoal('long_term') : undefined}
-          onAIPolish={() => onAIPolishField?.('career_path_planning.career_goals.long_term.goal_description')}
+          onAIPolish={isEditing ? () => onAIPolishField?.('career_path_planning.career_goals.long_term.goal_description') : undefined}
         >
           {isEditing && editingGoal === 'long_term' ? (
             <div>

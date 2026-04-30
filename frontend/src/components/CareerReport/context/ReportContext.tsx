@@ -24,6 +24,8 @@ interface ReportState {
   showPolishCompare: boolean;
   polishError: string | null;
   polishSuccess: string | null;
+  // Print state
+  isPrinting: boolean;
 }
 
 type ReportAction =
@@ -46,7 +48,8 @@ type ReportAction =
   | { type: 'SET_POLISH_ERROR'; payload: string | null }
   | { type: 'SET_POLISH_SUCCESS'; payload: string | null }
   | { type: 'CLEAR_POLISH_STATE' }
-  | { type: 'SET_NO_DATA_REASON'; payload: NoDataReason | null };
+  | { type: 'SET_NO_DATA_REASON'; payload: NoDataReason | null }
+  | { type: 'SET_PRINTING'; payload: boolean };
 
 const initialState: ReportState = {
   report: null,
@@ -65,6 +68,7 @@ const initialState: ReportState = {
   showPolishCompare: false,
   polishError: null,
   polishSuccess: null,
+  isPrinting: false,
 };
 
 function reportReducer(state: ReportState, action: ReportAction): ReportState {
@@ -122,6 +126,8 @@ function reportReducer(state: ReportState, action: ReportAction): ReportState {
       return { ...state, isPolishing: false, polishResult: null, showPolishCompare: false, polishError: null, polishSuccess: null };
     case 'SET_NO_DATA_REASON':
       return { ...state, noDataReason: action.payload, isLoading: false };
+    case 'SET_PRINTING':
+      return { ...state, isPrinting: action.payload };
     default:
       return state;
   }
@@ -225,6 +231,7 @@ interface ReportContextType {
   setPolishSuccess: (message: string | null) => void;
   clearPolishState: () => void;
   applyPolishResult: (pathsToApply?: string[]) => void;
+  setPrinting: (printing: boolean) => void;
 }
 
 const ReportContext = createContext<ReportContextType | null>(null);
@@ -440,6 +447,10 @@ export function ReportProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'CLEAR_POLISH_STATE' });
   }, []);
 
+  const setPrinting = useCallback((printing: boolean) => {
+    dispatch({ type: 'SET_PRINTING', payload: printing });
+  }, []);
+
   const applyPolishResult = useCallback((pathsToApply?: string[]) => {
     if (!state.polishResult || !state.report) return;
 
@@ -561,6 +572,7 @@ export function ReportProvider({ children }: { children: ReactNode }) {
         setPolishSuccess,
         clearPolishState,
         applyPolishResult,
+        setPrinting,
       }}
     >
       {children}

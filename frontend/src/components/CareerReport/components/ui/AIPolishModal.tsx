@@ -98,7 +98,7 @@ export function AIPolishModal({
     >
       <div
         ref={modalRef}
-        className="max-h-[80vh] w-[450px] max-w-[90%] overflow-y-auto rounded-xl bg-white p-6 shadow-2xl animate-modal-slide"
+        className="max-h-[80vh] w-[450px] max-w-[90%] overflow-y-auto rounded-xl bg-white !p-6 shadow-2xl animate-modal-slide"
         style={{
           position: 'fixed',
           left: position.x,
@@ -162,14 +162,14 @@ export function AIPolishModal({
 
         <div className="mt-6 flex items-center justify-end gap-3">
           <button
-            className="rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50 disabled:opacity-50"
+            className="rounded-lg border border-[#DCDCDC] !px-4 !py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50 disabled:opacity-50"
             onClick={onCancel}
             disabled={isPolishing}
           >
             取消
           </button>
           <button
-            className="inline-flex items-center gap-1 rounded-lg px-5 py-2 text-[14px] font-medium text-white transition-all hover:scale-105 disabled:opacity-50"
+            className="inline-flex items-center gap-1 rounded-lg !px-5 !py-2 text-[14px] font-medium text-white transition-all hover:scale-105 disabled:opacity-50"
             style={{ backgroundColor: '#FF9F43' }}
             onClick={onStart}
             disabled={isPolishing}

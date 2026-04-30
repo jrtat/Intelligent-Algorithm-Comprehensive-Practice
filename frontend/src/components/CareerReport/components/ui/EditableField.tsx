@@ -88,7 +88,7 @@ export function EditableField({
   if (!isEditing) {
     return (
       <div
-        className={`group relative cursor-text rounded-md border border-transparent px-3 !py-2 transition-all hover:border-[#1677ff]/20 hover:bg-[#1677ff]/5 ${disabled ? 'cursor-default' : ''} ${className}`}
+        className={`group relative cursor-text rounded-md border border-transparent !px-3 !py-2 transition-all hover:border-[#1677ff]/20 hover:bg-[#1677ff]/5 ${disabled ? 'cursor-default' : ''} ${className}`}
         onClick={() => !disabled && setIsEditing(true)}
       >
         <span className={`leading-relaxed ${value ? 'text-[#333]' : 'text-[#999]'}`}>
@@ -142,7 +142,7 @@ export function EditableField({
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           placeholder={placeholder}
-          className={`!w-full rounded-md border bg-white px-3 !py-2 text-[16px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${error ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
+          className={`!w-full rounded-md border bg-white !px-3 !py-2 text-[16px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${error ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
           style={{ paddingRight: onAIPolish ? '50px' : '12px' }}
         />
       )}
@@ -158,7 +158,7 @@ export function EditableField({
       )}
       {isEditing && onAIPolish && (
         <div
-          className="absolute !right-2 flex items-start !gap-1"
+          className="absolute !right-0 flex items-start !gap-1"
           style={{ top: label ? '36px' : '10px' }}
         >
           <button

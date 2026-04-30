@@ -22,7 +22,7 @@ export function ReportHeader({ onAIPolish, onExportPDF }: ReportHeaderProps) {
 
   return (
     <header
-      className="report-header sticky z-[100] flex items-center justify-between bg-white !px-6"
+      className="report-header sticky z-[100] flex items-center justify-between bg-white !px-6 no-print"
       style={{
         height: '60px',
         borderBottom: '1px solid #DCDCDC',

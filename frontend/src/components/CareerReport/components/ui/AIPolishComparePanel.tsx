@@ -146,22 +146,22 @@ export function AIPolishComparePanel({
         className="flex h-[80vh] w-[900px] max-w-[90%] flex-col overflow-hidden rounded-xl bg-white shadow-2xl animate-modal-slide"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#DCDCDC] bg-[#F5F7FA] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-[#DCDCDC] bg-[#F5F7FA] !px-5 !py-4">
           <div className="flex items-center gap-3">
             <h3 className="m-0 text-[16px] font-bold text-[#333]">润色结果对比</h3>
-            <span className="rounded bg-[rgba(255,159,67,0.1)] px-2 py-0.5 text-[12px]" style={{ color: '#FF9F43' }}>
+            <span className="rounded bg-[rgba(255,159,67,0.1)] !px-2 !py-0.5 text-[12px]" style={{ color: '#FF9F43' }}>
               {changes.length} 处修改
             </span>
           </div>
           <div className="flex gap-2">
             <button
-              className={`rounded-md border px-3 py-1.5 text-[12px] transition-all ${viewMode === 'split' ? 'bg-[#1677ff] text-white border-[#1677ff]' : 'border-[#DCDCDC] text-[#666] hover:bg-gray-50'}`}
+              className={`rounded-md border !px-3 !py-1.5 text-[12px] transition-all ${viewMode === 'split' ? 'bg-[#1677ff] text-white border-[#1677ff]' : 'border-[#DCDCDC] text-[#666] hover:bg-gray-50'}`}
               onClick={() => setViewMode('split')}
             >
               左右对比
             </button>
             <button
-              className={`rounded-md border px-3 py-1.5 text-[12px] transition-all ${viewMode === 'vertical' ? 'bg-[#1677ff] text-white border-[#1677ff]' : 'border-[#DCDCDC] text-[#666] hover:bg-gray-50'}`}
+              className={`rounded-md border !px-3 !py-1.5 text-[12px] transition-all ${viewMode === 'vertical' ? 'bg-[#1677ff] text-white border-[#1677ff]' : 'border-[#DCDCDC] text-[#666] hover:bg-gray-50'}`}
               onClick={() => setViewMode('vertical')}
             >
               上下对比
@@ -170,14 +170,14 @@ export function AIPolishComparePanel({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-5">
+        <div className="flex-1 overflow-y-auto !p-5">
           {changes.map((change, index) => {
             const segments = computeDiff(change.before, change.after);
             const label = pathToLabel(change.path.split('.'));
 
             return (
               <div key={index} className="mb-5 overflow-hidden rounded-lg border border-[#DCDCDC]">
-                <div className="flex items-center justify-between border-b border-[#DCDCDC] bg-[#F5F7FA] px-4 py-3">
+                <div className="flex items-center justify-between border-b border-[#DCDCDC] bg-[#F5F7FA] !px-4 !py-3">
                   <label className="flex cursor-pointer items-center gap-2">
                     <input
                       type="checkbox"
@@ -188,7 +188,7 @@ export function AIPolishComparePanel({
                     <span className="text-[14px] font-medium text-[#333]">{label}</span>
                   </label>
                   <button
-                    className="rounded px-3 py-1 text-[12px] font-medium text-white transition-colors hover:opacity-90"
+                    className="rounded !px-3 !py-1 text-[12px] font-medium text-white transition-colors hover:opacity-90"
                     style={{ backgroundColor: '#FF9F43' }}
                     onClick={() => onApplySingle(change.path)}
                   >
@@ -198,7 +198,7 @@ export function AIPolishComparePanel({
 
                 <div className={`flex ${viewMode === 'split' ? 'flex-row' : 'flex-col'}`}>
                   <div className={`${viewMode === 'split' ? 'flex-1 border-r border-[#DCDCDC]' : 'flex-1 border-b border-[#DCDCDC]'}`}>
-                    <div className="mb-2 text-[11px] font-medium uppercase text-[#999]">润色前</div>
+                    <div className="mb-2 text-[14px] font-medium uppercase text-[#999]">润色前</div>
                     <div className="text-[14px] leading-relaxed text-[#666]">
                       {segments.map((seg, i) => (
                         <span key={i} className={seg.type === 'changed' ? 'bg-red-100 text-red-500 line-through' : ''}>
@@ -208,7 +208,7 @@ export function AIPolishComparePanel({
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="mb-2 text-[11px] font-medium uppercase text-[#999]">润色后</div>
+                    <div className="mb-2 text-[14px] font-medium uppercase text-[#999]">润色后</div>
                     <div className="text-[14px] leading-relaxed text-[#333]">
                       {segments.map((seg, i) => (
                         <span key={i} className={seg.type === 'changed' ? 'bg-amber-50 font-medium' : ''} style={{ color: seg.type === 'changed' ? '#E8891F' : undefined }}>
@@ -224,22 +224,22 @@ export function AIPolishComparePanel({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 border-t border-[#DCDCDC] bg-[#F5F7FA] px-5 py-4">
+        <div className="flex items-center justify-end gap-3 border-t border-[#DCDCDC] bg-[#F5F7FA] !px-5 !py-4">
           <button
-            className="rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50"
+            className="rounded-lg border border-[#DCDCDC] !px-4 !py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50"
             onClick={onDiscard}
           >
             放弃
           </button>
           <button
-            className="rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50 disabled:opacity-50"
+            className="rounded-lg border border-[#DCDCDC] !px-4 !py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50 disabled:opacity-50"
             onClick={handleApplyPartial}
             disabled={selectedPaths.size === 0}
           >
             应用选中 ({selectedPaths.size})
           </button>
           <button
-            className="rounded-lg px-5 py-2 text-[14px] font-medium text-white transition-all hover:scale-105"
+            className="rounded-lg !px-5 !py-2 text-[14px] font-medium text-white transition-all hover:scale-105"
             style={{ backgroundColor: '#FF9F43' }}
             onClick={onApplyAll}
           >

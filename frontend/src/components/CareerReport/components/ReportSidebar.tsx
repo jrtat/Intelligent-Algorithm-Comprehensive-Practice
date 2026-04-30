@@ -53,7 +53,7 @@ export function ReportSidebar() {
       )}
 
       <aside
-        className={`report-sidebar fixed z-[100] flex flex-col bg-white transition-all duration-300 ${
+        className={`report-sidebar fixed z-[100] flex flex-col bg-white transition-all duration-300 no-print ${
           sidebarCollapsed
             ? isMobile
               ? '-translate-x-full'
@@ -96,7 +96,7 @@ export function ReportSidebar() {
       {/* PC toggle button */}
       {!isMobile && (
         <button
-          className={`sidebar-toggle fixed z-[101] flex h-10 w-6 cursor-pointer items-center justify-center rounded-r-lg border border-l-0 bg-white shadow-sm transition-all duration-300 hover:bg-gray-50 ${
+          className={`sidebar-toggle fixed z-[101] flex h-10 w-6 cursor-pointer items-center justify-center rounded-r-lg border border-l-0 bg-white shadow-sm transition-all duration-300 hover:bg-gray-50 no-print ${
             sidebarCollapsed ? 'left-0' : 'left-[240px]'
           }`}
           style={{ top: '50%', transform: 'translateY(-50%)' }}

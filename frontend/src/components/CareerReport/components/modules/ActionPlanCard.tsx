@@ -81,7 +81,7 @@ export function ActionPlanCard({
           title="短期计划"
           subtitle={`（${short_term_plan.duration || ''}）`}
           onEdit={isEditing ? () => setEditingSection('short_term') : undefined}
-          onAIPolish={() => onAIPolishField?.('action_plan.short_term_plan')}
+          onAIPolish={isEditing ? () => onAIPolishField?.('action_plan.short_term_plan') : undefined}
         >
           {isEditing && editingSection === 'short_term' ? (
             <div>
@@ -171,7 +171,7 @@ export function ActionPlanCard({
           title="中期计划"
           subtitle={`（${mid_term_plan.duration || ''}）`}
           onEdit={isEditing ? () => setEditingSection('mid_term') : undefined}
-          onAIPolish={() => onAIPolishField?.('action_plan.mid_term_plan')}
+          onAIPolish={isEditing ? () => onAIPolishField?.('action_plan.mid_term_plan') : undefined}
         >
           {isEditing && editingSection === 'mid_term' ? (
             <div>
@@ -221,7 +221,7 @@ export function ActionPlanCard({
         <CollapsiblePanel
           title="评估框架"
           onEdit={isEditing ? () => setEditingSection('evaluation') : undefined}
-          onAIPolish={() => onAIPolishField?.('action_plan.evaluation_framework')}
+          onAIPolish={isEditing ? () => onAIPolishField?.('action_plan.evaluation_framework') : undefined}
         >
           {isEditing && editingSection === 'evaluation' ? (
             <div>

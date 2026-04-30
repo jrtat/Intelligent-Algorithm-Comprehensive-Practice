@@ -79,7 +79,7 @@ export function DevelopmentPlanCard({
             title={phaseLabels[phaseKey]}
             subtitle={`（${phase.duration || ''}）`}
             onEdit={isEditing ? () => setEditingPhase(phaseKey) : undefined}
-            onAIPolish={() => onAIPolishField?.(`development_plan.${phaseKey}`)}
+            onAIPolish={isEditing ? () => onAIPolishField?.(`development_plan.${phaseKey}`) : undefined}
           >
             {isEditing && editingPhase === phaseKey ? (
               <div>

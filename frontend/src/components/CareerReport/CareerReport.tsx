@@ -17,7 +17,7 @@ import { polishReport } from './components/ui/AIPolishUtils';
 
 function ReportContent() {
   const navigate = useNavigate();
-  const { state, saveReport, setPolishing, setPolishResult, setShowPolishCompare, setPolishError, setPolishSuccess, clearPolishState, applyPolishResult } = useReport();
+  const { state, dispatch, saveReport, setPolishing, setPolishResult, setShowPolishCompare, setPolishError, setPolishSuccess, clearPolishState, applyPolishResult, setPrinting } = useReport();
 
   const [showAIPolishModal, setShowAIPolishModal] = useState(false);
   const [editingModuleId, setEditingModuleId] = useState<string | null>(null);
@@ -124,7 +124,19 @@ function ReportContent() {
   }, [clearPolishState]);
 
   const handleExportPDF = () => {
-    window.print();
+    // 设置打印状态，展开所有CollapsiblePanel
+    setPrinting(true);
+    // 收起侧边栏后再打印
+    if (!state.sidebarCollapsed) {
+      dispatch({ type: 'TOGGLE_SIDEBAR' });
+      setTimeout(() => {
+        window.print();
+        setPrinting(false);
+      }, 100);
+    } else {
+      window.print();
+      setPrinting(false);
+    }
   };
 
   const isModuleEditing = (moduleId: string) => editingModuleId === moduleId;

@@ -389,7 +389,7 @@ export default function JobMatch() {
                     <div className="bg-white/80 !p-6 rounded-xl border border-surface-container-high">
                       <h4 className="text-sm font-bold text-on-surface mb-3 flex items-center gap-2">
                         <span className="w-2 h-4 bg-primary rounded-full"></span>
-                        现状分析
+                        匹配理由
                       </h4>
                       <p className="text-sm text-on-surface-variant leading-relaxed">"{selectedJob[2].internship_experience.matched_reason}"</p>
                     </div>

@@ -396,7 +396,7 @@ export default function JobMatch() {
                     <div className="bg-white/80 !p-6 rounded-xl border border-surface-container-high">
                       <h4 className={`text-sm font-bold mb-3 flex items-center gap-2 ${selectedJob[2].internship_experience.score < selectedJob[2].internship_experience.benchmark_score ? 'text-error' : 'text-primary'}`}>
                         <span className={`w-2 h-4 rounded-full ${selectedJob[2].internship_experience.score < selectedJob[2].internship_experience.benchmark_score ? 'bg-error' : 'bg-primary'}`}></span>
-                        核心缺失
+                        提升建议
                       </h4>
                       <p className="text-sm text-on-surface-variant leading-relaxed">"{selectedJob[2].internship_experience.missing_reason}"</p>
                     </div>

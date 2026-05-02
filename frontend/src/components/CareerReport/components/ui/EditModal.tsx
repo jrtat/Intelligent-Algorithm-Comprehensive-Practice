@@ -101,21 +101,21 @@ export function EditModal({
       aria-modal="true"
     >
       <div
-        className="max-h-[80vh] w-[450px] max-w-[90%] overflow-y-auto rounded-xl bg-white p-6 shadow-2xl animate-modal-slide"
+        className="max-h-[80vh] w-[450px] max-w-[90%] overflow-y-auto rounded-xl bg-white !p-6 shadow-2xl animate-modal-slide"
         onClick={(e) => e.stopPropagation()}
         style={{ width }}
       >
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="m-0 text-[16px] font-bold text-[#333]">{title}</h3>
+          <h3 className="!m-0 text-[16px] font-bold text-[#333]">{title}</h3>
           <button
-            className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-[#1677ff]/10"
+            className="flex !h-8 !w-8 items-center justify-center rounded-md hover:bg-[#1677ff]/10"
             onClick={onCancel}
           >
             <span className="material-symbols-outlined text-[20px]" style={{ color: '#666' }}>close</span>
           </button>
         </div>
 
-        <div className="space-y-4 py-4">
+        <div className="space-y-4 !py-4">
           {fields.map((field) => (
             <div key={field.key} className="mb-4">
               <label className="mb-1.5 block text-[13px] font-medium text-[#999]">
@@ -125,7 +125,7 @@ export function EditModal({
 
               {field.type === 'select' ? (
                 <select
-                  className={`w-full rounded-md border bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#DCDCDC] focus:border-[#1677ff] focus:ring-[#1677ff]/20'}`}
+                  className={`w-full rounded-md border bg-white !px-3 !py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#DCDCDC] focus:border-[#1677ff] focus:ring-[#1677ff]/20'}`}
                   value={values[field.key] || ''}
                   onChange={(e) => handleChange(field.key, e.target.value)}
                   style={{ cursor: 'pointer' }}
@@ -140,7 +140,7 @@ export function EditModal({
               ) : field.type === 'textarea' ? (
                 <div className="relative">
                   <textarea
-                    className={`w-full resize-y rounded-md border bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
+                    className={`w-full resize-y rounded-md border bg-white !px-3 !py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
                     value={values[field.key] || ''}
                     onChange={(e) => handleChange(field.key, e.target.value)}
                     placeholder={field.placeholder}
@@ -150,7 +150,7 @@ export function EditModal({
                   />
                   {field.maxLength && (
                     <div
-                      className="absolute bottom-2 right-2 text-[11px]"
+                      className="absolute !bottom-2 !right-2 text-[11px]"
                       style={{ color: (values[field.key]?.length || 0) > field.maxLength ? '#DC2626' : '#999' }}
                     >
                       {(values[field.key] || '').length}/{field.maxLength}
@@ -160,7 +160,7 @@ export function EditModal({
               ) : (
                 <input
                   type={field.type}
-                  className={`w-full rounded-md border bg-white px-3 py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
+                  className={`w-full rounded-md border bg-white !px-3 !py-2 text-[14px] text-[#333] transition-colors focus:outline-none focus:ring-2 ${errors[field.key] ? 'border-red-500 focus:ring-red-500/20' : 'border-[#1677ff] focus:ring-[#1677ff]/20'}`}
                   value={values[field.key] || ''}
                   onChange={(e) => handleChange(field.key, e.target.value)}
                   placeholder={field.placeholder}
@@ -178,7 +178,7 @@ export function EditModal({
 
         <div className="mt-6 flex items-center justify-end gap-3">
           {showAIPolish && onAIPolish && (
-            <button className="inline-flex items-center gap-1 rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50">
+            <button className="inline-flex items-center gap-1 rounded-lg border border-[#DCDCDC] !px-4 !py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50">
               <span className="material-symbols-outlined text-[16px]" style={{ color: '#FF9F43' }}>
                 auto_fix_high
               </span>
@@ -186,11 +186,11 @@ export function EditModal({
             </button>
           )}
           <div className="flex-1" />
-          <button className="rounded-lg border border-[#DCDCDC] px-4 py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50" onClick={onCancel}>
+          <button className="rounded-lg border border-[#DCDCDC] !px-4 !py-2 text-[14px] font-medium text-[#666] transition-colors hover:bg-gray-50" onClick={onCancel}>
             取消
           </button>
           <button
-            className="rounded-lg bg-[#1677ff] px-4 py-2 text-[14px] font-medium text-white transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+            className="rounded-lg bg-[#1677ff] !px-4 !py-2 text-[14px] font-medium text-white transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
             onClick={handleSave}
             disabled={isSaveDisabled}
           >

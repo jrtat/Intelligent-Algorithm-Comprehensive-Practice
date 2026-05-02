@@ -33,7 +33,7 @@ export function ReportHeader({ onAIPolish, onExportPDF }: ReportHeaderProps) {
       <div className="flex items-center">
         <span className="flex items-center !text-[16px]">
           <Link to="/" className="text-[#666] no-underline transition-colors hover:text-[#1677ff]">首页 </Link>
-          <span className="mx-2 text-[#999]"> / </span>
+          <span className="mx-2 text-[#999] !p-1"> / </span>
           <span className="text-[#1677ff] font-medium"> 职业报告</span>
         </span>
       </div>

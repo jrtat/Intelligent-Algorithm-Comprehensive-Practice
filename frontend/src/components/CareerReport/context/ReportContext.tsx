@@ -284,7 +284,24 @@ export function ReportProvider({ children }: { children: ReactNode }) {
         return;
       } catch (error) {
         console.error('从后端获取报告失败:', error);
-        // 后端获取失败，设置无数据原因
+        // 后端获取失败时，检查本地是否有简历数据
+        const resumeData = localStorage.getItem('resumeData');
+        if (!resumeData) {
+          dispatch({ type: 'SET_NO_DATA_REASON', payload: 'no_resume' });
+          setInitialized(true);
+          return;
+        }
+        // 有简历但没有报告，检查是否有匹配结果
+        const matchResult = localStorage.getItem('matchResult');
+        if (!matchResult) {
+          dispatch({ type: 'SET_NO_DATA_REASON', payload: 'no_job_matched' });
+          setInitialized(true);
+          return;
+        }
+        // 有简历和匹配结果但没有报告
+        dispatch({ type: 'SET_NO_DATA_REASON', payload: 'no_report' });
+        setInitialized(true);
+        return;
       }
     }
 

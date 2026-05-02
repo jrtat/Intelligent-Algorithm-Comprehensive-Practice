@@ -39,7 +39,7 @@ export function FilterBar({
       <input
         type="text"
         className="filter-input"
-        placeholder="🔍 搜索岗位名称 / 公司名 / 技能..."
+        placeholder="搜索岗位名称 / 公司名 / 技能..."
         value={filter.keyword}
         onChange={(e) => updateFilter('keyword', e.target.value)}
       />

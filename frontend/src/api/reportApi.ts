@@ -42,7 +42,7 @@ const POLL_CONFIG = {
   initialDelay: 2000,
   maxDelay: 5000,
   maxAttempts: 1440,
-  timeoutMs: 7200000,
+  timeoutMs: 7200000, // 120分钟
 };
 
 export interface ReportPollCallbacks {

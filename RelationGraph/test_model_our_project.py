@@ -16,7 +16,7 @@ y = combined_dataset['label_id']
 # Step 2：计算亲缘矩阵
 lora_calc_proba(texts, y)
 
-# Step 2：例子
+# Step 3：例子
 result = predict_probabilities("""
 {
   "name": "刘伯温",
@@ -67,7 +67,7 @@ result = predict_probabilities("""
 }
 """)
 
-# 按概率降序查看前5个最可能的职业
-top5 = sorted(result.items(), key=lambda x: x[1], reverse=True)[:10]
+
+top5 = sorted(result.items(), key=lambda x: x[1], reverse=True)[:10] # 按概率降序查看前5个最可能的职业
 for job, prob in top5:
     print(f"{job}: {prob:.4f}")

@@ -8,9 +8,9 @@ from RelationGraph.func.utils.config import model_path, dataset_path, model_name
 # Step 0：载入数据
 df = get_data_raw()
 
-# Step 1：处理数据（并存储）
-# df = init_data_raw(df, if_lora = True)
-# save_data(df, use_augmentation = False)
+# Step 1：处理数据（并存储） 下面两行代码执行完一次就可以注释掉
+df = init_data_raw(df, if_lora = True)
+save_data(df, use_augmentation = False)
 
 
 # Step 2：训练模型

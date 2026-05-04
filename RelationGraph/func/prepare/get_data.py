@@ -3,11 +3,8 @@ from RelationGraph.func.utils.conn_neo4j import connect_neo4j
 import pandas as pd
 
 def get_data_graph():
-
-    """
-    "职业类别", "公司" 为 str
-    "晋升路径", "学历要求", "综合素质", "职业技能", "证书", "工作内容", "专业", "工作经验", "行业" 为列表
-    """
+    # "职业类别", "公司" 为 str
+    # "晋升路径", "学历要求", "综合素质", "职业技能", "证书", "工作内容", "专业", "工作经验", "行业" 为列表
 
     def ensure_list(value):
 
@@ -17,9 +14,10 @@ def get_data_graph():
             return value
         return [value]
 
-    # 与图建立连接
+    # Step 1：与图建立连接
     graph = connect_neo4j()
 
+    # Step 2：通过执行图查询获取特征
     query = """
     MATCH (p:岗位)
     OPTIONAL MATCH (p)-[:属于]->(cat:职业类别)
@@ -70,9 +68,7 @@ def get_data_graph():
     return df
 
 def get_data_raw():
-    """
-    不作任何多余处理， 只将 “岗位名称” 改名为 “职业类别”
-    """
+    # 不作任何多余处理， 只将 “岗位名称” 改名为 “职业类别”
     file_path = "processed.xlsx"
     df = pd.read_excel(file_path, header=0)
     df.rename(columns={'岗位名称': '职业类别'}, inplace=True)

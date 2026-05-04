@@ -24,13 +24,8 @@ chunk_vs = None
 
 
 #--- 统一使用该函数创建向量索引 ---#
-def create_specialized_vectorstore(
-    index_name: str,
-    node_label: str,
-    text_node_properties: list[str],
-    embedding_node_property: str,
-    retrieval_query: str = None
-) -> Neo4jVector:
+def create_specialized_vectorstore(index_name, node_label, text_node_properties,
+    embedding_node_property, retrieval_query = None ):
     """
     :param index_name: 给索引命名
     :param node_label: 指定该索引加在哪个类型的节点上
@@ -56,6 +51,7 @@ def create_specialized_vectorstore(
     return vectorstore
 
 def build_chunk():
+    
     # Step 0：声明参数 与 全局变量
     batch_size = 20  # 批次大小
     skip = 0 # 分页变量
@@ -122,10 +118,6 @@ def build_chunk():
     print(f"\n 完成！共处理 {total_docs} 个 Document，每个 Document 已将 chunks 存为 text_chunks 列表属性。")
 
 def build_vec_ver1():
-    """
-    初始化所有的向量索引
-    :return: 无返回值
-    """
     global personal_quality_vs, skill_vs, certificate_vs, work_content_vs, work_experience_vs, welfare_vs
     personal_quality_vs = create_specialized_vectorstore(
         index_name="综合素质_vector_index",
@@ -172,74 +164,8 @@ def build_vec_ver1():
 
     print("所有向量索引创建完成！")
 
-# 这个语句有问题！！
-# r_query="""
-#     WITH node, score
-#     OPTIONAL MATCH (position:岗位)-[]->(node)
-#     OPTIONAL MATCH (position)-[]->(occ:职业类型)
-#     WITH node, score,
-#          collect(DISTINCT position.id) AS 关联岗位列表,
-#          collect(DISTINCT occ.id) AS 职业类型列表
-#     RETURN
-#         coalesce(node.id, elementId(node)) AS text,
-#         score,
-#         node {.*, 职业类型列表: 职业类型列表, 关联岗位列表: 关联岗位列表} AS metadata
-# """
-
 def get_vector(vec_type, embedding):
-    # 这不就是意大利面式代码吗
-    # if vec_type == "综合素质":
-    #     return Neo4jVector.from_existing_index(
-    #         embedding=embedding,
-    #         url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
-    #         database=os.getenv('DATABASE_NAME'),  # 数据库名
-    #         index_name="综合素质_vector_index",   # 和创建时一致
-    #         retrieval_query = r_query
-    #     )
-    # if vec_type == "职业技能":
-    #     return Neo4jVector.from_existing_index(
-    #         embedding=embedding,
-    #         url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
-    #         database=os.getenv('DATABASE_NAME'),  # 数据库名
-    #         index_name="职业技能_vector_index",   # 和创建时一致
-    #         retrieval_query = r_query
-    #     )
-    #
-    # if vec_type == "证书":
-    #     return Neo4jVector.from_existing_index(
-    #         embedding=embedding,
-    #         url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
-    #         database=os.getenv('DATABASE_NAME'),  # 数据库名
-    #         index_name="证书_vector_index",  # 和创建时一致
-    #         retrieval_query=r_query
-    #     )
-    #
-    # if vec_type == "工作内容":
-    #     return Neo4jVector.from_existing_index(
-    #         embedding=embedding,
-    #         url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
-    #         database=os.getenv('DATABASE_NAME'),  # 数据库名
-    #         index_name="工作内容_vector_index",  # 和创建时一致
-    #         retrieval_query=r_query
-    #     )
-    # if vec_type == "工作经验":
-    #     return Neo4jVector.from_existing_index(
-    #         embedding=embedding,
-    #         url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
-    #         database=os.getenv('DATABASE_NAME'),  # 数据库名
-    #         index_name="工作经验_vector_index",  # 和创建时一致
-    #         retrieval_query=r_query
-    #     )
-    # if vec_type == "福利待遇":
-    #     return Neo4jVector.from_existing_index(
-    #         embedding=embedding,
-    #         url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),
-    #         database=os.getenv('DATABASE_NAME'),  # 数据库名
-    #         index_name="福利待遇_vector_index",  # 和创建时一致
-    #         retrieval_query=r_query
-    #     )
-
-    # 改：
+   
     return Neo4jVector.from_existing_index(
         embedding=embedding,
         url=os.getenv('GRAPH_URL'), username=os.getenv('GRAPH_USERNAME'), password=os.getenv('GRAPH_PASSWORD'),

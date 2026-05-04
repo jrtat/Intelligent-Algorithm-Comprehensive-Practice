@@ -3,8 +3,6 @@ import json
 
 import datetime
 
-from KnowledgeGraph.func.build_vec import get_vector
-from KnowledgeGraph.func.utils.get_models import get_local_embedding
 from RelationGraph.func.use.use_lora_model import predict_probabilities
 from processor.utils.FileProcessor import FileProcessor
 from processor.utils.LLMInvoker import LLMInvoker
@@ -17,7 +15,6 @@ from processor.utils.LLMInvoker import LLMInvoker
 # internshipExperience --> 工作经验概述
 # practicalExperience -->
 # hobbies --> 福利待遇概述
-# summary -->
 
 match_map = { # 岗位的什么信息要看简历的什么
     "综合素质": ["summary", "scoreExplanations"],
@@ -600,6 +597,13 @@ class Matcher:
         3. **团队贡献意识**（权重25%）：主动帮助团队成员分享知识(90-100)、愿意协助他人积极参与(75-89)、完成本职工作较少主动(60-74)、较为被动(40-59)、缺乏团队意识(0-39)
         4. **集体活动参与**（权重15%）：通过兴趣爱好、实践活动判断团队合作精神
         关键词参考：团队协作、代码审查、知识分享、敏捷开发、Git协作、团队精神
+        
+        ## 维度8: 关键技能匹配（额外）
+        对比简历信息和以下三个岗位要求信息的对应features作匹配，输出所有匹配的上的feature_name：
+        1. 职业技能概述
+        2. 证书要求概述
+        3. 工作经验概述
+        注意：feature不是tag，每个feature都带有对应的confidence、frequency、evidence_count、sample_evidence信息，注意区分，仅输出存在的匹配的feature的feature_name，描述要与原文完全一致。
 
         # 输出格式要求：
         仅返回一个标准的 JSON 对象，严格符合以下结构（不要有任何额外文本）：
@@ -645,6 +649,11 @@ class Matcher:
             "benchmark_score": 60,
             "matched_reason": "字符串(100-150字)",
             "missing_reason": "字符串(100-150字)"
+          }}
+          "关键技能匹配": {{
+            "职业技能概述": [],
+            "证书要求概述": [],
+            "工作经验概述": []
           }}
         }}
 
@@ -734,6 +743,7 @@ class Matcher:
         return self.dic_map[job_num], score, dimension_analysis
 
     def get_result(self):
+        print(self.resume_info)
         # 输出当前时间
         print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
@@ -748,46 +758,11 @@ class Matcher:
             self.scores.append(self.cal_score_simple(self.jt2num[i[0]]))
             print(i, datetime.datetime.now().strftime(" %Y-%m-%d %H:%M:%S"))
         self.scores.sort(key=lambda x: x[1], reverse=True)
+        fp_save = FileProcessor("")
+        for i in range(3):
+            fp_save.file_path = f"D://JetBrains/PycharmProjects/Intelligent-Algorithm-Comprehensive-Practice/{self.resume_info["name"]}_{i+1}.json"
+            fp_save.write(self.scores[i])
+        print("文件已保存")
         return self.scores
 
-
-    # def get_embedding(self):
-    #
-    #     id = get_vector()
-
-    def get_job_nums(self): # 从51个岗位中初步筛选较合适的
-        return
-
-
-    def get_jobs(self): # 获取前几个最匹配的具体岗位
-        embedding = get_local_embedding()
-        for key in match_map:
-            vector_store_eg = get_vector(key, embedding)
-            query = ""
-            for i in match_map[key]:
-                # 可能是字符串、列表、字典
-                if isinstance(self.resume_info[i], str):
-                    query += self.resume_info[i] + " "
-                elif isinstance(self.resume_info[i], list):
-                    query += " ".join(self.resume_info[i]) + " "
-                elif isinstance(self.resume_info[i], dict):
-                    for k, v in self.resume_info[i].items():
-                        query += v + " "
-            for doc, score in vector_store_eg.similarity_search_with_score(query=query, k=1):
-                print(key)
-                print("文本:", doc.page_content)
-                print("关联岗位列表:", doc.metadata.get("关联岗位列表"))
-                print("相似度分数:", round(score, 4))  # 分数越小越相似（通常0~1之间）
-                print("---")
-
-
-    # def match_single_job(self): # 找出简历最接近的几个岗位（从不同方面分析）
-    #     # 新开一个，前面的可能没什么用
-    #     embedding = get_local_embedding()
-    #     vector_store_eg = get_vector("职业技能", embedding)
-    #     for doc, score in vector_store_eg.similarity_search_with_score(query="你的问题", k=5):
-    #         print("文本:", doc.page_content)
-    #         print("职业类型列表:", doc.metadata.get("职业类型列表")) # 相似度从高到低
-    #         print("相似度分数:", round(score, 4))  # 分数越小越相似（通常0~1之间）
-    #         print("---")
 

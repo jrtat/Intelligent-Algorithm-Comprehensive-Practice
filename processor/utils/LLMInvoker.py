@@ -12,7 +12,7 @@ load_dotenv()
 
 class LLMInvoker:
     """
-    本地Ollama模型通用调用器，支持提取岗位/公司详情关键信息
+    本地Ollama模型通用调用器
     由于服务器资源有限，建议只调用一个模型
     """
 
@@ -51,23 +51,10 @@ class LLMInvoker:
                 self.api_url,
                 headers=self.headers,
                 data=json.dumps(payload),
-                timeout=240
+                timeout=600
             )
             response.raise_for_status()  # 抛出HTTP异常
 
-            # if stream: # 实时查看信息
-            #     # 流式响应处理（可选）
-            #     result = ""
-            #     for line in response.iter_lines():
-            #         if line:
-            #             line_data = json.loads(line)
-            #             if "response" in line_data:
-            #                 result += line_data["response"]
-            #             if line_data.get("done"):
-            #                 break
-            #     return result
-            # else:
-            #     # 非流式响应
             response_data = response.json()
             return json.loads(response_data.get("response", "").strip()) # 尝试解析JSON（转数据结构）json.loads(response_data.get("response", "").strip())
 
@@ -123,18 +110,6 @@ class LLMInvoker:
         提取岗位详情关键信息
         :param job_description: 原始岗位详情文本
         :return: 结构化的关键信息字典
-
-        你是一个专业的信息提取助手。请分析以下岗位详情文本，提取并返回JSON格式的关键信息：
-        # 现在有如下岗位详情：
-        # {job_description}
-        #
-        # 请以列表的形式从中提取出岗位所需的所有证书或论文要求（certification），包括但不限于：
-        # 1. 英语的四级（CET-4），六级（CET-6）；日语的N1-N5等。
-        # 2. 各个岗位，技能的证书（如律师资格证，教师资格证，计算机二级等）。
-        # 3. CCF，SCI，Nature等期刊，会议。
-        # 请阅读完岗位详情后逐条列举，不要遗漏。要求直接使用原文的说法，不要输出思考过程，不要输出任何解释。
-        #
-        # 要求：仅返回JSON，不要额外解释，确保JSON格式可解析。
         """
         prompt = f"""
         请分析以下岗位详情文本，提取并返回JSON格式的关键信息，必须包含：
@@ -188,38 +163,6 @@ class LLMInvoker:
             print(f"❌ 岗位信息解析失败，原始响应：{raw_response}")
             return None
 
-    # def extract_company_key_info(self, company_description):
-    #     """
-    #     提取公司详情关键信息
-    #     :param company_description: 原始公司详情文本
-    #     :return: 结构化的关键信息字典
-    #     """
-    #     prompt = f"""
-    #     请分析以下公司详情文本，提取并返回JSON格式的关键信息，包含但不限于：
-    #     1. 公司简介（introduction）：字符串
-    #     2. 主营业务（business）：列表形式
-    #     3. 企业福利（benefits）：列表形式
-    #     4. 发展阶段（stage）：字符串（如"初创期"、"成长期"、"上市公司"）
-    #     5. 所在领域（field）：字符串（如"人工智能"、"电商"、"金融科技"）
-    #
-    #     公司详情：
-    #     {company_description}
-    #
-    #     要求：仅返回JSON，不要额外解释，确保JSON格式可解析。
-    #     """
-    #     # 调用模型
-    #     raw_response = self._call_ollama(prompt)
-    #     if not raw_response:
-    #         return None
-    #
-    #     # 解析JSON响应
-    #     try:
-    #         key_info = json.loads(raw_response.strip())
-    #         return key_info
-    #     except json.JSONDecodeError:
-    #         print(f"❌ 公司信息解析失败，原始响应：{raw_response}")
-    #         return None
-
     def batch_extract_job_info(self, jobs_dict, save_path="job_key_info.json"):
         """
         批量提取岗位关键信息并保存
@@ -246,30 +189,4 @@ class LLMInvoker:
         fp.save(jobs_dict)
         print(f"✅ 岗位关键信息已保存到 {save_path}")
         return jobs_dict
-
-    # def batch_extract_company_info(self, companies_dict, save_path="company_key_info.json"):
-    #     """
-    #     批量提取公司关键信息并保存
-    #     :param companies_dict: 公司字典（如initialize.py中的companies）
-    #     :param save_path: 保存路径
-    #     """
-    #     company_key_info = {}
-    #     total = len(companies_dict)
-    #     print(f"开始批量提取{total}个公司的关键信息...")
-    #
-    #     for idx, (company_name, company) in tqdm(enumerate(companies_dict.items(), 1)):
-    #         key_info = self.extract_company_key_info(company.description)
-    #         company_key_info[company_name] = {
-    #             "basic_info": {
-    #                 "type": company.type,
-    #                 "size": company.size
-    #             },
-    #             "key_info": key_info or {}
-    #         }
-    #
-    #     # 保存结果
-    #     fp = FileProcessor(save_path)
-    #     fp.save(company_key_info)
-    #     print(f"✅ 公司关键信息已保存到 {save_path}")
-    #     return company_key_info
 

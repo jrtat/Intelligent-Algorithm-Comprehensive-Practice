@@ -1,4 +1,47 @@
-小小demo：https://github.com/WZC-66/agentdemo/tree/main/frontend-app
+# 项目使用手册
+
+## 配置环境
+
+```cmd
+git clone https://github.com/oQAQo233/Intelligent-Algorithm-Comprehensive-Practice.git
+cd Intelligent-Algorithm-Comprehensive-Practice
+python -m venv .venv
+.venv\Scripts\activate
+
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+pip install -r requirements.txt
+pip install -e .
+```
+
+### 此外还需要提前在根目录下创建.env文件，至少包含以下信息
+
+- DATABASE_NAME
+- GRAPH_URL
+- GRAPH_USERNAME
+- GRAPH_PASSWORD
+
+- LOCAL_MODEL_NAME
+- LOCAL_BASE_URL
+- SILICONFLOW_API
+
+## 前端
+- （需要提前安装bun环境）
+
+```cmd
+cd frontend
+bun install
+bun run dev
+```
+
+## 后端
+
+```
+cd src/FASTAPI_FrameWork
+python APIRun.py
+```
+# 开发文档
+
+本文档旨在说明系统中几个核心业务模块的数据结构，以便于后续开发和维护。
 
 待做：
 1. 岗位画像展示
@@ -8,11 +51,8 @@
     - 构建职业生涯规划
     - 设定阶段目标
 4. 算法微调
-
+小小demo：https://github.com/WZC-66/agentdemo/tree/main/frontend-app
 暂定的接口信息：
-# 开发文档
-
-本文档旨在说明系统中几个核心业务模块的数据结构，以便于后续开发和维护。
 
 ## 1. 岗位画像 (Career Explorer)
 

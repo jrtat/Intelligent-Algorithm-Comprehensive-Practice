@@ -19,11 +19,7 @@ class ContextGetter:
         norm2 = (sum(b * b for b in vec2)) ** 0.5
         return dot / (norm1 * norm2) if norm1 > 0 and norm2 > 0 else 0.0
 
-    def get_merge_val_for_doc(
-        self,
-        doc_id: str,
-        value_embedding: list,
-    ) -> str:
+    def get_merge_val_for_doc(self, doc_id, value_embedding):
         """
         核心逻辑：对单个 Document 找到最相似的 chunk + 其相邻 chunk 中相似度更高的一个，合并后返回 merge_val
         由于划分 chunk 时已经没有 overlap，合并时直接拼接即可，无需任何 overlap 去重/trim 逻辑
@@ -95,12 +91,7 @@ class ContextGetter:
 
         return merge_val
 
-    def get_knowledge_merge_vals(
-        self,
-        job_type_id: str,
-        node_id: str
-    ) -> list[str]:
-        """保持完全不变，仅依赖 get_merge_val_for_doc"""
+    def get_knowledge_merge_vals(self, job_type_id, node_id):
 
         value_record = self.graph.query(
             """
@@ -148,12 +139,7 @@ class ContextGetter:
                 result.append(merge_val)
         return result
 
-    def get_job_property_merge_vals(
-        self,
-        job_type_id: str,
-        property_type: str
-    ) -> list[str]:
-        """保持完全不变，仅依赖 get_merge_val_for_doc"""
+    def get_job_property_merge_vals(self, job_type_id, property_type):
 
         job_records = self.graph.query(
             """

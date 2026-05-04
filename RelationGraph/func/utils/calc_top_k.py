@@ -1,9 +1,7 @@
 import numpy as np
 
 def top_k_accuracy(proba, y_true, k_list=(1, 3, 5)):
-    """
-    计算 Top-k 准确率：只要真实类别出现在预测概率最高的 k 个类别中即视为正确
-    """
+    # 计算 Top-k 准确率（只要真实类别出现在预测概率最高的 k 个类别中即视为正确）
     proba = np.asarray(proba)
     y_true = np.asarray(y_true)
 

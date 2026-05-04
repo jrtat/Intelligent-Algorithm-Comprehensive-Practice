@@ -4,11 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from datasets import Dataset, DatasetDict
 
-def save_data(
-        df,
-        use_augmentation=True,
-        aug_times=1,
-):
+def save_data( df, use_augmentation=True, aug_times=1 ):
 
     # Step 1：数据预处理
     df = df[['职业类别', 'combined_text']].dropna()

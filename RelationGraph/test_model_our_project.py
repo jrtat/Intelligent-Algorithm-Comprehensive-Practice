@@ -14,7 +14,7 @@ texts = combined_dataset['text']
 y = combined_dataset['label_id']
 
 # Step 2：计算亲缘矩阵
-# lora_calc_proba(texts, y)
+lora_calc_proba(texts, y)
 
 # Step 2：例子
 result = predict_probabilities("""

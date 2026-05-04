@@ -49,14 +49,14 @@ def get_data_graph():
     results = graph.query(query)  # 执行查询
     df = pd.DataFrame(results) # 将查询结果转换为 DataFrame
 
-    # 处理“职业类别”和“公司”列：取第一个元素（若非空列表）
+    # Step 3：处理“职业类别”和“公司”列：取第一个元素（若非空列表）
     for col in ["职业类别", "公司", "薪资范围"]:
         if col in df.columns:
             df[col] = df[col].apply(lambda x: x[0] if isinstance(x, list) and len(x) > 0 else None)
         else:
             df[col] = None
 
-    # 处理多值列：转换为列表格式
+    # Step 4：处理多值列：转换为列表格式
     multi_value_cols = ["晋升路径", "学历要求", "综合素质", "职业技能", "证书", "工作内容", "专业", "工作经验", "行业"]
 
     for col in multi_value_cols:

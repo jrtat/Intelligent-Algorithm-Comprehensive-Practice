@@ -58,18 +58,18 @@ def predict_probabilities(text):
 
     return {id2label[idx]: float(prob) for idx, prob in enumerate(probs)}
 
-def lora_calc_proba(texts, y, batch_size = 32):
-    """
-    使用 LoRA 微调模型计算文本集合的预测概率，并构建类别间亲缘矩阵
-    """
+def lora_calc_proba(texts, y, batch_size = 32):  # 使用 LoRA 微调模型计算文本集合的预测概率，并构建类别间亲缘矩阵
+
+    # Step 1：声明全局变量 把模型转为评估模式
     global tokenizer, model, id2label
     model.eval()
     n_samples = len(texts)
     n_classes = len(id2label)
 
-    # 按索引顺序生成类别名称列表
+    # Step 2：按索引顺序生成类别名称列表
     class_names = [id2label[i] for i in range(n_classes)]
 
+    # Step 3：调用模型进行评估
     all_probs = []
     with torch.no_grad():
         for i in range(0, n_samples, batch_size):
@@ -89,5 +89,5 @@ def lora_calc_proba(texts, y, batch_size = 32):
     proba = np.concatenate(all_probs, axis=0)          # shape: (n_samples, n_classes)
     y = np.asarray(y)                                  # 确保为 numpy 数组
 
-    # 直接复用已有的 build_matrix 函数
+    # Step 4：调用build_matrix，保存亲缘矩阵（并返回）
     return build_matrix(proba, y, class_names, save_path="affinity_matrix_lora.json")

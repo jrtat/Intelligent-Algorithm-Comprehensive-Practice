@@ -36,10 +36,8 @@ def save_affinity_to_json(affinity_matrix, class_names, file_path):
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"亲和矩阵已保存至: {file_path}")
 
-def load_affinity_matrix(file_path):
-    """
-    从 JSON 文件加载亲和矩阵与类别名。
-    """
+def load_affinity_matrix(file_path): # 从 JSON 文件加载亲和矩阵与类别名。
+  
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 

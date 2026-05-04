@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import mammoth from 'mammoth';
-import { processResume } from '../api/resumeApi';
-import { useToast } from '../context/ToastContext';
-import { PageDashboard } from '../components/PageDashboard/PageDashboard';
-import type { ResumeData } from '../types/job';
+import { processResume } from '../api/resumeApi.ts';
+import { useToast } from '../context/ToastContext.tsx';
+import { PageDashboard } from '../components/PageDashboard/PageDashboard.tsx';
+import type { ResumeData } from '../types/job.ts';
 
 interface CapabilityAnalysisProps {}
 

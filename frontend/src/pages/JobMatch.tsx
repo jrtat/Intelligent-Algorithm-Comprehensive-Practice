@@ -1,10 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jobsData from '../data/jobs.json';
-import type { Job, JobData, ResumeData, Report } from '../types/job';
-import { processReport } from '../api/reportApi';
-import { useToast } from '../context/ToastContext';
-import { PageDashboard } from '../components/PageDashboard/PageDashboard';
+import type { Job, JobData, ResumeData, Report } from '../types/job.ts';
+import { processReport } from '../api/reportApi.ts';
+import { useToast } from '../context/ToastContext.tsx';
+import { PageDashboard } from '../components/PageDashboard/PageDashboard.tsx';
 import './job-match.css';
 
 // 随机推荐同类型岗位组件

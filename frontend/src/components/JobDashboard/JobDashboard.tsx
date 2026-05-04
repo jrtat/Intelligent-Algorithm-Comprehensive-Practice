@@ -3,8 +3,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 import jobsData from '../../data/jobs.json';
 import citiesData from '../../data/cities.json';
 import industriesData from '../../data/industries.json';
-import { AbilityBar } from '../JobDetail/AbilityBar';
-import type { Job, City, Industry, FilterState } from '../../types/job';
+import { AbilityBar } from '../JobDetail/AbilityBar.tsx';
+import type { Job, City, Industry, FilterState } from '../../types/job.ts';
 import './job-dashboard.css';
 
 const PAGE_SIZE = 50;

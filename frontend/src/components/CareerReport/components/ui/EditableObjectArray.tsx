@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { EditModal } from './EditModal';
-import type { FormField } from './EditModal';
-import { ConfirmDialog } from './ConfirmDialog';
+import { EditModal } from './EditModal.tsx';
+import type { FormField } from './EditModal.tsx';
+import { ConfirmDialog } from './ConfirmDialog.tsx';
 
 interface EditableObjectArrayProps {
   items: Record<string, any>[];

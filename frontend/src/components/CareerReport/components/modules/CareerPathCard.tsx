@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { ReportCard } from '../ReportCard';
-import { CollapsiblePanel } from '../ui/CollapsiblePanel';
-import { EditableField } from '../ui/EditableField';
-import { EditableList } from '../ui/EditableList';
-import { EditModal } from '../ui/EditModal';
-import type { FormField } from '../ui/EditModal';
-import { EditableObjectArray } from '../ui/EditableObjectArray';
-import { useReport } from '../../context/ReportContext';
-import type { Stage } from '../../../../types/job';
+import { ReportCard } from '../ReportCard.tsx';
+import { CollapsiblePanel } from '../ui/CollapsiblePanel.tsx';
+import { EditableField } from '../ui/EditableField.tsx';
+import { EditableList } from '../ui/EditableList.tsx';
+import { EditModal } from '../ui/EditModal.tsx';
+import type { FormField } from '../ui/EditModal.tsx';
+import { EditableObjectArray } from '../ui/EditableObjectArray.tsx';
+import { useReport } from '../../context/ReportContext.tsx';
+import type { Stage } from '../../../../types/job.ts';
 
 interface CareerPathCardProps {
   isEditing?: boolean;

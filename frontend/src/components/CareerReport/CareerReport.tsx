@@ -1,19 +1,19 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ReportProvider, useReport } from './context/ReportContext';
-import { ReportHeader } from './components/ReportHeader';
-import { ReportSidebar } from './components/ReportSidebar';
-import { BasicInfoCard } from './components/modules/BasicInfoCard';
-import { CandidateSummaryCard } from './components/modules/CandidateSummaryCard';
-import { MatchAnalysisCard } from './components/modules/MatchAnalysisCard';
-import { GapAnalysisCard } from './components/modules/GapAnalysisCard';
-import { CareerPathCard } from './components/modules/CareerPathCard';
-import { DevelopmentPlanCard } from './components/modules/DevelopmentPlanCard';
-import { ActionPlanCard } from './components/modules/ActionPlanCard';
-import { FinalRecommendationCard } from './components/modules/FinalRecommendationCard';
-import { AIPolishModal, type PolishSettings } from './components/ui/AIPolishModal';
-import { AIPolishComparePanel } from './components/ui/AIPolishComparePanel';
-import { polishReport } from './components/ui/AIPolishUtils';
+import { ReportProvider, useReport } from './context/ReportContext.tsx';
+import { ReportHeader } from './components/ReportHeader.tsx';
+import { ReportSidebar } from './components/ReportSidebar.tsx';
+import { BasicInfoCard } from './components/modules/BasicInfoCard.tsx';
+import { CandidateSummaryCard } from './components/modules/CandidateSummaryCard.tsx';
+import { MatchAnalysisCard } from './components/modules/MatchAnalysisCard.tsx';
+import { GapAnalysisCard } from './components/modules/GapAnalysisCard.tsx';
+import { CareerPathCard } from './components/modules/CareerPathCard.tsx';
+import { DevelopmentPlanCard } from './components/modules/DevelopmentPlanCard.tsx';
+import { ActionPlanCard } from './components/modules/ActionPlanCard.tsx';
+import { FinalRecommendationCard } from './components/modules/FinalRecommendationCard.tsx';
+import { AIPolishModal, type PolishSettings } from './components/ui/AIPolishModal.tsx';
+import { AIPolishComparePanel } from './components/ui/AIPolishComparePanel.tsx';
+import { polishReport } from './components/ui/AIPolishUtils.ts';
 
 function ReportContent() {
   const navigate = useNavigate();

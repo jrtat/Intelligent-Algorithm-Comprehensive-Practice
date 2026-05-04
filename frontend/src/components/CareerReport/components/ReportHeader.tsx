@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useReport } from '../context/ReportContext';
+import { useReport } from '../context/ReportContext.tsx';
 
 interface ReportHeaderProps {
   onAIPolish: () => void;

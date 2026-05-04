@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jobsData from '../../data/jobs.json';
-import type { Job } from '../../types/job';
+import type { Job } from '../../types/job.ts';
 import './JobProfileList.css';
 
 export function JobProfileList() {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { Job } from '../../types/job';
+import type { Job } from '../../types/job.ts';
 
 interface JobCardProps {
   job: Job;

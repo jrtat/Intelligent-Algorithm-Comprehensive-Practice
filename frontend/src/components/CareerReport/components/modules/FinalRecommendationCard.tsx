@@ -1,6 +1,6 @@
-import { ReportCard } from '../ReportCard';
-import { EditableField } from '../ui/EditableField';
-import { useReport } from '../../context/ReportContext';
+import { ReportCard } from '../ReportCard.tsx';
+import { EditableField } from '../ui/EditableField.tsx';
+import { useReport } from '../../context/ReportContext.tsx';
 
 interface FinalRecommendationCardProps {
   isEditing?: boolean;

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
 import jobsData from '../../data/jobs.json';
-import type { Job } from '../../types/job';
+import type { Job } from '../../types/job.ts';
 import '../JobDashboard/job-dashboard.css';
 import './job-map.css';
 

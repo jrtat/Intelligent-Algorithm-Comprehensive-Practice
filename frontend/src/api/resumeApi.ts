@@ -1,10 +1,10 @@
-import api from './client';
+import api from './client.ts';
 import type {
   ResumeData,
   TaskAcceptedResponse,
   TaskStatusResponse,
   ErrorResponse,
-} from '../types/job';
+} from '../types/job.ts';
 
 /**
  * 提交简历数据进行处理

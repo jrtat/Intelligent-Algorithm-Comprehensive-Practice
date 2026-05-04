@@ -1,7 +1,7 @@
-import { ReportCard } from '../ReportCard';
-import { useReport } from '../../context/ReportContext';
-import { EditableField } from '../ui/EditableField';
-import { EditableList } from '../ui/EditableList';
+import { ReportCard } from '../ReportCard.tsx';
+import { useReport } from '../../context/ReportContext.tsx';
+import { EditableField } from '../ui/EditableField.tsx';
+import { EditableList } from '../ui/EditableList.tsx';
 
 interface CandidateSummaryCardProps {
   isEditing?: boolean;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ConfirmDialog } from './ConfirmDialog';
+import { ConfirmDialog } from './ConfirmDialog.tsx';
 
 interface EditableListProps {
   items: string[];

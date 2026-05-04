@@ -1,16 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
-import { JobDashboard } from './components/JobDashboard/JobDashboard';
-import { JobDetailPage } from './components/JobDetail/JobDetail';
-import { JobSummaryPage } from './components/JobSummary/JobSummary';
-import { JobMapPage } from './components/JobMap/JobMap';
-import Home from './pages/Home';
+import { JobDashboard } from './components/JobDashboard/JobDashboard.tsx';
+import { JobDetailPage } from './components/JobDetail/JobDetail.tsx';
+import { JobSummaryPage } from './components/JobSummary/JobSummary.tsx';
+import { JobMapPage } from './components/JobMap/JobMap.tsx';
+import Home from './pages/Home.tsx';
 //import JobProfile from './components/JobProfile/JobProfile';
-import { JobProfileDetail } from './components/JobProfileList/JobProfileDetail';
-import CapabilityAnalysis from './pages/CapabilityAnalysis';
-import CareerReport from './pages/CareerReport';
-import JobMatch from './pages/JobMatch';
-import TopToast from './components/TopToast/TopToast';
-import { ToastProvider, useToast } from './context/ToastContext';
+import { JobProfileDetail } from './components/JobProfileList/JobProfileDetail.tsx';
+import CapabilityAnalysis from './pages/CapabilityAnalysis.tsx';
+import CareerReport from './pages/CareerReport.tsx';
+import JobMatch from './pages/JobMatch.tsx';
+import TopToast from './components/TopToast/TopToast.tsx';
+import { ToastProvider, useToast } from './context/ToastContext.tsx';
 import './App.css';
 
 function AppContent() {

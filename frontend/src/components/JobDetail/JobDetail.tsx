@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import jobsData from '../../data/jobs.json';
-import { AbilityBar } from './AbilityBar';
+import { AbilityBar } from './AbilityBar.tsx';
 import './job-detail.css';
 
 export function JobDetailPage() {

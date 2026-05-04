@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { ReportCard } from '../ReportCard';
-import { GapCard } from '../ui/GapCard';
-import { EditableList } from '../ui/EditableList';
-import type { FormField } from '../ui/EditModal';
-import { useReport } from '../../context/ReportContext';
-import type { Gap } from '../../../../types/job';
-import { ConfirmDialog } from '../ui/ConfirmDialog';
+import { ReportCard } from '../ReportCard.tsx';
+import { GapCard } from '../ui/GapCard.tsx';
+import { EditableList } from '../ui/EditableList.tsx';
+import type { FormField } from '../ui/EditModal.tsx';
+import { useReport } from '../../context/ReportContext.tsx';
+import type { Gap } from '../../../../types/job.ts';
+import { ConfirmDialog } from '../ui/ConfirmDialog.tsx';
 
 interface GapAnalysisCardProps {
   isEditing?: boolean;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ReportCard } from '../ReportCard';
-import { CollapsiblePanel } from '../ui/CollapsiblePanel';
-import { EditableList } from '../ui/EditableList';
-import { EditableField } from '../ui/EditableField';
-import { useReport } from '../../context/ReportContext';
+import { ReportCard } from '../ReportCard.tsx';
+import { CollapsiblePanel } from '../ui/CollapsiblePanel.tsx';
+import { EditableList } from '../ui/EditableList.tsx';
+import { EditableField } from '../ui/EditableField.tsx';
+import { useReport } from '../../context/ReportContext.tsx';
 
 interface ActionPlanCardProps {
   isEditing?: boolean;

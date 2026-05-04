@@ -1,4 +1,4 @@
-import type { Gap } from '../../../../types/job';
+import type { Gap } from '../../../../types/job.ts';
 
 interface GapCardProps {
   gap: Gap;

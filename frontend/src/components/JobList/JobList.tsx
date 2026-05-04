@@ -1,6 +1,6 @@
-import { FilterBar } from '../FilterBar/FilterBar';
-import { JobCard } from './JobCard';
-import { useJobFilter } from '../../hooks/useJobFilter';
+import { FilterBar } from '../FilterBar/FilterBar.tsx';
+import { JobCard } from './JobCard.tsx';
+import { useJobFilter } from '../../hooks/useJobFilter.ts';
 import './job-list.css';
 
 export function JobList() {

@@ -1,8 +1,8 @@
 import { createContext, useContext, useReducer, useEffect, useCallback, useState, useRef } from 'react';
 import type { Dispatch, ReactNode } from 'react';
-import type { Report } from '../../../types/job';
-import type { PolishResult } from '../components/ui/AIPolishUtils';
-import { getReport } from '../../../api/reportApi';
+import type { Report } from '../../../types/job.ts';
+import type { PolishResult } from '../components/ui/AIPolishUtils.ts';
+import { getReport } from '../../../api/reportApi.ts';
 
 export type NoDataReason = 'no_resume' | 'no_job_matched' | 'no_report';
 

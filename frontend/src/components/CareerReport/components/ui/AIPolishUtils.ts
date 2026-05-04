@@ -1,5 +1,5 @@
-import type { Report } from '../../../../types/job';
-import type { PolishSettings, PolishStyle, PolishIntensity } from './AIPolishModal';
+import type { Report } from '../../../../types/job.ts';
+import type { PolishSettings, PolishStyle, PolishIntensity } from './AIPolishModal.tsx';
 
 const API_KEY = import.meta.env.VITE_ALIYUN_BAILIAN_API_KEY;
 const API_URL = import.meta.env.VITE_ALIYUN_BAILIAN_API_URL || 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactECharts from 'echarts-for-react';
 import jobsData from '../../data/jobs.json';
-import type { Job } from '../../types/job';
-import { PageDashboard } from '../PageDashboard/PageDashboard';
+import type { Job } from '../../types/job.ts';
+import { PageDashboard } from '../PageDashboard/PageDashboard.tsx';
 
 const JobProfile = () => {
   const { jobId } = useParams<{ jobId: string }>();

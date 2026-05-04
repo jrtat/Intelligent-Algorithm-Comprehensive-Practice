@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import jobsData from '../data/jobs.json';
 import citiesData from '../data/cities.json';
 import industriesData from '../data/industries.json';
-import type { Job, FilterState, City, Industry } from '../types/job';
+import type { Job, FilterState, City, Industry } from '../types/job.ts';
 
 const jobsList: Job[] = Object.values(jobsData);
 const allCities = Object.keys(citiesData);

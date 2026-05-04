@@ -1,4 +1,4 @@
-import CareerReportComponent from '../components/CareerReport/CareerReport';
+import CareerReportComponent from '../components/CareerReport/CareerReport.tsx';
 
 export default function CareerReport() {
   return (

@@ -1,7 +1,7 @@
-import { ReportCard } from '../ReportCard';
-import { ScoreBar } from '../ui/ScoreBar';
-import { EditableField } from '../ui/EditableField';
-import { useReport } from '../../context/ReportContext';
+import { ReportCard } from '../ReportCard.tsx';
+import { ScoreBar } from '../ui/ScoreBar.tsx';
+import { EditableField } from '../ui/EditableField.tsx';
+import { useReport } from '../../context/ReportContext.tsx';
 
 interface MatchAnalysisCardProps {
   isEditing?: boolean;

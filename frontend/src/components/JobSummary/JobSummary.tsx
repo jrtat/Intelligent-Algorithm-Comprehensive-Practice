@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import jobsData from '../../data/jobs.json';
-import type { Job } from '../../types/job';
-import { AbilityBar } from '../JobDetail/AbilityBar';
+import type { Job } from '../../types/job.ts';
+import { AbilityBar } from '../JobDetail/AbilityBar.tsx';
 import './job-summary.css';
 
 export function JobSummaryPage() {

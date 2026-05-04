@@ -5,10 +5,7 @@ import numpy as np
 import pandas as pd
 import re
 
-def calc_embedding(txt):
-    """
-    算文本列表的Embedding计算，返回 (n_samples, dim) 的 numpy 数组
-    """
+def calc_embedding(txt): # 文本列表的Embedding计算，返回 (n_samples, dim) 的 numpy 数组
     embedding = get_embedding_temp()
     embeddings_vec = embedding.embed_documents(txt)
     return np.array(embeddings_vec, dtype=np.float32)
@@ -108,8 +105,6 @@ def init_data_graph(df):
     print(f"最终融合特征维度: {x_fused.shape[1]}")
     return x_fused
 
-#--- 分割线 ---#
-
 def init_data_raw(df, if_lora = False):
 
     def format_all_fields_to_text(row):  # 将一行招聘数据的多个字段拼接成一段完整的中文描述
@@ -147,20 +142,19 @@ def init_data_raw(df, if_lora = False):
 
         return " ".join(parts)  # 用空格连接所有上述片段
 
-    # 为每行生成融合文本
+    # Step 1：为每行生成融合文本
     df['combined_text'] = df.apply(format_all_fields_to_text, axis=1)
 
-    # 过滤掉完全空白的文本行（可选）
+    # Step 2：过滤掉完全空白的文本行（可选）
     df = df[df['combined_text'].str.strip() != '']
 
-    # 计算文本嵌入
+    # Step 3：计算文本嵌入
     if not if_lora:
         text_list = df['combined_text'].tolist()
         text_embeddings = calc_embedding(text_list)
 
         print(f"最终融合特征维度: {text_embeddings.shape[1]}")
         return text_embeddings
-
     else:
         return df
 

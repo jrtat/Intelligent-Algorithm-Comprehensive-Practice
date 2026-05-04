@@ -19,8 +19,8 @@ df = get_data_raw()
 
 # Step 1：处理数据（多数内容只需执行一次，因为处理1w条数据大概有个10分钟左右，不方便测试，所以存起来）
 # X_fused = init_data_graph(df)
-# X_fused = init_data_raw(df)
-# np.save("X_fused.npy", X_fused) # 保存为 .npy 文件（精确二进制格式，保留 dtype 和 shape）
+X_fused = init_data_raw(df) # 这一句执行完一次后就可以注释掉
+np.save("X_fused.npy", X_fused) # 保存为 .npy 文件（精确二进制格式，保留 dtype 和 shape）# 这一句执行完一次后就可以注释掉
 
 X_fused = np.load("X_fused.npy") # 读出数据
 le = LabelEncoder() # 使用 LabelEncoder 将原始岗位名称（字符串）转换为整数标签 y（0, 1, 2, …）

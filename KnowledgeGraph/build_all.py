@@ -5,6 +5,7 @@ from KnowledgeGraph.preprocess.industry import preprocess_industry_easy
 from KnowledgeGraph.preprocess.loc import preprocess_loc
 from KnowledgeGraph.func.build_graphrag import build_graphrag, deduplication, transform_properties_to_nodes
 from KnowledgeGraph.func.extract_document import get_extracted_document
+from KnowledgeGraph.func.build_vec import build_chunk
 
 def init_excel():
     df = pd.read_excel("raw.xlsx")
@@ -21,8 +22,8 @@ def init_excel():
 
 init_excel()
 
-# raw_text = get_extracted_document(start_pos= 9001, length= 40)
-# build_graphrag(raw_text,'add')
-# transform_properties_to_nodes()
-# deduplication()
-# build_chunk()
+raw_text = get_extracted_document(start_pos= 1, length= 100)
+build_graphrag(raw_text,'add')
+transform_properties_to_nodes()
+deduplication()
+build_chunk()

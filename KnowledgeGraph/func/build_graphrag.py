@@ -387,34 +387,6 @@ def deduplication(embedding_threshold=0.8, fuzzy_threshold=80):
 
     print(f"实体去重完成！共合并 {merged_count} 个重复实体")
 
-#--- 最终我们期望达到的图结构 ---#
-
-'''
-node_schemas = [
-    NodeSchema("职业类别"),
-    NodeSchema("岗位", ["工作地点", "薪资范围", "学历要求","晋升路径", "福利待遇"]),
-    NodeSchema("公司", ["行业", "公司描述", "企业规模", "融资阶段"]),
-    NodeSchema("证书"),
-    NodeSchema("综合素质"),
-    NodeSchema("职业技能"),
-    NodeSchema("工作内容"),
-    NodeSchema("专业")
-]
-
-relationship_schemas = [
-    RelationshipSchema("岗位", "属于", "职业类别"),
-    RelationshipSchema("岗位", "来自", "公司"),
-    RelationshipSchema("岗位", "需要具有", "综合素质"),
-    RelationshipSchema("岗位", "需要掌握", "职业技能"),
-    RelationshipSchema("岗位", "需要持有", "证书"),
-    RelationshipSchema("岗位", "需要拥有", "工作经验"),
-    RelationshipSchema("岗位", "负责", "工作内容"),
-    RelationshipSchema("岗位", "需要来自", "专业"),
-    RelationshipSchema("公司", "涉及", "行业")
-]
-
-'''
-
 #--- old ---#
 '''
 def deduplication(embedding_threshold = 0.82 , fuzzy_threshold = 82 ):
